@@ -1,0 +1,92 @@
+import { ComponentBuilderFunction } from '../types/component_builder_function';
+
+export const addProjectThumbnailComponent: ComponentBuilderFunction = (
+  { addComponents },
+  { darkModeContext, classPrefix }
+) => {
+  addComponents({
+    '.project-thumbnail': {
+      [`@apply ${classPrefix}inline-block ${classPrefix}relative ${classPrefix}overflow-hidden`]:
+        {},
+
+      // Colors
+      [`@apply ${classPrefix}outline-white-200`]: {},
+      [darkModeContext]: {
+        [`@apply ${classPrefix}outline-black-500`]: {},
+      },
+
+      // Sizing
+      [`@apply ${classPrefix}w-41 ${classPrefix}h-28`]: {},
+      [`@apply ${classPrefix}rounded-5`]: {},
+      [`@apply ${classPrefix}outline ${classPrefix}outline-offset-l3 ${classPrefix}outline-3`]: {},
+
+      // Others
+      [`@apply ${classPrefix}transition-project-thumbnail-background-and-border ${classPrefix}duration-project-thumbnail-background-and-border ${classPrefix}ease-project-thumbnail-background-and-border`]:
+        {},
+
+      // Hover state
+      '&:hover': {
+        [`@apply ${classPrefix}outline-transparent`]: {},
+      },
+      '&:hover .thumbnail-hover': {
+        [`@apply ${classPrefix}opacity-100`]: {},
+      },
+
+      // Focus state
+      '&:focus': {
+        // Colors
+        [`@apply ${classPrefix}ring-green-400`]: {},
+        [darkModeContext]: {
+          [`@apply ${classPrefix}ring-green-600`]: {},
+        },
+
+        // Sizing
+        [`@apply ${classPrefix}ring-3 ${classPrefix}ring-offset-3`]: {},
+      },
+
+      // Children
+      '.thumbnail-hover': {
+        [`@apply ${classPrefix}flex ${classPrefix}justify-center ${classPrefix}items-center ${classPrefix}inset-0 ${classPrefix}absolute ${classPrefix}z-0 ${classPrefix}opacity-0`]:
+          {},
+
+        // Colors
+        [`@apply ${classPrefix}bg-purple-blue-200/33`]: {},
+        [darkModeContext]: {
+          [`@apply ${classPrefix}bg-purple-blue-500/33`]: {},
+        },
+        [`@apply ${classPrefix}outline-purple-blue-400`]: {},
+        [darkModeContext]: {
+          [`@apply ${classPrefix}outline-purple-blue-500`]: {},
+        },
+
+        // Sizing (required for the border)
+        [`@apply ${classPrefix}rounded-5`]: {},
+
+        // Others
+        [`@apply ${classPrefix}backdrop-blur-4`]: {},
+        [`@apply ${classPrefix}outline ${classPrefix}outline-offset-l3 ${classPrefix}outline-3`]:
+          {},
+        [`@apply ${classPrefix}transition-project-thumbnail-background-and-border ${classPrefix}duration-project-thumbnail-background-and-border ${classPrefix}ease-project-thumbnail-background-and-border`]:
+          {},
+
+        '.thumbnail-hover-icon': {
+          [`@apply ${classPrefix}inline-block`]: {},
+
+          // Colors
+          [`@apply ${classPrefix}text-purple-blue-400`]: {},
+          [darkModeContext]: {
+            [`@apply ${classPrefix}text-purple-blue-500`]: {},
+          },
+
+          // Sizing
+          [`@apply ${classPrefix}w-7 ${classPrefix}h-7`]: {},
+
+          // Children
+          '& svg path': {
+            [`@apply ${classPrefix}stroke-3`]: {},
+          },
+        },
+      },
+    },
+  });
+};
