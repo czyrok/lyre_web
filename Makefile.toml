@@ -1,0 +1,4 @@
+extend = [{ path = "./makefiles/main.toml" }, { path = "./makefiles/cargo-leptos.toml" }]
+
+[env]
+CLIENT_PROCESS_NAME = "lyre_web"

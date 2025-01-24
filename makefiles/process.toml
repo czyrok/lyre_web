@@ -1,0 +1,10 @@
+extend = [{ path = "./client-process.toml" }]
+
+[tasks.start]
+dependencies = ["maybe-start-client"]
+
+[tasks.status]
+dependencies = ["server-status", "client-status"]
+
+[tasks.stop]
+dependencies = ["stop-client", "stop-server"]
