@@ -1,0 +1,92 @@
+{
+  "folders": [
+    {
+      "path": "./project_data",
+    },
+    {
+      "path": "./src",
+    },
+    {
+      "path": "./tailwind",
+    },
+    {
+      "name": "root",
+      "path": "./",
+    },
+  ],
+  "extensions": {
+    "recommendations": [],
+  },
+  "settings": {
+    "[rust]": {
+      "editor.formatOnSave": true,
+      "editor.defaultFormatter": "rust-lang.rust-analyzer",
+    },
+    "[typescript]": {
+      "editor.formatOnSave": true,
+      "editor.defaultFormatter": "esbenp.prettier-vscode",
+    },
+    "[javascript]": {
+      "editor.formatOnSave": true,
+      "editor.defaultFormatter": "esbenp.prettier-vscode",
+    },
+    "[shellscript]": {
+      "editor.formatOnSave": true,
+      "editor.defaultFormatter": "esbenp.prettier-vscode",
+    },
+    "[yaml]": {
+      "editor.formatOnSave": true,
+      "editor.defaultFormatter": "esbenp.prettier-vscode",
+    },
+    "[toml]": {
+      "editor.formatOnSave": true,
+      "editor.defaultFormatter": "esbenp.prettier-vscode",
+    },
+    "[json]": {
+      "editor.formatOnSave": true,
+      "editor.defaultFormatter": "esbenp.prettier-vscode",
+    },
+    "[sql]": {
+      "editor.formatOnSave": true,
+      "editor.defaultFormatter": "esbenp.prettier-vscode",
+    },
+    "typescript.preferences.importModuleSpecifier": "non-relative",
+    "javascript.preferences.importModuleSpecifier": "non-relative",
+    // https://book.leptos.dev/getting_started/leptos_dx.html
+    "rust-analyzer.cargo.features": ["ssr"],
+    // "rust-analyzer.cargo.features": ["ssr"]
+    //   "rust-analyzer.procMacro.ignored": {
+    //     "leptos_macro": ["server"]
+    //   }
+  },
+  "tasks": {
+    "version": "2.0.0",
+    "tasks": [
+      {
+        "type": "shell",
+        "label": "build",
+        "command": "cargo",
+        "args": ["make", "build"],
+      },
+    ],
+    "inputs": [],
+  },
+  "launch": {
+    "version": "0.2.0",
+    "configurations": [
+      {
+        "type": "lldb",
+        "request": "launch",
+        "name": "Start & Debug",
+        "preLaunchTask": "build",
+        "program": "${workspaceFolder}/target/debug/lyre_web",
+        "args": [],
+        "cwd": "${workspaceFolder}",
+        "sourceLanguages": ["rust"],
+        //// TODO: tester
+        "stopOnEntry": true,
+      },
+    ],
+    "inputs": [],
+  },
+}
