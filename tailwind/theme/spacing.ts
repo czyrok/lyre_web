@@ -1,0 +1,28 @@
+import { ThemeConfig } from 'tailwindcss/types/config';
+
+export const THEME_SPACING: ThemeConfig['spacing'] = {
+  0: '0px',
+  '0,5': '4px',
+  1: '8px',
+  '1,5': '12px',
+  2: '16px',
+  '2,5': '20px',
+  3: '24px',
+  '3,5': '28px',
+  4: '32px',
+  5: '40px',
+  6: '48px',
+  7: '56px',
+  8: '64px',
+  9: '72px',
+  10: '80px',
+  14: '112px',
+  16: '128px',
+  25: '200px',
+  28: '224px',
+  33: '264px',
+  37: '296px',
+  41: '328px',
+  47: '376px',
+  62: '496px',
+} as const;
