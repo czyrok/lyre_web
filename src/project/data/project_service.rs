@@ -1,5 +1,6 @@
 use super::{
-    project::Project, project_context::ProjectContext, project_repository::ProjectRepository,
+    project::Project, project_context::ProjectContext,
+    project_repository::ProjectRepository,
 };
 
 #[derive(Clone, Debug)]
@@ -80,8 +81,12 @@ impl<'a> ProjectService<'a> {
         None
     }
 
-    pub fn get_relevant_project_contexts(&self, limit: usize) -> Vec<ProjectContext> {
-        let relevant_project_context = self.get_ordered_project_contexts(limit, None);
+    pub fn get_relevant_project_contexts(
+        &self,
+        limit: usize,
+    ) -> Vec<ProjectContext> {
+        let relevant_project_context =
+            self.get_ordered_project_contexts(limit, None);
 
         relevant_project_context
     }

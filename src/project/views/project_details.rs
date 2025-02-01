@@ -1,9 +1,6 @@
-use leptos::prelude::*;
-use leptos::Params;
-use leptos_router::hooks::use_params;
-use leptos_router::params::Params;
-use serde::Deserialize;
-use serde::Serialize;
+use leptos::{prelude::*, Params};
+use leptos_router::{hooks::use_params, params::Params};
+use serde::{Deserialize, Serialize};
 use thiserror::Error;
 
 use crate::project::api::project::get_project;
@@ -57,7 +54,9 @@ pub fn ProjectDetails() -> impl IntoView {
                         // <Meta name="description" content=post.content/>
                     })
                 }
-                Err(error) => Err(ProjectDetailsError::ServerError(error.to_string())),
+                Err(error) => {
+                    Err(ProjectDetailsError::ServerError(error.to_string()))
+                }
             }
         })
     };

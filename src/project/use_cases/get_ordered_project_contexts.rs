@@ -7,7 +7,10 @@ use crate::{
         },
         use_case::UseCase,
     },
-    project::{data::project_service::ProjectService, dto::project_contexts::ProjectContextsDto},
+    project::{
+        data::project_service::ProjectService,
+        dto::project_contexts::ProjectContextsDto,
+    },
 };
 
 pub struct GetOrderedProjectContextsUseCase<'a> {
@@ -27,10 +30,11 @@ impl<'a> GetOrderedProjectContextsUseCase<'a> {
         };
 
         if test == false {
-            let bad_request_error = BadRequestServerError::new_unknown_project(format!(
-                "This project `{}` doesn't exist",
-                pagination.cursor_after.clone().unwrap()
-            ));
+            let bad_request_error =
+                BadRequestServerError::new_unknown_project(format!(
+                    "This project `{}` doesn't exist",
+                    pagination.cursor_after.clone().unwrap()
+                ));
 
             return Err(bad_request_error.into());
         }
@@ -43,16 +47,20 @@ impl<'a> GetOrderedProjectContextsUseCase<'a> {
     }
 }
 
-impl<'a> UseCase<CursorPagination, ProjectContextsDto> for GetOrderedProjectContextsUseCase<'a> {
+impl<'a> UseCase<CursorPagination, ProjectContextsDto>
+    for GetOrderedProjectContextsUseCase<'a>
+{
     async fn run(
         &self,
         pagination: CursorPagination,
     ) -> Result<ProjectContextsDto, ServerFunctionError> {
         self.check_slug_pagination_cursor_after(&pagination)?;
 
-        let project_contexts = self
-            .project_service
-            .get_ordered_project_contexts(pagination.limit, pagination.cursor_after.clone());
+        let project_contexts =
+            self.project_service.get_ordered_project_contexts(
+                pagination.limit,
+                pagination.cursor_after.clone(),
+            );
 
         Ok(ProjectContextsDto::new(project_contexts))
     }

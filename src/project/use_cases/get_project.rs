@@ -6,7 +6,9 @@ use crate::{
         },
         use_case::UseCase,
     },
-    project::{data::project_service::ProjectService, dto::project::ProjectDto},
+    project::{
+        data::project_service::ProjectService, dto::project::ProjectDto,
+    },
 };
 
 pub struct GetProjectUseCase<'a> {
@@ -20,14 +22,18 @@ impl<'a> GetProjectUseCase<'a> {
 }
 
 impl<'a> UseCase<String, ProjectDto> for GetProjectUseCase<'a> {
-    async fn run(&self, slug: String) -> Result<ProjectDto, ServerFunctionError> {
+    async fn run(
+        &self,
+        slug: String,
+    ) -> Result<ProjectDto, ServerFunctionError> {
         let project = match self.project_service.get_project(&slug) {
             Some(project) => project,
             None => {
-                let not_found_error = NotFoundServerError::new_project_not_found(format!(
-                    "This project `{}` doesn't exist",
-                    slug
-                ));
+                let not_found_error =
+                    NotFoundServerError::new_project_not_found(format!(
+                        "This project `{}` doesn't exist",
+                        slug
+                    ));
 
                 return Err(not_found_error.into());
             }

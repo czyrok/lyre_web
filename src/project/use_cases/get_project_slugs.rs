@@ -1,6 +1,11 @@
 use crate::{
-    common::{error::server_function_error::ServerFunctionError, use_case::UseCase},
-    project::{data::project_service::ProjectService, dto::project_slugs::ProjectSlugsDto},
+    common::{
+        error::server_function_error::ServerFunctionError, use_case::UseCase,
+    },
+    project::{
+        data::project_service::ProjectService,
+        dto::project_slugs::ProjectSlugsDto,
+    },
 };
 
 pub struct GetProjectSlugsUseCase<'a> {

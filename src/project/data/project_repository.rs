@@ -60,7 +60,8 @@ impl<'a> ProjectRepository<'a> {
         let project_data_files = self.get_project_data_file_paths()?;
 
         for project_data_file in project_data_files {
-            let project = Project::parse_from_markdown_file(project_data_file).await?;
+            let project =
+                Project::parse_from_markdown_file(project_data_file).await?;
 
             self.cached_projects.push(project);
         }

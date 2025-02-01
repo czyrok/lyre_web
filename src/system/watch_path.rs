@@ -1,5 +1,6 @@
-use futures::{channel::mpsc, Stream};
 use std::path::Path;
+
+use futures::{channel::mpsc, Stream};
 
 #[allow(unused)]
 /**
@@ -12,18 +13,18 @@ pub fn watch_path(path: &Path) -> impl Stream<Item = ()> {
 
     #[cfg(feature = "ssr")]
     {
-        use notify::RecursiveMode;
-        use notify::Watcher;
+        use notify::{RecursiveMode, Watcher};
 
-        let mut watcher = notify::recommended_watcher(move |event: Result<_, _>| {
-            if event.is_ok() {
-                // If this fails, it's because the buffer is full
-                // this means we've already notified before it's regenerated,
-                // so this page will be queued for regeneration already
-                _ = producer.try_send(());
-            }
-        })
-        .expect("Could not create watcher");
+        let mut watcher =
+            notify::recommended_watcher(move |event: Result<_, _>| {
+                if event.is_ok() {
+                    // If this fails, it's because the buffer is full
+                    // this means we've already notified before it's regenerated,
+                    // so this page will be queued for regeneration already
+                    _ = producer.try_send(());
+                }
+            })
+            .expect("Could not create watcher");
 
         // Add a path to be watched. All files and directories at that path and
         // below will be monitored for changes.

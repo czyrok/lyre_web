@@ -12,7 +12,11 @@ pub struct ServerErrorDto {
 }
 
 impl ServerErrorDto {
-    pub fn new(status_code: u16, error_type: FrontedErrorType, detailed_message: String) -> Self {
+    pub fn new(
+        status_code: u16,
+        error_type: FrontedErrorType,
+        detailed_message: String,
+    ) -> Self {
         Self {
             status_code,
             error_type,
@@ -22,7 +26,10 @@ impl ServerErrorDto {
 }
 
 impl std::fmt::Display for ServerErrorDto {
-    fn fmt(&self, fmt: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+    fn fmt(
+        &self,
+        fmt: &mut std::fmt::Formatter<'_>,
+    ) -> Result<(), std::fmt::Error> {
         let serialized_dto = serde_json::to_string(&self).unwrap();
 
         write!(fmt, "{}", serialized_dto)
@@ -33,7 +40,8 @@ impl FromStr for ServerErrorDto {
     type Err = ();
 
     fn from_str(serialized_dto: &str) -> Result<Self, Self::Err> {
-        let deserialized_dto: ServerErrorDto = serde_json::from_str(serialized_dto).unwrap();
+        let deserialized_dto: ServerErrorDto =
+            serde_json::from_str(serialized_dto).unwrap();
 
         Ok(deserialized_dto)
     }

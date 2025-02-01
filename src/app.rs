@@ -1,3 +1,5 @@
+use std::path::Path;
+
 use leptos::prelude::*;
 use leptos_meta::*;
 use leptos_router::{
@@ -6,10 +8,15 @@ use leptos_router::{
     static_routes::StaticRoute,
     SsrMode,
 };
-use std::path::Path;
 
-use crate::{home::view::HomePage, project::api::project_slug::get_project_slugs};
-use crate::{project::views::project_details::ProjectDetails, system::watch_path::watch_path};
+use crate::{
+    home::view::HomePage,
+    project::{
+        api::project_slug::get_project_slugs,
+        views::project_details::ProjectDetails,
+    },
+    system::watch_path::watch_path,
+};
 
 #[component]
 pub fn App() -> impl IntoView {

@@ -1,7 +1,5 @@
-use leptos::prelude::*;
-use leptos::{config::LeptosOptions, IntoView};
-use leptos_meta::MetaTags;
-use leptos_meta::*;
+use leptos::{config::LeptosOptions, prelude::*, IntoView};
+use leptos_meta::{MetaTags, *};
 
 use crate::app::App;
 
