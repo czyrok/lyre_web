@@ -18,28 +18,24 @@ impl Project {
     fn split_markdown_document(
         document: &str,
     ) -> Result<(&str, &str), regex::Error> {
-        let separator_regex = match Regex::new(r"-{3}") {
-            Ok(regexp) => regexp,
-            Err(error) => return Err(error),
-        };
+        let separator_regex = Regex::new(r"-{3}")?;
 
-        let splited_values: Vec<_> =
-            separator_regex.split(document).into_iter().collect();
+        let splited_values: Vec<_> = separator_regex.split(document).collect();
 
         let mut raw_project_context = "";
         let mut raw_project_content = "";
 
         for splited_value in splited_values {
-            if splited_value == "" {
+            if splited_value.is_empty() {
                 continue;
             }
 
-            if raw_project_context == "" {
+            if raw_project_context.is_empty() {
                 raw_project_context = splited_value.trim();
                 continue;
             }
 
-            if raw_project_content == "" {
+            if raw_project_content.is_empty() {
                 raw_project_content = splited_value.trim();
                 continue;
             }
@@ -47,7 +43,7 @@ impl Project {
             panic!("Invalid Markdown content, more than two parts")
         }
 
-        return Ok((raw_project_context, raw_project_content));
+        Ok((raw_project_context, raw_project_content))
     }
 
     pub async fn parse_from_markdown_data(

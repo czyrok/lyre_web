@@ -8,17 +8,17 @@ use crate::{
     },
 };
 
-pub struct GetProjectSlugsUseCase<'a> {
-    project_service: ProjectService<'a>,
+pub struct GetProjectSlugsUseCase {
+    project_service: ProjectService,
 }
 
-impl<'a> GetProjectSlugsUseCase<'a> {
-    pub fn new(project_service: ProjectService<'a>) -> Self {
+impl GetProjectSlugsUseCase {
+    pub fn new(project_service: ProjectService) -> Self {
         Self { project_service }
     }
 }
 
-impl<'a> UseCase<(), ProjectSlugsDto> for GetProjectSlugsUseCase<'a> {
+impl UseCase<(), ProjectSlugsDto> for GetProjectSlugsUseCase {
     async fn run(&self, _: ()) -> Result<ProjectSlugsDto, ServerFunctionError> {
         let project_slugs = self.project_service.get_project_slugs();
 

@@ -22,12 +22,3 @@ impl Default for FrontedErrorType {
         FrontedErrorType::Unknown("UNKNOWN_ERROR".into())
     }
 }
-
-impl std::fmt::Display for FrontedErrorType {
-    fn fmt(
-        &self,
-        fmt: &mut std::fmt::Formatter<'_>,
-    ) -> Result<(), std::fmt::Error> {
-        write!(fmt, "{}", self)
-    }
-}

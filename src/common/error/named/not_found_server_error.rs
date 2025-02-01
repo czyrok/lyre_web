@@ -27,10 +27,7 @@ impl NotFoundServerError {
 
 impl From<NotFoundServerError> for ServerErrorDto {
     fn from(server_error: NotFoundServerError) -> ServerErrorDto {
-        let error_type = match server_error.error_type {
-            Some(error_type) => error_type,
-            None => FrontedErrorType::default(),
-        };
+        let error_type = server_error.error_type.unwrap_or_default();
 
         let detailed_message = match server_error.detailed_message {
             Some(message) => message,

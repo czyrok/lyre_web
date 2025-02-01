@@ -13,11 +13,11 @@ use crate::{
     },
 };
 
-pub struct GetOrderedProjectContextsUseCase<'a> {
-    project_service: ProjectService<'a>,
+pub struct GetOrderedProjectContextsUseCase {
+    project_service: ProjectService,
 }
 
-impl<'a> GetOrderedProjectContextsUseCase<'a> {
+impl GetOrderedProjectContextsUseCase {
     fn check_slug_pagination_cursor_after(
         &self,
         pagination: &CursorPagination,
@@ -29,7 +29,7 @@ impl<'a> GetOrderedProjectContextsUseCase<'a> {
             None => true,
         };
 
-        if test == false {
+        if !test {
             let bad_request_error =
                 BadRequestServerError::new_unknown_project(format!(
                     "This project `{}` doesn't exist",
@@ -42,13 +42,13 @@ impl<'a> GetOrderedProjectContextsUseCase<'a> {
         Ok(())
     }
 
-    pub fn new(project_service: ProjectService<'a>) -> Self {
+    pub fn new(project_service: ProjectService) -> Self {
         Self { project_service }
     }
 }
 
-impl<'a> UseCase<CursorPagination, ProjectContextsDto>
-    for GetOrderedProjectContextsUseCase<'a>
+impl UseCase<CursorPagination, ProjectContextsDto>
+    for GetOrderedProjectContextsUseCase
 {
     async fn run(
         &self,

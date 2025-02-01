@@ -8,19 +8,17 @@ use crate::{
     },
 };
 
-pub struct GetRelevantProjectContextsUseCase<'a> {
-    project_service: ProjectService<'a>,
+pub struct GetRelevantProjectContextsUseCase {
+    project_service: ProjectService,
 }
 
-impl<'a> GetRelevantProjectContextsUseCase<'a> {
-    pub fn new(project_service: ProjectService<'a>) -> Self {
+impl GetRelevantProjectContextsUseCase {
+    pub fn new(project_service: ProjectService) -> Self {
         Self { project_service }
     }
 }
 
-impl<'a> UseCase<(), ProjectContextsDto>
-    for GetRelevantProjectContextsUseCase<'a>
-{
+impl UseCase<(), ProjectContextsDto> for GetRelevantProjectContextsUseCase {
     async fn run(
         &self,
         _: (),

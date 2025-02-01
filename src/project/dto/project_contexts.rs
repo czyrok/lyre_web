@@ -9,6 +9,6 @@ pub struct ProjectContextsDto {
 
 impl ProjectContextsDto {
     pub fn new(project_contexts: Vec<ProjectContext>) -> Self {
-        return Self { project_contexts };
+        Self { project_contexts }
     }
 }

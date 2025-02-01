@@ -4,12 +4,12 @@ use super::{
 };
 
 #[derive(Clone, Debug)]
-pub struct ProjectService<'a> {
-    project_repository: ProjectRepository<'a>,
+pub struct ProjectService {
+    project_repository: ProjectRepository,
 }
 
-impl<'a> ProjectService<'a> {
-    pub fn new(project_repository: ProjectRepository<'a>) -> Self {
+impl ProjectService {
+    pub fn new(project_repository: ProjectRepository) -> Self {
         Self { project_repository }
     }
 
@@ -81,13 +81,14 @@ impl<'a> ProjectService<'a> {
         None
     }
 
+    /**
+     * It returns the relevant projects' contexts
+     * We consider the firsts as the relevant projects
+     */
     pub fn get_relevant_project_contexts(
         &self,
         limit: usize,
     ) -> Vec<ProjectContext> {
-        let relevant_project_context =
-            self.get_ordered_project_contexts(limit, None);
-
-        relevant_project_context
+        self.get_ordered_project_contexts(limit, None)
     }
 }

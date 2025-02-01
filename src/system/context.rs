@@ -9,15 +9,13 @@ use crate::{
     project::data::project_service::ProjectService,
 };
 
-pub fn use_project_service(
-) -> Result<ProjectService<'static>, ServerFunctionException> {
-    match use_context::<ProjectService<'static>>() {
+pub fn use_project_service() -> Result<ProjectService, ServerFunctionException>
+{
+    match use_context::<ProjectService>() {
         Some(project_service) => Ok(project_service),
         None => {
-            return Err(InternalServerError::new(Some(
-                "Context not found".into(),
-            ))
-            .into())
+            Err(InternalServerError::new(Some("Context not found".into()))
+                .into())
         }
     }
 }

@@ -11,7 +11,7 @@ if #[cfg(feature = "ssr")] {
     #[derive(FromRef, Debug, Clone)]
     pub struct AppState {
         pub leptos_options: LeptosOptions,
-        pub project_service: ProjectService<'static>,
+        pub project_service: ProjectService,
     }
 }
 }

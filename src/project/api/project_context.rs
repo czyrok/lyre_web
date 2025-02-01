@@ -21,9 +21,7 @@ pub async fn get_ordered_project_contexts(
 
     let use_case = GetOrderedProjectContextsUseCase::new(project_service);
 
-    let use_case_result = run_use_case(use_case, pagination).await;
-
-    use_case_result
+    run_use_case(use_case, pagination).await
 }
 
 #[server(prefix = "/api", endpoint = "project_contexts", input = GetUrl)]
@@ -38,7 +36,5 @@ pub async fn get_relevant_project_contexts(
 
     let use_case = GetRelevantProjectContextsUseCase::new(project_service);
 
-    let use_case_result = run_use_case(use_case, ()).await;
-
-    use_case_result
+    run_use_case(use_case, ()).await
 }

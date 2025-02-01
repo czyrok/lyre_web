@@ -7,17 +7,17 @@ use std::{
 use super::project::Project;
 
 #[derive(Clone, Debug)]
-pub struct ProjectRepository<'a> {
-    project_data_path: &'a str,
+pub struct ProjectRepository {
+    project_data_path: String,
     cached_projects: Vec<Project>,
 }
 
 // TODO: test à faire => slug unique
 // TODO: test à faire => order unique + dans l'ordre de 0..X sans nombre en moins
 
-impl<'a> ProjectRepository<'a> {
+impl ProjectRepository {
     fn get_project_data_file_paths(&self) -> Result<Vec<DirEntry>, io::Error> {
-        let project_data_dir = fs::read_dir(self.project_data_path)?;
+        let project_data_dir = fs::read_dir(self.project_data_path.clone())?;
 
         let mut project_data_files = vec![];
 
@@ -40,9 +40,9 @@ impl<'a> ProjectRepository<'a> {
             });
     }
 
-    pub fn new(project_data_path: &'a str) -> Self {
+    pub fn new(project_data_path: &str) -> Self {
         Self {
-            project_data_path,
+            project_data_path: String::from(project_data_path),
             cached_projects: vec![],
         }
     }

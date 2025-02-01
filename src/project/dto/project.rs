@@ -9,6 +9,6 @@ pub struct ProjectDto {
 
 impl ProjectDto {
     pub fn new(project: Project) -> Self {
-        return Self { project };
+        Self { project }
     }
 }

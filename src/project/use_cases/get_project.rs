@@ -11,17 +11,17 @@ use crate::{
     },
 };
 
-pub struct GetProjectUseCase<'a> {
-    project_service: ProjectService<'a>,
+pub struct GetProjectUseCase {
+    project_service: ProjectService,
 }
 
-impl<'a> GetProjectUseCase<'a> {
-    pub fn new(project_service: ProjectService<'a>) -> Self {
+impl GetProjectUseCase {
+    pub fn new(project_service: ProjectService) -> Self {
         Self { project_service }
     }
 }
 
-impl<'a> UseCase<String, ProjectDto> for GetProjectUseCase<'a> {
+impl UseCase<String, ProjectDto> for GetProjectUseCase {
     async fn run(
         &self,
         slug: String,

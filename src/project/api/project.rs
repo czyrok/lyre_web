@@ -18,7 +18,5 @@ pub async fn get_project(
 
     let use_case = GetProjectUseCase::new(project_service);
 
-    let use_case_result = run_use_case(use_case, slug).await;
-
-    use_case_result
+    run_use_case(use_case, slug).await
 }

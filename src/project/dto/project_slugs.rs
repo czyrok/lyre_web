@@ -7,6 +7,6 @@ pub struct ProjectSlugsDto {
 
 impl ProjectSlugsDto {
     pub fn new(project_slugs: Vec<String>) -> Self {
-        return Self { project_slugs };
+        Self { project_slugs }
     }
 }
