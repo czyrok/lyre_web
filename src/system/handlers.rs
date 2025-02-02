@@ -23,7 +23,7 @@ if #[cfg(feature = "ssr")] {
 
         handle_server_fns_with_context(
             move || {
-                provide_context(app_state.leptos_options.clone());
+                provide_context(app_state.options.clone());
                 provide_context(app_state.project_service.clone());
             },
             request,
@@ -39,7 +39,7 @@ if #[cfg(feature = "ssr")] {
             move || {
                 provide_context(app_state.project_service.clone());
             },
-            move || shell(app_state.leptos_options.clone()),
+            move || shell(app_state.options.clone()),
         );
 
         handler(req).await.into_response()
