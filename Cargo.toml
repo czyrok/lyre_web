@@ -61,7 +61,6 @@ panic = "abort"
 
 [package.metadata.cargo-all-features]
 denylist = ["axum", "tower", "tower-http", "tokio", "sqlx", "leptos_axum"]
-# TODO: lié au bug du rust analyzer ?
 skip_feature_sets = [["ssr", "hydrate"]]
 
 [package.metadata.leptos]

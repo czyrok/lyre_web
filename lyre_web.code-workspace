@@ -52,12 +52,13 @@
     },
     "typescript.preferences.importModuleSpecifier": "non-relative",
     "javascript.preferences.importModuleSpecifier": "non-relative",
+    // Get from the makefiles
+    "rust-analyzer.check.command": "clippy",
+    "rust-analyzer.check.extraArgs": ["--no-deps"],
+    "rust-analyzer.checkOnSave": true,
     // https://book.leptos.dev/getting_started/leptos_dx.html
-    "rust-analyzer.cargo.features": ["ssr"],
-    // "rust-analyzer.cargo.features": ["ssr"]
-    //   "rust-analyzer.procMacro.ignored": {
-    //     "leptos_macro": ["server"]
-    //   }
+    "rust-analyzer.cargo.allTargets": true,
+    "rust-analyzer.cargo.features": "all",
   },
   "tasks": {
     "version": "2.0.0",
