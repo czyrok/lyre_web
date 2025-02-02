@@ -1,0 +1,3 @@
+[tasks.format-all]
+command = "cargo"
+args = ["fmt", "--all"]
