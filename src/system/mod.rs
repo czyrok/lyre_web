@@ -1,5 +1,5 @@
 pub mod app_state;
-pub mod context;
+pub mod contexts;
 pub mod fallback;
 pub mod handlers;
 pub mod shell;

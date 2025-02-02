@@ -11,7 +11,9 @@ pub async fn get_project(
 ) -> Result<ProjectDto, ServerFnError<ServerErrorDto>> {
     use crate::{
         project::use_cases::get_project::GetProjectUseCase,
-        system::{context::use_project_service, use_case_runner::run_use_case},
+        system::{
+            contexts::use_project_service, use_case_runner::run_use_case,
+        },
     };
 
     let project_service = use_project_service()?;
