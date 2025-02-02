@@ -2,6 +2,7 @@
 
 ```shell
 rustup toolchain install nightly
+rustup override set nightly
 rustup target add wasm32-unknown-unknown
 ```
 
