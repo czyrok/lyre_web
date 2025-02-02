@@ -92,3 +92,9 @@ impl ProjectService {
         self.get_ordered_project_contexts(limit, None)
     }
 }
+
+impl Default for ProjectService {
+    fn default() -> Self {
+        ProjectService::new(ProjectRepository::default())
+    }
+}

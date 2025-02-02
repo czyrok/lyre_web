@@ -75,3 +75,10 @@ impl ProjectRepository {
         self.cached_projects.clone()
     }
 }
+
+impl Default for ProjectRepository {
+    fn default() -> Self {
+        // TODO: set project_data as env
+        ProjectRepository::new("project_data/")
+    }
+}

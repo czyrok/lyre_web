@@ -7,8 +7,6 @@ if #[cfg(feature = "ssr")] {
     use std::error::Error;
 
     use crate::project::data::project_service::ProjectService;
-    use crate::project::data::project_repository::ProjectRepository;
-
 
     // Derive FromRef to allow multiple items in state, using Axum’s SubStates pattern.
     #[derive(FromRef, Debug, Clone)]
@@ -18,17 +16,17 @@ if #[cfg(feature = "ssr")] {
     }
 
     impl AppState {
+        // TODO:
+        // async fn load_context() -> Result<Self, Box<dyn Error>> {
+        //     // TODO: Mettre un fonction dans service + ici
+        //     //project_services.1.cache_project_data().await?;
+        // }
+
         pub async fn new(options: LeptosOptions) -> Result<Self, Box<dyn Error>> {
-            let mut project_repository = ProjectRepository::new("project_data/");
-
-            project_repository.cache_project_data().await?;
-
-            let project_service = ProjectService::new(project_repository);
-
             Ok(
                 Self {
                     options,
-                    project_service,
+                    project_service: ProjectService::default(),
                 }
             )
         }
