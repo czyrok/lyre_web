@@ -2,6 +2,8 @@ pub mod app_state;
 pub mod contexts;
 pub mod fallback;
 pub mod handlers;
+#[cfg(feature = "ssr")]
+pub mod local_database;
 pub mod shell;
 pub mod static_route_generator;
 pub mod use_case_runner;
