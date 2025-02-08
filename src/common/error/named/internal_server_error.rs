@@ -16,6 +16,47 @@ impl InternalServerError {
             detailed_message,
         }
     }
+
+    pub fn new_refresh_project_cache_failed(detailed_message: String) -> Self {
+        Self {
+            error_type: Some(FrontedErrorType::refresh_project_cache_failed()),
+            detailed_message: Some(detailed_message),
+        }
+    }
+
+    pub fn new_unable_to_get_project_slugs(detailed_message: String) -> Self {
+        Self {
+            error_type: Some(FrontedErrorType::unable_to_get_project_slugs()),
+            detailed_message: Some(detailed_message),
+        }
+    }
+
+    pub fn new_unable_to_get_project_contexts(
+        detailed_message: String,
+    ) -> Self {
+        Self {
+            error_type: Some(FrontedErrorType::unable_to_get_project_contexts()),
+            detailed_message: Some(detailed_message),
+        }
+    }
+
+    pub fn new_unable_to_check_if_project_exists(
+        detailed_message: String,
+    ) -> Self {
+        Self {
+            error_type: Some(
+                FrontedErrorType::unable_to_check_if_project_exists(),
+            ),
+            detailed_message: Some(detailed_message),
+        }
+    }
+
+    pub fn new_unable_to_get_project(detailed_message: String) -> Self {
+        Self {
+            error_type: Some(FrontedErrorType::unable_to_get_project()),
+            detailed_message: Some(detailed_message),
+        }
+    }
 }
 
 impl From<InternalServerError> for ServerErrorDto {

@@ -2,48 +2,74 @@ use crate::{
     common::{
         cursor_pagination::CursorPagination,
         error::{
-            named::bad_request_server_error::BadRequestServerError,
+            named::{
+                bad_request_server_error::BadRequestServerError,
+                internal_server_error::InternalServerError,
+            },
             server_function_error::ServerFunctionError,
         },
         use_case::UseCase,
     },
     project::{
-        data::project_service::ProjectService,
         dto::project_contexts::ProjectContextsDto,
+        services::{
+            project::ProjectService, project_context::ProjectContextService,
+        },
     },
 };
 
 pub struct GetOrderedProjectContextsUseCase {
     project_service: ProjectService,
+    project_context_service: ProjectContextService,
 }
 
 impl GetOrderedProjectContextsUseCase {
-    fn check_slug_pagination_cursor_after(
+    async fn check_slug_pagination_cursor_after(
         &self,
         pagination: &CursorPagination,
     ) -> Result<(), ServerFunctionError> {
-        let test = match pagination.cursor_after.clone() {
-            Some(slug_cursor_after) => self
+        if let Some(slug_cursor_after) = pagination.cursor_after.clone() {
+            let exists = match self
                 .project_service
-                .exists_project_from_slug(&slug_cursor_after),
-            None => true,
-        };
+                .exists_project_from_slug(&slug_cursor_after)
+                .await
+            {
+                Ok(exists) => exists,
+                Err(error) => {
+                    let internal_server_error =
+                        InternalServerError::new_unable_to_check_if_project_exists(
+                            format!(
+                                "Unable to check if the project exists: `{}`",
+                                error
+                            ),
+                        );
 
-        if !test {
-            let bad_request_error =
-                BadRequestServerError::new_unknown_project(format!(
-                    "This project `{}` doesn't exist",
-                    pagination.cursor_after.clone().unwrap()
-                ));
+                    return Err(internal_server_error.into());
+                }
+            };
 
-            return Err(bad_request_error.into());
+            if !exists {
+                let bad_request_error =
+                    BadRequestServerError::new_unknown_project(format!(
+                        "This project `{}` doesn't exist",
+                        pagination.cursor_after.clone().unwrap()
+                    ));
+
+                return Err(bad_request_error.into());
+            }
         }
 
         Ok(())
     }
 
-    pub fn new(project_service: ProjectService) -> Self {
-        Self { project_service }
+    pub fn new(
+        project_service: ProjectService,
+        project_context_service: ProjectContextService,
+    ) -> Self {
+        Self {
+            project_service,
+            project_context_service,
+        }
     }
 }
 
@@ -51,17 +77,33 @@ impl UseCase<CursorPagination, ProjectContextsDto>
     for GetOrderedProjectContextsUseCase
 {
     async fn run(
-        &self,
+        &mut self,
         pagination: CursorPagination,
     ) -> Result<ProjectContextsDto, ServerFunctionError> {
-        self.check_slug_pagination_cursor_after(&pagination)?;
+        self.check_slug_pagination_cursor_after(&pagination).await?;
 
-        let project_contexts =
-            self.project_service.get_ordered_project_contexts(
+        match self
+            .project_context_service
+            .get_ordered_project_contexts(
                 pagination.limit,
                 pagination.cursor_after.clone(),
-            );
+            )
+            .await
+        {
+            Ok(project_contexts) => {
+                Ok(ProjectContextsDto::new(project_contexts))
+            }
+            Err(error) => {
+                let internal_server_error =
+                    InternalServerError::new_unable_to_get_project_contexts(
+                        format!(
+                            "Unable to get the project contexts: `{}`",
+                            error
+                        ),
+                    );
 
-        Ok(ProjectContextsDto::new(project_contexts))
+                Err(internal_server_error.into())
+            }
+        }
     }
 }
