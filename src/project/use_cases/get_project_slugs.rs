@@ -1,27 +1,44 @@
 use crate::{
     common::{
-        error::server_function_error::ServerFunctionError, use_case::UseCase,
+        error::{
+            named::internal_server_error::InternalServerError,
+            server_function_error::ServerFunctionError,
+        },
+        use_case::UseCase,
     },
     project::{
-        data::project_service::ProjectService,
         dto::project_slugs::ProjectSlugsDto,
+        services::project_slug::ProjectSlugService,
     },
 };
 
 pub struct GetProjectSlugsUseCase {
-    project_service: ProjectService,
+    project_slug_service: ProjectSlugService,
 }
 
 impl GetProjectSlugsUseCase {
-    pub fn new(project_service: ProjectService) -> Self {
-        Self { project_service }
+    pub fn new(project_slug_service: ProjectSlugService) -> Self {
+        Self {
+            project_slug_service,
+        }
     }
 }
 
 impl UseCase<(), ProjectSlugsDto> for GetProjectSlugsUseCase {
-    async fn run(&self, _: ()) -> Result<ProjectSlugsDto, ServerFunctionError> {
-        let project_slugs = self.project_service.get_project_slugs();
+    async fn run(
+        &mut self,
+        _: (),
+    ) -> Result<ProjectSlugsDto, ServerFunctionError> {
+        match self.project_slug_service.get_project_slugs().await {
+            Ok(project_slugs) => Ok(ProjectSlugsDto::new(project_slugs)),
+            Err(error) => {
+                let internal_server_error =
+                    InternalServerError::new_unable_to_get_project_slugs(
+                        format!("Unable to get the project slugs: `{}`", error),
+                    );
 
-        Ok(ProjectSlugsDto::new(project_slugs))
+                Err(internal_server_error.into())
+            }
+        }
     }
 }

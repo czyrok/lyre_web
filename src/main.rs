@@ -8,49 +8,33 @@ use cfg_if::cfg_if;
 
 cfg_if! {
 if #[cfg(feature = "ssr")] {
-    use leptos_axum::generate_route_list_with_exclusions_and_ssg_and_context;
     use axum::{
         routing::get,
         Router,
     };
-    use leptos::logging::log;
     use leptos::prelude::*;
-    use project::data::{project_repository::ProjectRepository, project_service::ProjectService};
-    use system::shell::shell;
     use std::error::Error;
     use system::app_state::AppState;
     use leptos_axum::{LeptosRoutes};
     use system::fallback::file_and_error_handler;
+    use system::static_route_generator::get_static_route_generator;
     use system::handlers::{server_fn_handler, leptos_routes_handler};
+    use project::use_cases::refresh_project_cache::RefreshProjectCacheUseCase;
+    use common::use_case::UseCase;
 
-    #[tokio::main]
-    async fn main() -> Result<(), Box<dyn Error>> {
-        let conf = get_configuration(None).unwrap();
-        let addr = conf.leptos_options.site_addr;
-        let leptos_options = conf.leptos_options;
+    async fn refresh_project_cache(app_state: AppState) -> Result<(), Box<dyn Error>> {
+        let mut use_case = RefreshProjectCacheUseCase::new(app_state.project_service);
 
-        let mut project_repository = ProjectRepository::new("project_data/");
+        use_case.run(()).await?;
 
-        project_repository.cache_project_data().await?;
+        Ok(())
+    }
 
-        let project_service = ProjectService::new(project_repository);
-        let project_service_clone = project_service.clone();
-
+    async fn serve_leptos(app_state: AppState) {
         // Generate the list of routes in your Leptos App
-        let (routes, static_routes) = generate_route_list_with_exclusions_and_ssg_and_context({
-            let leptos_options = leptos_options.clone();
+        let (routes, static_routes) = get_static_route_generator(app_state.clone());
 
-            move || shell(leptos_options.clone())
-        }, vec![].into(), move || {
-            provide_context(project_service_clone.clone());
-        });
-
-        static_routes.generate(&leptos_options).await;
-
-        let app_state = AppState {
-            leptos_options,
-            project_service,
-        };
+        static_routes.generate(&app_state.options).await;
 
         let app = Router::new()
             .route(
@@ -59,15 +43,24 @@ if #[cfg(feature = "ssr")] {
             )
             .leptos_routes_with_handler(routes, get(leptos_routes_handler))
             .fallback(file_and_error_handler)
-            .with_state(app_state);
+            .with_state(app_state.clone());
 
-        log!("listening on http://{}", &addr);
+        let address = app_state.options.site_addr;
 
-        let listener = tokio::net::TcpListener::bind(&addr).await.unwrap();
+        let listener = tokio::net::TcpListener::bind(address).await.unwrap();
 
         axum::serve(listener, app.into_make_service())
             .await
             .unwrap();
+    }
+
+    #[tokio::main]
+    async fn main() -> Result<(), Box<dyn Error>> {
+        let app_state = AppState::default();
+
+        refresh_project_cache(app_state.clone()).await?;
+
+        serve_leptos(app_state).await;
 
         Ok(())
     }

@@ -1,14 +1,15 @@
 use crate::{
     common::{
         error::{
-            named::not_found_server_error::NotFoundServerError,
+            named::{
+                internal_server_error::InternalServerError,
+                not_found_server_error::NotFoundServerError,
+            },
             server_function_error::ServerFunctionError,
         },
         use_case::UseCase,
     },
-    project::{
-        data::project_service::ProjectService, dto::project::ProjectDto,
-    },
+    project::{dto::project::ProjectDto, services::project::ProjectService},
 };
 
 pub struct GetProjectUseCase {
@@ -23,22 +24,30 @@ impl GetProjectUseCase {
 
 impl UseCase<String, ProjectDto> for GetProjectUseCase {
     async fn run(
-        &self,
+        &mut self,
         slug: String,
     ) -> Result<ProjectDto, ServerFunctionError> {
-        let project = match self.project_service.get_project(&slug) {
-            Some(project) => project,
-            None => {
-                let not_found_error =
-                    NotFoundServerError::new_project_not_found(format!(
-                        "This project `{}` doesn't exist",
-                        slug
+        let project = match self.project_service.get_project(&slug).await {
+            Ok(project) => project,
+            Err(error) => {
+                let internal_server_error =
+                    InternalServerError::new_unable_to_get_project(format!(
+                        "Unable to get the project: `{}`",
+                        error
                     ));
 
-                return Err(not_found_error.into());
+                return Err(internal_server_error.into());
             }
         };
 
-        Ok(ProjectDto::new(project))
+        if let Some(project) = project {
+            return Ok(ProjectDto::new(project));
+        }
+
+        let not_found_error = NotFoundServerError::new_project_not_found(
+            format!("This project `{}` doesn't exist", slug),
+        );
+
+        Err(not_found_error.into())
     }
 }

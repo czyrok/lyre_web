@@ -1,5 +1,7 @@
+#[cfg(feature = "ssr")]
 use std::string::FromUtf8Error;
 
+#[cfg(feature = "ssr")]
 use comrak::{Arena, Options};
 use serde::{Deserialize, Serialize};
 
@@ -7,7 +9,8 @@ use serde::{Deserialize, Serialize};
 pub struct ProjectContent(pub String);
 
 impl ProjectContent {
-    pub fn parse_from_str_data(data: &str) -> Result<Self, FromUtf8Error> {
+    #[cfg(feature = "ssr")]
+    pub fn parse_from_markdown_data(data: &str) -> Result<Self, FromUtf8Error> {
         let arena = Arena::new();
 
         let deserialized_markdown =

@@ -1,5 +1,9 @@
 pub mod api;
 pub mod data;
 pub mod dto;
+#[cfg(feature = "ssr")]
+pub mod repositories;
+pub mod services;
+#[cfg(feature = "ssr")]
 pub mod use_cases;
 pub mod views;

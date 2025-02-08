@@ -1,15 +1,23 @@
-use cfg_if::cfg_if;
-
-cfg_if! {
-if #[cfg(feature = "ssr")] {
-use crate::common::{error::server_function_error::ServerFunctionException, use_case::UseCase};
-use crate::common::error::server_function_error::ServerFunctionError;
-use leptos::prelude::expect_context;
 use http::StatusCode;
+use leptos::prelude::expect_context;
 use leptos_axum::ResponseOptions;
-use crate::common::error::named::internal_server_error::InternalServerError;
 
-pub async fn run_use_case<TUseCase: UseCase<TOptions, TOkResult>, TOptions, TOkResult>(use_case: TUseCase, options: TOptions) -> Result<TOkResult, ServerFunctionException> {
+use crate::common::{
+    error::{
+        named::internal_server_error::InternalServerError,
+        server_function_error::{ServerFunctionError, ServerFunctionException},
+    },
+    use_case::UseCase,
+};
+
+pub async fn run_use_case<
+    TUseCase: UseCase<TOptions, TOkResult>,
+    TOptions,
+    TOkResult,
+>(
+    mut use_case: TUseCase,
+    options: TOptions,
+) -> Result<TOkResult, ServerFunctionException> {
     let response = expect_context::<ResponseOptions>();
 
     let ok_result = match use_case.run(options).await {
@@ -23,11 +31,14 @@ pub async fn run_use_case<TUseCase: UseCase<TOptions, TOkResult>, TOptions, TOkR
 
                 return Err(ServerFunctionException::WrappedServerError(value));
             }
-            _ => return Err(InternalServerError::new(Some("Very unknown error".into())).into()),
+            _ => {
+                return Err(InternalServerError::new(Some(
+                    "Very unknown error".into(),
+                ))
+                .into())
+            }
         },
     };
 
     Ok(ok_result)
-}
-}
 }

@@ -10,12 +10,14 @@ pub async fn get_project_slugs(
 ) -> Result<ProjectSlugsDto, ServerFnError<ServerErrorDto>> {
     use crate::{
         project::use_cases::get_project_slugs::GetProjectSlugsUseCase,
-        system::{context::use_project_service, use_case_runner::run_use_case},
+        system::{
+            contexts::use_project_slug_service, use_case_runner::run_use_case,
+        },
     };
 
-    let project_service = use_project_service()?;
+    let project_slug_service = use_project_slug_service()?;
 
-    let use_case = GetProjectSlugsUseCase::new(project_service);
+    let use_case = GetProjectSlugsUseCase::new(project_slug_service);
 
     run_use_case(use_case, ()).await
 }

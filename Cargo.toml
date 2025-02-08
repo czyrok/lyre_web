@@ -9,19 +9,24 @@ crate-type = ["cdylib", "rlib"]
 [dependencies]
 # TODO: pas utilisé du coup ?
 chrono = { version = "0.4.39", features = ["serde"] }
-comrak = "0.35.0"
-regex = "1.11.1"
+comrak = { version = "0.35.0", optional = true }
 console_error_panic_hook = "0.1.7"
 console_log = "1.0"
 cfg-if = "1.0.0"
-leptos = { version = "0.7.4", features = ["hydration"] }                                      #"nightly", "hydration"] }
+leptos = { version = "0.7.4", features = ["hydration"] } #"nightly", "hydration"] }
 leptos_meta = { version = "0.7.4" }
 leptos_axum = { version = "0.7.4", optional = true }
 leptos_router = { version = "0.7.4" }
 log = "0.4.22"
+regex = { version = "1.11.1", optional = true }
 serde = { version = "1.0.216", features = ["derive"] }
-serde_json = "1.0.134"                                                                        # { version = "1.0.134", optional = true }
-serde_yml = "0.0.12"
+serde_json = "1.0.134"
+serde_yml = { version = "0.0.12", optional = true }
+sqlx = { version = "0.8.3", features = [
+  "runtime-tokio-rustls",
+  "sqlite",
+  "chrono",
+], optional = true }
 thiserror = "1.0"
 axum = { version = "0.7.5", optional = true, features = ["macros"] }
 tower = { version = "0.5.2", optional = true, features = ["util"] }
@@ -47,6 +52,10 @@ ssr = [
   "leptos_router/ssr",
   "dep:notify",
   "dep:http",
+  "dep:sqlx",
+  "dep:comrak",
+  "dep:regex",
+  "dep:serde_yml",
 ]
 
 [profile.release]

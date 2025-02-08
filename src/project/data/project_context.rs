@@ -1,21 +1,29 @@
+use chrono::NaiveDate;
 use serde::{Deserialize, Serialize};
+
+use super::project_tags::ProjectTags;
 
 #[derive(Serialize, Deserialize, Clone, Debug)]
 pub struct ProjectContext {
-    pub title: String,
+    //// We set the default value because the slug is not in the YAML metadata
+    #[serde(default)]
     pub slug: String,
-    #[serde(skip_serializing)]
-    pub order: Option<u8>,
+    pub next_slug: Option<String>,
+    pub title: String,
     pub image_url: String,
-    pub date: String,
-    pub tags: Vec<String>,
+    pub date: NaiveDate,
+    pub tags: ProjectTags,
 }
 
 impl ProjectContext {
+    #[cfg(feature = "ssr")]
     pub async fn parse_from_yaml_data(
+        slug: String,
         data: &str,
     ) -> Result<Self, serde_yml::Error> {
-        let deserialized_context: Self = serde_yml::from_str(data)?;
+        let mut deserialized_context: Self = serde_yml::from_str(data)?;
+
+        deserialized_context.slug = slug;
 
         Ok(deserialized_context)
     }

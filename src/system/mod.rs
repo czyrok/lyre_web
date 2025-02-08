@@ -1,7 +1,15 @@
+#[cfg(feature = "ssr")]
 pub mod app_state;
-pub mod context;
+pub mod contexts;
+#[cfg(feature = "ssr")]
 pub mod fallback;
+#[cfg(feature = "ssr")]
 pub mod handlers;
+#[cfg(feature = "ssr")]
+pub mod local_database;
 pub mod shell;
+#[cfg(feature = "ssr")]
+pub mod static_route_generator;
+#[cfg(feature = "ssr")]
 pub mod use_case_runner;
 pub mod watch_path;

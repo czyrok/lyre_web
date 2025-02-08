@@ -59,6 +59,19 @@
     // https://book.leptos.dev/getting_started/leptos_dx.html
     "rust-analyzer.cargo.allTargets": true,
     "rust-analyzer.cargo.features": "all",
+    // Local Database
+    "dbcode.connections": [
+      {
+        "connectionId": "RbjHj9yUknx8I797_FUoU",
+        "name": "Local Database",
+        "driver": "sqlite",
+        "socket": "/Users/czyrok/Local/lyre/packages/lyre_web/local.db",
+        "driverOptions": {
+          "extensions": [],
+        },
+        "connectionType": "socket",
+      },
+    ],
   },
   "tasks": {
     "version": "2.0.0",

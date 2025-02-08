@@ -1,3 +1,5 @@
 [tasks.format-all]
 command = "cargo"
 args = ["fmt", "--all"]
+
+# TODO: create an empty local.db
