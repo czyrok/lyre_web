@@ -1,35 +1,29 @@
-use cfg_if::cfg_if;
+use axum::extract::FromRef;
+use leptos::config::{get_configuration, LeptosOptions};
 
-cfg_if! {
-if #[cfg(feature = "ssr")] {
-    use axum::extract::FromRef;
-    use leptos::config::LeptosOptions;
-    use std::error::Error;
+use crate::project::services::{
+    project::ProjectService, project_context::ProjectContextService,
+    project_slug::ProjectSlugService,
+};
 
-    use crate::project::data::project_service::ProjectService;
+// Derive FromRef to allow multiple items in state, using Axum’s SubStates pattern.
+#[derive(FromRef, Debug, Clone)]
+pub struct AppState {
+    pub options: LeptosOptions,
+    pub project_service: ProjectService,
+    pub project_context_service: ProjectContextService,
+    pub project_slug_service: ProjectSlugService,
+}
 
-    // Derive FromRef to allow multiple items in state, using Axum’s SubStates pattern.
-    #[derive(FromRef, Debug, Clone)]
-    pub struct AppState {
-        pub options: LeptosOptions,
-        pub project_service: ProjectService,
-    }
+impl Default for AppState {
+    fn default() -> Self {
+        let configuration = get_configuration(None).unwrap();
 
-    impl AppState {
-        // TODO:
-        // async fn load_context() -> Result<Self, Box<dyn Error>> {
-        //     // TODO: Mettre un fonction dans service + ici
-        //     //project_services.1.cache_project_data().await?;
-        // }
-
-        pub async fn new(options: LeptosOptions) -> Result<Self, Box<dyn Error>> {
-            Ok(
-                Self {
-                    options,
-                    project_service: ProjectService::default(),
-                }
-            )
+        Self {
+            options: configuration.leptos_options,
+            project_service: ProjectService::default(),
+            project_context_service: ProjectContextService::default(),
+            project_slug_service: ProjectSlugService::default(),
         }
     }
-}
 }
