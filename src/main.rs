@@ -12,7 +12,6 @@ if #[cfg(feature = "ssr")] {
         routing::get,
         Router,
     };
-    use leptos::logging::log;
     use leptos::prelude::*;
     use std::error::Error;
     use system::app_state::AppState;
@@ -20,15 +19,18 @@ if #[cfg(feature = "ssr")] {
     use system::fallback::file_and_error_handler;
     use system::static_route_generator::get_static_route_generator;
     use system::handlers::{server_fn_handler, leptos_routes_handler};
+    use project::use_cases::refresh_project_cache::RefreshProjectCacheUseCase;
+    use common::use_case::UseCase;
 
-    #[tokio::main]
-    async fn main() -> Result<(), Box<dyn Error>> {
-        let conf = get_configuration(None).unwrap();
-        let addr = conf.leptos_options.site_addr;
-        let leptos_options = conf.leptos_options;
+    async fn refresh_project_cache(app_state: AppState) -> Result<(), Box<dyn Error>> {
+        let mut use_case = RefreshProjectCacheUseCase::new(app_state.project_service);
 
-        let app_state = AppState::new(leptos_options).await?;
+        use_case.run(()).await?;
 
+        Ok(())
+    }
+
+    async fn serve_leptos(app_state: AppState) {
         // Generate the list of routes in your Leptos App
         let (routes, static_routes) = get_static_route_generator(app_state.clone());
 
@@ -41,15 +43,24 @@ if #[cfg(feature = "ssr")] {
             )
             .leptos_routes_with_handler(routes, get(leptos_routes_handler))
             .fallback(file_and_error_handler)
-            .with_state(app_state);
+            .with_state(app_state.clone());
 
-        log!("listening on http://{}", &addr);
+        let address = app_state.options.site_addr;
 
-        let listener = tokio::net::TcpListener::bind(&addr).await.unwrap();
+        let listener = tokio::net::TcpListener::bind(address).await.unwrap();
 
         axum::serve(listener, app.into_make_service())
             .await
             .unwrap();
+    }
+
+    #[tokio::main]
+    async fn main() -> Result<(), Box<dyn Error>> {
+        let app_state = AppState::default();
+
+        refresh_project_cache(app_state.clone()).await?;
+
+        serve_leptos(app_state).await;
 
         Ok(())
     }
