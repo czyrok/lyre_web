@@ -1,7 +1,6 @@
 ---
+next_slug: wolfgang
 title: Plantrakt
-slug: plantrakt
-order: 1 # TODO:
 image_url: # TODO:
 date: 2024-10-21 # TODO:
 tags:
