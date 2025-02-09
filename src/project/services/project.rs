@@ -101,13 +101,3 @@ impl ProjectService {
         Ok(project)
     }
 }
-
-#[cfg(feature = "ssr")]
-impl Default for ProjectService {
-    fn default() -> Self {
-        ProjectService::new(
-            ProjectRepository::default(),
-            ProjectTagRepository::default(),
-        )
-    }
-}

@@ -23,10 +23,3 @@ impl ProjectSlugService {
         Ok(project_slugs)
     }
 }
-
-#[cfg(feature = "ssr")]
-impl Default for ProjectSlugService {
-    fn default() -> Self {
-        ProjectSlugService::new(ProjectSlugRepository::default())
-    }
-}
