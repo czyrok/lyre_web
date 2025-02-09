@@ -1,4 +1,3 @@
-use dotenv::dotenv;
 use serde::Deserialize;
 
 #[derive(Deserialize, Clone, Debug)]
@@ -16,7 +15,7 @@ pub struct EnvironmentContext {
 impl EnvironmentContext {
     pub fn load_environment() -> Result<Self, envy::Error> {
         //// Loads the environment variables from the `.env` file
-        dotenv().ok();
+        dotenvy::dotenv_override().expect("A `.env` should exist");
 
         let mut environment = envy::from_env::<EnvironmentContext>()?;
 
