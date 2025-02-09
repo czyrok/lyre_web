@@ -45,10 +45,3 @@ impl ProjectContextService {
         self.get_ordered_project_contexts(limit, None).await
     }
 }
-
-#[cfg(feature = "ssr")]
-impl Default for ProjectContextService {
-    fn default() -> Self {
-        ProjectContextService::new(ProjectContextRepository::default())
-    }
-}

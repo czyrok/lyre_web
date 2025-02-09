@@ -2,6 +2,8 @@
 pub mod app_state;
 pub mod contexts;
 #[cfg(feature = "ssr")]
+pub mod environment_context;
+#[cfg(feature = "ssr")]
 pub mod fallback;
 #[cfg(feature = "ssr")]
 pub mod handlers;

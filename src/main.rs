@@ -21,6 +21,14 @@ if #[cfg(feature = "ssr")] {
     use system::handlers::{server_fn_handler, leptos_routes_handler};
     use project::use_cases::refresh_project_cache::RefreshProjectCacheUseCase;
     use common::use_case::UseCase;
+    use system::environment_context::EnvironmentContext;
+
+    fn get_app_state() -> Result<AppState, Box<dyn Error>> {
+        let environment = EnvironmentContext::load_environment()?;
+        let configuration = get_configuration(None)?;
+
+        Ok(AppState::new(environment, configuration.leptos_options))
+    }
 
     async fn refresh_project_cache(app_state: AppState) -> Result<(), Box<dyn Error>> {
         let mut use_case = RefreshProjectCacheUseCase::new(app_state.project_service);
@@ -56,7 +64,7 @@ if #[cfg(feature = "ssr")] {
 
     #[tokio::main]
     async fn main() -> Result<(), Box<dyn Error>> {
-        let app_state = AppState::default();
+        let app_state = get_app_state()?;
 
         refresh_project_cache(app_state.clone()).await?;
 

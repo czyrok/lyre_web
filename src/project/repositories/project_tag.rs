@@ -1,13 +1,15 @@
-use crate::system::local_database::LocalDatabase;
+use crate::system::{
+    environment_context::EnvironmentContext, local_database::LocalDatabase,
+};
 
 #[derive(Clone, Debug)]
 pub struct ProjectTagRepository {
-    local_database_uri: String,
+    environment: EnvironmentContext,
 }
 
 impl ProjectTagRepository {
-    pub fn new(local_database_uri: String) -> Self {
-        Self { local_database_uri }
+    pub fn new(environment: EnvironmentContext) -> Self {
+        Self { environment }
     }
 
     pub async fn save_project_tag(
@@ -16,7 +18,7 @@ impl ProjectTagRepository {
         tag: String,
     ) -> Result<(), sqlx::Error> {
         let mut local_database =
-            LocalDatabase::new(&self.local_database_uri).await?;
+            LocalDatabase::new(&self.environment.local_database_uri).await?;
 
         sqlx::query!(
             "
@@ -34,7 +36,7 @@ impl ProjectTagRepository {
 
     pub async fn clean_project_tags(&self) -> Result<(), sqlx::Error> {
         let mut local_database =
-            LocalDatabase::new(&self.local_database_uri).await?;
+            LocalDatabase::new(&self.environment.local_database_uri).await?;
 
         sqlx::query!(
             "
@@ -45,11 +47,5 @@ impl ProjectTagRepository {
         .await?;
 
         Ok(())
-    }
-}
-
-impl Default for ProjectTagRepository {
-    fn default() -> Self {
-        ProjectTagRepository::new("sqlite:local.db".into())
     }
 }
