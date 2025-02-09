@@ -1,18 +1,20 @@
-use crate::system::local_database::LocalDatabase;
+use crate::system::{
+    environment_context::EnvironmentContext, local_database::LocalDatabase,
+};
 
 #[derive(Clone, Debug)]
 pub struct ProjectSlugRepository {
-    local_database_uri: String,
+    environment: EnvironmentContext,
 }
 
 impl ProjectSlugRepository {
-    pub fn new(local_database_uri: String) -> Self {
-        Self { local_database_uri }
+    pub fn new(environment: EnvironmentContext) -> Self {
+        Self { environment }
     }
 
     pub async fn get_project_slugs(&self) -> Result<Vec<String>, sqlx::Error> {
         let mut local_database =
-            LocalDatabase::new(&self.local_database_uri).await?;
+            LocalDatabase::new(&self.environment.local_database_uri).await?;
 
         let project_slugs = sqlx::query!(
             "
@@ -24,11 +26,5 @@ impl ProjectSlugRepository {
         .await?;
 
         Ok(project_slugs)
-    }
-}
-
-impl Default for ProjectSlugRepository {
-    fn default() -> Self {
-        ProjectSlugRepository::new("sqlite:local.db".into())
     }
 }

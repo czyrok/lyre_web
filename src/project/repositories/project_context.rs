@@ -1,16 +1,18 @@
 use crate::{
     project::data::project_context::ProjectContext,
-    system::local_database::LocalDatabase,
+    system::{
+        environment_context::EnvironmentContext, local_database::LocalDatabase,
+    },
 };
 
 #[derive(Clone, Debug)]
 pub struct ProjectContextRepository {
-    local_database_uri: String,
+    environment: EnvironmentContext,
 }
 
 impl ProjectContextRepository {
-    pub fn new(local_database_uri: String) -> Self {
-        Self { local_database_uri }
+    pub fn new(environment: EnvironmentContext) -> Self {
+        Self { environment }
     }
 
     /**
@@ -22,7 +24,7 @@ impl ProjectContextRepository {
         slug_cursor_after: Option<String>,
     ) -> Result<Vec<ProjectContext>, sqlx::Error> {
         let mut local_database =
-            LocalDatabase::new(&self.local_database_uri).await?;
+            LocalDatabase::new(&self.environment.local_database_uri).await?;
 
         let project_contexts = match slug_cursor_after {
             Some(slug_cursor_after) => {
@@ -78,11 +80,5 @@ impl ProjectContextRepository {
         };
 
         Ok(project_contexts)
-    }
-}
-
-impl Default for ProjectContextRepository {
-    fn default() -> Self {
-        ProjectContextRepository::new("sqlite:local.db".into())
     }
 }

@@ -9,28 +9,27 @@ use crate::{
         project::Project, project_content::ProjectContent,
         project_context::ProjectContext,
     },
-    system::local_database::LocalDatabase,
+    system::{
+        environment_context::EnvironmentContext, local_database::LocalDatabase,
+    },
 };
 
 #[derive(Clone, Debug)]
 pub struct ProjectRepository {
-    local_database_uri: String,
-    project_data_path: String,
+    environment: EnvironmentContext,
 }
 
 // TODO: test à faire => slug unique
 // TODO: test à faire => order unique + dans l'ordre de 0..X sans nombre en moins
 
 impl ProjectRepository {
-    pub fn new(local_database_uri: String, project_data_path: String) -> Self {
-        Self {
-            local_database_uri,
-            project_data_path,
-        }
+    pub fn new(environment: EnvironmentContext) -> Self {
+        Self { environment }
     }
 
     fn get_project_data_entries(&self) -> Result<Vec<DirEntry>, io::Error> {
-        let project_data_dir = fs::read_dir(self.project_data_path.clone())?;
+        let project_data_dir =
+            fs::read_dir(self.environment.project_data_dir_path.clone())?;
 
         let mut project_data_files = vec![];
 
@@ -60,7 +59,7 @@ impl ProjectRepository {
 
     pub async fn clean_projects(&self) -> Result<(), sqlx::Error> {
         let mut local_database =
-            LocalDatabase::new(&self.local_database_uri).await?;
+            LocalDatabase::new(&self.environment.local_database_uri).await?;
 
         sqlx::query!(
             "
@@ -78,7 +77,7 @@ impl ProjectRepository {
         project: Project,
     ) -> Result<(), sqlx::Error> {
         let mut local_database =
-            LocalDatabase::new(&self.local_database_uri).await?;
+            LocalDatabase::new(&self.environment.local_database_uri).await?;
 
         sqlx::query!(
             "
@@ -105,7 +104,7 @@ impl ProjectRepository {
         slug: &str,
     ) -> Result<bool, sqlx::Error> {
         let mut local_database =
-            LocalDatabase::new(&self.local_database_uri).await?;
+            LocalDatabase::new(&self.environment.local_database_uri).await?;
 
         let result = sqlx::query!(
             "
@@ -129,7 +128,7 @@ impl ProjectRepository {
         slug: &str,
     ) -> Result<Option<Project>, sqlx::Error> {
         let mut local_database =
-            LocalDatabase::new(&self.local_database_uri).await?;
+            LocalDatabase::new(&self.environment.local_database_uri).await?;
 
         let project = sqlx::query!(
             "
@@ -163,11 +162,5 @@ impl ProjectRepository {
         .await?;
 
         Ok(project)
-    }
-}
-
-impl Default for ProjectRepository {
-    fn default() -> Self {
-        ProjectRepository::new("sqlite:local.db".into(), "project_data/".into())
     }
 }
