@@ -13,6 +13,7 @@ pub fn get_static_route_generator(
         move || shell(app_state.options.clone()),
         vec![].into(),
         move || {
+            provide_context(app_state.environment.clone());
             provide_context(app_state.project_service.clone());
             provide_context(app_state.project_context_service.clone());
             provide_context(app_state.project_slug_service.clone());

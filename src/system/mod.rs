@@ -1,5 +1,6 @@
 #[cfg(feature = "ssr")]
 pub mod app_state;
+#[cfg(feature = "ssr")]
 pub mod contexts;
 #[cfg(feature = "ssr")]
 pub mod database;

@@ -18,6 +18,7 @@ pub async fn server_fn_handler(
 
     handle_server_fns_with_context(
         move || {
+            provide_context(app_state.environment.clone());
             provide_context(app_state.options.clone());
             provide_context(app_state.project_service.clone());
             provide_context(app_state.project_context_service.clone());
@@ -34,6 +35,7 @@ pub async fn leptos_routes_handler(
 ) -> Response {
     let handler = leptos_axum::render_app_to_stream_with_context(
         move || {
+            provide_context(app_state.environment.clone());
             provide_context(app_state.project_service.clone());
             provide_context(app_state.project_context_service.clone());
             provide_context(app_state.project_slug_service.clone());

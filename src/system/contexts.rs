@@ -1,6 +1,7 @@
 use leptos::*;
 use prelude::use_context;
 
+use super::environment_context::EnvironmentContext;
 use crate::{
     common::error::{
         named::internal_server_error::InternalServerError,
@@ -38,6 +39,17 @@ pub fn use_project_slug_service(
 ) -> Result<ProjectSlugService, ServerFunctionException> {
     match use_context::<ProjectSlugService>() {
         Some(project_slug_service) => Ok(project_slug_service),
+        None => {
+            Err(InternalServerError::new(Some("Context not found".into()))
+                .into())
+        }
+    }
+}
+
+pub fn use_environment_context(
+) -> Result<EnvironmentContext, ServerFunctionException> {
+    match use_context::<EnvironmentContext>() {
+        Some(environment) => Ok(environment),
         None => {
             Err(InternalServerError::new(Some("Context not found".into()))
                 .into())
