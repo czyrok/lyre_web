@@ -11,13 +11,13 @@ use crate::common::{
 };
 
 pub async fn run_use_case<
-    TUseCase: UseCase<TOptions, TOkResult>,
-    TOptions,
-    TOkResult,
+    TUseCase: UseCase<TInput, TOutput>,
+    TInput,
+    TOutput,
 >(
     mut use_case: TUseCase,
-    options: TOptions,
-) -> Result<TOkResult, ServerFunctionException> {
+    options: TInput,
+) -> Result<TOutput, ServerFunctionException> {
     let response = expect_context::<ResponseOptions>();
 
     let ok_result = match use_case.run(options).await {
