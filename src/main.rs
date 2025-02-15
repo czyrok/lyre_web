@@ -31,7 +31,7 @@ if #[cfg(feature = "ssr")] {
     }
 
     async fn refresh_project_cache(app_state: AppState) -> Result<(), Box<dyn Error>> {
-        let mut use_case = RefreshProjectCacheUseCase::new(app_state.project_service);
+        let mut use_case = RefreshProjectCacheUseCase::new(app_state.environment, app_state.project_service);
 
         use_case.run(()).await?;
 
