@@ -1,7 +1,8 @@
 use crate::{
     project::data::project_context::ProjectContext,
     system::{
-        environment_context::EnvironmentContext, local_database::LocalDatabase,
+        database::local_database::LocalDatabase,
+        environment_context::EnvironmentContext,
     },
 };
 
@@ -52,7 +53,7 @@ impl ProjectContextRepository {
                     slug_cursor_after,
                     pagination_limit
                 )
-                .fetch_all(&mut local_database.conn)
+                .fetch_all(&mut local_database.connection)
                 .await?
             }
             None => {
@@ -74,7 +75,7 @@ impl ProjectContextRepository {
                     ",
                     pagination_limit
                 )
-                .fetch_all(&mut local_database.conn)
+                .fetch_all(&mut local_database.connection)
                 .await?
             }
         };

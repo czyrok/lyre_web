@@ -1,5 +1,6 @@
 use crate::system::{
-    environment_context::EnvironmentContext, local_database::LocalDatabase,
+    database::local_database::LocalDatabase,
+    environment_context::EnvironmentContext,
 };
 
 #[derive(Clone, Debug)]
@@ -22,7 +23,7 @@ impl ProjectSlugRepository {
                 ",
         )
         .map(|row| row.slug)
-        .fetch_all(&mut local_database.conn)
+        .fetch_all(&mut local_database.connection)
         .await?;
 
         Ok(project_slugs)

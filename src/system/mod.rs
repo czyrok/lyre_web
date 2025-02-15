@@ -2,13 +2,13 @@
 pub mod app_state;
 pub mod contexts;
 #[cfg(feature = "ssr")]
+pub mod database;
+#[cfg(feature = "ssr")]
 pub mod environment_context;
 #[cfg(feature = "ssr")]
 pub mod fallback;
 #[cfg(feature = "ssr")]
 pub mod handlers;
-#[cfg(feature = "ssr")]
-pub mod local_database;
 pub mod shell;
 #[cfg(feature = "ssr")]
 pub mod static_route_generator;
