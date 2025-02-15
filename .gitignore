@@ -5,7 +5,7 @@ target/
 node_modules/
 
 # Environment variables file
-.env.*
+.env*.local
 
 # System Files
 .DS_Store

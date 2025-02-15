@@ -14,5 +14,7 @@ pub mod shell;
 #[cfg(feature = "ssr")]
 pub mod static_route_generator;
 #[cfg(feature = "ssr")]
+pub mod totp;
+#[cfg(feature = "ssr")]
 pub mod use_case_runner;
 pub mod watch_path;
