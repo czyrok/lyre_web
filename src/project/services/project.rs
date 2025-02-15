@@ -101,12 +101,7 @@ impl ProjectService {
         &self,
         slug: &str,
     ) -> Result<bool, sqlx::Error> {
-        let exists = self
-            .project_repository
-            .exists_project_from_slug(slug)
-            .await?;
-
-        Ok(exists)
+        self.project_repository.exists_project_from_slug(slug).await
     }
 
     #[cfg(feature = "ssr")]
@@ -114,8 +109,6 @@ impl ProjectService {
         &self,
         slug: &str,
     ) -> Result<Option<Project>, sqlx::Error> {
-        let project = self.project_repository.get_project(slug).await?;
-
-        Ok(project)
+        self.project_repository.get_project(slug).await
     }
 }

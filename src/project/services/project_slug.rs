@@ -17,9 +17,6 @@ impl ProjectSlugService {
 
     #[cfg(feature = "ssr")]
     pub async fn get_project_slugs(&self) -> Result<Vec<String>, sqlx::Error> {
-        let project_slugs =
-            self.project_slug_repository.get_project_slugs().await?;
-
-        Ok(project_slugs)
+        self.project_slug_repository.get_project_slugs().await
     }
 }
