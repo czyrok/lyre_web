@@ -19,7 +19,7 @@ if #[cfg(feature = "ssr")] {
     use system::fallback::file_and_error_handler;
     use system::static_route_generator::get_static_route_generator;
     use system::handlers::{server_fn_handler, leptos_routes_handler};
-    use project::use_cases::refresh_project_cache::RefreshProjectCacheUseCase;
+    use project::use_cases::make_system_project_cache_loading::MakeSystemProjectCacheLoadingUseCase;
     use common::use_case::UseCase;
     use system::environment_context::EnvironmentContext;
 
@@ -31,7 +31,7 @@ if #[cfg(feature = "ssr")] {
     }
 
     async fn refresh_project_cache(app_state: AppState) -> Result<(), Box<dyn Error>> {
-        let mut use_case = RefreshProjectCacheUseCase::new(app_state.environment, app_state.project_service);
+        let mut use_case = MakeSystemProjectCacheLoadingUseCase::new(app_state.environment, app_state.project_service);
 
         use_case.run(()).await?;
 
