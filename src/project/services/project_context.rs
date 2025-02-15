@@ -1,4 +1,3 @@
-#[cfg(feature = "ssr")]
 use crate::project::{
     data::project_context::ProjectContext,
     repositories::project_context::ProjectContextRepository,
@@ -6,12 +5,10 @@ use crate::project::{
 
 #[derive(Clone, Debug)]
 pub struct ProjectContextService {
-    #[cfg(feature = "ssr")]
     project_context_repository: ProjectContextRepository,
 }
 
 impl ProjectContextService {
-    #[cfg(feature = "ssr")]
     pub fn new(project_context_repository: ProjectContextRepository) -> Self {
         Self {
             project_context_repository,
@@ -19,7 +16,6 @@ impl ProjectContextService {
     }
 
     // TODO: ajouter test sur la pagination (mettre de la merde) + voir si fonctione sans slug after
-    #[cfg(feature = "ssr")]
     pub async fn get_ordered_project_contexts(
         &self,
         pagination_limit: u32,
@@ -33,7 +29,6 @@ impl ProjectContextService {
         Ok(ordered_projects)
     }
 
-    #[cfg(feature = "ssr")]
     /**
      * It returns the relevant projects' contexts
      * We consider the firsts as the relevant projects

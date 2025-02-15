@@ -1,29 +1,24 @@
-#[cfg(feature = "ssr")]
 use std::error::Error;
 
-#[cfg(feature = "ssr")]
 use leptos::logging::log;
 
-#[cfg(feature = "ssr")]
-use crate::project::{
-    data::project::Project,
-    repositories::{
-        project::ProjectRepository, project_tag::ProjectTagRepository,
+use crate::{
+    project::{
+        data::project::Project,
+        repositories::{
+            project::ProjectRepository, project_tag::ProjectTagRepository,
+        },
     },
+    system::database::local_database_transaction::LocalDatabaseTransaction,
 };
-#[cfg(feature = "ssr")]
-use crate::system::database::local_database_transaction::LocalDatabaseTransaction;
 
 #[derive(Clone, Debug)]
 pub struct ProjectService {
-    #[cfg(feature = "ssr")]
     project_repository: ProjectRepository,
-    #[cfg(feature = "ssr")]
     project_tag_repository: ProjectTagRepository,
 }
 
 impl ProjectService {
-    #[cfg(feature = "ssr")]
     pub fn new(
         project_repository: ProjectRepository,
         project_tag_repository: ProjectTagRepository,
@@ -34,7 +29,6 @@ impl ProjectService {
         }
     }
 
-    #[cfg(feature = "ssr")]
     pub async fn refresh_project_cache(
         &mut self,
         local_database_transaction: &mut LocalDatabaseTransaction<'_>,
@@ -51,7 +45,6 @@ impl ProjectService {
         Ok(())
     }
 
-    #[cfg(feature = "ssr")]
     async fn cache_project(
         &self,
         project: Project,
@@ -76,7 +69,6 @@ impl ProjectService {
         Ok(())
     }
 
-    #[cfg(feature = "ssr")]
     async fn cache_project_data(
         &mut self,
         local_database_transaction: &mut LocalDatabaseTransaction<'_>,
@@ -96,7 +88,6 @@ impl ProjectService {
         Ok(())
     }
 
-    #[cfg(feature = "ssr")]
     pub async fn exists_project_from_slug(
         &self,
         slug: &str,
@@ -104,7 +95,6 @@ impl ProjectService {
         self.project_repository.exists_project_from_slug(slug).await
     }
 
-    #[cfg(feature = "ssr")]
     pub async fn get_project(
         &self,
         slug: &str,
