@@ -1,5 +1,5 @@
 use leptos::{
-    prelude::ServerFnError,
+    prelude::{expect_context, ServerFnError},
     server,
     server_fn::codec::{GetUrl, PostUrl},
 };
@@ -27,9 +27,12 @@ pub async fn get_project(
     run_use_case(use_case, slug).await
 }
 
-#[server(prefix = "/api", endpoint = "projects/refresh", input = PostUrl)]
+#[server(prefix = "/api", endpoint = "projects", input = PostUrl)]
 pub async fn refresh_project_cache() -> Result<(), ServerFnError<ServerErrorDto>>
 {
+    use http::StatusCode;
+    use leptos_axum::ResponseOptions;
+
     use crate::{
         project::use_cases::refresh_project_cache::RefreshProjectCacheUseCase,
         system::{
@@ -39,15 +42,17 @@ pub async fn refresh_project_cache() -> Result<(), ServerFnError<ServerErrorDto>
     };
 
     // TODO: recevoir un code OTP ? et le vérifier dans le use case
-    // TODO: si on spam ça fait quoi ?
 
     let environment = use_environment_context()?;
     let project_service = use_project_service()?;
+    let response = expect_context::<ResponseOptions>();
 
     let use_case =
         RefreshProjectCacheUseCase::new(environment, project_service);
 
-    // TODO: vérifier si ca renvoit un 204
+    run_use_case(use_case, ()).await?;
 
-    run_use_case(use_case, ()).await
+    response.set_status(StatusCode::CREATED);
+
+    Ok(())
 }
