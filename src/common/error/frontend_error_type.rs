@@ -10,6 +10,7 @@ pub enum FrontedErrorType {
     UnableToGetProjectContexts(String),
     UnableToCheckIfProjectExists(String),
     UnableToGetProject(String),
+    InvalidTotpToken(String),
 }
 
 impl FrontedErrorType {
@@ -43,6 +44,10 @@ impl FrontedErrorType {
 
     pub fn unable_to_get_project() -> Self {
         Self::UnableToGetProject("UNABLE_TO_GET_PROJECT".into())
+    }
+
+    pub fn invalid_totp_token() -> Self {
+        Self::InvalidTotpToken("INVALID_TOTP_TOKEN".into())
     }
 }
 

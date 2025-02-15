@@ -23,6 +23,13 @@ impl BadRequestServerError {
             detailed_message: Some(detailed_message),
         }
     }
+
+    pub fn new_invalid_totp_token(detailed_message: String) -> Self {
+        Self {
+            error_type: Some(FrontedErrorType::invalid_totp_token()),
+            detailed_message: Some(detailed_message),
+        }
+    }
 }
 
 impl From<BadRequestServerError> for ServerErrorDto {
