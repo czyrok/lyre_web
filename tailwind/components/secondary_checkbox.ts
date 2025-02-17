@@ -11,7 +11,7 @@ export const addSecondaryCheckboxComponent: ComponentBuilderFunction = (
 
       // Children
       '.checkbox-input': {
-        [`@apply ${classPrefix}opacity-0`]: {},
+        [`@apply ${classPrefix}hidden`]: {},
       },
 
       '.checkbox-box': {
