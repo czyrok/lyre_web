@@ -17,7 +17,7 @@ if #[cfg(feature = "ssr")] {
     use system::state::app_state::AppState;
     use leptos_axum::{LeptosRoutes};
     use system::handlers::file_and_error_handler::file_and_error_handler;
-    use system::static_route_generator::get_static_route_generator;
+    use system::route::static_route_generator::get_static_route_generator;
     use system::handlers::{server_function_handler::server_function_handler, leptos_route_handler::leptos_routes_handler};
     use project::use_cases::make_system_project_cache_loading::MakeSystemProjectCacheLoadingUseCase;
     use common::use_case::UseCase;

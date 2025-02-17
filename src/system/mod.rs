@@ -2,11 +2,9 @@
 pub mod database;
 #[cfg(feature = "ssr")]
 pub mod handlers;
-pub mod shell;
+pub mod route;
 #[cfg(feature = "ssr")]
 pub mod state;
-#[cfg(feature = "ssr")]
-pub mod static_route_generator;
 #[cfg(feature = "ssr")]
 pub mod totp;
 #[cfg(feature = "ssr")]

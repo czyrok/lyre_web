@@ -6,7 +6,7 @@ use axum::{
 };
 use leptos::prelude::*;
 
-use super::super::{shell::shell, state::app_state::AppState};
+use super::super::{route::shell::shell, state::app_state::AppState};
 
 pub async fn leptos_routes_handler(
     State(app_state): State<AppState>,
