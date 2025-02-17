@@ -2,7 +2,7 @@ use http::StatusCode;
 use leptos::prelude::expect_context;
 use leptos_axum::ResponseOptions;
 
-use crate::common::{
+use crate::core::{
     error::{
         named::internal_server_error::InternalServerError,
         server_function_error::{ServerFunctionError, ServerFunctionException},

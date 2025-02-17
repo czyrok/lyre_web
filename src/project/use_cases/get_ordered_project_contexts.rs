@@ -1,5 +1,5 @@
 use crate::{
-    common::{
+    core::{
         cursor_pagination::CursorPagination,
         error::{
             named::{

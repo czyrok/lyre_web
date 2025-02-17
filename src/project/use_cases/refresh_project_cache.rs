@@ -1,7 +1,7 @@
 use std::fmt::Display;
 
 use crate::{
-    common::{
+    core::{
         error::{
             named::{
                 bad_request_server_error::BadRequestServerError,

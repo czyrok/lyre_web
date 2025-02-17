@@ -1,5 +1,5 @@
 use crate::{
-    common::{
+    core::{
         error::{
             named::{
                 internal_server_error::InternalServerError,

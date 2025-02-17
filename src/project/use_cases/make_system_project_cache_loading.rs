@@ -1,7 +1,7 @@
 use std::fmt::Display;
 
 use crate::{
-    common::{
+    core::{
         error::{
             named::internal_server_error::InternalServerError,
             server_function_error::ServerFunctionError,

@@ -5,7 +5,7 @@ use leptos::{
 };
 
 use crate::{
-    common::error::server_error_dto::ServerErrorDto,
+    core::error::server_error_dto::ServerErrorDto,
     project::dto::project::ProjectDto,
 };
 

@@ -1,7 +1,7 @@
 use leptos::{prelude::ServerFnError, server, server_fn::codec::GetUrl};
 
 use crate::{
-    common::{
+    core::{
         cursor_pagination::CursorPagination,
         error::server_error_dto::ServerErrorDto,
     },

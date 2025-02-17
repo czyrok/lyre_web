@@ -1,7 +1,7 @@
 use leptos::prelude::*;
 
 use crate::{
-    common::cursor_pagination::CursorPagination,
+    core::cursor_pagination::CursorPagination,
     project::api::project_context::get_ordered_project_contexts,
 };
 

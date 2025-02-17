@@ -3,7 +3,7 @@ use prelude::use_context;
 
 use super::environment_context::EnvironmentContext;
 use crate::{
-    common::error::{
+    core::error::{
         named::internal_server_error::InternalServerError,
         server_function_error::ServerFunctionException,
     },

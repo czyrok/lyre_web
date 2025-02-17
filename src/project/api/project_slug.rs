@@ -1,7 +1,7 @@
 use leptos::{prelude::ServerFnError, server, server_fn::codec::GetUrl};
 
 use crate::{
-    common::error::server_error_dto::ServerErrorDto,
+    core::error::server_error_dto::ServerErrorDto,
     project::dto::project_slugs::ProjectSlugsDto,
 };
 
