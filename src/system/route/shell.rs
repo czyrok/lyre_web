@@ -17,6 +17,11 @@ pub fn shell(options: LeptosOptions) -> impl IntoView {
                 <Stylesheet id="theme" href="tailwind_output.css"/>
                 // TODO:
                 //<Link rel="shortcut icon" type_="image/ico" href="/favicon.ico"/>
+
+                // TODO: preload
+                // <link rel="preload" href="./button_rectangle_background.svg" as="image" type="image/svg+xml" crossorigin>
+                // <link rel="preload" href="./GeistMonoVF.woff" as="font" type="font/woff" crossorigin>
+                // <link rel="preload" href="./GeistVF.woff" as="font" type="font/woff" crossorigin>
             </head>
             <body>
                 <App/>
