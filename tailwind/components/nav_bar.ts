@@ -102,24 +102,24 @@ export const addNavBarComponent: ComponentBuilderFunction = (
         '&:has(.item-text, .item-icon)': {
           [`@apply ${classPrefix}inline-flex ${classPrefix}items-center ${classPrefix}gap-1`]: {},
         },
+      },
 
-        // Variants
-        '&.item-selected': {
-          // Children
-          '.item-text': {
-            // Colors
-            [`@apply ${classPrefix}text-purple-blue-600`]: {},
-            [darkModeContext]: {
-              [`@apply ${classPrefix}text-purple-blue-50`]: {},
-            },
+      // Active page state for children
+      '[aria-current="page"] .nav-bar-item': {
+        // Children
+        '.item-text': {
+          // Colors
+          [`@apply ${classPrefix}text-purple-blue-600`]: {},
+          [darkModeContext]: {
+            [`@apply ${classPrefix}text-purple-blue-50`]: {},
           },
+        },
 
-          '.item-icon': {
-            // Colors
-            [`@apply ${classPrefix}text-purple-blue-600`]: {},
-            [darkModeContext]: {
-              [`@apply ${classPrefix}text-purple-blue-50`]: {},
-            },
+        '.item-icon': {
+          // Colors
+          [`@apply ${classPrefix}text-purple-blue-600`]: {},
+          [darkModeContext]: {
+            [`@apply ${classPrefix}text-purple-blue-50`]: {},
           },
         },
       },
