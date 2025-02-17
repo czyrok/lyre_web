@@ -6,7 +6,7 @@ export const THEME_BACKGROUND: {
   backgroundPosition: ThemeConfig['backgroundPosition'];
 } = {
   backgroundImage: {
-    'bubble-pattern': "url('./button_rectangle_background.svg')",
+    'bubble-pattern': "url('backgrounds/button_rectangle_background.svg')",
     'button-gradient':
       'linear-gradient(100deg, var(--tw-gradient-from) 46%, var(--tw-gradient-to) 95.83%)',
   },
