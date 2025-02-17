@@ -6,6 +6,9 @@ export const addSecondaryLinkComponent: ComponentBuilderFunction = (
 ) => {
   addComponents({
     '.secondary-link': {
+      //// Removes the default outline (not removed by Tailwind)
+      [`@apply ${classPrefix}outline-0`]: {},
+
       // Children
       '.link-text': {
         // Colors
