@@ -2,5 +2,7 @@ pub mod accentuation_button;
 pub mod button_theme;
 pub mod icon_side;
 pub mod primary_button;
+pub mod primary_button_as_link;
 pub mod secondary_button;
 pub mod unthemed_button;
+pub mod unthemed_button_as_link;
