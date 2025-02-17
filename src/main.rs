@@ -1,8 +1,8 @@
 mod app;
-mod common;
 mod core;
 mod home;
 mod project;
+mod shared;
 mod system;
 
 use cfg_if::cfg_if;
