@@ -1,12 +1,12 @@
 import { ComponentBuilderFunction } from '../types/component_builder_function';
 
-export const addAccentuationInputComponent: ComponentBuilderFunction = (
+export const addAccentuationInputTextComponent: ComponentBuilderFunction = (
   { addComponents },
   { darkModeContext, classPrefix }
 ) => {
   addComponents({
     // TODO: width !!!!
-    '.accentuation-input': {
+    '.accentuation-input-text': {
       [`@apply ${classPrefix}relative`]: {},
       // Ensure that content stays above the pseudo-element
       '& > *': {
@@ -38,7 +38,7 @@ export const addAccentuationInputComponent: ComponentBuilderFunction = (
       [`@apply ${classPrefix}rounded-25`]: {},
 
       // Children
-      '.input-text': {
+      '.input-text-input': {
         [`@apply ${classPrefix}bg-transparent`]: {},
         '&:focus': {
           [`@apply ${classPrefix}outline-none`]: {},
@@ -60,7 +60,7 @@ export const addAccentuationInputComponent: ComponentBuilderFunction = (
         [`@apply ${classPrefix}font-button-text ${classPrefix}font-geist-mono`]: {},
       },
 
-      '.input-icon': {
+      '.input-text-icon': {
         [`@apply ${classPrefix}inline-block`]: {},
 
         // Colors
@@ -78,12 +78,12 @@ export const addAccentuationInputComponent: ComponentBuilderFunction = (
         },
       },
 
-      '&:has(.input-text, .input-icon)': {
+      '&:has(.input-text-input, .input-text-icon)': {
         [`@apply ${classPrefix}inline-flex ${classPrefix}items-center`]: {},
       },
 
       // Focus state
-      '&:has(.input-text:focus)': {
+      '&:has(.input-text-input:focus)': {
         // Colors
         [`@apply ${classPrefix}ring-green-400`]: {},
         [darkModeContext]: {
@@ -105,11 +105,11 @@ export const addAccentuationInputComponent: ComponentBuilderFunction = (
           [`@apply ${classPrefix}stroke-4`]: {},
         },
 
-        '&:has(.input-text, .input-icon)': {
+        '&:has(.input-text-input, .input-icon)': {
           [`@apply ${classPrefix}gap-1,5`]: {},
         },
 
-        '&:has(.input-icon):not(:has(.input-text))': {
+        '&:has(.input-icon):not(:has(.input-text-input))': {
           [`@apply ${classPrefix}p-2`]: {},
         },
       },
@@ -124,11 +124,11 @@ export const addAccentuationInputComponent: ComponentBuilderFunction = (
           [`@apply ${classPrefix}stroke-4`]: {},
         },
 
-        '&:has(.input-text, .input-icon)': {
+        '&:has(.input-text-input, .input-icon)': {
           [`@apply ${classPrefix}gap-1`]: {},
         },
 
-        '&:has(.input-icon):not(:has(.input-text))': {
+        '&:has(.input-icon):not(:has(.input-text-input))': {
           [`@apply ${classPrefix}p-2`]: {},
         },
       },
@@ -143,11 +143,11 @@ export const addAccentuationInputComponent: ComponentBuilderFunction = (
           [`@apply ${classPrefix}stroke-5`]: {},
         },
 
-        '&:has(.input-text, .input-icon)': {
+        '&:has(.input-text-input, .input-icon)': {
           [`@apply ${classPrefix}gap-1`]: {},
         },
 
-        '&:has(.input-icon):not(:has(.input-text))': {
+        '&:has(.input-icon):not(:has(.input-text-input))': {
           [`@apply ${classPrefix}p-2`]: {},
         },
       },
@@ -162,11 +162,11 @@ export const addAccentuationInputComponent: ComponentBuilderFunction = (
           [`@apply ${classPrefix}stroke-5`]: {},
         },
 
-        '&:has(.input-text, .input-icon)': {
+        '&:has(.input-text-input, .input-icon)': {
           [`@apply ${classPrefix}gap-0,5`]: {},
         },
 
-        '&:has(.input-icon):not(:has(.input-text))': {
+        '&:has(.input-icon):not(:has(.input-text-input))': {
           [`@apply ${classPrefix}p-1,5`]: {},
         },
       },

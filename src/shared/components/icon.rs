@@ -18,5 +18,12 @@ pub fn Icon(icon: IconSet) -> impl IntoView {
                     stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
             </svg>
         },
+        IconSet::Search => view! {
+            <svg width="100%" height="100%" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path
+                    d="M27.4545 14.6232C34.358 14.6232 39.9545 20.2196 39.9545 27.1232M41.6015 41.2604L52.4545 52.1232M47.4545 27.1232C47.4545 38.1689 38.5003 47.1232 27.4545 47.1232C16.4088 47.1232 7.45453 38.1689 7.45453 27.1232C7.45453 16.0775 16.4088 7.12317 27.4545 7.12317C38.5003 7.12317 47.4545 16.0775 47.4545 27.1232Z"
+                    stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+        },
     }
 }

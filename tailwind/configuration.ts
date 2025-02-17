@@ -1,7 +1,7 @@
 import { Config } from 'tailwindcss';
 import plugin from 'tailwindcss/plugin';
 import { addAccentuationButtonComponent } from './components/accentuation_button';
-import { addAccentuationInputComponent } from './components/accentuation_input';
+import { addAccentuationInputTextComponent } from './components/accentuation_input_text';
 import { addBrandComponent } from './components/brand';
 import { addDropdownComponent } from './components/dropdown';
 import { addNavBarComponent } from './components/nav_bar';
@@ -118,7 +118,7 @@ export const TAILWIND_CONFIGURATION: Config = {
         darkModeContext,
         classPrefix: TAILWIND_CLASS_PREFIX,
       });
-      addAccentuationInputComponent(pluginApi, {
+      addAccentuationInputTextComponent(pluginApi, {
         darkModeContext,
         classPrefix: TAILWIND_CLASS_PREFIX,
       });
