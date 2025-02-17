@@ -1,8 +1,5 @@
 #[cfg(feature = "ssr")]
 pub mod database;
-
-#[cfg(feature = "ssr")]
-pub mod fallback;
 #[cfg(feature = "ssr")]
 pub mod handlers;
 pub mod shell;
