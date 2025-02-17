@@ -19,14 +19,14 @@ impl InternalServerError {
 
     pub fn new_refresh_project_cache_failed(detailed_message: String) -> Self {
         Self {
-            error_type: Some(FrontedErrorType::refresh_project_cache_failed()),
+            error_type: Some(FrontedErrorType::RefreshProjectCacheFailed),
             detailed_message: Some(detailed_message),
         }
     }
 
     pub fn new_unable_to_get_project_slugs(detailed_message: String) -> Self {
         Self {
-            error_type: Some(FrontedErrorType::unable_to_get_project_slugs()),
+            error_type: Some(FrontedErrorType::UnableToGetProjectSlugs),
             detailed_message: Some(detailed_message),
         }
     }
@@ -35,7 +35,7 @@ impl InternalServerError {
         detailed_message: String,
     ) -> Self {
         Self {
-            error_type: Some(FrontedErrorType::unable_to_get_project_contexts()),
+            error_type: Some(FrontedErrorType::UnableToGetProjectContexts),
             detailed_message: Some(detailed_message),
         }
     }
@@ -44,16 +44,14 @@ impl InternalServerError {
         detailed_message: String,
     ) -> Self {
         Self {
-            error_type: Some(
-                FrontedErrorType::unable_to_check_if_project_exists(),
-            ),
+            error_type: Some(FrontedErrorType::UnableToCheckIfProjectExists),
             detailed_message: Some(detailed_message),
         }
     }
 
     pub fn new_unable_to_get_project(detailed_message: String) -> Self {
         Self {
-            error_type: Some(FrontedErrorType::unable_to_get_project()),
+            error_type: Some(FrontedErrorType::UnableToGetProject),
             detailed_message: Some(detailed_message),
         }
     }

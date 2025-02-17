@@ -2,9 +2,9 @@ use std::future::Future;
 
 use super::error::server_function_error::ServerFunctionError;
 
-pub trait UseCase<TOptions, TOkResult> {
+pub trait UseCase<TInput, TOutput> {
     fn run(
         &mut self,
-        options: TOptions,
-    ) -> impl Future<Output = Result<TOkResult, ServerFunctionError>>;
+        options: TInput,
+    ) -> impl Future<Output = Result<TOutput, ServerFunctionError>>;
 }

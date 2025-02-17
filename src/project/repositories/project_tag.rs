@@ -1,25 +1,15 @@
-use crate::system::{
-    environment_context::EnvironmentContext, local_database::LocalDatabase,
-};
+use crate::system::database::local_database_transaction::LocalDatabaseTransaction;
 
-#[derive(Clone, Debug)]
-pub struct ProjectTagRepository {
-    environment: EnvironmentContext,
-}
+#[derive(Default, Clone, Debug)]
+pub struct ProjectTagRepository {}
 
 impl ProjectTagRepository {
-    pub fn new(environment: EnvironmentContext) -> Self {
-        Self { environment }
-    }
-
     pub async fn save_project_tag(
         &self,
         project_slug: String,
         tag: String,
+        local_database_transaction: &mut LocalDatabaseTransaction<'_>,
     ) -> Result<(), sqlx::Error> {
-        let mut local_database =
-            LocalDatabase::new(&self.environment.local_database_uri).await?;
-
         sqlx::query!(
             "
                 INSERT INTO `project_tags` (`project_slug`, `name`) VALUES (?, \
@@ -28,22 +18,22 @@ impl ProjectTagRepository {
             project_slug,
             tag
         )
-        .fetch_optional(&mut local_database.conn)
+        .fetch_optional(&mut *local_database_transaction.value)
         .await?;
 
         Ok(())
     }
 
-    pub async fn clean_project_tags(&self) -> Result<(), sqlx::Error> {
-        let mut local_database =
-            LocalDatabase::new(&self.environment.local_database_uri).await?;
-
+    pub async fn clean_project_tags(
+        &self,
+        local_database_transaction: &mut LocalDatabaseTransaction<'_>,
+    ) -> Result<(), sqlx::Error> {
         sqlx::query!(
             "
-                DELETE FROM `project_tags`;
-                "
+            DELETE FROM `project_tags`;
+            "
         )
-        .fetch_optional(&mut local_database.conn)
+        .fetch_optional(&mut *local_database_transaction.value)
         .await?;
 
         Ok(())

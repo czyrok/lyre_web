@@ -19,7 +19,14 @@ impl BadRequestServerError {
 
     pub fn new_unknown_project(detailed_message: String) -> Self {
         Self {
-            error_type: Some(FrontedErrorType::unknown_project()),
+            error_type: Some(FrontedErrorType::UnknownProject),
+            detailed_message: Some(detailed_message),
+        }
+    }
+
+    pub fn new_invalid_totp_token(detailed_message: String) -> Self {
+        Self {
+            error_type: Some(FrontedErrorType::InvalidTotpToken),
             detailed_message: Some(detailed_message),
         }
     }

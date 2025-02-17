@@ -14,14 +14,14 @@ if #[cfg(feature = "ssr")] {
     };
     use leptos::prelude::*;
     use std::error::Error;
-    use system::app_state::AppState;
+    use system::state::app_state::AppState;
     use leptos_axum::{LeptosRoutes};
-    use system::fallback::file_and_error_handler;
-    use system::static_route_generator::get_static_route_generator;
-    use system::handlers::{server_fn_handler, leptos_routes_handler};
-    use project::use_cases::refresh_project_cache::RefreshProjectCacheUseCase;
+    use system::handlers::file_and_error_handler::file_and_error_handler;
+    use system::route::static_route_generator::get_static_route_generator;
+    use system::handlers::{server_function_handler::server_function_handler, leptos_route_handler::leptos_routes_handler};
+    use project::use_cases::make_system_project_cache_loading::MakeSystemProjectCacheLoadingUseCase;
     use common::use_case::UseCase;
-    use system::environment_context::EnvironmentContext;
+    use system::state::environment_context::EnvironmentContext;
 
     fn get_app_state() -> Result<AppState, Box<dyn Error>> {
         let environment = EnvironmentContext::load_environment()?;
@@ -31,7 +31,7 @@ if #[cfg(feature = "ssr")] {
     }
 
     async fn refresh_project_cache(app_state: AppState) -> Result<(), Box<dyn Error>> {
-        let mut use_case = RefreshProjectCacheUseCase::new(app_state.project_service);
+        let mut use_case = MakeSystemProjectCacheLoadingUseCase::new(app_state.environment, app_state.project_service);
 
         use_case.run(()).await?;
 
@@ -47,7 +47,7 @@ if #[cfg(feature = "ssr")] {
         let app = Router::new()
             .route(
                 "/api/*fn_name",
-                get(server_fn_handler).post(server_fn_handler),
+                get(server_function_handler).post(server_function_handler),
             )
             .leptos_routes_with_handler(routes, get(leptos_routes_handler))
             .fallback(file_and_error_handler)

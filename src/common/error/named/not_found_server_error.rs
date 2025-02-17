@@ -19,7 +19,7 @@ impl NotFoundServerError {
 
     pub fn new_project_not_found(detailed_message: String) -> Self {
         Self {
-            error_type: Some(FrontedErrorType::project_not_found()),
+            error_type: Some(FrontedErrorType::ProjectNotFound),
             detailed_message: Some(detailed_message),
         }
     }

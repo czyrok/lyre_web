@@ -10,7 +10,11 @@ use crate::{
         project_context::ProjectContext,
     },
     system::{
-        environment_context::EnvironmentContext, local_database::LocalDatabase,
+        database::{
+            local_database::LocalDatabase,
+            local_database_transaction::LocalDatabaseTransaction,
+        },
+        state::environment_context::EnvironmentContext,
     },
 };
 
@@ -57,16 +61,16 @@ impl ProjectRepository {
         Ok(projects)
     }
 
-    pub async fn clean_projects(&self) -> Result<(), sqlx::Error> {
-        let mut local_database =
-            LocalDatabase::new(&self.environment.local_database_uri).await?;
-
+    pub async fn clean_projects(
+        &self,
+        local_database_transaction: &mut LocalDatabaseTransaction<'_>,
+    ) -> Result<(), sqlx::Error> {
         sqlx::query!(
             "
                 DELETE FROM `projects`;
                 "
         )
-        .fetch_optional(&mut local_database.conn)
+        .fetch_optional(&mut *local_database_transaction.value)
         .await?;
 
         Ok(())
@@ -75,10 +79,8 @@ impl ProjectRepository {
     pub async fn save_project(
         &self,
         project: Project,
+        local_database_transaction: &mut LocalDatabaseTransaction<'_>,
     ) -> Result<(), sqlx::Error> {
-        let mut local_database =
-            LocalDatabase::new(&self.environment.local_database_uri).await?;
-
         sqlx::query!(
             "
                 INSERT INTO `projects` (`slug`, `next_slug`, `position`, \
@@ -93,7 +95,7 @@ impl ProjectRepository {
             project.context.date,
             project.content.0
         )
-        .fetch_optional(&mut local_database.conn)
+        .fetch_optional(&mut *local_database_transaction.value)
         .await?;
 
         Ok(())
@@ -114,7 +116,7 @@ impl ProjectRepository {
                 ",
             slug
         )
-        .fetch_optional(&mut local_database.conn)
+        .fetch_optional(&mut local_database.connection)
         .await?;
 
         match result {
@@ -158,7 +160,7 @@ impl ProjectRepository {
             },
             content: ProjectContent(row.content),
         })
-        .fetch_optional(&mut local_database.conn)
+        .fetch_optional(&mut local_database.connection)
         .await?;
 
         Ok(project)

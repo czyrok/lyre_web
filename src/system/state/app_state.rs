@@ -29,8 +29,7 @@ impl AppState {
         options: LeptosOptions,
     ) -> Self {
         let project_repository = ProjectRepository::new(environment.clone());
-        let project_tag_repository =
-            ProjectTagRepository::new(environment.clone());
+        let project_tag_repository = ProjectTagRepository::default();
         let project_context_repository =
             ProjectContextRepository::new(environment.clone());
         let project_slug_repository =

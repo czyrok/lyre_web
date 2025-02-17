@@ -3,6 +3,7 @@ pub mod data;
 pub mod dto;
 #[cfg(feature = "ssr")]
 pub mod repositories;
+#[cfg(feature = "ssr")]
 pub mod services;
 #[cfg(feature = "ssr")]
 pub mod use_cases;
