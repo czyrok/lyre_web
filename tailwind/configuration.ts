@@ -3,7 +3,7 @@ import plugin from 'tailwindcss/plugin';
 import { addAccentuationButtonComponent } from './components/accentuation_button';
 import { addAccentuationInputTextComponent } from './components/accentuation_input_text';
 import { addBrandComponent } from './components/brand';
-import { addDropdownComponent } from './components/dropdown';
+import { addDropdownMenuComponent } from './components/dropdown_menu';
 import { addNavBarComponent } from './components/nav_bar';
 import { addPaginationComponent } from './components/pagination';
 import { addPrimaryButtonComponent } from './components/primary_button';
@@ -138,7 +138,7 @@ export const TAILWIND_CONFIGURATION: Config = {
         darkModeContext,
         classPrefix: TAILWIND_CLASS_PREFIX,
       });
-      addDropdownComponent(pluginApi, {
+      addDropdownMenuComponent(pluginApi, {
         darkModeContext,
         classPrefix: TAILWIND_CLASS_PREFIX,
       });
