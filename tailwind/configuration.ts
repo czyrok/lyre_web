@@ -9,12 +9,12 @@ import { addPaginationComponent } from './components/pagination';
 import { addPrimaryButtonComponent } from './components/primary_button';
 import { addProjectCardComponent } from './components/project_card';
 import { addProjectCardSkeletonComponent } from './components/project_card_skeleton';
+import { addProjectTagComponent } from './components/project_tag';
 import { addProjectThumbnailComponent } from './components/project_thumbnail';
 import { addSecondaryButtonComponent } from './components/secondary_button';
 import { addSecondaryCheckboxComponent } from './components/secondary_checkbox';
 import { addSecondaryLinkComponent } from './components/secondary_link';
 import { addSecondarySelectComponent } from './components/secondary_select';
-import { addTagComponent } from './components/tag';
 import { THEME_BACKGROUND } from './theme/background';
 import { THEME_BLUR } from './theme/blur';
 import { THEME_BORDER_RADIUS } from './theme/border_radius';
@@ -82,7 +82,7 @@ export const TAILWIND_CONFIGURATION: Config = {
         darkModeContext = '@media (prefers-color-scheme: dark)';
       }
 
-      addTagComponent(pluginApi, {
+      addProjectTagComponent(pluginApi, {
         darkModeContext,
         classPrefix: TAILWIND_CLASS_PREFIX,
       });

@@ -1,11 +1,11 @@
 import { ComponentBuilderFunction } from '../types/component_builder_function';
 
-export const addTagComponent: ComponentBuilderFunction = (
+export const addProjectTagComponent: ComponentBuilderFunction = (
   { addComponents },
   { darkModeContext, classPrefix }
 ) => {
   addComponents({
-    '.tag': {
+    '.project-tag': {
       // Colors
       [`@apply ${classPrefix}bg-blue-300`]: {},
       [darkModeContext]: {

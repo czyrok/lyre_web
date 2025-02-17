@@ -1,4 +1,5 @@
 pub mod api;
+pub mod components;
 pub mod data;
 pub mod dto;
 #[cfg(feature = "ssr")]
