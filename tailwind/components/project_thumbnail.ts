@@ -6,7 +6,7 @@ export const addProjectThumbnailComponent: ComponentBuilderFunction = (
 ) => {
   addComponents({
     '.project-thumbnail': {
-      [`@apply ${classPrefix}inline-block ${classPrefix}relative ${classPrefix}overflow-hidden`]:
+      [`@apply ${classPrefix}inline-block ${classPrefix}relative ${classPrefix}overflow-hidden ${classPrefix}select-none`]:
         {},
 
       // Colors
@@ -25,7 +25,7 @@ export const addProjectThumbnailComponent: ComponentBuilderFunction = (
         {},
 
       // Hover state
-      '&:hover': {
+      '&:has(.thumbnail-hover):hover': {
         [`@apply ${classPrefix}outline-transparent`]: {},
       },
       '&:hover .thumbnail-hover': {
@@ -33,7 +33,7 @@ export const addProjectThumbnailComponent: ComponentBuilderFunction = (
       },
 
       // Focus state
-      '&:focus': {
+      '&:has(.thumbnail-hover):focus': {
         // Colors
         [`@apply ${classPrefix}ring-green-400`]: {},
         [darkModeContext]: {
@@ -45,6 +45,10 @@ export const addProjectThumbnailComponent: ComponentBuilderFunction = (
       },
 
       // Children
+      '.thumbnail-image': {
+        [`@apply ${classPrefix}pointer-events-none`]: {},
+      },
+
       '.thumbnail-hover': {
         [`@apply ${classPrefix}flex ${classPrefix}justify-center ${classPrefix}items-center ${classPrefix}inset-0 ${classPrefix}absolute ${classPrefix}z-0 ${classPrefix}opacity-0`]:
           {},
