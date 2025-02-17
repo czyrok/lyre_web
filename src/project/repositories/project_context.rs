@@ -37,7 +37,7 @@ impl ProjectContextRepository {
                             `projects`.`title`,
                             `projects`.`image_url`,
                             `projects`.`date`,
-                            `project_tags`.`name` AS `tags`
+                            GROUP_CONCAT(`project_tags`.`name`) AS `tags`
                     FROM      `projects`
                     LEFT JOIN `project_tags` ON `project_tags`.`project_slug` \
                      = `projects`.`slug`
@@ -65,7 +65,7 @@ impl ProjectContextRepository {
                             `projects`.`title`,
                             `projects`.`image_url`,
                             `projects`.`date`,
-                            `project_tags`.`name` AS `tags`
+                            GROUP_CONCAT(`project_tags`.`name`) AS `tags`
                     FROM      `projects`
                     LEFT JOIN `project_tags` ON `project_tags`.`project_slug` \
                      = `projects`.`slug`

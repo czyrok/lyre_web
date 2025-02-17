@@ -140,7 +140,7 @@ impl ProjectRepository {
                         `projects`.`image_url`,
                         `projects`.`date`,
                         `projects`.`content`,
-                        `project_tags`.`name` AS `tags`
+                        GROUP_CONCAT(`project_tags`.`name`) AS `tags`
                 FROM      `projects`
                 LEFT JOIN `project_tags` ON `project_tags`.`project_slug` = \
              `projects`.`slug`
@@ -151,14 +151,14 @@ impl ProjectRepository {
         .map(|row| Project {
             position: None,
             context: ProjectContext {
-                slug: row.slug,
+                slug: row.slug.unwrap(),
                 next_slug: row.next_slug,
-                title: row.title,
-                image_url: row.image_url,
-                date: row.date,
+                title: row.title.unwrap(),
+                image_url: row.image_url.unwrap(),
+                date: row.date.unwrap(),
                 tags: row.tags.into(),
             },
-            content: ProjectContent(row.content),
+            content: ProjectContent(row.content.unwrap()),
         })
         .fetch_optional(&mut local_database.connection)
         .await?;
