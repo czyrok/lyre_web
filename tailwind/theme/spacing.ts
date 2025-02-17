@@ -1,6 +1,7 @@
 import { ThemeConfig } from 'tailwindcss/types/config';
 
 export const THEME_SPACING: ThemeConfig['spacing'] = {
+  'l7/1': '-7%',
   0: '0px',
   '0,5': '4px',
   1: '8px',

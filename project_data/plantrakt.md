@@ -1,7 +1,7 @@
 ---
 next_slug: wolfgang
 title: Plantrakt
-image_url: # TODO:
+image_url: plantrakt.png
 date: 2024-10-21 # TODO:
 tags:
   - Rust (WASM)

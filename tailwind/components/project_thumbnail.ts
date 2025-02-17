@@ -6,7 +6,7 @@ export const addProjectThumbnailComponent: ComponentBuilderFunction = (
 ) => {
   addComponents({
     '.project-thumbnail': {
-      [`@apply ${classPrefix}inline-block ${classPrefix}relative ${classPrefix}overflow-hidden ${classPrefix}select-none`]:
+      [`@apply ${classPrefix}inline-block ${classPrefix}relative ${classPrefix}overflow-visible ${classPrefix}select-none`]:
         {},
 
       // Colors
@@ -46,7 +46,11 @@ export const addProjectThumbnailComponent: ComponentBuilderFunction = (
 
       // Children
       '.thumbnail-image': {
-        [`@apply ${classPrefix}pointer-events-none`]: {},
+        [`@apply ${classPrefix}overflow-hidden ${classPrefix}pointer-events-none`]: {},
+
+        // Sizing (required for the image)
+        [`@apply ${classPrefix}w-full ${classPrefix}h-full`]: {},
+        [`@apply ${classPrefix}rounded-5`]: {},
       },
 
       '.thumbnail-hover': {
@@ -90,6 +94,13 @@ export const addProjectThumbnailComponent: ComponentBuilderFunction = (
             [`@apply ${classPrefix}stroke-3`]: {},
           },
         },
+      },
+
+      '.thumbnail-brand': {
+        [`@apply ${classPrefix}absolute`]: {},
+
+        // Sizing (required for the border)
+        [`@apply ${classPrefix}right-l7/1 ${classPrefix}bottom-l7/1`]: {},
       },
     },
   });

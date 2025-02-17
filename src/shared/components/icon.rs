@@ -30,5 +30,17 @@ pub fn Icon(icon: IconSet) -> impl IntoView {
                 <path stroke="currentColor" stroke-linecap="round" stroke-width="1.5" d="M52.059 30.001H7.5m45 0-15.441-15.44M52.5 30.001 37.059 45.442"/>
             </svg>
         }.into_any(),
+        IconSet::Eye => view! {
+            <svg width="100%" height="100%" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M7.5 29.9986C7.5 29.9986 15.6818 13.635 30 13.635C44.3182 13.635 52.5 29.9986 52.5 29.9986"
+                    stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                <path
+                    d="M7.5 29.9987C7.5 29.9987 15.6818 46.3623 30 46.3623C44.3182 46.3623 52.5 29.9987 52.5 29.9987"
+                    stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                <path
+                    d="M30 36.135C33.389 36.135 36.1364 33.3877 36.1364 29.9987C36.1364 26.6096 33.389 23.8623 30 23.8623C26.611 23.8623 23.8636 26.6096 23.8636 29.9987C23.8636 33.3877 26.611 36.135 30 36.135Z"
+                    stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+        }.into_any(),
     }
 }

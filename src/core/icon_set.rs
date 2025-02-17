@@ -4,4 +4,5 @@ pub enum IconSet {
     External,
     Search,
     RightArrow,
+    Eye,
 }
