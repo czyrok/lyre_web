@@ -16,7 +16,8 @@ pub async fn get_project(
     use crate::{
         project::use_cases::get_project::GetProjectUseCase,
         system::{
-            state::contexts::use_project_service, use_case_runner::run_use_case,
+            runner::use_case_runner::run_use_case,
+            state::contexts::use_project_service,
         },
     };
 
@@ -38,8 +39,8 @@ pub async fn refresh_project_cache(
     use crate::{
         project::use_cases::refresh_project_cache::RefreshProjectCacheUseCase,
         system::{
+            runner::use_case_runner::run_use_case,
             state::contexts::{use_environment_context, use_project_service},
-            use_case_runner::run_use_case,
         },
     };
 
