@@ -2,7 +2,7 @@ use crate::{
     project::data::project_context::ProjectContext,
     system::{
         database::local_database::LocalDatabase,
-        environment_context::EnvironmentContext,
+        state::environment_context::EnvironmentContext,
     },
 };
 

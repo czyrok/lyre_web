@@ -11,7 +11,8 @@ pub async fn get_project_slugs(
     use crate::{
         project::use_cases::get_project_slugs::GetProjectSlugsUseCase,
         system::{
-            contexts::use_project_slug_service, use_case_runner::run_use_case,
+            state::contexts::use_project_slug_service,
+            use_case_runner::run_use_case,
         },
     };
 

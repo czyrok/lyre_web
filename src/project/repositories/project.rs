@@ -14,7 +14,7 @@ use crate::{
             local_database::LocalDatabase,
             local_database_transaction::LocalDatabaseTransaction,
         },
-        environment_context::EnvironmentContext,
+        state::environment_context::EnvironmentContext,
     },
 };
 

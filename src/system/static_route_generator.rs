@@ -4,7 +4,7 @@ use leptos_axum::{
     StaticRouteGenerator,
 };
 
-use super::{app_state::AppState, shell::shell};
+use super::{shell::shell, state::app_state::AppState};
 
 pub fn get_static_route_generator(
     app_state: AppState,

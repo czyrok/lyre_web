@@ -15,7 +15,9 @@ pub async fn get_ordered_project_contexts(
     use crate::{
         project::use_cases::get_ordered_project_contexts::GetOrderedProjectContextsUseCase,
         system::{
-            contexts::{use_project_context_service, use_project_service},
+            state::contexts::{
+                use_project_context_service, use_project_service,
+            },
             use_case_runner::run_use_case,
         },
     };
@@ -37,7 +39,7 @@ pub async fn get_relevant_project_contexts(
     use crate::{
         project::use_cases::get_relevant_project_contexts::GetRelevantProjectContextsUseCase,
         system::{
-            contexts::use_project_context_service,
+            state::contexts::use_project_context_service,
             use_case_runner::run_use_case,
         },
     };

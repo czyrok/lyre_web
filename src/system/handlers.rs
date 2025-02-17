@@ -7,7 +7,7 @@ use axum::{
 use leptos::{logging::log, prelude::*};
 use leptos_axum::handle_server_fns_with_context;
 
-use super::{app_state::AppState, shell::shell};
+use super::{shell::shell, state::app_state::AppState};
 
 pub async fn server_fn_handler(
     State(app_state): State<AppState>,

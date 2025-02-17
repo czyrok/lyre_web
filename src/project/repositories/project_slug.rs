@@ -1,6 +1,6 @@
 use crate::system::{
     database::local_database::LocalDatabase,
-    environment_context::EnvironmentContext,
+    state::environment_context::EnvironmentContext,
 };
 
 #[derive(Clone, Debug)]
