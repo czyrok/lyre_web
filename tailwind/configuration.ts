@@ -3,6 +3,7 @@ import plugin from 'tailwindcss/plugin';
 import { addH1Base } from './bases/h1';
 import { addParagraphBase } from './bases/paragraph';
 import { addHomeProjectSectionComponent } from './components/home/home_project_section';
+import { addHomeSectionContainerComponent } from './components/home/home_section_container';
 import { addProjectCardComponent } from './components/project/project_card';
 import { addProjectCardSkeletonComponent } from './components/project/project_card_skeleton';
 import { addProjectTagComponent } from './components/project/project_tag';
@@ -158,6 +159,10 @@ export const TAILWIND_CONFIGURATION: Config = {
         classPrefix: TAILWIND_CLASS_PREFIX,
       });
       addHomeProjectSectionComponent(pluginApi, {
+        darkModeContext,
+        classPrefix: TAILWIND_CLASS_PREFIX,
+      });
+      addHomeSectionContainerComponent(pluginApi, {
         darkModeContext,
         classPrefix: TAILWIND_CLASS_PREFIX,
       });
