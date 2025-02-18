@@ -33,7 +33,7 @@ pub async fn get_ordered_project_contexts(
     run_use_case(use_case, pagination).await
 }
 
-#[server(prefix = "/api", endpoint = "project_contexts", input = GetUrl)]
+#[server(prefix = "/api", endpoint = "project_contexts/relevants", input = GetUrl)]
 pub async fn get_relevant_project_contexts(
 ) -> Result<ProjectContextsDto, ServerFnError<ServerErrorDto>> {
     use crate::{
