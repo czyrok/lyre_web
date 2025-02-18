@@ -23,7 +23,7 @@ export const addPaginationComponent: ComponentBuilderFunction = (
         [`@apply ${classPrefix}text-4`]: {},
 
         // Others
-        [`@apply ${classPrefix}font-pagination-text ${classPrefix}font-geist`]: {},
+        [`@apply ${classPrefix}font-regular ${classPrefix}font-geist`]: {},
       },
     },
   });

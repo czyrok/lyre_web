@@ -1,5 +1,7 @@
 import { Config } from 'tailwindcss';
 import plugin from 'tailwindcss/plugin';
+import { addH1Base } from './bases/h1';
+import { addParagraphBase } from './bases/paragraph';
 import { addHomeProjectSectionComponent } from './components/home/home_project_section';
 import { addProjectCardComponent } from './components/project/project_card';
 import { addProjectCardSkeletonComponent } from './components/project/project_card_skeleton';
@@ -39,7 +41,7 @@ import { THEME_SPACING } from './theme/spacing';
 import { THEME_STROKE_WIDTH } from './theme/stroke_width';
 import { THEME_TRANSITION } from './theme/transition';
 
-const DARK_MODE_CLASS = '.dark';
+const DARK_MODE_CLASS = 'dark';
 const TAILWIND_CLASS_PREFIX = 'tw-';
 
 export const TAILWIND_CONFIGURATION: Config = {
@@ -78,11 +80,22 @@ export const TAILWIND_CONFIGURATION: Config = {
     plugin(function (pluginApi) {
       const darkModeConfig: string = pluginApi.config('darkMode', 'selector');
 
-      let darkModeContext = `${DARK_MODE_CLASS} &`;
+      let darkModeContext = `.${DARK_MODE_CLASS} &`;
+      let darkModeContextForBases = `.${TAILWIND_CLASS_PREFIX}${DARK_MODE_CLASS} &`;
 
       if (darkModeConfig === 'media') {
         darkModeContext = '@media (prefers-color-scheme: dark)';
+        darkModeContextForBases = '@media (prefers-color-scheme: dark)';
       }
+
+      addH1Base(pluginApi, {
+        darkModeContext: darkModeContextForBases,
+        classPrefix: TAILWIND_CLASS_PREFIX,
+      });
+      addParagraphBase(pluginApi, {
+        darkModeContext: darkModeContextForBases,
+        classPrefix: TAILWIND_CLASS_PREFIX,
+      });
 
       addProjectTagComponent(pluginApi, {
         darkModeContext,
@@ -148,28 +161,6 @@ export const TAILWIND_CONFIGURATION: Config = {
         darkModeContext,
         classPrefix: TAILWIND_CLASS_PREFIX,
       });
-
-      /*
-      TODO: ajouter les styles par défaut des h1 ?
-
-      addVariant({
-      })
-
-      // title text etc...
-      addBase({
-        h1: {
-          fontSize: theme("fontSize.2xl"),
-        },
-        h2: {
-          fontSize: theme("fontSize.xl"),
-        },
-      }); */
-
-      /* addUtilities({
-        ".content-auto": {
-          contentVisibility: "auto",
-        },
-      }); */
     }),
   ],
 } as const;

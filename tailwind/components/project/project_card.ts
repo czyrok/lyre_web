@@ -12,6 +12,7 @@ export const addProjectCardComponent: ComponentBuilderFunction = (
       [`@apply ${classPrefix}p-2`]: {},
       [`@apply ${classPrefix}gap-1`]: {},
 
+      // Children
       '.card-title': {
         // Colors
         [`@apply ${classPrefix}text-black-950`]: {},
@@ -23,8 +24,7 @@ export const addProjectCardComponent: ComponentBuilderFunction = (
         [`@apply ${classPrefix}text-7`]: {},
 
         // Others
-        [`@apply ${classPrefix}font-project-card-thumbnail-title ${classPrefix}font-geist-mono`]:
-          {},
+        [`@apply ${classPrefix}font-regular ${classPrefix}font-geist-mono`]: {},
       },
 
       '.card-tag-container': {
