@@ -5,4 +5,5 @@ pub enum IconSet {
     Search,
     RightArrow,
     Eye,
+    Compass,
 }
