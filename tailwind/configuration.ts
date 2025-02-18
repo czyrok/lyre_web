@@ -2,6 +2,7 @@ import { Config } from 'tailwindcss';
 import plugin from 'tailwindcss/plugin';
 import { addH1Base } from './bases/h1';
 import { addParagraphBase } from './bases/paragraph';
+import { addHomeContactSectionComponent } from './components/home/home_contact_section';
 import { addHomeHighlightedSectionComponent } from './components/home/home_highlighted_section';
 import { addHomeProjectSectionComponent } from './components/home/home_project_section';
 import { addHomeSectionContainerComponent } from './components/home/home_section_container';
@@ -168,6 +169,10 @@ export const TAILWIND_CONFIGURATION: Config = {
         classPrefix: TAILWIND_CLASS_PREFIX,
       });
       addHomeHighlightedSectionComponent(pluginApi, {
+        darkModeContext,
+        classPrefix: TAILWIND_CLASS_PREFIX,
+      });
+      addHomeContactSectionComponent(pluginApi, {
         darkModeContext,
         classPrefix: TAILWIND_CLASS_PREFIX,
       });
