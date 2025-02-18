@@ -1,5 +1,6 @@
 import { Config } from 'tailwindcss';
 import plugin from 'tailwindcss/plugin';
+import { addHomeProjectSectionComponent } from './components/home/home_project_section';
 import { addProjectCardComponent } from './components/project/project_card';
 import { addProjectCardSkeletonComponent } from './components/project/project_card_skeleton';
 import { addProjectTagComponent } from './components/project/project_tag';
@@ -22,6 +23,7 @@ import { THEME_BORDER_WIDTH } from './theme/border_width';
 import { THEME_BOX_SHADOW } from './theme/box_shadow';
 import { THEME_COLORS } from './theme/colors';
 import { THEME_CONTENT } from './theme/content';
+import { EXTENDED_THEME_CONTAINER } from './theme/extend/container';
 import { EXTENDED_THEME_GAP } from './theme/extend/gap';
 import { EXTENDED_THEME_SIZE } from './theme/extend/size';
 import { THEME_FONT_FAMILY } from './theme/font_family';
@@ -67,8 +69,8 @@ export const TAILWIND_CONFIGURATION: Config = {
     ...THEME_BACKGROUND,
     extend: {
       // Gap is here to avoid to override the spacing values defined above
-      // TODO: Container
       gap: EXTENDED_THEME_GAP,
+      container: EXTENDED_THEME_CONTAINER,
       ...EXTENDED_THEME_SIZE,
     },
   },
@@ -139,6 +141,10 @@ export const TAILWIND_CONFIGURATION: Config = {
         classPrefix: TAILWIND_CLASS_PREFIX,
       });
       addDropdownMenuComponent(pluginApi, {
+        darkModeContext,
+        classPrefix: TAILWIND_CLASS_PREFIX,
+      });
+      addHomeProjectSectionComponent(pluginApi, {
         darkModeContext,
         classPrefix: TAILWIND_CLASS_PREFIX,
       });
