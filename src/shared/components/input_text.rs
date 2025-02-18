@@ -19,9 +19,9 @@ pub fn InputText(
         ReadSignal<String>,
         WriteSignal<String>,
     ),
-    placeholder: Option<String>,
-    icon: Option<IconSet>,
-    icon_side: Option<IconSide>,
+    #[prop(optional, into)] placeholder: Option<String>,
+    #[prop(optional, into)] icon: Option<IconSet>,
+    #[prop(optional, into)] icon_side: Option<IconSide>,
 ) -> impl IntoView {
     let is_xl_size = size == ComponentSize::XL;
     let is_lg_size = size == ComponentSize::LG;

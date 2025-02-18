@@ -14,10 +14,11 @@ pub fn PrimaryButtonAsLink(
     size: ComponentSize,
     text: String,
     href: String,
-    icon: Option<IconSet>,
-    icon_side: Option<IconSide>,
+    #[prop(optional, into)] icon: Option<IconSet>,
+    #[prop(optional, into)] icon_side: Option<IconSide>,
+    #[prop(optional, into)] target: Option<String>,
 ) -> impl IntoView {
     view! {
-        <UnthemedButtonAsLink theme=ButtonTheme::Primary size=size text=text href=href icon=icon icon_side=icon_side />
+        <UnthemedButtonAsLink theme=ButtonTheme::Primary size=size text=text href=href icon=icon icon_side=icon_side target=target />
     }
 }

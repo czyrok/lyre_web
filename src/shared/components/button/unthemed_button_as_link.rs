@@ -12,8 +12,8 @@ pub fn UnthemedButtonAsLink(
     size: ComponentSize,
     text: String,
     href: String,
-    icon: Option<IconSet>,
-    icon_side: Option<IconSide>,
+    #[prop(into)] icon: Option<IconSet>,
+    #[prop(into)] icon_side: Option<IconSide>,
 ) -> impl IntoView {
     let is_accentuation_theme = theme == ButtonTheme::Accentuation;
     let is_primary_theme = theme == ButtonTheme::Primary;

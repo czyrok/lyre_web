@@ -50,7 +50,7 @@ pub fn HomeProjectSection() -> impl IntoView {
             </div>
 
             <div class="tw-section-actions">
-                <PrimaryButtonAsLink size=ComponentSize::LG text="Explorer".into() href="/projects".into() icon=IconSet::Compass.into() icon_side=IconSide::Left.into()/>
+                <PrimaryButtonAsLink size=ComponentSize::LG text="Explorer".into() href="/projects".into() icon=IconSet::Compass icon_side=IconSide::Left/>
             </div>
         </div>
     }

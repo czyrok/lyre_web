@@ -13,8 +13,8 @@ pub fn PrimaryButton(
     size: ComponentSize,
     text: String,
     on_click: impl FnMut(MouseEvent) + 'static,
-    icon: Option<IconSet>,
-    icon_side: Option<IconSide>,
+    #[prop(optional, into)] icon: Option<IconSet>,
+    #[prop(optional, into)] icon_side: Option<IconSide>,
 ) -> impl IntoView {
     view! {
         <UnthemedButton theme=ButtonTheme::Primary size=size text=text on_click=on_click icon=icon icon_side=icon_side />

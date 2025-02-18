@@ -17,7 +17,7 @@ pub fn StaticProjectThumbnail(
             </div>
 
             <div class="tw-thumbnail-brand">
-                <Brand size=ComponentSize::SM layout_mode=Some(LayoutMode::BadgeOnly) />
+                <Brand size=ComponentSize::SM layout_mode=LayoutMode::BadgeOnly />
             </div>
         </div>
     }

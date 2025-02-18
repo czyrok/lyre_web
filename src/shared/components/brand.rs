@@ -13,7 +13,7 @@ pub enum LayoutMode {
 #[component]
 pub fn Brand(
     size: ComponentSize,
-    layout_mode: Option<LayoutMode>,
+    #[prop(optional, into)] layout_mode: Option<LayoutMode>,
 ) -> impl IntoView {
     let is_xl_size = size == ComponentSize::XL;
     let is_lg_size = size == ComponentSize::LG;

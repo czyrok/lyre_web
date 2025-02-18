@@ -11,13 +11,13 @@ use crate::{
 pub fn NextPagination(
     click_text: String,
     href: String,
-    secondary_text: Option<String>,
+    #[prop(optional, into)] secondary_text: Option<String>,
 ) -> impl IntoView {
     let secondary_text = secondary_text.unwrap_or("Le suivant.".into());
 
     view! {
         <div class="tw-pagination">
-            <PrimaryButtonAsLink size=ComponentSize::MD text=click_text href=href icon=Some(IconSet::RightArrow) icon_side=Some(IconSide::Right) />
+            <PrimaryButtonAsLink size=ComponentSize::MD text=click_text href=href icon=IconSet::RightArrow icon_side=IconSide::Right />
 
             <span class="tw-pagination-text">
                 { secondary_text }

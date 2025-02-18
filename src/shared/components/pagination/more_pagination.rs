@@ -9,13 +9,13 @@ use crate::{
 pub fn MorePagination(
     count_left: ReadSignal<u32>,
     on_click: impl FnMut(MouseEvent) + 'static,
-    click_text: Option<String>,
+    #[prop(optional, into)] click_text: Option<String>,
 ) -> impl IntoView {
     let click_text = click_text.unwrap_or("Voir Plus".into());
 
     view! {
         <div class="tw-pagination">
-            <PrimaryButton size=ComponentSize::MD text=click_text on_click=on_click icon=None icon_side=None />
+            <PrimaryButton size=ComponentSize::MD text=click_text on_click=on_click />
 
             <span class="tw-pagination-text">
                 {move || count_left.get()}
