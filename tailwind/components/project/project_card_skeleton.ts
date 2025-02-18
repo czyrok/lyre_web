@@ -1,4 +1,4 @@
-import { ComponentBuilderFunction } from '../types/component_builder_function';
+import { ComponentBuilderFunction } from '../../types/component_builder_function';
 
 export const addProjectCardSkeletonComponent: ComponentBuilderFunction = (
   { addComponents },

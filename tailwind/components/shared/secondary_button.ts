@@ -1,68 +1,33 @@
-import { ComponentBuilderFunction } from '../types/component_builder_function';
+import { ComponentBuilderFunction } from '../../types/component_builder_function';
 
-export const addAccentuationButtonComponent: ComponentBuilderFunction = (
+export const addSecondaryButtonComponent: ComponentBuilderFunction = (
   { addComponents },
   { darkModeContext, classPrefix }
 ) => {
   addComponents({
-    '.accentuation-button': {
+    '.secondary-button': {
       [`@apply ${classPrefix}inline-flex`]: {},
-      [`@apply ${classPrefix}relative`]: {},
-      // Ensure that content stays above the pseudo-element
-      '& > *': {
-        [`@apply ${classPrefix}relative ${classPrefix}z-10`]: {},
-      },
-
-      // Background image
-      '&::after': {
-        [`@apply ${classPrefix}content-empty ${classPrefix}inset-0 ${classPrefix}absolute ${classPrefix}z-0`]:
-          {},
-
-        // Background image
-        [`@apply ${classPrefix}bg-bubble-pattern`]: {},
-
-        // Sizing (required for the shadow)
-        [`@apply ${classPrefix}rounded-25`]: {},
-
-        // Others (we need to set here the shadow due to the z-index)
-        [`@apply ${classPrefix}shadow-button-inside`]: {},
-      },
 
       // Colors
-      [`@apply ${classPrefix}bg-button-gradient`]: {},
-      [`@apply ${classPrefix}from-green-400 ${classPrefix}to-green-500`]: {},
+      [`@apply ${classPrefix}outline-purple-blue-400`]: {},
       [darkModeContext]: {
-        [`@apply ${classPrefix}from-green-500 ${classPrefix}to-green-600`]: {},
+        [`@apply ${classPrefix}outline-purple-blue-500`]: {},
       },
 
-      // Sizing (required for the background gradient)
+      // Sizing
       [`@apply ${classPrefix}rounded-25`]: {},
+      [`@apply ${classPrefix}outline ${classPrefix}outline-offset-l2 ${classPrefix}outline-2`]: {},
 
-      // Hover pseudo element
-      '&::before': {
-        [`@apply ${classPrefix}content-empty ${classPrefix}inset-0 ${classPrefix}absolute ${classPrefix}z-0 ${classPrefix}opacity-0`]:
-          {},
-
-        // Colors
-        [`@apply ${classPrefix}bg-green-500`]: {},
-        [darkModeContext]: {
-          [`@apply ${classPrefix}bg-green-600`]: {},
-        },
-
-        // Sizing (required for the background color)
-        [`@apply ${classPrefix}rounded-25`]: {},
-
-        // Others
-        [`@apply ${classPrefix}transition-button-background ${classPrefix}duration-button-background ${classPrefix}ease-button-background`]:
-          {},
-      },
+      // Others
+      [`@apply ${classPrefix}transition-button-background ${classPrefix}duration-button-background ${classPrefix}ease-button-background`]:
+        {},
 
       // Children
       '.button-text': {
         // Colors
-        [`@apply ${classPrefix}text-green-950`]: {},
+        [`@apply ${classPrefix}text-purple-blue-400`]: {},
         [darkModeContext]: {
-          [`@apply ${classPrefix}text-green-950`]: {},
+          [`@apply ${classPrefix}text-purple-blue-500`]: {},
         },
 
         // Others
@@ -73,18 +38,13 @@ export const addAccentuationButtonComponent: ComponentBuilderFunction = (
         [`@apply ${classPrefix}inline-block`]: {},
 
         // Colors
-        [`@apply ${classPrefix}text-green-950`]: {},
+        [`@apply ${classPrefix}text-purple-blue-400`]: {},
         [darkModeContext]: {
-          [`@apply ${classPrefix}text-green-950`]: {},
+          [`@apply ${classPrefix}text-purple-blue-500`]: {},
         },
 
         // Sizing
         [`@apply ${classPrefix}w-button-icon ${classPrefix}h-button-icon`]: {},
-
-        // Children
-        '& svg path': {
-          [`@apply ${classPrefix}stroke-4`]: {},
-        },
       },
 
       '&:has(.button-text):has(.button-icon)': {
@@ -92,8 +52,12 @@ export const addAccentuationButtonComponent: ComponentBuilderFunction = (
       },
 
       // Hover state
-      '&:hover::before': {
-        [`@apply ${classPrefix}opacity-100`]: {},
+      '&:hover': {
+        // Colors
+        [`@apply ${classPrefix}bg-purple-blue-50/90`]: {},
+        [darkModeContext]: {
+          [`@apply ${classPrefix}bg-purple-blue-950/90`]: {},
+        },
       },
 
       // Focus state

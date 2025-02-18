@@ -1,13 +1,11 @@
-import { ComponentBuilderFunction } from '../types/component_builder_function';
+import { ComponentBuilderFunction } from '../../types/component_builder_function';
 
-export const addSecondaryButtonComponent: ComponentBuilderFunction = (
+export const addSecondarySelectComponent: ComponentBuilderFunction = (
   { addComponents },
   { darkModeContext, classPrefix }
 ) => {
   addComponents({
-    '.secondary-button': {
-      [`@apply ${classPrefix}inline-flex`]: {},
-
+    '.secondary-select': {
       // Colors
       [`@apply ${classPrefix}outline-purple-blue-400`]: {},
       [darkModeContext]: {
@@ -23,7 +21,11 @@ export const addSecondaryButtonComponent: ComponentBuilderFunction = (
         {},
 
       // Children
-      '.button-text': {
+      '& select': {
+        [`@apply ${classPrefix}hidden`]: {},
+      },
+
+      '.select-text': {
         // Colors
         [`@apply ${classPrefix}text-purple-blue-400`]: {},
         [darkModeContext]: {
@@ -34,7 +36,7 @@ export const addSecondaryButtonComponent: ComponentBuilderFunction = (
         [`@apply ${classPrefix}font-button-text ${classPrefix}font-geist-mono`]: {},
       },
 
-      '.button-icon': {
+      '.select-icon': {
         [`@apply ${classPrefix}inline-block`]: {},
 
         // Colors
@@ -47,17 +49,8 @@ export const addSecondaryButtonComponent: ComponentBuilderFunction = (
         [`@apply ${classPrefix}w-button-icon ${classPrefix}h-button-icon`]: {},
       },
 
-      '&:has(.button-text):has(.button-icon)': {
-        [`@apply ${classPrefix}items-center`]: {},
-      },
-
-      // Hover state
-      '&:hover': {
-        // Colors
-        [`@apply ${classPrefix}bg-purple-blue-50/90`]: {},
-        [darkModeContext]: {
-          [`@apply ${classPrefix}bg-purple-blue-950/90`]: {},
-        },
+      '&:has(.select-text, .select-icon)': {
+        [`@apply ${classPrefix}inline-flex ${classPrefix}items-center`]: {},
       },
 
       // Focus state
@@ -73,78 +66,78 @@ export const addSecondaryButtonComponent: ComponentBuilderFunction = (
       },
 
       // Variants
-      '&.button-size-xl': {
+      '&.select-size-xl': {
         // Sizing
         [`@apply ${classPrefix}px-5 ${classPrefix}py-2`]: {},
         [`@apply ${classPrefix}text-6`]: {},
 
         // Children
-        '.button-icon svg path': {
+        '.select-icon svg path': {
           [`@apply ${classPrefix}stroke-4`]: {},
         },
 
-        '&:has(.button-text, .button-icon)': {
+        '&:has(.select-text, .select-icon)': {
           [`@apply ${classPrefix}gap-1,5`]: {},
         },
 
-        '&:has(.button-icon):not(:has(.button-text))': {
+        '&:has(.select-icon):not(:has(.select-text))': {
           [`@apply ${classPrefix}p-2`]: {},
         },
       },
 
-      '&.button-size-lg': {
+      '&.select-size-lg': {
         // Sizing
         [`@apply ${classPrefix}px-4 ${classPrefix}py-2`]: {},
         [`@apply ${classPrefix}text-5`]: {},
 
         // Children
-        '.button-icon svg path': {
+        '.select-icon svg path': {
           [`@apply ${classPrefix}stroke-4`]: {},
         },
 
-        '&:has(.button-text, .button-icon)': {
+        '&:has(.select-text, .select-icon)': {
           [`@apply ${classPrefix}gap-1`]: {},
         },
 
-        '&:has(.button-icon):not(:has(.button-text))': {
+        '&:has(.select-icon):not(:has(.select-text))': {
           [`@apply ${classPrefix}p-2`]: {},
         },
       },
 
-      '&.button-size-md': {
+      '&.select-size-md': {
         // Sizing
         [`@apply ${classPrefix}px-4 ${classPrefix}py-2`]: {},
         [`@apply ${classPrefix}text-4`]: {},
 
         // Children
-        '.button-icon svg path': {
+        '.select-icon svg path': {
           [`@apply ${classPrefix}stroke-5`]: {},
         },
 
-        '&:has(.button-text, .button-icon)': {
+        '&:has(.select-text, .select-icon)': {
           [`@apply ${classPrefix}gap-1`]: {},
         },
 
-        '&:has(.button-icon):not(:has(.button-text))': {
+        '&:has(.select-icon):not(:has(.select-text))': {
           [`@apply ${classPrefix}p-2`]: {},
         },
       },
 
-      '&.button-size-sm': {
+      '&.select-size-sm': {
         // Sizing
         [`@apply ${classPrefix}px-3 ${classPrefix}py-1,5`]: {},
         [`@apply ${classPrefix}text-3`]: {},
 
         // Children
-        '.button-icon svg path': {
+        '.select-icon svg path': {
           [`@apply ${classPrefix}stroke-5`]: {},
         },
 
-        '&:has(.button-text, .button-icon)': {
+        '&:has(.select-text, .select-icon)': {
           [`@apply ${classPrefix}gap-0,5`]: {},
         },
 
-        '&:has(.button-icon):not(:has(.button-text))': {
+        '&:has(.select-icon):not(:has(.select-text))': {
           [`@apply ${classPrefix}p-1,5`]: {},
         },
       },

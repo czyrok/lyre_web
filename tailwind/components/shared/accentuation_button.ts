@@ -1,13 +1,12 @@
-import { ComponentBuilderFunction } from '../types/component_builder_function';
+import { ComponentBuilderFunction } from '../../types/component_builder_function';
 
-export const addPrimaryButtonComponent: ComponentBuilderFunction = (
+export const addAccentuationButtonComponent: ComponentBuilderFunction = (
   { addComponents },
   { darkModeContext, classPrefix }
 ) => {
   addComponents({
-    '.primary-button': {
+    '.accentuation-button': {
       [`@apply ${classPrefix}inline-flex`]: {},
-
       [`@apply ${classPrefix}relative`]: {},
       // Ensure that content stays above the pseudo-element
       '& > *': {
@@ -31,9 +30,9 @@ export const addPrimaryButtonComponent: ComponentBuilderFunction = (
 
       // Colors
       [`@apply ${classPrefix}bg-button-gradient`]: {},
-      [`@apply ${classPrefix}from-purple-blue-400 ${classPrefix}to-purple-blue-500`]: {},
+      [`@apply ${classPrefix}from-green-400 ${classPrefix}to-green-500`]: {},
       [darkModeContext]: {
-        [`@apply ${classPrefix}from-purple-blue-700 ${classPrefix}to-purple-blue-800`]: {},
+        [`@apply ${classPrefix}from-green-500 ${classPrefix}to-green-600`]: {},
       },
 
       // Sizing (required for the background gradient)
@@ -45,9 +44,9 @@ export const addPrimaryButtonComponent: ComponentBuilderFunction = (
           {},
 
         // Colors
-        [`@apply ${classPrefix}bg-purple-blue-500`]: {},
+        [`@apply ${classPrefix}bg-green-500`]: {},
         [darkModeContext]: {
-          [`@apply ${classPrefix}bg-purple-blue-800`]: {},
+          [`@apply ${classPrefix}bg-green-600`]: {},
         },
 
         // Sizing (required for the background color)
@@ -61,9 +60,9 @@ export const addPrimaryButtonComponent: ComponentBuilderFunction = (
       // Children
       '.button-text': {
         // Colors
-        [`@apply ${classPrefix}text-purple-blue-50`]: {},
+        [`@apply ${classPrefix}text-green-950`]: {},
         [darkModeContext]: {
-          [`@apply ${classPrefix}text-purple-blue-100`]: {},
+          [`@apply ${classPrefix}text-green-950`]: {},
         },
 
         // Others
@@ -74,9 +73,9 @@ export const addPrimaryButtonComponent: ComponentBuilderFunction = (
         [`@apply ${classPrefix}inline-block`]: {},
 
         // Colors
-        [`@apply ${classPrefix}text-purple-blue-50`]: {},
+        [`@apply ${classPrefix}text-green-950`]: {},
         [darkModeContext]: {
-          [`@apply ${classPrefix}text-purple-blue-100`]: {},
+          [`@apply ${classPrefix}text-green-950`]: {},
         },
 
         // Sizing
