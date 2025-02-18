@@ -1,0 +1,33 @@
+import { ComponentBuilderFunction } from '../../types/component_builder_function';
+
+export const addHomeHighlightedSectionComponent: ComponentBuilderFunction = (
+  { addComponents },
+  { classPrefix, darkModeContext }
+) => {
+  addComponents({
+    '.home-highlighted-section': {
+      // Colors
+      [`@apply ${classPrefix}bg-blue-100`]: {},
+      [darkModeContext]: {
+        [`@apply ${classPrefix}bg-blue-950`]: {},
+      },
+
+      // Sizing
+      [`@apply ${classPrefix}py-10`]: {},
+
+      // Children
+      '.section-text-pair': {
+        //// The use of media queries replaces the trick of using min and max on texts in Figma
+        [`@apply ${classPrefix}flex ${classPrefix}flex-col xl:${classPrefix}flex-row`]: {},
+
+        // Sizing
+        [`@apply ${classPrefix}gap-level3`]: {},
+      },
+
+      // Overrides
+      '.section-text': {
+        [`@apply ${classPrefix}max-w-210`]: {},
+      },
+    },
+  });
+};
