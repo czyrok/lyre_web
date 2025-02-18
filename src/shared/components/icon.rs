@@ -47,5 +47,10 @@ pub fn Icon(icon: IconSet) -> impl IntoView {
                 <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M30 30h.025M52.5 30c0 12.426-10.074 22.5-22.5 22.5S7.5 42.426 7.5 30 17.574 7.5 30 7.5 52.5 17.574 52.5 30ZM40 20l-16.25 3.75L20 40l16.25-3.75L40 20Z"/>
             </svg>
         }.into_any(),
+        IconSet::LinkedIn => view! {
+            <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" fill="none" viewBox="0 0 60 60">
+                <path stroke="currentColor" stroke-linecap="round" stroke-width="1.5" d="M32.261 22.446h-8.31V52.5h8.606V38.73c0-3.652.689-7.162 5.193-7.162s4.513 4.15 4.513 7.392V52.5h8.606V37.133c0-7.42-1.578-14.267-10.337-14.267-3.232-.124-6.358.47-8.099 3.108a.105.105 0 0 1-.2-.057l.028-3.471Zm-22.395 0h8.683V52.5H9.866V22.446ZM14.188 7.5a5.04 5.04 0 1 0 5.02 5.059 5.02 5.02 0 0 0-5.02-5.059Z"/>
+            </svg>
+        }.into_any(),
     }
 }

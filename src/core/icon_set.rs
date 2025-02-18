@@ -6,4 +6,5 @@ pub enum IconSet {
     RightArrow,
     Eye,
     Compass,
+    LinkedIn,
 }
