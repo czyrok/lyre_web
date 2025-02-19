@@ -1,6 +1,6 @@
 mod app;
 mod core;
-mod home;
+mod landing_page;
 mod project;
 mod shared;
 mod system;

@@ -15,7 +15,7 @@ use crate::{
 };
 
 #[component]
-pub fn HomeProjectSection() -> impl IntoView {
+pub fn ProjectSection() -> impl IntoView {
     let project_context_resource =
         OnceResource::new(get_relevant_project_contexts());
 
@@ -28,7 +28,7 @@ pub fn HomeProjectSection() -> impl IntoView {
     };
 
     view! {
-        <div class="tw-home-section-container tw-home-project-section">
+        <div class="tw-landing-page-section-container tw-landing-page-project-section">
             <div class="tw-section-text">
                 <h1 class="tw-title-size-xl">"Mes projets"</h1>
 

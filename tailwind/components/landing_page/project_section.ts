@@ -1,11 +1,11 @@
 import { ComponentBuilderFunction } from '../../types/component_builder_function';
 
-export const addHomeProjectSectionComponent: ComponentBuilderFunction = (
+export const addProjectSectionComponent: ComponentBuilderFunction = (
   { addComponents },
   { classPrefix }
 ) => {
   addComponents({
-    '.home-project-section': {
+    '.landing-page-project-section': {
       // Children
       '.section-projects': {
         [`@apply ${classPrefix}flex ${classPrefix}flex-wrap ${classPrefix}justify-center`]: {},

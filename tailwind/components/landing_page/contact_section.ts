@@ -1,11 +1,11 @@
 import { ComponentBuilderFunction } from '../../types/component_builder_function';
 
-export const addHomeContactSectionComponent: ComponentBuilderFunction = (
+export const addContactSectionComponent: ComponentBuilderFunction = (
   { addComponents },
   { classPrefix, darkModeContext }
 ) => {
   addComponents({
-    '.home-contact-section': {
+    '.landing-page-contact-section': {
       [`@apply ${classPrefix}flex ${classPrefix}flex-col lg:${classPrefix}flex-row ${classPrefix}justify-center`]:
         {},
 

@@ -9,9 +9,9 @@ use crate::{
 };
 
 #[component]
-pub fn HomeContactSection() -> impl IntoView {
+pub fn ContactSection() -> impl IntoView {
     view! {
-        <div class="tw-home-section-container tw-home-contact-section">
+        <div class="tw-landing-page-section-container tw-landing-page-contact-section">
             <div class="tw-section-photo">
                 <img width="100%" height="100%" src="images/ma_photo.png" alt="Photo of the owner of the website" />
             </div>

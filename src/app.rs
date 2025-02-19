@@ -10,7 +10,7 @@ use leptos_router::{
 };
 
 use crate::{
-    home::view::HomePage,
+    landing_page::view::LandingPage,
     project::{
         api::project_slug::get_project_slugs,
         views::project_details::ProjectDetails,
@@ -40,7 +40,7 @@ pub fn App() -> impl IntoView {
                 <FlatRoutes fallback>
                     <Route
                         path=path!("/")
-                        view=HomePage
+                        view=LandingPage
                         ssr=SsrMode::Static(
                             StaticRoute::new().regenerate(|_| watch_path(Path::new("./project_data"))),
                         )

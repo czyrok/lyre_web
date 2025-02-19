@@ -6,7 +6,7 @@ use crate::{
 };
 
 #[component]
-pub fn HomePage() -> impl IntoView {
+pub fn LandingPage() -> impl IntoView {
     let resource = Resource::new(
         || (),
         |_| {

@@ -1,11 +1,11 @@
 import { ComponentBuilderFunction } from '../../types/component_builder_function';
 
-export const addHomeHighlightedSectionComponent: ComponentBuilderFunction = (
+export const addHighlightedSectionComponent: ComponentBuilderFunction = (
   { addComponents },
   { classPrefix, darkModeContext }
 ) => {
   addComponents({
-    '.home-highlighted-section': {
+    '.landing-page-highlighted-section': {
       // Colors
       [`@apply ${classPrefix}bg-blue-100`]: {},
       [darkModeContext]: {

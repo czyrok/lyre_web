@@ -2,10 +2,10 @@ import { Config } from 'tailwindcss';
 import plugin from 'tailwindcss/plugin';
 import { addH1Base } from './bases/h1';
 import { addParagraphBase } from './bases/paragraph';
-import { addHomeContactSectionComponent } from './components/home/home_contact_section';
-import { addHomeHighlightedSectionComponent } from './components/home/home_highlighted_section';
-import { addHomeProjectSectionComponent } from './components/home/home_project_section';
-import { addHomeSectionContainerComponent } from './components/home/home_section_container';
+import { addContactSectionComponent } from './components/landing_page/contact_section';
+import { addHighlightedSectionComponent } from './components/landing_page/highlighted_section';
+import { addProjectSectionComponent } from './components/landing_page/project_section';
+import { addSectionContainerComponent } from './components/landing_page/section_container';
 import { addProjectCardComponent } from './components/project/project_card';
 import { addProjectCardSkeletonComponent } from './components/project/project_card_skeleton';
 import { addProjectTagComponent } from './components/project/project_tag';
@@ -160,19 +160,19 @@ export const TAILWIND_CONFIGURATION: Config = {
         darkModeContext,
         classPrefix: TAILWIND_CLASS_PREFIX,
       });
-      addHomeProjectSectionComponent(pluginApi, {
+      addProjectSectionComponent(pluginApi, {
         darkModeContext,
         classPrefix: TAILWIND_CLASS_PREFIX,
       });
-      addHomeSectionContainerComponent(pluginApi, {
+      addSectionContainerComponent(pluginApi, {
         darkModeContext,
         classPrefix: TAILWIND_CLASS_PREFIX,
       });
-      addHomeHighlightedSectionComponent(pluginApi, {
+      addHighlightedSectionComponent(pluginApi, {
         darkModeContext,
         classPrefix: TAILWIND_CLASS_PREFIX,
       });
-      addHomeContactSectionComponent(pluginApi, {
+      addContactSectionComponent(pluginApi, {
         darkModeContext,
         classPrefix: TAILWIND_CLASS_PREFIX,
       });

@@ -1,6 +1,6 @@
 pub mod app;
 pub mod core;
-pub mod home;
+pub mod landing_page;
 pub mod project;
 pub mod shared;
 pub mod system;

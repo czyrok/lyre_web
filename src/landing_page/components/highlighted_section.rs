@@ -1,9 +1,9 @@
 use leptos::prelude::*;
 
 #[component]
-pub fn HomeHighlightedSection() -> impl IntoView {
+pub fn HighlightedSection() -> impl IntoView {
     view! {
-        <div class="tw-home-section-container tw-home-highlighted-section">
+        <div class="tw-landing-page-section-container tw-landing-page-highlighted-section">
             <div class="tw-section-text">
                 <h1 class="tw-title-size-xl">"À Propos"</h1>
 

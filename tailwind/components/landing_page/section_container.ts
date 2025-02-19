@@ -1,11 +1,11 @@
 import { ComponentBuilderFunction } from '../../types/component_builder_function';
 
-export const addHomeSectionContainerComponent: ComponentBuilderFunction = (
+export const addSectionContainerComponent: ComponentBuilderFunction = (
   { addComponents },
   { classPrefix }
 ) => {
   addComponents({
-    '.home-section-container': {
+    '.landing-page-section-container': {
       [`@apply ${classPrefix}flex ${classPrefix}flex-col ${classPrefix}items-center`]: {},
 
       // Sizing
