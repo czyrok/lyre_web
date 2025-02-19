@@ -6,7 +6,7 @@ use leptos::{
 
 use crate::{
     core::error::server_error_dto::ServerErrorDto,
-    project::dto::project::ProjectDto,
+    project::dto::project_dto::ProjectDto,
 };
 
 #[server(prefix = "/api", endpoint = "projects", input = GetUrl)]
@@ -14,7 +14,7 @@ pub async fn get_project(
     slug: String,
 ) -> Result<ProjectDto, ServerFnError<ServerErrorDto>> {
     use crate::{
-        project::use_cases::get_project::GetProjectUseCase,
+        project::use_cases::get_project_use_case::GetProjectUseCase,
         system::{
             runner::use_case_runner::run_use_case,
             state::contexts::use_project_service,
@@ -37,7 +37,7 @@ pub async fn refresh_project_cache(
     use leptos_axum::ResponseOptions;
 
     use crate::{
-        project::use_cases::refresh_project_cache::RefreshProjectCacheUseCase,
+        project::use_cases::refresh_project_cache_use_case::RefreshProjectCacheUseCase,
         system::{
             runner::use_case_runner::run_use_case,
             state::contexts::{use_environment_context, use_project_service},

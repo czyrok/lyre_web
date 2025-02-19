@@ -3,7 +3,7 @@ use leptos_router::{hooks::use_params, params::Params};
 use serde::{Deserialize, Serialize};
 use thiserror::Error;
 
-use crate::project::api::project::get_project;
+use crate::project::api::project_api::get_project;
 
 #[derive(Params, Clone, Debug, PartialEq, Eq)]
 struct ProjectDetailsParams {

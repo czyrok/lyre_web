@@ -1,4 +1,4 @@
-use crate::project::repositories::project_slug::ProjectSlugRepository;
+use crate::project::repositories::project_slug_repository::ProjectSlugRepository;
 
 #[derive(Clone, Debug)]
 pub struct ProjectSlugService {

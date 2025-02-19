@@ -1,6 +1,6 @@
 use crate::project::{
     data::project_context::ProjectContext,
-    repositories::project_context::ProjectContextRepository,
+    repositories::project_context_repository::ProjectContextRepository,
 };
 
 #[derive(Clone, Debug)]

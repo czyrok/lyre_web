@@ -8,8 +8,9 @@ use crate::{
         server_function_error::ServerFunctionException,
     },
     project::services::{
-        project::ProjectService, project_context::ProjectContextService,
-        project_slug::ProjectSlugService,
+        project_context_service::ProjectContextService,
+        project_service::ProjectService,
+        project_slug_service::ProjectSlugService,
     },
 };
 

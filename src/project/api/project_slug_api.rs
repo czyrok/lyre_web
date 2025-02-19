@@ -2,14 +2,14 @@ use leptos::{prelude::ServerFnError, server, server_fn::codec::GetUrl};
 
 use crate::{
     core::error::server_error_dto::ServerErrorDto,
-    project::dto::project_slugs::ProjectSlugsDto,
+    project::dto::project_slugs_dto::ProjectSlugsDto,
 };
 
 #[server(prefix = "/api", endpoint = "project_slugs", input = GetUrl)]
 pub async fn get_project_slugs(
 ) -> Result<ProjectSlugsDto, ServerFnError<ServerErrorDto>> {
     use crate::{
-        project::use_cases::get_project_slugs::GetProjectSlugsUseCase,
+        project::use_cases::get_project_slugs_use_case::GetProjectSlugsUseCase,
         system::{
             runner::use_case_runner::run_use_case,
             state::contexts::use_project_slug_service,

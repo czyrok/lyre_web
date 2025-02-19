@@ -7,8 +7,8 @@ use crate::{
         use_case::UseCase,
     },
     project::{
-        dto::project_contexts::ProjectContextsDto,
-        services::project_context::ProjectContextService,
+        dto::project_contexts_dto::ProjectContextsDto,
+        services::project_context_service::ProjectContextService,
     },
 };
 

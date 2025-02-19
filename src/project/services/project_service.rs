@@ -6,7 +6,8 @@ use crate::{
     project::{
         data::project::Project,
         repositories::{
-            project::ProjectRepository, project_tag::ProjectTagRepository,
+            project_repository::ProjectRepository,
+            project_tag_repository::ProjectTagRepository,
         },
     },
     system::database::local_database_transaction::LocalDatabaseTransaction,

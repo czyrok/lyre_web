@@ -11,9 +11,10 @@ use crate::{
         use_case::UseCase,
     },
     project::{
-        dto::project_contexts::ProjectContextsDto,
+        dto::project_contexts_dto::ProjectContextsDto,
         services::{
-            project::ProjectService, project_context::ProjectContextService,
+            project_context_service::ProjectContextService,
+            project_service::ProjectService,
         },
     },
 };

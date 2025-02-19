@@ -3,7 +3,7 @@ use leptos::prelude::*;
 use crate::{
     core::{component_size::ComponentSize, icon_set::IconSet},
     project::{
-        api::project_context::get_relevant_project_contexts,
+        api::project_context_api::get_relevant_project_contexts,
         components::{
             project_card::ProjectCard,
             project_card_skeleton::ProjectCardSkeleton,

@@ -12,7 +12,7 @@ use leptos_router::{
 use crate::{
     landing_page::view::LandingPage,
     project::{
-        api::project_slug::get_project_slugs,
+        api::project_slug_api::get_project_slugs,
         views::project_details::ProjectDetails,
     },
     system::watch_path::watch_path,

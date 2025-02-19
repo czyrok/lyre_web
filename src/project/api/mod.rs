@@ -1,3 +1,3 @@
-pub mod project;
-pub mod project_context;
-pub mod project_slug;
+pub mod project_api;
+pub mod project_context_api;
+pub mod project_slug_api;

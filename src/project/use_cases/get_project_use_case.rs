@@ -9,7 +9,9 @@ use crate::{
         },
         use_case::UseCase,
     },
-    project::{dto::project::ProjectDto, services::project::ProjectService},
+    project::{
+        dto::project_dto::ProjectDto, services::project_service::ProjectService,
+    },
 };
 
 pub struct GetProjectUseCase {

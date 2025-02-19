@@ -4,12 +4,15 @@ use leptos::config::LeptosOptions;
 use super::environment_context::EnvironmentContext;
 use crate::project::{
     repositories::{
-        project::ProjectRepository, project_context::ProjectContextRepository,
-        project_slug::ProjectSlugRepository, project_tag::ProjectTagRepository,
+        project_context_repository::ProjectContextRepository,
+        project_repository::ProjectRepository,
+        project_slug_repository::ProjectSlugRepository,
+        project_tag_repository::ProjectTagRepository,
     },
     services::{
-        project::ProjectService, project_context::ProjectContextService,
-        project_slug::ProjectSlugService,
+        project_context_service::ProjectContextService,
+        project_service::ProjectService,
+        project_slug_service::ProjectSlugService,
     },
 };
 

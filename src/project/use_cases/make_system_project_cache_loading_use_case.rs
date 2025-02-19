@@ -8,7 +8,7 @@ use crate::{
         },
         use_case::UseCase,
     },
-    project::services::project::ProjectService,
+    project::services::project_service::ProjectService,
     system::{
         database::local_database::LocalDatabase,
         state::environment_context::EnvironmentContext,

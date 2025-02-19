@@ -2,7 +2,7 @@ use leptos::prelude::*;
 
 use crate::{
     core::cursor_pagination::CursorPagination,
-    project::api::project_context::get_ordered_project_contexts,
+    project::api::project_context_api::get_ordered_project_contexts,
 };
 
 #[component]
