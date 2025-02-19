@@ -1,7 +1,7 @@
 import { Config } from 'tailwindcss';
 import plugin from 'tailwindcss/plugin';
 import { addH1Base } from './bases/h1';
-import { addParagraphBase } from './bases/paragraph';
+import { addPBase } from './bases/p';
 import { addContactSectionComponent } from './components/landing_page/contact_section';
 import { addHighlightedSectionComponent } from './components/landing_page/highlighted_section';
 import { addProjectSectionComponent } from './components/landing_page/project_section';
@@ -95,7 +95,7 @@ export const TAILWIND_CONFIGURATION: Config = {
         darkModeContext: darkModeContextForBases,
         classPrefix: TAILWIND_CLASS_PREFIX,
       });
-      addParagraphBase(pluginApi, {
+      addPBase(pluginApi, {
         darkModeContext: darkModeContextForBases,
         classPrefix: TAILWIND_CLASS_PREFIX,
       });

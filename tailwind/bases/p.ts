@@ -1,6 +1,6 @@
 import { ComponentBuilderFunction } from '../types/component_builder_function';
 
-export const addParagraphBase: ComponentBuilderFunction = (
+export const addPBase: ComponentBuilderFunction = (
   { addBase },
   { darkModeContext, classPrefix }
 ) => {
