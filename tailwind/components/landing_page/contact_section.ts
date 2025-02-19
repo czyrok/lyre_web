@@ -38,10 +38,15 @@ export const addContactSectionComponent: ComponentBuilderFunction = (
       },
 
       '.section-right': {
-        [`@apply ${classPrefix}flex ${classPrefix}flex-col max-lg:${classPrefix}items-center`]: {},
+        [`@apply ${classPrefix}flex ${classPrefix}flex-col`]: {},
 
         // Sizing
         [`@apply ${classPrefix}gap-level3`]: {},
+      },
+
+      // Overrides
+      '.section-actions': {
+        [`@apply lg:${classPrefix}justify-start`]: {},
       },
     },
   });

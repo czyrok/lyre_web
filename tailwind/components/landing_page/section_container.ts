@@ -22,7 +22,8 @@ export const addSectionContainerComponent: ComponentBuilderFunction = (
       },
 
       '.section-actions': {
-        [`@apply ${classPrefix}flex ${classPrefix}flex-row`]: {},
+        [`@apply ${classPrefix}w-full ${classPrefix}flex ${classPrefix}flex-wrap ${classPrefix}flex-row ${classPrefix}justify-center`]:
+          {},
 
         // Sizing
         [`@apply ${classPrefix}gap-level1`]: {},
