@@ -4,6 +4,8 @@ use leptos::prelude::*;
 pub fn HighlightedSection() -> impl IntoView {
     view! {
         <div class="tw-landing-page-section-container tw-landing-page-highlighted-section">
+            <div id="about" class="tw-anchor"></div>
+
             <div class="tw-section-text">
                 <h1 class="tw-title-size-xl">"À Propos"</h1>
 

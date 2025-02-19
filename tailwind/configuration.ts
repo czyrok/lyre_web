@@ -2,6 +2,7 @@ import { Config } from 'tailwindcss';
 import plugin from 'tailwindcss/plugin';
 import { addABase } from './bases/a';
 import { addH1Base } from './bases/h1';
+import { addHtmlBase } from './bases/html';
 import { addPBase } from './bases/p';
 import { addContactSectionComponent } from './components/landing_page/contact_section';
 import { addHighlightedSectionComponent } from './components/landing_page/highlighted_section';
@@ -13,6 +14,7 @@ import { addProjectTagComponent } from './components/project/project_tag';
 import { addProjectThumbnailComponent } from './components/project/project_thumbnail';
 import { addAccentuationButtonComponent } from './components/shared/accentuation_button';
 import { addAccentuationInputTextComponent } from './components/shared/accentuation_input_text';
+import { addAnchorComponent } from './components/shared/anchor';
 import { addBrandComponent } from './components/shared/brand';
 import { addDropdownMenuComponent } from './components/shared/dropdown_menu';
 import { addNavBarComponent } from './components/shared/nav_bar';
@@ -106,6 +108,10 @@ export const TAILWIND_CONFIGURATION: Config = {
         darkModeContext: darkModeContextForBases,
         classPrefix: TAILWIND_CLASS_PREFIX,
       });
+      addHtmlBase(pluginApi, {
+        darkModeContext: darkModeContextForBases,
+        classPrefix: TAILWIND_CLASS_PREFIX,
+      });
 
       addProjectTagComponent(pluginApi, {
         darkModeContext,
@@ -180,6 +186,10 @@ export const TAILWIND_CONFIGURATION: Config = {
         classPrefix: TAILWIND_CLASS_PREFIX,
       });
       addContactSectionComponent(pluginApi, {
+        darkModeContext,
+        classPrefix: TAILWIND_CLASS_PREFIX,
+      });
+      addAnchorComponent(pluginApi, {
         darkModeContext,
         classPrefix: TAILWIND_CLASS_PREFIX,
       });

@@ -1,7 +1,9 @@
 import { ThemeConfig } from 'tailwindcss/types/config';
 
 export const THEME_SPACING: ThemeConfig['spacing'] = {
+  'middle-screen-shift': '-50dvh',
   'l7/1': '-7%',
+  l4: '-32px',
   0: '0px',
   '0,5': '4px',
   1: '8px',

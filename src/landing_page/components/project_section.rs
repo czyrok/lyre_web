@@ -29,6 +29,8 @@ pub fn ProjectSection() -> impl IntoView {
 
     view! {
         <div class="tw-landing-page-section-container tw-landing-page-project-section">
+            <div id="projects" class="tw-anchor"></div>
+
             <div class="tw-section-text">
                 <h1 class="tw-title-size-xl">"Mes projets"</h1>
 

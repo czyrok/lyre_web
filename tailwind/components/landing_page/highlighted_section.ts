@@ -28,6 +28,12 @@ export const addHighlightedSectionComponent: ComponentBuilderFunction = (
       '.section-text': {
         [`@apply ${classPrefix}max-w-210`]: {},
       },
+      '.anchor': {
+        // Apply variants
+        [`@apply v-sm:xl:${classPrefix}anchor-middle-screen-target`]: {},
+        [`@apply max-xl:${classPrefix}anchor-top-target`]: {},
+        [`@apply max-v-sm:${classPrefix}anchor-top-target`]: {},
+      },
     },
   });
 };

@@ -13,6 +13,14 @@ export const addProjectSectionComponent: ComponentBuilderFunction = (
         // Sizing
         [`@apply ${classPrefix}gap-level2`]: {},
       },
+
+      // Overrides
+      '.anchor': {
+        // Apply variants
+        [`@apply v-xl:xl:${classPrefix}anchor-middle-screen-target`]: {},
+        [`@apply max-xl:${classPrefix}anchor-top-target`]: {},
+        [`@apply max-v-xl:${classPrefix}anchor-top-target`]: {},
+      },
     },
   });
 };

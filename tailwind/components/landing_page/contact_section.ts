@@ -48,6 +48,12 @@ export const addContactSectionComponent: ComponentBuilderFunction = (
       '.section-actions': {
         [`@apply lg:${classPrefix}justify-start`]: {},
       },
+      '.anchor': {
+        // Apply variants
+        [`@apply v-sm:lg:${classPrefix}anchor-middle-screen-target`]: {},
+        [`@apply max-lg:${classPrefix}anchor-top-target`]: {},
+        [`@apply max-v-sm:${classPrefix}anchor-top-target`]: {},
+      },
     },
   });
 };
