@@ -1,5 +1,6 @@
 import { Config } from 'tailwindcss';
 import plugin from 'tailwindcss/plugin';
+import { addABase } from './bases/a';
 import { addH1Base } from './bases/h1';
 import { addPBase } from './bases/p';
 import { addContactSectionComponent } from './components/landing_page/contact_section';
@@ -43,6 +44,7 @@ import { THEME_SCREENS } from './theme/screens';
 import { THEME_SPACING } from './theme/spacing';
 import { THEME_STROKE_WIDTH } from './theme/stroke_width';
 import { THEME_TRANSITION } from './theme/transition';
+import { THEME_Z_INDEX } from './theme/z_index';
 
 const DARK_MODE_CLASS = 'dark';
 const TAILWIND_CLASS_PREFIX = 'tw-';
@@ -70,6 +72,7 @@ export const TAILWIND_CONFIGURATION: Config = {
     strokeWidth: THEME_STROKE_WIDTH,
     fontWeight: THEME_FONT_WEIGHT,
     boxShadow: THEME_BOX_SHADOW,
+    zIndex: THEME_Z_INDEX,
     ...THEME_TRANSITION,
     ...THEME_BACKGROUND,
     extend: {
@@ -96,6 +99,10 @@ export const TAILWIND_CONFIGURATION: Config = {
         classPrefix: TAILWIND_CLASS_PREFIX,
       });
       addPBase(pluginApi, {
+        darkModeContext: darkModeContextForBases,
+        classPrefix: TAILWIND_CLASS_PREFIX,
+      });
+      addABase(pluginApi, {
         darkModeContext: darkModeContextForBases,
         classPrefix: TAILWIND_CLASS_PREFIX,
       });

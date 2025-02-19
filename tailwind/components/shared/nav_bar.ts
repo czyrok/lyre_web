@@ -56,19 +56,6 @@ export const addNavBarComponent: ComponentBuilderFunction = (
           },
         },
 
-        // Focus state
-        '&:focus': {
-          // Colors
-          [`@apply ${classPrefix}outline-green-400`]: {},
-          [darkModeContext]: {
-            [`@apply ${classPrefix}outline-green-600`]: {},
-          },
-
-          // Sizing
-          [`@apply ${classPrefix}outline ${classPrefix}outline-3 ${classPrefix}outline-offset-3`]:
-            {},
-        },
-
         // Children
         '.item-text': {
           // Colors
@@ -122,6 +109,18 @@ export const addNavBarComponent: ComponentBuilderFunction = (
             [`@apply ${classPrefix}text-purple-blue-50`]: {},
           },
         },
+      },
+
+      // Focus state for a child
+      'a:focus .nav-bar-item': {
+        // Colors
+        [`@apply ${classPrefix}outline-green-400`]: {},
+        [darkModeContext]: {
+          [`@apply ${classPrefix}outline-green-600`]: {},
+        },
+
+        // Sizing
+        [`@apply ${classPrefix}outline ${classPrefix}outline-3 ${classPrefix}outline-offset-3`]: {},
       },
     },
   });

@@ -33,7 +33,7 @@ export const addProjectThumbnailComponent: ComponentBuilderFunction = (
       },
 
       // Focus state
-      '&:has(.thumbnail-hover):focus': {
+      ':is(&:has(.thumbnail-hover):focus, a:focus &:has(.thumbnail-hover))': {
         // Colors
         [`@apply ${classPrefix}ring-green-400`]: {},
         [darkModeContext]: {

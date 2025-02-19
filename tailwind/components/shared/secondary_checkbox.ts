@@ -11,7 +11,9 @@ export const addSecondaryCheckboxComponent: ComponentBuilderFunction = (
 
       // Children
       '.checkbox-input': {
-        [`@apply ${classPrefix}hidden`]: {},
+        //// To make the focus works, we must use opacity 0 instead of visibility `hidden`
+        [`@apply ${classPrefix}opacity-0 ${classPrefix}z-l1 ${classPrefix}w-0 ${classPrefix}h-0 ${classPrefix}absolute`]:
+          {},
       },
 
       '.checkbox-box': {

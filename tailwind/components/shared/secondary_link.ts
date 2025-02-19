@@ -6,9 +6,6 @@ export const addSecondaryLinkComponent: ComponentBuilderFunction = (
 ) => {
   addComponents({
     '.secondary-link': {
-      //// Removes the default outline (not removed by Tailwind)
-      [`@apply ${classPrefix}outline-0`]: {},
-
       // Children
       '.link-text': {
         // Colors
@@ -65,7 +62,7 @@ export const addSecondaryLinkComponent: ComponentBuilderFunction = (
       },
 
       // Focus state
-      '&:focus': {
+      ':is(&:focus, a:focus &)': {
         // Colors
         [`@apply ${classPrefix}ring-green-400`]: {},
         [darkModeContext]: {
