@@ -1,8 +1,10 @@
 pub mod brand;
 pub mod checkbox;
 pub mod dropdown_menu;
+pub mod footer;
 pub mod icon;
 pub mod input_text;
 pub mod link;
 pub mod nav_bar;
 pub mod pagination;
+pub mod theme_selector;

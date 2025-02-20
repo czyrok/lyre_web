@@ -17,6 +17,7 @@ import { addAccentuationInputTextComponent } from './components/shared/accentuat
 import { addAnchorComponent } from './components/shared/anchor';
 import { addBrandComponent } from './components/shared/brand';
 import { addDropdownMenuComponent } from './components/shared/dropdown_menu';
+import { addFooterComponent } from './components/shared/footer';
 import { addNavBarComponent } from './components/shared/nav_bar';
 import { addPaginationComponent } from './components/shared/pagination';
 import { addPrimaryButtonComponent } from './components/shared/primary_button';
@@ -190,6 +191,10 @@ export const TAILWIND_CONFIGURATION: Config = {
         classPrefix: TAILWIND_CLASS_PREFIX,
       });
       addAnchorComponent(pluginApi, {
+        darkModeContext,
+        classPrefix: TAILWIND_CLASS_PREFIX,
+      });
+      addFooterComponent(pluginApi, {
         darkModeContext,
         classPrefix: TAILWIND_CLASS_PREFIX,
       });

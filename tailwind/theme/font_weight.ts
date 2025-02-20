@@ -8,4 +8,5 @@ export const THEME_FONT_WEIGHT: ThemeConfig['fontWeight'] = {
   'title-xl': '900',
   'title-lg': '600',
   regular: '400',
+  light: '300',
 } as const;
