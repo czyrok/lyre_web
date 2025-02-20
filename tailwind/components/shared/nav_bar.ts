@@ -100,7 +100,7 @@ export const addNavBarComponent: ComponentBuilderFunction = (
         },
 
         // Active page state for children
-        '[aria-current="page"] .nav-bar-item': {
+        '[aria-current="page"] .nav-bar-item.nav-bar-item-active-behavior': {
           // Children
           '.item-text': {
             // Colors
