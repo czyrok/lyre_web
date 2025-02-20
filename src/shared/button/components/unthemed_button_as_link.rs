@@ -1,7 +1,7 @@
 use leptos::prelude::*;
 use leptos_router::components::A;
 
-use super::{button_theme::ButtonTheme, icon_side::IconSide};
+use super::super::types::{button_theme::ButtonTheme, icon_side::IconSide};
 use crate::{
     core::{component_size::ComponentSize, icon_set::IconSet},
     shared::components::icon::Icon,
@@ -11,8 +11,8 @@ use crate::{
 pub fn UnthemedButtonAsLink(
     theme: ButtonTheme,
     size: ComponentSize,
-    text: String,
-    href: String,
+    #[prop(into)] text: String,
+    #[prop(into)] href: String,
     #[prop(into)] icon: Option<IconSet>,
     #[prop(into)] icon_side: Option<IconSide>,
     #[prop(into)] target: Option<String>,

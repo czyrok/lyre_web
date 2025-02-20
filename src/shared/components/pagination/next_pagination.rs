@@ -2,8 +2,9 @@ use leptos::prelude::*;
 
 use crate::{
     core::{component_size::ComponentSize, icon_set::IconSet},
-    shared::components::button::{
-        icon_side::IconSide, primary_button_as_link::PrimaryButtonAsLink,
+    shared::button::{
+        components::primary_button_as_link::PrimaryButtonAsLink,
+        types::icon_side::IconSide,
     },
 };
 

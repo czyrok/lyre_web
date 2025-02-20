@@ -2,7 +2,7 @@ use leptos::{ev::MouseEvent, prelude::*};
 
 use crate::{
     core::component_size::ComponentSize,
-    shared::components::button::primary_button::PrimaryButton,
+    shared::button::components::primary_button::PrimaryButton,
 };
 
 #[component]

@@ -1,6 +1,8 @@
-use leptos::{ev::MouseEvent, prelude::*};
+use leptos::{callback, ev::MouseEvent, prelude::*};
 
-use super::{button_theme::ButtonTheme, icon_side::IconSide};
+use super::super::types::{
+    button_action::ButtonAction, button_theme::ButtonTheme, icon_side::IconSide,
+};
 use crate::{
     core::{component_size::ComponentSize, icon_set::IconSet},
     shared::components::icon::Icon,
@@ -11,9 +13,10 @@ pub fn UnthemedButton(
     theme: ButtonTheme,
     size: ComponentSize,
     text: String,
-    on_click: impl FnMut(MouseEvent) + 'static,
+    #[prop(into)] on_click: ButtonAction,
     #[prop(into)] icon: Option<IconSet>,
     #[prop(into)] icon_side: Option<IconSide>,
+    #[prop(into, default = "".into())] anchor_name: String,
 ) -> impl IntoView {
     let is_accentuation_theme = theme == ButtonTheme::Accentuation;
     let is_primary_theme = theme == ButtonTheme::Primary;
@@ -32,6 +35,18 @@ pub fn UnthemedButton(
     let has_left_icon = icon.is_some() && icon_side == IconSide::Left;
     let has_right_icon = icon.is_some() && icon_side == IconSide::Right;
 
+    let mut on_click_callback: Box<dyn FnMut(MouseEvent)> = Box::new(|_| {});
+    let mut popover_target_id: String = "".into();
+
+    match on_click {
+        ButtonAction::Callback(callback) => {
+            on_click_callback = callback;
+        }
+        ButtonAction::Popover(target_id) => {
+            popover_target_id = target_id;
+        }
+    };
+
     view! {
         <button
             class=(["tw-accentuation-button"], move || is_accentuation_theme)
@@ -43,7 +58,9 @@ pub fn UnthemedButton(
             class=(["tw-button-size-md"], move || is_md_size)
             class=(["tw-button-size-sm"], move || is_sm_size)
 
-            on:click=on_click
+            on:click=on_click_callback
+            popovertarget=popover_target_id
+            style=format!("anchor-name: --{}", anchor_name)
         >
             {move || has_left_icon.then(|| {
                 view! {

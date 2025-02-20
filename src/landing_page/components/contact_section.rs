@@ -2,9 +2,12 @@ use leptos::prelude::*;
 
 use crate::{
     core::{component_size::ComponentSize, icon_set::IconSet},
-    shared::components::button::{
-        icon_side::IconSide, primary_button_as_link::PrimaryButtonAsLink,
-        secondary_button_as_link::SecondaryButtonAsLink,
+    shared::button::{
+        components::{
+            primary_button_as_link::PrimaryButtonAsLink,
+            secondary_button_as_link::SecondaryButtonAsLink,
+        },
+        types::icon_side::IconSide,
     },
 };
 
@@ -26,8 +29,8 @@ pub fn ContactSection() -> impl IntoView {
                 </div>
 
                 <div class="tw-section-actions">
-                    <PrimaryButtonAsLink size=ComponentSize::LG text="Par Mail".into() href="mailto:dylanvalentin2003@gmail.com".into() icon=IconSet::External icon_side=IconSide::Right/>
-                    <SecondaryButtonAsLink size=ComponentSize::LG text="LinkedIn".into() href="https://www.linkedin.com/in/dylan-valentin/".into() icon=IconSet::LinkedIn icon_side=IconSide::Right target="_blank"/>
+                    <PrimaryButtonAsLink size=ComponentSize::LG text="Par Mail" href="mailto:dylanvalentin2003@gmail.com" icon=IconSet::External icon_side=IconSide::Right/>
+                    <SecondaryButtonAsLink size=ComponentSize::LG text="LinkedIn" href="https://www.linkedin.com/in/dylan-valentin/" icon=IconSet::LinkedIn icon_side=IconSide::Right target="_blank"/>
                 </div>
             </div>
         </div>

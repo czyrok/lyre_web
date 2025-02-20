@@ -9,8 +9,9 @@ use crate::{
             project_card_skeleton::ProjectCardSkeleton,
         },
     },
-    shared::components::button::{
-        icon_side::IconSide, primary_button_as_link::PrimaryButtonAsLink,
+    shared::button::{
+        components::primary_button_as_link::PrimaryButtonAsLink,
+        types::icon_side::IconSide,
     },
 };
 
@@ -52,7 +53,7 @@ pub fn ProjectSection() -> impl IntoView {
             </div>
 
             <div class="tw-section-actions">
-                <PrimaryButtonAsLink size=ComponentSize::LG text="Explorer".into() href="/projects".into() icon=IconSet::Compass icon_side=IconSide::Left/>
+                <PrimaryButtonAsLink size=ComponentSize::LG text="Explorer" href="/projects" icon=IconSet::Compass icon_side=IconSide::Left/>
             </div>
         </div>
     }

@@ -1,5 +1,4 @@
 pub mod brand;
-pub mod button;
 pub mod checkbox;
 pub mod dropdown_menu;
 pub mod icon;
