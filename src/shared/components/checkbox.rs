@@ -9,10 +9,11 @@ use crate::{
 pub fn Checkbox(
     size: ComponentSize,
     text: String,
-    #[prop(name = "value")] (is_toggled, set_is_toggled): (
+    #[prop(name = "value")] (is_checked, set_is_checked): (
         ReadSignal<bool>,
         WriteSignal<bool>,
     ),
+    #[prop(default = true)] can_user_unchecked: bool,
 ) -> impl IntoView {
     let is_xl_size = size == ComponentSize::XL;
     let is_lg_size = size == ComponentSize::LG;
@@ -32,9 +33,22 @@ pub fn Checkbox(
                 type="checkbox"
 
                 on:input:target=move |event| {
-                    set_is_toggled.set(event.target().checked());
+                    let is_checked = event.target().checked();
+
+                    if is_checked {
+                        set_is_checked.set(is_checked);
+
+                        return;
+                    }
+
+                    if can_user_unchecked {
+                        set_is_checked.set(is_checked);
+                    } else {
+                        //// We need to restore the checked view
+                        set_is_checked.set(true);
+                    }
                 }
-                prop:checked=is_toggled
+                prop:checked=is_checked
             />
 
             <div class="tw-checkbox-box">
