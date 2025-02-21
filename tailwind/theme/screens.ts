@@ -1,11 +1,23 @@
 import { ThemeConfig } from 'tailwindcss/types/config';
 
 export const THEME_SCREENS: ThemeConfig['screens'] = {
+  sm: {
+    min: '640px',
+  },
+  'max-sm': {
+    max: '640px',
+  },
   'v-sm': {
     raw: '(min-height:640px)',
   },
   'max-v-sm': {
     raw: '(max-height:640px)',
+  },
+  md: {
+    min: '768px',
+  },
+  'max-md': {
+    max: '768px',
   },
   lg: {
     min: '1024px',

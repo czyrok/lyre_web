@@ -66,6 +66,8 @@ export const addNavBarComponent: ComponentBuilderFunction = (
 
           // Children
           '.item-text': {
+            [`@apply ${classPrefix}hidden lg:${classPrefix}inline`]: {},
+
             // Colors
             [`@apply ${classPrefix}text-purple-blue-800`]: {},
             [`${darkModeContext} &`]: {

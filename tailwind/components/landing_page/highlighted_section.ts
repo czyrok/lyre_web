@@ -13,7 +13,7 @@ export const addHighlightedSectionComponent: ComponentBuilderFunction = (
       },
 
       // Sizing
-      [`@apply ${classPrefix}py-10`]: {},
+      [`@apply ${classPrefix}py-6 sm:${classPrefix}py-7 md:${classPrefix}py-10`]: {},
 
       // Children
       '.section-text-pair': {

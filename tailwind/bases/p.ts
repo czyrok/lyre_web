@@ -13,7 +13,7 @@ export const addPBase: ComponentBuilderFunction = (
       },
 
       // Sizing
-      [`@apply ${classPrefix}text-6`]: {},
+      [`@apply ${classPrefix}text-5 sm:${classPrefix}text-6`]: {},
 
       // Others
       [`@apply ${classPrefix}font-regular ${classPrefix}font-geist`]: {},

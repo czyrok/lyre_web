@@ -9,7 +9,7 @@ export const addSectionContainerComponent: ComponentBuilderFunction = (
       [`@apply ${classPrefix}flex ${classPrefix}flex-col ${classPrefix}items-center`]: {},
 
       // Sizing
-      [`@apply ${classPrefix}p-6`]: {},
+      [`@apply ${classPrefix}p-2 sm:${classPrefix}p-3 md:${classPrefix}p-6`]: {},
       [`@apply ${classPrefix}gap-level3`]: {},
 
       // Children

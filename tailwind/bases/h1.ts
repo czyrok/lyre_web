@@ -32,7 +32,7 @@ export const addH1Base: ComponentBuilderFunction = (
       // Variants
       [`&.${classPrefix}title-size-xl`]: {
         // Sizing
-        [`@apply ${classPrefix}text-20`]: {},
+        [`@apply ${classPrefix}text-15 sm:${classPrefix}text-20`]: {},
 
         // Others
         [`@apply ${classPrefix}font-title-xl`]: {},
@@ -41,7 +41,7 @@ export const addH1Base: ComponentBuilderFunction = (
       // Variants
       [`&.${classPrefix}title-size-lg`]: {
         // Sizing
-        [`@apply ${classPrefix}text-15`]: {},
+        [`@apply ${classPrefix}text-10 sm:${classPrefix}text-15`]: {},
 
         // Others
         [`@apply ${classPrefix}font-title-lg`]: {},
