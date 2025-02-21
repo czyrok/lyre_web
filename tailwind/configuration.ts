@@ -209,6 +209,11 @@ export const TAILWIND_CONFIGURATION: Config = {
         darkModeContext,
         classPrefix: TAILWIND_CLASS_PREFIX,
       });
+
+      addSecondaryPageLayout(pluginApi, {
+        darkModeContext,
+        classPrefix: TAILWIND_CLASS_PREFIX,
+      });
     }),
   ],
 } as const;
