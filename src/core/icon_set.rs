@@ -9,4 +9,7 @@ pub enum IconSet {
     LinkedIn,
     SingleDownArrow,
     DoubleDownArrow,
+    Home,
+    About,
+    Email,
 }

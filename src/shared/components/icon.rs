@@ -62,5 +62,21 @@ pub fn Icon(icon: IconSet) -> impl IntoView {
                 <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M11.25 33.75 30 52.5l18.75-18.75M11.25 7.5 30 26.25 48.75 7.5"/>
             </svg>
         }.into_any(),
+        IconSet::Home => view! {
+            <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" fill="none" viewBox="0 0 60 60">
+                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="m11.174 16.314 15.862-8.097a6.493 6.493 0 0 1 5.93 0l15.863 8.097a7.492 7.492 0 0 1 3.575 7.238l.096 16.09c0 7.102-5.757 12.858-12.857 12.858H20.357c-7.1 0-12.857-5.756-12.857-12.857l.1-16.072a7.493 7.493 0 0 1 3.574-7.258Z" clip-rule="evenodd"/>
+                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M22.504 52.5v-7.502a7.502 7.502 0 0 1 15.005 0V52.5"/>
+            </svg>
+        }.into_any(),
+        IconSet::About => view! {
+            <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" fill="none" viewBox="0 0 60 60">
+                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M30.125 20h-.25M30 32.5V40M26.35 7.775A22.5 22.5 0 0 0 10 40.275L8.25 48.8a2.5 2.5 0 0 0 2.95 2.95L19.675 50a22.501 22.501 0 0 0 31.669-26.993A22.5 22.5 0 0 0 26.35 7.775Z"/>
+            </svg>
+        }.into_any(),
+        IconSet::Email => view! {
+            <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" fill="none" viewBox="0 0 60 60">
+                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M40 30c0 5.523-4.477 10-10 10s-10-4.477-10-10 4.477-10 10-10 10 4.477 10 10Zm0 0v3.75a6.25 6.25 0 0 0 12.5 0V30C52.5 17.574 42.426 7.5 30 7.5S7.5 17.574 7.5 30 17.574 52.5 30 52.5h10"/>
+            </svg>
+        }.into_any(),
     }
 }
