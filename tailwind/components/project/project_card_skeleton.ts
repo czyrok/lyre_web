@@ -16,7 +16,7 @@ export const addProjectCardSkeletonComponent: ComponentBuilderFunction = (
       '.card-thumbnail-skeleton': {
         // Colors
         [`@apply ${classPrefix}bg-white-200`]: {},
-        [darkModeContext]: {
+        [`${darkModeContext} &`]: {
           [`@apply ${classPrefix}bg-black-500`]: {},
         },
 
@@ -28,7 +28,7 @@ export const addProjectCardSkeletonComponent: ComponentBuilderFunction = (
       '.card-title-skeleton': {
         // Colors
         [`@apply ${classPrefix}bg-white-200`]: {},
-        [darkModeContext]: {
+        [`${darkModeContext} &`]: {
           [`@apply ${classPrefix}bg-black-500`]: {},
         },
 
@@ -47,7 +47,7 @@ export const addProjectCardSkeletonComponent: ComponentBuilderFunction = (
         '.card-tag-skeleton': {
           // Colors
           [`@apply ${classPrefix}bg-white-200`]: {},
-          [darkModeContext]: {
+          [`${darkModeContext} &`]: {
             [`@apply ${classPrefix}bg-black-500`]: {},
           },
 

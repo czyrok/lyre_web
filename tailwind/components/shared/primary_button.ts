@@ -32,7 +32,7 @@ export const addPrimaryButtonComponent: ComponentBuilderFunction = (
       // Colors
       [`@apply ${classPrefix}bg-button-gradient`]: {},
       [`@apply ${classPrefix}from-purple-blue-400 ${classPrefix}to-purple-blue-500`]: {},
-      [darkModeContext]: {
+      [`${darkModeContext} &`]: {
         [`@apply ${classPrefix}from-purple-blue-700 ${classPrefix}to-purple-blue-800`]: {},
       },
 
@@ -46,7 +46,7 @@ export const addPrimaryButtonComponent: ComponentBuilderFunction = (
 
         // Colors
         [`@apply ${classPrefix}bg-purple-blue-500`]: {},
-        [darkModeContext]: {
+        [`${darkModeContext} &`]: {
           [`@apply ${classPrefix}bg-purple-blue-800`]: {},
         },
 
@@ -62,7 +62,7 @@ export const addPrimaryButtonComponent: ComponentBuilderFunction = (
       '.button-text': {
         // Colors
         [`@apply ${classPrefix}text-purple-blue-50`]: {},
-        [darkModeContext]: {
+        [`${darkModeContext} &`]: {
           [`@apply ${classPrefix}text-purple-blue-100`]: {},
         },
 
@@ -75,7 +75,7 @@ export const addPrimaryButtonComponent: ComponentBuilderFunction = (
 
         // Colors
         [`@apply ${classPrefix}text-purple-blue-50`]: {},
-        [darkModeContext]: {
+        [`${darkModeContext} &`]: {
           [`@apply ${classPrefix}text-purple-blue-100`]: {},
         },
 
@@ -101,7 +101,7 @@ export const addPrimaryButtonComponent: ComponentBuilderFunction = (
       ':is(&:focus, a:focus &)': {
         // Colors
         [`@apply ${classPrefix}ring-green-400`]: {},
-        [darkModeContext]: {
+        [`${darkModeContext} &`]: {
           [`@apply ${classPrefix}ring-green-600`]: {},
         },
 

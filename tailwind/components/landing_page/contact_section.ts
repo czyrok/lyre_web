@@ -26,7 +26,7 @@ export const addContactSectionComponent: ComponentBuilderFunction = (
 
           // Colors
           [`@apply ${classPrefix}border-white-300/70`]: {},
-          [darkModeContext]: {
+          [`${darkModeContext} &`]: {
             [`@apply ${classPrefix}border-black-800/70`]: {},
           },
 

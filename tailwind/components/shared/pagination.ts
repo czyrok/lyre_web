@@ -15,7 +15,7 @@ export const addPaginationComponent: ComponentBuilderFunction = (
       '.pagination-text': {
         // Colors
         [`@apply ${classPrefix}text-black-950`]: {},
-        [darkModeContext]: {
+        [`${darkModeContext} &`]: {
           [`@apply ${classPrefix}text-white-50`]: {},
         },
 

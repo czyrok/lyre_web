@@ -21,7 +21,7 @@ export const addSecondaryCheckboxComponent: ComponentBuilderFunction = (
 
         // Colors
         [`@apply ${classPrefix}outline-purple-blue-400`]: {},
-        [darkModeContext]: {
+        [`${darkModeContext} &`]: {
           [`@apply ${classPrefix}outline-purple-blue-500`]: {},
         },
 
@@ -40,7 +40,7 @@ export const addSecondaryCheckboxComponent: ComponentBuilderFunction = (
 
           // Colors
           [`@apply ${classPrefix}text-purple-blue-400`]: {},
-          [darkModeContext]: {
+          [`${darkModeContext} &`]: {
             [`@apply ${classPrefix}text-purple-blue-500`]: {},
           },
 
@@ -59,7 +59,7 @@ export const addSecondaryCheckboxComponent: ComponentBuilderFunction = (
       '.checkbox-text': {
         // Colors
         [`@apply ${classPrefix}text-black-700`]: {},
-        [darkModeContext]: {
+        [`${darkModeContext} &`]: {
           [`@apply ${classPrefix}text-white-200`]: {},
         },
 
@@ -71,7 +71,7 @@ export const addSecondaryCheckboxComponent: ComponentBuilderFunction = (
       '&:has(.checkbox-input:checked) .checkbox-box': {
         // Colors
         [`@apply ${classPrefix}bg-purple-blue-50/90`]: {},
-        [darkModeContext]: {
+        [`${darkModeContext} &`]: {
           [`@apply ${classPrefix}bg-purple-blue-950/90`]: {},
         },
 
@@ -85,7 +85,7 @@ export const addSecondaryCheckboxComponent: ComponentBuilderFunction = (
       '&:has(.checkbox-input:focus) .checkbox-box': {
         // Colors
         [`@apply ${classPrefix}ring-green-400`]: {},
-        [darkModeContext]: {
+        [`${darkModeContext} &`]: {
           [`@apply ${classPrefix}ring-green-600`]: {},
         },
 

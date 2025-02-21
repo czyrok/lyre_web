@@ -11,7 +11,7 @@ export const addH1Base: ComponentBuilderFunction = (
       // Colors
       [`@apply ${classPrefix}bg-title-gradient`]: {},
       [`@apply ${classPrefix}from-blue-800 ${classPrefix}to-blue-500`]: {},
-      [darkModeContext]: {
+      [`${darkModeContext} &`]: {
         [`@apply ${classPrefix}from-blue-200 ${classPrefix}to-blue-400`]: {},
       },
 
@@ -21,7 +21,7 @@ export const addH1Base: ComponentBuilderFunction = (
       '&::before': {
         // Colors
         [`@apply ${classPrefix}text-blue-800`]: {},
-        [darkModeContext]: {
+        [`${darkModeContext} &`]: {
           [`@apply ${classPrefix}text-blue-200`]: {},
         },
 

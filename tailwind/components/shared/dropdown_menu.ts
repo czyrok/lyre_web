@@ -12,7 +12,7 @@ export const addDropdownMenuComponent: ComponentBuilderFunction = (
 
       // Colors
       [`@apply ${classPrefix}bg-white-100/50`]: {},
-      [darkModeContext]: {
+      [`${darkModeContext} &`]: {
         [`@apply ${classPrefix}bg-black-600/50`]: {},
       },
 

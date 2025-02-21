@@ -10,7 +10,7 @@ export const addSecondaryLinkComponent: ComponentBuilderFunction = (
       '.link-text': {
         // Colors
         [`@apply ${classPrefix}text-purple-blue-400`]: {},
-        [darkModeContext]: {
+        [`${darkModeContext} &`]: {
           [`@apply ${classPrefix}text-purple-blue-500`]: {},
         },
 
@@ -25,7 +25,7 @@ export const addSecondaryLinkComponent: ComponentBuilderFunction = (
 
         // Colors
         [`@apply ${classPrefix}text-purple-blue-400`]: {},
-        [darkModeContext]: {
+        [`${darkModeContext} &`]: {
           [`@apply ${classPrefix}text-purple-blue-500`]: {},
         },
 
@@ -47,7 +47,7 @@ export const addSecondaryLinkComponent: ComponentBuilderFunction = (
         '.link-text': {
           // Colors
           [`@apply ${classPrefix}text-purple-blue-300`]: {},
-          [darkModeContext]: {
+          [`${darkModeContext} &`]: {
             [`@apply ${classPrefix}text-purple-blue-400`]: {},
           },
         },
@@ -55,7 +55,7 @@ export const addSecondaryLinkComponent: ComponentBuilderFunction = (
         '.link-icon': {
           // Colors
           [`@apply ${classPrefix}text-purple-blue-300`]: {},
-          [darkModeContext]: {
+          [`${darkModeContext} &`]: {
             [`@apply ${classPrefix}text-purple-blue-400`]: {},
           },
         },
@@ -65,7 +65,7 @@ export const addSecondaryLinkComponent: ComponentBuilderFunction = (
       ':is(&:focus, a:focus &)': {
         // Colors
         [`@apply ${classPrefix}ring-green-400`]: {},
-        [darkModeContext]: {
+        [`${darkModeContext} &`]: {
           [`@apply ${classPrefix}ring-green-600`]: {},
         },
 

@@ -10,7 +10,7 @@ export const addSecondaryButtonComponent: ComponentBuilderFunction = (
 
       // Colors
       [`@apply ${classPrefix}outline-purple-blue-400`]: {},
-      [darkModeContext]: {
+      [`${darkModeContext} &`]: {
         [`@apply ${classPrefix}outline-purple-blue-500`]: {},
       },
 
@@ -26,7 +26,7 @@ export const addSecondaryButtonComponent: ComponentBuilderFunction = (
       '.button-text': {
         // Colors
         [`@apply ${classPrefix}text-purple-blue-400`]: {},
-        [darkModeContext]: {
+        [`${darkModeContext} &`]: {
           [`@apply ${classPrefix}text-purple-blue-500`]: {},
         },
 
@@ -39,7 +39,7 @@ export const addSecondaryButtonComponent: ComponentBuilderFunction = (
 
         // Colors
         [`@apply ${classPrefix}text-purple-blue-400`]: {},
-        [darkModeContext]: {
+        [`${darkModeContext} &`]: {
           [`@apply ${classPrefix}text-purple-blue-500`]: {},
         },
 
@@ -55,7 +55,7 @@ export const addSecondaryButtonComponent: ComponentBuilderFunction = (
       '&:hover': {
         // Colors
         [`@apply ${classPrefix}bg-purple-blue-50/90`]: {},
-        [darkModeContext]: {
+        [`${darkModeContext} &`]: {
           [`@apply ${classPrefix}bg-purple-blue-950/90`]: {},
         },
       },
@@ -64,7 +64,7 @@ export const addSecondaryButtonComponent: ComponentBuilderFunction = (
       ':is(&:focus, a:focus &)': {
         // Colors
         [`@apply ${classPrefix}ring-green-400`]: {},
-        [darkModeContext]: {
+        [`${darkModeContext} &`]: {
           [`@apply ${classPrefix}ring-green-600`]: {},
         },
 

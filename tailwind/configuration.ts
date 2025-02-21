@@ -1,6 +1,7 @@
 import { Config } from 'tailwindcss';
 import plugin from 'tailwindcss/plugin';
 import { addABase } from './bases/a';
+import { addBodyBase } from './bases/body';
 import { addH1Base } from './bases/h1';
 import { addHtmlBase } from './bases/html';
 import { addPBase } from './bases/p';
@@ -90,8 +91,8 @@ export const TAILWIND_CONFIGURATION: Config = {
     plugin(function (pluginApi) {
       const darkModeConfig: string = pluginApi.config('darkMode', 'selector');
 
-      let darkModeContext = `.${DARK_MODE_CLASS} &`;
-      let darkModeContextForBases = `.${TAILWIND_CLASS_PREFIX}${DARK_MODE_CLASS} &`;
+      let darkModeContext = `.${DARK_MODE_CLASS}`;
+      let darkModeContextForBases = `.${TAILWIND_CLASS_PREFIX}${DARK_MODE_CLASS}`;
 
       if (darkModeConfig === 'media') {
         darkModeContext = '@media (prefers-color-scheme: dark)';
@@ -111,6 +112,10 @@ export const TAILWIND_CONFIGURATION: Config = {
         classPrefix: TAILWIND_CLASS_PREFIX,
       });
       addHtmlBase(pluginApi, {
+        darkModeContext: darkModeContextForBases,
+        classPrefix: TAILWIND_CLASS_PREFIX,
+      });
+      addBodyBase(pluginApi, {
         darkModeContext: darkModeContextForBases,
         classPrefix: TAILWIND_CLASS_PREFIX,
       });

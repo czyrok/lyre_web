@@ -11,7 +11,7 @@ export const addProjectThumbnailComponent: ComponentBuilderFunction = (
 
       // Colors
       [`@apply ${classPrefix}outline-white-200`]: {},
-      [darkModeContext]: {
+      [`${darkModeContext} &`]: {
         [`@apply ${classPrefix}outline-black-500`]: {},
       },
 
@@ -36,7 +36,7 @@ export const addProjectThumbnailComponent: ComponentBuilderFunction = (
       ':is(&:has(.thumbnail-hover):focus, a:focus &:has(.thumbnail-hover))': {
         // Colors
         [`@apply ${classPrefix}ring-green-400`]: {},
-        [darkModeContext]: {
+        [`${darkModeContext} &`]: {
           [`@apply ${classPrefix}ring-green-600`]: {},
         },
 
@@ -59,11 +59,11 @@ export const addProjectThumbnailComponent: ComponentBuilderFunction = (
 
         // Colors
         [`@apply ${classPrefix}bg-purple-blue-200/33`]: {},
-        [darkModeContext]: {
+        [`${darkModeContext} &`]: {
           [`@apply ${classPrefix}bg-purple-blue-500/33`]: {},
         },
         [`@apply ${classPrefix}outline-purple-blue-400`]: {},
-        [darkModeContext]: {
+        [`${darkModeContext} &`]: {
           [`@apply ${classPrefix}outline-purple-blue-500`]: {},
         },
 
@@ -82,7 +82,7 @@ export const addProjectThumbnailComponent: ComponentBuilderFunction = (
 
           // Colors
           [`@apply ${classPrefix}text-purple-blue-400`]: {},
-          [darkModeContext]: {
+          [`${darkModeContext} &`]: {
             [`@apply ${classPrefix}text-purple-blue-500`]: {},
           },
 

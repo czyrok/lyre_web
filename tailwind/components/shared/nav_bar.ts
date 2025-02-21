@@ -34,7 +34,7 @@ export const addNavBarComponent: ComponentBuilderFunction = (
 
         // Colors
         [`@apply ${classPrefix}bg-purple-blue-400/30`]: {},
-        [darkModeContext]: {
+        [`${darkModeContext} &`]: {
           [`@apply ${classPrefix}bg-purple-blue-700/30`]: {},
         },
 
@@ -59,7 +59,7 @@ export const addNavBarComponent: ComponentBuilderFunction = (
           '&:hover': {
             // Colors
             [`@apply ${classPrefix}bg-purple-blue-300/66`]: {},
-            [darkModeContext]: {
+            [`${darkModeContext} &`]: {
               [`@apply ${classPrefix}bg-purple-blue-800/66`]: {},
             },
           },
@@ -68,7 +68,7 @@ export const addNavBarComponent: ComponentBuilderFunction = (
           '.item-text': {
             // Colors
             [`@apply ${classPrefix}text-purple-blue-800`]: {},
-            [darkModeContext]: {
+            [`${darkModeContext} &`]: {
               [`@apply ${classPrefix}text-purple-blue-300`]: {},
             },
 
@@ -81,7 +81,7 @@ export const addNavBarComponent: ComponentBuilderFunction = (
 
             // Colors
             [`@apply ${classPrefix}text-purple-blue-800`]: {},
-            [darkModeContext]: {
+            [`${darkModeContext} &`]: {
               [`@apply ${classPrefix}text-purple-blue-300`]: {},
             },
 
@@ -105,7 +105,7 @@ export const addNavBarComponent: ComponentBuilderFunction = (
           '.item-text': {
             // Colors
             [`@apply ${classPrefix}text-purple-blue-600`]: {},
-            [darkModeContext]: {
+            [`${darkModeContext} &`]: {
               [`@apply ${classPrefix}text-purple-blue-50`]: {},
             },
           },
@@ -113,7 +113,7 @@ export const addNavBarComponent: ComponentBuilderFunction = (
           '.item-icon': {
             // Colors
             [`@apply ${classPrefix}text-purple-blue-600`]: {},
-            [darkModeContext]: {
+            [`${darkModeContext} &`]: {
               [`@apply ${classPrefix}text-purple-blue-50`]: {},
             },
           },
@@ -123,7 +123,7 @@ export const addNavBarComponent: ComponentBuilderFunction = (
         'a:focus .nav-bar-item': {
           // Colors
           [`@apply ${classPrefix}outline-green-400`]: {},
-          [darkModeContext]: {
+          [`${darkModeContext} &`]: {
             [`@apply ${classPrefix}outline-green-600`]: {},
           },
 

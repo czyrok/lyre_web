@@ -8,7 +8,7 @@ export const addHighlightedSectionComponent: ComponentBuilderFunction = (
     '.landing-page-highlighted-section': {
       // Colors
       [`@apply ${classPrefix}bg-blue-100`]: {},
-      [darkModeContext]: {
+      [`${darkModeContext} &`]: {
         [`@apply ${classPrefix}bg-blue-950`]: {},
       },
 

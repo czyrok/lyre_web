@@ -15,7 +15,7 @@ export const addBrandComponent: ComponentBuilderFunction = (
 
         // Colors
         [`@apply ${classPrefix}bg-blue-200`]: {},
-        [darkModeContext]: {
+        [`${darkModeContext} &`]: {
           [`@apply ${classPrefix}bg-blue-800`]: {},
         },
 
@@ -28,7 +28,7 @@ export const addBrandComponent: ComponentBuilderFunction = (
 
           // Colors
           [`@apply ${classPrefix}text-blue-50`]: {},
-          [darkModeContext]: {
+          [`${darkModeContext} &`]: {
             [`@apply ${classPrefix}text-blue-200`]: {},
           },
 
@@ -40,7 +40,7 @@ export const addBrandComponent: ComponentBuilderFunction = (
       '.brand-name': {
         // Colors
         [`@apply ${classPrefix}text-black-950`]: {},
-        [darkModeContext]: {
+        [`${darkModeContext} &`]: {
           [`@apply ${classPrefix}text-white-50`]: {},
         },
 

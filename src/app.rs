@@ -50,6 +50,7 @@ pub fn App() -> impl IntoView {
         <Title text="Welcome to Leptos"/>
 
         <div
+            id="style-settings"
             class=(["tw-dark"], uses_dark_theme)
         >
             <Router>

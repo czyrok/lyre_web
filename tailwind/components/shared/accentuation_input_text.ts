@@ -30,7 +30,7 @@ export const addAccentuationInputTextComponent: ComponentBuilderFunction = (
 
       // Colors
       [`@apply ${classPrefix}bg-green-100`]: {},
-      [darkModeContext]: {
+      [`${darkModeContext} &`]: {
         [`@apply ${classPrefix}bg-green-700`]: {},
       },
 
@@ -47,12 +47,12 @@ export const addAccentuationInputTextComponent: ComponentBuilderFunction = (
         // Colors
         '&::placeholder': {
           [`@apply ${classPrefix}text-green-950/30`]: {},
-          [darkModeContext]: {
+          [`${darkModeContext} &`]: {
             [`@apply ${classPrefix}text-green-950/30`]: {},
           },
         },
         [`@apply ${classPrefix}text-green-950`]: {},
-        [darkModeContext]: {
+        [`${darkModeContext} &`]: {
           [`@apply ${classPrefix}text-green-950`]: {},
         },
 
@@ -65,7 +65,7 @@ export const addAccentuationInputTextComponent: ComponentBuilderFunction = (
 
         // Colors
         [`@apply ${classPrefix}text-green-950`]: {},
-        [darkModeContext]: {
+        [`${darkModeContext} &`]: {
           [`@apply ${classPrefix}text-green-950`]: {},
         },
 
@@ -86,7 +86,7 @@ export const addAccentuationInputTextComponent: ComponentBuilderFunction = (
       '&:has(.input-text-input:focus)': {
         // Colors
         [`@apply ${classPrefix}ring-green-400`]: {},
-        [darkModeContext]: {
+        [`${darkModeContext} &`]: {
           [`@apply ${classPrefix}ring-green-600`]: {},
         },
 

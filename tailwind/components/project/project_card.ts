@@ -16,7 +16,7 @@ export const addProjectCardComponent: ComponentBuilderFunction = (
       '.card-title': {
         // Colors
         [`@apply ${classPrefix}text-black-950`]: {},
-        [darkModeContext]: {
+        [`${darkModeContext} &`]: {
           [`@apply ${classPrefix}text-white-50`]: {},
         },
 

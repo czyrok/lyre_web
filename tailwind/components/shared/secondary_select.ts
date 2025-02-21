@@ -8,7 +8,7 @@ export const addSecondarySelectComponent: ComponentBuilderFunction = (
     '.secondary-select': {
       // Colors
       [`@apply ${classPrefix}outline-purple-blue-400`]: {},
-      [darkModeContext]: {
+      [`${darkModeContext} &`]: {
         [`@apply ${classPrefix}outline-purple-blue-500`]: {},
       },
 
@@ -28,7 +28,7 @@ export const addSecondarySelectComponent: ComponentBuilderFunction = (
       '.select-text': {
         // Colors
         [`@apply ${classPrefix}text-purple-blue-400`]: {},
-        [darkModeContext]: {
+        [`${darkModeContext} &`]: {
           [`@apply ${classPrefix}text-purple-blue-500`]: {},
         },
 
@@ -41,7 +41,7 @@ export const addSecondarySelectComponent: ComponentBuilderFunction = (
 
         // Colors
         [`@apply ${classPrefix}text-purple-blue-400`]: {},
-        [darkModeContext]: {
+        [`${darkModeContext} &`]: {
           [`@apply ${classPrefix}text-purple-blue-500`]: {},
         },
 
@@ -57,7 +57,7 @@ export const addSecondarySelectComponent: ComponentBuilderFunction = (
       '&:focus': {
         // Colors
         [`@apply ${classPrefix}ring-green-400`]: {},
-        [darkModeContext]: {
+        [`${darkModeContext} &`]: {
           [`@apply ${classPrefix}ring-green-600`]: {},
         },
 

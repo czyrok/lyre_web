@@ -6,9 +6,6 @@ export const addLandingPage: ComponentBuilderFunction = (
 ) => {
   addComponents({
     '.landing-page': {
-      // Colors
-      [`@apply ${classPrefix}bg-white-50`]: {},
-
       // Children
       '.landing-page-cover': {
         [`@apply ${classPrefix}flex ${classPrefix}flex-col ${classPrefix}h-dvh`]: {},
@@ -16,7 +13,7 @@ export const addLandingPage: ComponentBuilderFunction = (
         // Colors
         [`@apply ${classPrefix}bg-landing-page-cover-gradient`]: {},
         [`@apply ${classPrefix}from-blue-100 ${classPrefix}to-white-50`]: {},
-        [darkModeContext]: {
+        [`${darkModeContext} &`]: {
           [`@apply ${classPrefix}from-blue-900 ${classPrefix}to-black-950`]: {},
         },
 
@@ -30,7 +27,7 @@ export const addLandingPage: ComponentBuilderFunction = (
 
             // Colors
             [`@apply ${classPrefix}text-blue-100`]: {},
-            [darkModeContext]: {
+            [`${darkModeContext} &`]: {
               [`@apply ${classPrefix}text-blue-950`]: {},
             },
 
@@ -53,7 +50,7 @@ export const addLandingPage: ComponentBuilderFunction = (
 
             // Colors
             [`@apply ${classPrefix}text-black-950`]: {},
-            [darkModeContext]: {
+            [`${darkModeContext} &`]: {
               [`@apply ${classPrefix}text-white-50`]: {},
             },
 
@@ -75,7 +72,7 @@ export const addLandingPage: ComponentBuilderFunction = (
             '.discover-scroll-down': {
               // Colors
               [`@apply ${classPrefix}text-green-500`]: {},
-              [darkModeContext]: {
+              [`${darkModeContext} &`]: {
                 [`@apply ${classPrefix}text-green-600`]: {},
               },
 
