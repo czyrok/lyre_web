@@ -8,4 +8,5 @@ pub enum IconSet {
     Compass,
     LinkedIn,
     SingleDownArrow,
+    DoubleDownArrow,
 }

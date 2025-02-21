@@ -3,8 +3,10 @@ import { ThemeConfig } from 'tailwindcss/types/config';
 export const EXTENDED_THEME_SIZE: {
   width: ThemeConfig['width'];
   minWidth: ThemeConfig['minWidth'];
+  maxWidth: ThemeConfig['maxWidth'];
   height: ThemeConfig['height'];
   minHeight: ThemeConfig['minHeight'];
+  maxHeight: ThemeConfig['maxHeight'];
 } = {
   width: {
     'button-icon': '1.5em',
@@ -18,6 +20,9 @@ export const EXTENDED_THEME_SIZE: {
   minWidth: {
     'contact-photo': '328px',
   },
+  maxWidth: {
+    'landing-page-shape': '950px',
+  },
   height: {
     'button-icon': '1.5em',
     'contact-photo': '328px',
@@ -29,4 +34,5 @@ export const EXTENDED_THEME_SIZE: {
   minHeight: {
     'contact-photo': '328px',
   },
+  maxHeight: {},
 } as const;

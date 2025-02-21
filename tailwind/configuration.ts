@@ -25,6 +25,7 @@ import { addSecondaryButtonComponent } from './components/shared/secondary_butto
 import { addSecondaryCheckboxComponent } from './components/shared/secondary_checkbox';
 import { addSecondaryLinkComponent } from './components/shared/secondary_link';
 import { addSecondarySelectComponent } from './components/shared/secondary_select';
+import { addLandingPage } from './pages/landing_page';
 import { THEME_BACKGROUND } from './theme/background';
 import { THEME_BLUR } from './theme/blur';
 import { THEME_BORDER_RADIUS } from './theme/border_radius';
@@ -195,6 +196,11 @@ export const TAILWIND_CONFIGURATION: Config = {
         classPrefix: TAILWIND_CLASS_PREFIX,
       });
       addFooterComponent(pluginApi, {
+        darkModeContext,
+        classPrefix: TAILWIND_CLASS_PREFIX,
+      });
+
+      addLandingPage(pluginApi, {
         darkModeContext,
         classPrefix: TAILWIND_CLASS_PREFIX,
       });

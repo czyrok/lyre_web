@@ -11,6 +11,8 @@ export const THEME_BACKGROUND: {
       'linear-gradient(100deg, var(--tw-gradient-from) 46%, var(--tw-gradient-to) 95.83%)',
     'title-gradient':
       'linear-gradient(90deg, var(--tw-gradient-from) 0%, var(--tw-gradient-to) 100%)',
+    'landing-page-cover-gradient':
+      'linear-gradient(180deg, var(--tw-gradient-from) 0%, var(--tw-gradient-to) 82%)',
   },
   backgroundSize: {
     'bubble-pattern': '4px 4px',
