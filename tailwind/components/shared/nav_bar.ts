@@ -16,7 +16,7 @@ export const addNavBarComponent: ComponentBuilderFunction = (
       '.nav-bar': {
         [`@apply ${classPrefix}w-fit ${classPrefix}mx-auto ${classPrefix}flex`]: {},
         // Ensure that content stays above the pseudo-element
-        '& > *': {
+        '& > a *': {
           [`@apply ${classPrefix}relative ${classPrefix}z-10`]: {},
         },
 
@@ -123,6 +123,10 @@ export const addNavBarComponent: ComponentBuilderFunction = (
 
         // Focus state for a child
         'a:focus .nav-bar-item': {
+          //// This is useful to keep the focused element above
+          //// the pseudo elements (which have z-index)
+          [`@apply ${classPrefix}z-20`]: {},
+
           // Colors
           [`@apply ${classPrefix}outline-green-400`]: {},
           [`${darkModeContext} &`]: {
