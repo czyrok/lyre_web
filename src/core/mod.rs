@@ -1,3 +1,4 @@
+pub mod app_settings;
 pub mod component_size;
 pub mod cursor_pagination;
 pub mod error;

@@ -16,7 +16,7 @@ pub async fn get_ordered_project_contexts(
         project::use_cases::get_ordered_project_contexts_use_case::GetOrderedProjectContextsUseCase,
         system::{
             runner::use_case_runner::run_use_case,
-            state::contexts::{
+            state::backend_contexts::{
                 use_project_context_service, use_project_service,
             },
         },
@@ -40,7 +40,7 @@ pub async fn get_relevant_project_contexts(
         project::use_cases::get_relevant_project_contexts_use_case::GetRelevantProjectContextsUseCase,
         system::{
             runner::use_case_runner::run_use_case,
-            state::contexts::use_project_context_service,
+            state::backend_contexts::use_project_context_service,
         },
     };
 

@@ -17,7 +17,7 @@ pub async fn get_project(
         project::use_cases::get_project_use_case::GetProjectUseCase,
         system::{
             runner::use_case_runner::run_use_case,
-            state::contexts::use_project_service,
+            state::backend_contexts::use_project_service,
         },
     };
 
@@ -40,7 +40,9 @@ pub async fn refresh_project_cache(
         project::use_cases::refresh_project_cache_use_case::RefreshProjectCacheUseCase,
         system::{
             runner::use_case_runner::run_use_case,
-            state::contexts::{use_environment_context, use_project_service},
+            state::backend_contexts::{
+                use_environment_context, use_project_service,
+            },
         },
     };
 

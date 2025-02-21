@@ -12,7 +12,7 @@ pub async fn get_project_slugs(
         project::use_cases::get_project_slugs_use_case::GetProjectSlugsUseCase,
         system::{
             runner::use_case_runner::run_use_case,
-            state::contexts::use_project_slug_service,
+            state::backend_contexts::use_project_slug_service,
         },
     };
 
