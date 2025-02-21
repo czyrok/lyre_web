@@ -32,7 +32,7 @@ where
 
                     {actions_render()}
 
-                    <SecondaryButtonAsLink size=ComponentSize::MD text="Revenir au début" href="/#top" />
+                    <SecondaryButtonAsLink size=ComponentSize::MD text="Revenir au début" href="#top" />
                 </div>
             </div>
 
