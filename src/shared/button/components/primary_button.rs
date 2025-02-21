@@ -14,7 +14,7 @@ use crate::{
 #[component]
 pub fn PrimaryButton(
     size: ComponentSize,
-    text: String,
+    #[prop(into)] text: String,
     #[prop(into)] on_click: ButtonAction,
     #[prop(optional, into)] icon: Option<IconSet>,
     #[prop(optional, into)] icon_side: Option<IconSide>,

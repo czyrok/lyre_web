@@ -12,7 +12,7 @@ use crate::{
 pub fn UnthemedButton(
     theme: ButtonTheme,
     size: ComponentSize,
-    text: String,
+    #[prop(into)] text: String,
     #[prop(into)] on_click: ButtonAction,
     #[prop(into)] icon: Option<IconSet>,
     #[prop(into)] icon_side: Option<IconSide>,

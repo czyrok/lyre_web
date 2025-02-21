@@ -25,7 +25,7 @@ where
     choices.attach_consistency_behavior();
 
     view! {
-        <SecondaryButton size text="Thème".into() on_click="dropmenu-theme-selection" icon=IconSet::SingleDownArrow icon_side=IconSide::Right anchor_name="button-theme-selection" />
+        <SecondaryButton size text="Thème" on_click="dropmenu-theme-selection" icon=IconSet::SingleDownArrow icon_side=IconSide::Right anchor_name="button-theme-selection" />
 
         <DropdownMenu id="dropmenu-theme-selection" position_anchor_name="button-theme-selection">
             {converted_choices.into_iter()
