@@ -126,6 +126,11 @@ export const addNavBarComponent: ComponentBuilderFunction = (
           [`${darkModeContext} &`]: {
             [`@apply ${classPrefix}outline-green-600`]: {},
           },
+          //// This needs to correspond to page background
+          [`@apply ${classPrefix}ring-offset-white-50`]: {},
+          [`${darkModeContext} &`]: {
+            [`@apply ${classPrefix}ring-offset-black-950`]: {},
+          },
 
           // Sizing
           [`@apply ${classPrefix}outline ${classPrefix}outline-3 ${classPrefix}outline-offset-3`]:
