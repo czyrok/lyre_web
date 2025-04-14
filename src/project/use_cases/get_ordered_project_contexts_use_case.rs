@@ -1,3 +1,5 @@
+use std::fmt::Display;
+
 use crate::{
     core::{
         cursor_pagination::CursorPagination,
@@ -25,29 +27,30 @@ pub struct GetOrderedProjectContextsUseCase {
 }
 
 impl GetOrderedProjectContextsUseCase {
+    fn to_server_function_error<TError: Display>(
+        error: TError,
+    ) -> ServerFunctionError {
+        let internal_server_error =
+            InternalServerError::new_unable_to_get_project_contexts(format!(
+                "Unable to get the project contexts: `{}`",
+                error
+            ));
+
+        internal_server_error.into()
+    }
+
     async fn check_slug_pagination_cursor_after(
         &self,
         pagination: &CursorPagination,
     ) -> Result<(), ServerFunctionError> {
         if let Some(slug_cursor_after) = pagination.cursor_after.clone() {
-            let exists = match self
+            let exists = self
                 .project_service
                 .exists_project_from_slug(&slug_cursor_after)
                 .await
-            {
-                Ok(exists) => exists,
-                Err(error) => {
-                    let internal_server_error =
-                        InternalServerError::new_unable_to_check_if_project_exists(
-                            format!(
-                                "Unable to check if the project exists: `{}`",
-                                error
-                            ),
-                        );
-
-                    return Err(internal_server_error.into());
-                }
-            };
+                .map_err(
+                    GetOrderedProjectContextsUseCase::to_server_function_error,
+                )?;
 
             if !exists {
                 let bad_request_error =
@@ -83,28 +86,20 @@ impl UseCase<CursorPagination, ProjectContextsDto>
     ) -> Result<ProjectContextsDto, ServerFunctionError> {
         self.check_slug_pagination_cursor_after(&pagination).await?;
 
-        match self
+        let project_contexts = self
             .project_context_service
             .get_ordered_project_contexts(
                 pagination.limit,
                 pagination.cursor_after.clone(),
             )
             .await
-        {
-            Ok(project_contexts) => {
-                Ok(ProjectContextsDto::new(project_contexts))
-            }
-            Err(error) => {
-                let internal_server_error =
-                    InternalServerError::new_unable_to_get_project_contexts(
-                        format!(
-                            "Unable to get the project contexts: `{}`",
-                            error
-                        ),
-                    );
+            .map_err(
+                GetOrderedProjectContextsUseCase::to_server_function_error,
+            )?;
 
-                Err(internal_server_error.into())
-            }
-        }
+        Ok(ProjectContextsDto::new(
+            project_contexts.0,
+            project_contexts.1,
+        ))
     }
 }

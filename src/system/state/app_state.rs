@@ -38,10 +38,14 @@ impl AppState {
         let project_slug_repository =
             ProjectSlugRepository::new(environment.clone());
 
-        let project_service =
-            ProjectService::new(project_repository, project_tag_repository);
-        let project_context_service =
-            ProjectContextService::new(project_context_repository);
+        let project_service = ProjectService::new(
+            project_repository.clone(),
+            project_tag_repository,
+        );
+        let project_context_service = ProjectContextService::new(
+            project_context_repository,
+            project_repository,
+        );
         let project_slug_service =
             ProjectSlugService::new(project_slug_repository);
 

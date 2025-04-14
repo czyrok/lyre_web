@@ -1,5 +1,7 @@
 use crate::{
-    project::data::project_context::ProjectContext,
+    project::data::{
+        project_context::ProjectContext, project_tags::ProjectTags,
+    },
     system::{
         database::local_database::LocalDatabase,
         state::environment_context::EnvironmentContext,
@@ -37,7 +39,8 @@ impl ProjectContextRepository {
                             `projects`.`title`,
                             `projects`.`image_url`,
                             `projects`.`date`,
-                            GROUP_CONCAT(`project_tags`.`name`) AS `tags`
+                            GROUP_CONCAT(`project_tags`.`name`) AS `tags: \
+                     ProjectTags`
                     FROM      `projects`
                     LEFT JOIN `project_tags` ON `project_tags`.`project_slug` \
                      = `projects`.`slug`
@@ -65,7 +68,8 @@ impl ProjectContextRepository {
                             `projects`.`title`,
                             `projects`.`image_url`,
                             `projects`.`date`,
-                            GROUP_CONCAT(`project_tags`.`name`) AS `tags`
+                            GROUP_CONCAT(`project_tags`.`name`) AS `tags: \
+                     ProjectTags`
                     FROM      `projects`
                     LEFT JOIN `project_tags` ON `project_tags`.`project_slug` \
                      = `projects`.`slug`

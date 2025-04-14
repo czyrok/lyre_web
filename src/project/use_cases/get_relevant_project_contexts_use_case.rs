@@ -7,7 +7,10 @@ use crate::{
         use_case::UseCase,
     },
     project::{
-        dto::project_contexts_dto::ProjectContextsDto,
+        dto::{
+            project_contexts_dto::ProjectContextsDto,
+            relevant_project_contexts_dto::RelevantProjectContextsDto,
+        },
         services::project_context_service::ProjectContextService,
     },
 };
@@ -24,18 +27,20 @@ impl GetRelevantProjectContextsUseCase {
     }
 }
 
-impl UseCase<(), ProjectContextsDto> for GetRelevantProjectContextsUseCase {
+impl UseCase<(), RelevantProjectContextsDto>
+    for GetRelevantProjectContextsUseCase
+{
     async fn run(
         &mut self,
         _: (),
-    ) -> Result<ProjectContextsDto, ServerFunctionError> {
+    ) -> Result<RelevantProjectContextsDto, ServerFunctionError> {
         match self
             .project_context_service
             .get_relevant_project_contexts(3)
             .await
         {
             Ok(project_contexts) => {
-                Ok(ProjectContextsDto::new(project_contexts))
+                Ok(RelevantProjectContextsDto::new(project_contexts))
             }
             Err(error) => {
                 let internal_server_error =

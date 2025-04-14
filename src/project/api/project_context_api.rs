@@ -5,7 +5,10 @@ use crate::{
         cursor_pagination::CursorPagination,
         error::server_error_dto::ServerErrorDto,
     },
-    project::dto::project_contexts_dto::ProjectContextsDto,
+    project::dto::{
+        project_contexts_dto::ProjectContextsDto,
+        relevant_project_contexts_dto::RelevantProjectContextsDto,
+    },
 };
 
 #[server(prefix = "/api", endpoint = "project_contexts", input = GetUrl)]
@@ -35,7 +38,7 @@ pub async fn get_ordered_project_contexts(
 
 #[server(prefix = "/api", endpoint = "project_contexts/relevants", input = GetUrl)]
 pub async fn get_relevant_project_contexts(
-) -> Result<ProjectContextsDto, ServerFnError<ServerErrorDto>> {
+) -> Result<RelevantProjectContextsDto, ServerFnError<ServerErrorDto>> {
     use crate::{
         project::use_cases::get_relevant_project_contexts_use_case::GetRelevantProjectContextsUseCase,
         system::{
