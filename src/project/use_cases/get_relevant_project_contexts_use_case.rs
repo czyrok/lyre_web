@@ -1,3 +1,5 @@
+use std::fmt::Display;
+
 use crate::{
     core::{
         error::{
@@ -25,6 +27,18 @@ impl GetRelevantProjectContextsUseCase {
             project_context_service,
         }
     }
+
+    fn to_server_function_error<TError: Display>(
+        error: TError,
+    ) -> ServerFunctionError {
+        let internal_server_error =
+            InternalServerError::new_unable_to_get_project_contexts(format!(
+                "Unable to get the project contexts: `{}`",
+                error
+            ));
+
+        internal_server_error.into()
+    }
 }
 
 impl UseCase<(), RelevantProjectContextsDto>
@@ -34,25 +48,14 @@ impl UseCase<(), RelevantProjectContextsDto>
         &mut self,
         _: (),
     ) -> Result<RelevantProjectContextsDto, ServerFunctionError> {
-        match self
+        let project_contexts = self
             .project_context_service
             .get_relevant_project_contexts(3)
             .await
-        {
-            Ok(project_contexts) => {
-                Ok(RelevantProjectContextsDto::new(project_contexts))
-            }
-            Err(error) => {
-                let internal_server_error =
-                    InternalServerError::new_unable_to_get_project_contexts(
-                        format!(
-                            "Unable to get the project contexts: `{}`",
-                            error
-                        ),
-                    );
+            .map_err(
+                GetRelevantProjectContextsUseCase::to_server_function_error,
+            )?;
 
-                Err(internal_server_error.into())
-            }
-        }
+        Ok(RelevantProjectContextsDto::new(project_contexts))
     }
 }
