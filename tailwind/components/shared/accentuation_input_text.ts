@@ -46,9 +46,9 @@ export const addAccentuationInputTextComponent: ComponentBuilderFunction = (
 
         // Colors
         '&::placeholder': {
-          [`@apply ${classPrefix}text-green-950/30`]: {},
+          [`@apply ${classPrefix}text-green-950/50`]: {},
           [`${darkModeContext} &`]: {
-            [`@apply ${classPrefix}text-green-950/30`]: {},
+            [`@apply ${classPrefix}text-green-950/50`]: {},
           },
         },
         [`@apply ${classPrefix}text-green-950`]: {},
