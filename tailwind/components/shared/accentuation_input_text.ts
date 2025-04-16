@@ -39,7 +39,7 @@ export const addAccentuationInputTextComponent: ComponentBuilderFunction = (
 
       // Children
       '.input-text-input': {
-        [`@apply ${classPrefix}bg-transparent`]: {},
+        [`@apply ${classPrefix}bg-transparent ${classPrefix}w-full`]: {},
         '&:focus': {
           [`@apply ${classPrefix}outline-none`]: {},
         },
