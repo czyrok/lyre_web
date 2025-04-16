@@ -2,10 +2,13 @@ use leptos::prelude::*;
 
 use crate::{
     core::component_size::ComponentSize,
-    shared::select::{
-        components::select::Select,
-        types::{
-            select_choice::SelectChoice, single_select::SingleSelectChoices,
+    shared::{
+        components::dropdown_menu::Position,
+        select::{
+            components::select::Select,
+            types::{
+                select_choice::SelectChoice, single_select::SingleSelectChoices,
+            },
         },
     },
     system::state::frontend_contexts::use_app_settings,
@@ -42,6 +45,6 @@ pub fn ThemeSelector() -> impl IntoView {
     let choices = SingleSelectChoices::new([dark_choice, light_choice].into());
 
     view! {
-        <Select size=ComponentSize::SM choices=choices />
+        <Select size=ComponentSize::SM dropdown_menu_position=Position::Right text="Thème" identifier="theme-selector" choices=choices />
     }
 }

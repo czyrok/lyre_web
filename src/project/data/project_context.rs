@@ -4,6 +4,7 @@ use serde::{Deserialize, Serialize};
 use super::project_tags::ProjectTags;
 
 #[derive(Serialize, Deserialize, Clone, Debug)]
+#[cfg_attr(feature = "ssr", derive(sqlx::FromRow))]
 pub struct ProjectContext {
     //// We set the default value because the slug is not in the YAML metadata
     #[serde(default)]

@@ -15,13 +15,14 @@ pub enum IconSide {
 #[component]
 pub fn InputText(
     size: ComponentSize,
-    #[prop(name = "value")] (text, set_text): (
+    #[prop(name = "text")] (text, set_text): (
         ReadSignal<String>,
         WriteSignal<String>,
     ),
     #[prop(optional, into)] placeholder: Option<String>,
     #[prop(optional, into)] icon: Option<IconSet>,
     #[prop(optional, into)] icon_side: Option<IconSide>,
+    #[prop(optional, into)] additional_style_classes: Option<String>,
 ) -> impl IntoView {
     let is_xl_size = size == ComponentSize::XL;
     let is_lg_size = size == ComponentSize::LG;
@@ -36,9 +37,14 @@ pub fn InputText(
     let has_left_icon = icon.is_some() && icon_side == IconSide::Left;
     let has_right_icon = icon.is_some() && icon_side == IconSide::Right;
 
+    let style_classes = format!(
+        "tw-accentuation-input-text tw-input-size-lg {}",
+        additional_style_classes.unwrap_or_default()
+    );
+
     view! {
         <label
-            class="tw-accentuation-input-text tw-input-size-lg"
+            class=style_classes
             class=(["tw-input-size-xl"], move || is_xl_size)
             class=(["tw-input-size-lg"], move || is_lg_size)
             class=(["tw-input-size-md"], move || is_md_size)

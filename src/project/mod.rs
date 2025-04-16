@@ -2,8 +2,10 @@ pub mod api;
 pub mod components;
 pub mod data;
 pub mod dto;
+pub mod enums;
 #[cfg(feature = "ssr")]
 pub mod repositories;
+pub mod resources;
 #[cfg(feature = "ssr")]
 pub mod services;
 #[cfg(feature = "ssr")]

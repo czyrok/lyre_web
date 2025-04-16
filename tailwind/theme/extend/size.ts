@@ -22,6 +22,7 @@ export const EXTENDED_THEME_SIZE: {
   },
   maxWidth: {
     'landing-page-shape': '950px',
+    62: '496px',
   },
   height: {
     'button-icon': '1.5em',

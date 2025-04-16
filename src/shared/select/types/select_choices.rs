@@ -4,6 +4,9 @@ use leptos::prelude::*;
 
 use super::select_choice::SelectChoice;
 
+pub type SelectChoiceFilterCallback<TKey> =
+    Box<dyn Fn(&SelectChoice<TKey>) -> bool>;
+
 #[derive(Clone)]
 pub struct SelectChoices<TKey>
 where
@@ -20,16 +23,19 @@ where
         Self { choices }
     }
 
-    pub fn change_all_status<TFilter>(
-        &mut self,
+    pub fn change_all_status(
+        &self,
         is_checked: bool,
-        filter: TFilter,
-    ) where
-        TFilter: FnMut(&&mut SelectChoice<TKey>) -> bool,
-    {
-        let filtered_choices = self.choices.iter_mut().filter(filter);
+        filter: Option<SelectChoiceFilterCallback<TKey>>,
+    ) {
+        let mut filtered_choices: Vec<SelectChoice<TKey>> = match filter {
+            Some(filter) => {
+                self.choices.clone().into_iter().filter(filter).collect()
+            }
+            None => self.choices.clone().into_iter().filter(|_| true).collect(),
+        };
 
-        for choice in filtered_choices {
+        for choice in filtered_choices.iter_mut() {
             choice.set_is_checked.maybe_update(|value| {
                 if is_checked == *value {
                     return false;

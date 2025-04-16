@@ -37,7 +37,7 @@ where
         let current_choice = self.clone();
 
         Effect::new(move |_| {
-            current_choice.clone().is_checked.track();
+            current_choice.is_checked.track();
 
             callback(current_choice.clone());
         });

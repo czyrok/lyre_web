@@ -14,11 +14,12 @@ console_log = "1.0"
 cfg-if = "1.0.0"
 chrono = { version = "0.4.39", features = ["serde"] }
 dotenvy = { version = "0.15.7", default-features = false, optional = true }
-leptos = { version = "0.7.7", features = ["hydration"] } #"nightly", "hydration"] }
-leptos_meta = { version = "0.7.7" }
-leptos_axum = { version = "0.7.7", optional = true }
-leptos_router = { version = "0.7.7" }
-leptos-use = { version = "0.15.6", features = ["storage"] }
+leptos = { version = "0.7.8", features = ["hydration"] }                    #"nightly", "hydration"] }
+leptos_meta = { version = "0.7.8" }
+leptos_axum = { version = "0.7.8", optional = true }
+leptos_router = { version = "0.7.8" }
+# TODO:
+leptos-use = { version = "0.15.6", features = ["storage", "signal_debounced"] }
 log = "0.4.22"
 regex = { version = "1.11.1", optional = true }
 serde = { version = "1.0.216", features = ["derive"] }

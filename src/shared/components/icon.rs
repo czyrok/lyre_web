@@ -78,5 +78,15 @@ pub fn Icon(icon: IconSet) -> impl IntoView {
                 <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M40 30c0 5.523-4.477 10-10 10s-10-4.477-10-10 4.477-10 10-10 10 4.477 10 10Zm0 0v3.75a6.25 6.25 0 0 0 12.5 0V30C52.5 17.574 42.426 7.5 30 7.5S7.5 17.574 7.5 30 17.574 52.5 30 52.5h10"/>
             </svg>
         }.into_any(),
+        IconSet::Undo => view! {
+            <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" fill="none" viewBox="0 0 60 60">
+                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M7.5 20.157h30.938c7.766 0 14.062 6.296 14.062 14.063 0 7.766-6.296 14.063-14.063 14.063H18.75M7.5 20.156l8.438-8.437M7.5 20.157l8.438 8.438"/>
+            </svg>
+        }.into_any(),
+        IconSet::Calendar => view! {
+            <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" fill="none" viewBox="0 0 60 60">
+                <path stroke="currentColor" stroke-linecap="round" stroke-width="1.5" d="M7.5 22.5h45m-35-15v5m25-5v5M15 30h5m7.5 0h5m7.5 0h5m-30 7.5h5m7.5 0h5m7.5 0h5M15 45h5m7.5 0h5m7.5 0h5m-29.5 7.5h29c2.8 0 4.2 0 5.27-.545a5 5 0 0 0 2.185-2.185c.545-1.07.545-2.47.545-5.27v-24c0-2.8 0-4.2-.545-5.27a4.999 4.999 0 0 0-2.185-2.185C48.7 12.5 47.3 12.5 44.5 12.5h-29c-2.8 0-4.2 0-5.27.545a4.999 4.999 0 0 0-2.185 2.185C7.5 16.3 7.5 17.7 7.5 20.5v24c0 2.8 0 4.2.545 5.27a5 5 0 0 0 2.185 2.185c1.07.545 2.47.545 5.27.545Z"/>
+            </svg>
+        }.into_any()
     }
 }

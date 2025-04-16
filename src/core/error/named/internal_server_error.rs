@@ -40,18 +40,16 @@ impl InternalServerError {
         }
     }
 
-    pub fn new_unable_to_check_if_project_exists(
-        detailed_message: String,
-    ) -> Self {
+    pub fn new_unable_to_get_project(detailed_message: String) -> Self {
         Self {
-            error_type: Some(FrontedErrorType::UnableToCheckIfProjectExists),
+            error_type: Some(FrontedErrorType::UnableToGetProject),
             detailed_message: Some(detailed_message),
         }
     }
 
-    pub fn new_unable_to_get_project(detailed_message: String) -> Self {
+    pub fn new_unable_to_get_project_tags(detailed_message: String) -> Self {
         Self {
-            error_type: Some(FrontedErrorType::UnableToGetProject),
+            error_type: Some(FrontedErrorType::UnableToGetProjectTags),
             detailed_message: Some(detailed_message),
         }
     }

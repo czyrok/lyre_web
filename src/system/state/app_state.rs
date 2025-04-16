@@ -13,6 +13,7 @@ use crate::project::{
         project_context_service::ProjectContextService,
         project_service::ProjectService,
         project_slug_service::ProjectSlugService,
+        project_tag_service::ProjectTagService,
     },
 };
 
@@ -24,6 +25,7 @@ pub struct AppState {
     pub project_service: ProjectService,
     pub project_context_service: ProjectContextService,
     pub project_slug_service: ProjectSlugService,
+    pub project_tag_service: ProjectTagService,
 }
 
 impl AppState {
@@ -32,22 +34,24 @@ impl AppState {
         options: LeptosOptions,
     ) -> Self {
         let project_repository = ProjectRepository::new(environment.clone());
-        let project_tag_repository = ProjectTagRepository::default();
+        let project_tag_repository =
+            ProjectTagRepository::new(environment.clone());
         let project_context_repository =
             ProjectContextRepository::new(environment.clone());
         let project_slug_repository =
             ProjectSlugRepository::new(environment.clone());
 
         let project_service = ProjectService::new(
-            project_repository.clone(),
-            project_tag_repository,
-        );
-        let project_context_service = ProjectContextService::new(
-            project_context_repository,
             project_repository,
+            project_tag_repository.clone(),
         );
+        let project_context_service =
+            ProjectContextService::new(project_context_repository);
         let project_slug_service =
             ProjectSlugService::new(project_slug_repository);
+
+        let project_tag_service =
+            ProjectTagService::new(project_tag_repository);
 
         Self {
             environment,
@@ -55,6 +59,7 @@ impl AppState {
             project_service,
             project_context_service,
             project_slug_service,
+            project_tag_service,
         }
     }
 }

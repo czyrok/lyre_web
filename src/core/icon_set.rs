@@ -12,4 +12,6 @@ pub enum IconSet {
     Home,
     About,
     Email,
+    Undo,
+    Calendar,
 }

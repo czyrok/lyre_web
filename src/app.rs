@@ -14,7 +14,10 @@ use crate::{
     landing_page::view::LandingPage,
     project::{
         api::project_slug_api::get_project_slugs,
-        views::project_details::ProjectDetails,
+        views::{
+            project_details::ProjectDetails,
+            project_search_page::ProjectSearchPage,
+        },
     },
     shared::components::nav_bar::nav_bar_container::NavBarContainer,
     system::{
@@ -66,9 +69,16 @@ pub fn App() -> impl IntoView {
                             )
                         />
 
+                        // TODO: y'a un intru
                         <Route
                             path=path!("/about")
                             view=move || view! { <Redirect path="/"/> }
+                            ssr=SsrMode::Static(StaticRoute::new())
+                        />
+
+                        <Route
+                            path=path!("/projects")
+                            view=ProjectSearchPage
                             ssr=SsrMode::Static(StaticRoute::new())
                         />
 

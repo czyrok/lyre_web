@@ -1,17 +1,36 @@
-use std::error::Error;
-
 use serde::{Deserialize, Serialize};
 #[cfg(feature = "ssr")]
-use sqlx::{Database, Decode};
+use sqlx::{
+    error::BoxDynError,
+    sqlite::{SqliteTypeInfo, SqliteValueRef},
+    Decode, Sqlite, Type,
+};
 
-#[derive(Default, Serialize, Deserialize, Clone, Debug)]
-pub struct ProjectTags(pub Vec<String>);
+use super::project_tag::ProjectTag;
+
+#[derive(Default, Serialize, Deserialize, Clone, PartialEq, Debug)]
+pub struct ProjectTags(pub Vec<ProjectTag>);
 
 impl ProjectTags {
     fn from_string(string: String) -> ProjectTags {
         let tags = string.split(",").map(|tag| tag.into()).collect();
 
         ProjectTags(tags)
+    }
+}
+
+impl From<Vec<String>> for ProjectTags {
+    fn from(project_tags: Vec<String>) -> ProjectTags {
+        let project_tags: Vec<ProjectTag> =
+            project_tags.iter().map(|tag| tag.into()).collect();
+
+        ProjectTags(project_tags)
+    }
+}
+
+impl From<Vec<ProjectTag>> for ProjectTags {
+    fn from(project_tags: Vec<ProjectTag>) -> ProjectTags {
+        ProjectTags(project_tags)
     }
 }
 
@@ -38,14 +57,16 @@ impl From<String> for ProjectTags {
 }
 
 #[cfg(feature = "ssr")]
-impl<'row, DB: Database> Decode<'row, DB> for ProjectTags
-where
-    &'row str: Decode<'row, DB>,
-{
-    fn decode(
-        value: <DB as Database>::ValueRef<'row>,
-    ) -> Result<ProjectTags, Box<dyn Error + 'static + Send + Sync>> {
-        let value: String = <&str as Decode<DB>>::decode(value)?.into();
+impl Type<Sqlite> for ProjectTags {
+    fn type_info() -> SqliteTypeInfo {
+        <String as Type<Sqlite>>::type_info()
+    }
+}
+
+#[cfg(feature = "ssr")]
+impl<'row> Decode<'row, Sqlite> for ProjectTags {
+    fn decode(value: SqliteValueRef<'row>) -> Result<Self, BoxDynError> {
+        let value: String = <&str as Decode<Sqlite>>::decode(value)?.into();
 
         Ok(value.into())
     }

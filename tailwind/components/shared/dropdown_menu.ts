@@ -43,6 +43,12 @@ export const addDropdownMenuComponent: ComponentBuilderFunction = (
         [`@apply ${classPrefix}top-[anchor(top)] ${classPrefix}left-[anchor(right)]`]: {},
         [`@apply ${classPrefix}ms-3`]: {},
       },
+
+      [`&.dropdown-menu-bottom`]: {
+        // Positioning
+        [`@apply ${classPrefix}top-[anchor(bottom)] ${classPrefix}left-[anchor(left)]`]: {},
+        [`@apply ${classPrefix}mt-3`]: {},
+      },
     },
   });
 };

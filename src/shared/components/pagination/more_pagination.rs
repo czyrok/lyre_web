@@ -7,7 +7,7 @@ use crate::{
 
 #[component]
 pub fn MorePagination(
-    count_left: ReadSignal<u32>,
+    count_left: Signal<usize>,
     on_click: impl FnMut(MouseEvent) + 'static,
     #[prop(optional, into)] click_text: Option<String>,
 ) -> impl IntoView {

@@ -10,7 +10,7 @@ pub enum FrontedErrorType {
     RefreshProjectCacheFailed,
     UnableToGetProjectSlugs,
     UnableToGetProjectContexts,
-    UnableToCheckIfProjectExists,
     UnableToGetProject,
     InvalidTotpToken,
+    UnableToGetProjectTags,
 }

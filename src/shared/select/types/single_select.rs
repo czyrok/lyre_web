@@ -36,6 +36,14 @@ where
         self.0.list()
     }
 
+    fn change_all_status(
+        &self,
+        is_checked: bool,
+        filter: Option<Box<dyn Fn(&SelectChoice<TKey>) -> bool>>,
+    ) {
+        self.0.change_all_status(is_checked, filter);
+    }
+
     fn attach_consistency_behavior(&self) {
         self.0.attach_consistency_behavior();
     }

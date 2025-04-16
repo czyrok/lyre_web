@@ -33,19 +33,30 @@ where
         self.0.list()
     }
 
+    fn change_all_status(
+        &self,
+        is_checked: bool,
+        filter: Option<Box<dyn Fn(&SelectChoice<TKey>) -> bool>>,
+    ) {
+        self.0.change_all_status(is_checked, filter);
+    }
+
     fn attach_consistency_behavior(&self) {
         let choices = self.0.choices.iter();
 
         for choice in choices {
-            let mut current_choices = self.clone();
+            let current_choices = self.clone();
 
-            choice.attach(move |updated_choice| {
+            choice.attach(move |updated_choice: SelectChoice<TKey>| {
                 let new_value = updated_choice.is_checked.get();
 
                 if new_value {
-                    current_choices.0.change_all_status(false, |choice| {
-                        choice.key != updated_choice.key.clone()
-                    });
+                    current_choices.0.change_all_status(
+                        false,
+                        Some(Box::new(move |choice: &SelectChoice<TKey>| {
+                            choice.key != updated_choice.key
+                        })),
+                    );
                 }
             });
         }

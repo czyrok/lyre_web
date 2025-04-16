@@ -13,7 +13,10 @@ use crate::{
         use_case::UseCase,
     },
     project::{
-        dto::project_contexts_dto::ProjectContextsDto,
+        dto::{
+            project_context_filter_dto::ProjectContextFilterDto,
+            project_contexts_dto::ProjectContextsDto,
+        },
         services::{
             project_context_service::ProjectContextService,
             project_service::ProjectService,
@@ -77,21 +80,18 @@ impl GetOrderedProjectContextsUseCase {
     }
 }
 
-impl UseCase<CursorPagination, ProjectContextsDto>
+impl UseCase<(CursorPagination, ProjectContextFilterDto), ProjectContextsDto>
     for GetOrderedProjectContextsUseCase
 {
     async fn run(
         &mut self,
-        pagination: CursorPagination,
+        input: (CursorPagination, ProjectContextFilterDto),
     ) -> Result<ProjectContextsDto, ServerFunctionError> {
-        self.check_slug_pagination_cursor_after(&pagination).await?;
+        self.check_slug_pagination_cursor_after(&input.0).await?;
 
         let project_contexts = self
             .project_context_service
-            .get_ordered_project_contexts(
-                pagination.limit,
-                pagination.cursor_after.clone(),
-            )
+            .get_ordered_project_contexts(input.0, input.1)
             .await
             .map_err(
                 GetOrderedProjectContextsUseCase::to_server_function_error,

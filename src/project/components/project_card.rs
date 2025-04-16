@@ -18,8 +18,8 @@ pub fn ProjectCard(project_context: ProjectContext) -> impl IntoView {
             </span>
 
             <div class="tw-card-tag-container">
-                <For each=move || project_context.tags.0.clone() key=|tag| tag.clone() let:tag>
-                    <ProjectTag text=tag />
+                <For each=move || project_context.tags.0.clone() key=|tag| tag.name.clone() let:tag>
+                    <ProjectTag text=tag.name />
                 </For>
             </div>
         </div>

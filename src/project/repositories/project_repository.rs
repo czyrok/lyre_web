@@ -4,8 +4,6 @@ use std::{
     io,
 };
 
-use futures::TryFutureExt;
-
 use crate::{
     project::data::{
         project::Project, project_content::ProjectContent,
@@ -134,6 +132,7 @@ impl ProjectRepository {
         let mut local_database =
             LocalDatabase::new(&self.environment.local_database_uri).await?;
 
+        // TODO: query_as
         let project = sqlx::query!(
             "
                 SELECT    `projects`.`slug`,
@@ -167,23 +166,5 @@ impl ProjectRepository {
         .await?;
 
         Ok(project)
-    }
-
-    pub async fn get_project_total_count(&self) -> Result<u32, sqlx::Error> {
-        let mut local_database =
-            LocalDatabase::new(&self.environment.local_database_uri).await?;
-
-        let count = sqlx::query!(
-            "
-            SELECT    COUNT(*) AS count
-            FROM      `projects`
-            ORDER BY  position ASC;
-            ",
-        )
-        .fetch_one(&mut local_database.connection)
-        .map_ok(|record| u32::try_from(record.count).ok().unwrap_or_default())
-        .await?;
-
-        Ok(count)
     }
 }

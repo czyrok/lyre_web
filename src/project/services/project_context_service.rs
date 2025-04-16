@@ -1,43 +1,41 @@
-use crate::project::{
-    data::project_context::ProjectContext,
-    repositories::{
-        project_context_repository::ProjectContextRepository,
-        project_repository::ProjectRepository,
+use crate::{
+    core::cursor_pagination::CursorPagination,
+    project::{
+        data::project_context::ProjectContext,
+        dto::project_context_filter_dto::ProjectContextFilterDto,
+        repositories::project_context_repository::ProjectContextRepository,
     },
 };
 
 #[derive(Clone, Debug)]
 pub struct ProjectContextService {
     project_context_repository: ProjectContextRepository,
-    project_repository: ProjectRepository,
 }
 
 impl ProjectContextService {
-    pub fn new(
-        project_context_repository: ProjectContextRepository,
-        project_repository: ProjectRepository,
-    ) -> Self {
+    pub fn new(project_context_repository: ProjectContextRepository) -> Self {
         Self {
             project_context_repository,
-            project_repository,
         }
     }
 
     // TODO: ajouter test sur la pagination (mettre de la merde) + voir si fonctione sans slug after
     pub async fn get_ordered_project_contexts(
         &self,
-        pagination_limit: u32,
-        slug_cursor_after: Option<String>,
+        pagination: CursorPagination,
+        filter: ProjectContextFilterDto,
     ) -> Result<(Vec<ProjectContext>, u32), sqlx::Error> {
         let ordered_projects = self
             .project_context_repository
-            .get_project_contexts(pagination_limit, slug_cursor_after.clone())
+            .get_project_contexts(&pagination, &filter)
             .await?;
 
-        let project_total_count =
-            self.project_repository.get_project_total_count().await?;
+        let total_count = self
+            .project_context_repository
+            .get_project_context_total_count(&filter)
+            .await?;
 
-        Ok((ordered_projects, project_total_count))
+        Ok((ordered_projects, total_count))
     }
 
     /**
@@ -48,9 +46,12 @@ impl ProjectContextService {
         &self,
         limit: u32,
     ) -> Result<Vec<ProjectContext>, sqlx::Error> {
+        let pagination = CursorPagination::new_from_limit(limit);
+        let filter = ProjectContextFilterDto::default();
+
         let ordered_projects = self
             .project_context_repository
-            .get_project_contexts(limit, None)
+            .get_project_contexts(&pagination, &filter)
             .await?;
 
         Ok(ordered_projects)

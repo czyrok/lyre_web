@@ -13,6 +13,7 @@ import { addProjectCardComponent } from './components/project/project_card';
 import { addProjectCardSkeletonComponent } from './components/project/project_card_skeleton';
 import { addProjectTagComponent } from './components/project/project_tag';
 import { addProjectThumbnailComponent } from './components/project/project_thumbnail';
+import { addSearchedProjectTitleInputTextComponent } from './components/project_search_page/searched_project_title_input_text';
 import { addAccentuationButtonComponent } from './components/shared/accentuation_button';
 import { addAccentuationInputTextComponent } from './components/shared/accentuation_input_text';
 import { addAnchorComponent } from './components/shared/anchor';
@@ -26,7 +27,9 @@ import { addSecondaryButtonComponent } from './components/shared/secondary_butto
 import { addSecondaryCheckboxComponent } from './components/shared/secondary_checkbox';
 import { addSecondaryLinkComponent } from './components/shared/secondary_link';
 import { addSecondarySelectComponent } from './components/shared/secondary_select';
+import { addSecondaryPageLayout } from './layouts/secondary_page_layout';
 import { addLandingPage } from './pages/landing_page';
+import { addProjectSearchPage } from './pages/project_search_page';
 import { THEME_BACKGROUND } from './theme/background';
 import { THEME_BLUR } from './theme/blur';
 import { THEME_BORDER_RADIUS } from './theme/border_radius';
@@ -204,8 +207,16 @@ export const TAILWIND_CONFIGURATION: Config = {
         darkModeContext,
         classPrefix: TAILWIND_CLASS_PREFIX,
       });
+      addSearchedProjectTitleInputTextComponent(pluginApi, {
+        darkModeContext,
+        classPrefix: TAILWIND_CLASS_PREFIX,
+      });
 
       addLandingPage(pluginApi, {
+        darkModeContext,
+        classPrefix: TAILWIND_CLASS_PREFIX,
+      });
+      addProjectSearchPage(pluginApi, {
         darkModeContext,
         classPrefix: TAILWIND_CLASS_PREFIX,
       });
