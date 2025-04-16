@@ -6,7 +6,7 @@ export const addNavBarComponent: ComponentBuilderFunction = (
 ) => {
   addComponents({
     '.nav-bar-wrapper': {
-      [`@apply ${classPrefix}fixed ${classPrefix}top-0 ${classPrefix}inset-x-0 ${classPrefix}mx-auto ${classPrefix}flex ${classPrefix}z-100`]:
+      [`@apply ${classPrefix}fixed ${classPrefix}top-0 ${classPrefix}inset-x-0 ${classPrefix}mx-auto ${classPrefix}flex ${classPrefix}w-fit ${classPrefix}z-100`]:
         {},
 
       // Sizing
