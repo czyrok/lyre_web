@@ -2,7 +2,7 @@ use chrono::Datelike;
 use sqlx::{QueryBuilder, Row, Sqlite};
 
 use crate::{
-    core::cursor_pagination::CursorPagination,
+    core::dto::cursor_pagination_dto::CursorPaginationDto,
     project::{
         data::project_context::ProjectContext,
         dto::project_context_filter_dto::ProjectContextFilterDto,
@@ -99,7 +99,7 @@ impl ProjectContextRepository {
 
     pub fn apply_pagination_cursor_after_on_query(
         query_builder: &'_ mut QueryBuilder<'_, Sqlite>,
-        pagination: &CursorPagination,
+        pagination: &CursorPaginationDto,
     ) {
         if let Some(cursor_after) = pagination.cursor_after.clone() {
             query_builder.push(
@@ -118,7 +118,7 @@ impl ProjectContextRepository {
 
     pub fn apply_pagination_limit(
         query_builder: &'_ mut QueryBuilder<'_, Sqlite>,
-        pagination: &CursorPagination,
+        pagination: &CursorPaginationDto,
     ) {
         query_builder.push("LIMIT ");
         query_builder.push_bind(pagination.limit);
@@ -129,7 +129,7 @@ impl ProjectContextRepository {
      */
     pub async fn get_project_contexts(
         &self,
-        pagination: &CursorPagination,
+        pagination: &CursorPaginationDto,
         filter: &ProjectContextFilterDto,
     ) -> Result<Vec<ProjectContext>, sqlx::Error> {
         let mut local_database =

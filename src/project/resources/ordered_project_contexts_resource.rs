@@ -1,7 +1,7 @@
 use leptos::prelude::{Get, Resource, Signal};
 
 use crate::{
-    core::cursor_pagination::CursorPagination,
+    core::dto::cursor_pagination_dto::CursorPaginationDto,
     project::{
         api::project_context_api::get_ordered_project_contexts,
         data::project_context::ProjectContext,
@@ -26,7 +26,7 @@ pub struct OrderedProjectContextsResource(
 
 impl OrderedProjectContextsResource {
     pub fn new(
-        pagination: Signal<CursorPagination>,
+        pagination: Signal<CursorPaginationDto>,
         filter: Signal<ProjectContextFilterDto>,
     ) -> Self {
         let resource = Resource::new(

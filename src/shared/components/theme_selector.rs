@@ -1,9 +1,9 @@
 use leptos::prelude::*;
 
 use crate::{
-    core::component_size::ComponentSize,
     shared::{
         components::dropdown_menu::Position,
+        enums::component_size::ComponentSize,
         select::{
             components::select::Select,
             types::{

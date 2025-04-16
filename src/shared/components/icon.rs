@@ -1,6 +1,22 @@
 use leptos::prelude::*;
 
-use crate::core::icon_set::IconSet;
+#[derive(Clone)]
+pub enum IconSet {
+    Check,
+    External,
+    Search,
+    RightArrow,
+    Eye,
+    Compass,
+    LinkedIn,
+    SingleDownArrow,
+    DoubleDownArrow,
+    Home,
+    About,
+    Email,
+    Undo,
+    Calendar,
+}
 
 #[component]
 pub fn Icon(icon: IconSet) -> impl IntoView {

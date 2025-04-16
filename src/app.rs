@@ -10,7 +10,7 @@ use leptos_router::{
 };
 
 use crate::{
-    core::app_settings::UsesDarkTheme,
+    core::data::app_settings::UsesDarkTheme,
     landing_page::view::LandingPage,
     project::{
         api::project_slug_api::get_project_slugs,

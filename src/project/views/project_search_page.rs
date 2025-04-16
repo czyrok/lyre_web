@@ -1,7 +1,7 @@
 use leptos::prelude::*;
 
 use crate::{
-    core::cursor_pagination::CursorPagination,
+    core::dto::cursor_pagination_dto::CursorPaginationDto,
     project::{
         components::{
             empty_search_result::EmptySearchResult,
@@ -25,7 +25,7 @@ pub fn ProjectSearchPage() -> impl IntoView {
         WriteSignal<Vec<ProjectContext>>,
     ) = signal(vec![]);
 
-    let (pagination, set_pagination) = signal(CursorPagination::default());
+    let (pagination, set_pagination) = signal(CursorPaginationDto::default());
     let (project_context_filter, set_project_context_filter) =
         signal(ProjectContextFilterDto::default());
     let (searched_project_title, set_searched_project_title) =
@@ -48,7 +48,7 @@ pub fn ProjectSearchPage() -> impl IntoView {
 
     let reset_view_when_filter_updated = move || {
         set_project_contexts.set(vec![]);
-        set_pagination.set(CursorPagination::default());
+        set_pagination.set(CursorPaginationDto::default());
     };
 
     view! {

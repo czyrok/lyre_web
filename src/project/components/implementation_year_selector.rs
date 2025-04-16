@@ -1,10 +1,10 @@
 use leptos::prelude::*;
 
 use crate::{
-    core::{component_size::ComponentSize, icon_set::IconSet},
     project::enums::implementation_year::ImplementationYear,
     shared::{
-        components::dropdown_menu::Position,
+        components::{dropdown_menu::Position, icon::IconSet},
+        enums::component_size::ComponentSize,
         select::{
             components::select::Select,
             types::{

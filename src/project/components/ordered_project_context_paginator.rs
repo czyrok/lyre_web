@@ -1,7 +1,7 @@
 use leptos::prelude::*;
 
 use crate::{
-    core::cursor_pagination::CursorPagination,
+    core::dto::cursor_pagination_dto::CursorPaginationDto,
     project::{
         data::project_context::ProjectContext,
         resources::ordered_project_contexts_resource::OrderedProjectContextsResource,
@@ -13,7 +13,7 @@ use crate::{
 pub fn OrderedProjectContextPaginator(
     resource: OrderedProjectContextsResource,
     project_contexts: Signal<Vec<ProjectContext>>,
-    set_pagination: WriteSignal<CursorPagination>,
+    set_pagination: WriteSignal<CursorPaginationDto>,
 ) -> impl IntoView {
     let (count_left, set_count_left): (ReadSignal<usize>, WriteSignal<usize>) =
         signal(0);

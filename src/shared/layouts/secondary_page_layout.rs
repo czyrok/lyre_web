@@ -1,14 +1,12 @@
 use leptos::prelude::*;
 
-use crate::{
-    core::component_size::ComponentSize,
-    shared::{
-        button::components::secondary_button_as_link::SecondaryButtonAsLink,
-        components::{
-            brand::{Brand, LayoutMode},
-            footer::Footer,
-        },
+use crate::shared::{
+    button::components::secondary_button_as_link::SecondaryButtonAsLink,
+    components::{
+        brand::{Brand, LayoutMode},
+        footer::Footer,
     },
+    enums::component_size::ComponentSize,
 };
 
 #[component]

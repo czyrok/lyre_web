@@ -3,11 +3,11 @@ use leptos::prelude::expect_context;
 use leptos_axum::ResponseOptions;
 
 use crate::core::{
+    behaviors::use_case::UseCase,
     error::{
         named::internal_server_error::InternalServerError,
         server_function_error::{ServerFunctionError, ServerFunctionException},
     },
-    use_case::UseCase,
 };
 
 pub async fn run_use_case<

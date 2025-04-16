@@ -2,6 +2,7 @@ use std::fmt::Display;
 
 use crate::{
     core::{
+        behaviors::use_case::UseCase,
         error::{
             named::{
                 bad_request_server_error::BadRequestServerError,
@@ -9,7 +10,6 @@ use crate::{
             },
             server_function_error::ServerFunctionError,
         },
-        use_case::UseCase,
     },
     project::services::project_service::ProjectService,
     system::{

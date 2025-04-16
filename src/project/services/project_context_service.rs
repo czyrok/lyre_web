@@ -1,5 +1,5 @@
 use crate::{
-    core::cursor_pagination::CursorPagination,
+    core::dto::cursor_pagination_dto::CursorPaginationDto,
     project::{
         data::project_context::ProjectContext,
         dto::project_context_filter_dto::ProjectContextFilterDto,
@@ -22,7 +22,7 @@ impl ProjectContextService {
     // TODO: ajouter test sur la pagination (mettre de la merde) + voir si fonctione sans slug after
     pub async fn get_ordered_project_contexts(
         &self,
-        pagination: CursorPagination,
+        pagination: CursorPaginationDto,
         filter: ProjectContextFilterDto,
     ) -> Result<(Vec<ProjectContext>, u32), sqlx::Error> {
         let ordered_projects = self
@@ -46,7 +46,7 @@ impl ProjectContextService {
         &self,
         limit: u32,
     ) -> Result<Vec<ProjectContext>, sqlx::Error> {
-        let pagination = CursorPagination::new_from_limit(limit);
+        let pagination = CursorPaginationDto::new_from_limit(limit);
         let filter = ProjectContextFilterDto::default();
 
         let ordered_projects = self

@@ -2,8 +2,8 @@ use leptos::prelude::*;
 use leptos_router::components::A;
 
 use crate::{
-    core::icon_set::IconSet, project::data::project_context::ProjectContext,
-    shared::components::icon::Icon,
+    project::data::project_context::ProjectContext,
+    shared::components::icon::{Icon, IconSet},
 };
 
 #[component]

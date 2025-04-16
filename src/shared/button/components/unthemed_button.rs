@@ -1,18 +1,18 @@
-use leptos::{callback, ev::MouseEvent, prelude::*};
+use leptos::{ev::MouseEvent, prelude::*};
 
 use super::super::types::{
     button_action::ButtonAction, button_theme::ButtonTheme, icon_side::IconSide,
 };
-use crate::{
-    core::{component_size::ComponentSize, icon_set::IconSet},
-    shared::components::icon::Icon,
+use crate::shared::{
+    components::icon::{Icon, IconSet},
+    enums::component_size::ComponentSize,
 };
 
 #[component]
 pub fn UnthemedButton(
     theme: ButtonTheme,
     size: ComponentSize,
-    #[prop(into)] text: String,
+    #[prop(into, default = "".into())] text: String,
     #[prop(into)] on_click: ButtonAction,
     #[prop(into)] icon: Option<IconSet>,
     #[prop(into)] icon_side: Option<IconSide>,
@@ -47,6 +47,8 @@ pub fn UnthemedButton(
         }
     };
 
+    let has_text = !text.is_empty();
+
     view! {
         <button
             class=(["tw-accentuation-button"], move || is_accentuation_theme)
@@ -70,7 +72,11 @@ pub fn UnthemedButton(
                 }
             })}
 
-            <span class="tw-button-text">{ text }</span>
+            {move || has_text.then(|| {
+                view! {
+                    <span class="tw-button-text">{ text.clone() }</span>
+                }
+            })}
 
             {move || has_right_icon.then(|| {
                 view! {

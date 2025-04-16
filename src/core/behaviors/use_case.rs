@@ -1,6 +1,6 @@
 use std::future::Future;
 
-use super::error::server_function_error::ServerFunctionError;
+use crate::core::error::server_function_error::ServerFunctionError;
 
 pub trait UseCase<TInput, TOutput> {
     fn run(

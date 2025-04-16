@@ -2,7 +2,6 @@ use leptos::prelude::*;
 use leptos_use::signal_debounced;
 
 use crate::{
-    core::{component_size::ComponentSize, icon_set::IconSet},
     project::{
         components::{
             implementation_year_selector::ImplementationYearSelector,
@@ -10,7 +9,10 @@ use crate::{
         },
         dto::project_context_filter_dto::ProjectContextFilterDto,
     },
-    shared::button::components::secondary_button::SecondaryButton,
+    shared::{
+        button::components::secondary_button::SecondaryButton,
+        components::icon::IconSet, enums::component_size::ComponentSize,
+    },
 };
 
 #[component]

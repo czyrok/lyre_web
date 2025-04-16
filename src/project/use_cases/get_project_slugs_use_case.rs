@@ -1,10 +1,10 @@
 use crate::{
     core::{
+        behaviors::use_case::UseCase,
         error::{
             named::internal_server_error::InternalServerError,
             server_function_error::ServerFunctionError,
         },
-        use_case::UseCase,
     },
     project::{
         dto::project_slugs_dto::ProjectSlugsDto,

@@ -1,6 +1,6 @@
 use leptos::prelude::*;
 
-use crate::core::component_size::ComponentSize;
+use crate::shared::enums::component_size::ComponentSize;
 
 #[derive(Default, PartialEq)]
 pub enum LayoutMode {

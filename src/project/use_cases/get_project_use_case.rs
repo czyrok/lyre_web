@@ -1,5 +1,6 @@
 use crate::{
     core::{
+        behaviors::use_case::UseCase,
         error::{
             named::{
                 internal_server_error::InternalServerError,
@@ -7,7 +8,6 @@ use crate::{
             },
             server_function_error::ServerFunctionError,
         },
-        use_case::UseCase,
     },
     project::{
         dto::project_dto::ProjectDto, services::project_service::ProjectService,

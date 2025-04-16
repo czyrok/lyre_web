@@ -2,17 +2,14 @@ use std::fmt::Display;
 
 use crate::{
     core::{
+        behaviors::use_case::UseCase,
         error::{
             named::internal_server_error::InternalServerError,
             server_function_error::ServerFunctionError,
         },
-        use_case::UseCase,
     },
     project::{
-        dto::{
-            project_contexts_dto::ProjectContextsDto,
-            relevant_project_contexts_dto::RelevantProjectContextsDto,
-        },
+        dto::relevant_project_contexts_dto::RelevantProjectContextsDto,
         services::project_context_service::ProjectContextService,
     },
 };

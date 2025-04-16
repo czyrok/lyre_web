@@ -2,11 +2,11 @@ use std::fmt::Display;
 
 use crate::{
     core::{
+        behaviors::use_case::UseCase,
         error::{
             named::internal_server_error::InternalServerError,
             server_function_error::ServerFunctionError,
         },
-        use_case::UseCase,
     },
     project::services::project_service::ProjectService,
     system::{

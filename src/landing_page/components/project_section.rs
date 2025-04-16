@@ -1,7 +1,6 @@
 use leptos::prelude::*;
 
 use crate::{
-    core::{component_size::ComponentSize, icon_set::IconSet},
     project::{
         api::project_context_api::get_relevant_project_contexts,
         components::{
@@ -9,9 +8,13 @@ use crate::{
             project_card_skeleton::ProjectCardSkeleton,
         },
     },
-    shared::button::{
-        components::primary_button_as_link::PrimaryButtonAsLink,
-        types::icon_side::IconSide,
+    shared::{
+        button::{
+            components::primary_button_as_link::PrimaryButtonAsLink,
+            types::icon_side::IconSide,
+        },
+        components::icon::IconSet,
+        enums::component_size::ComponentSize,
     },
 };
 

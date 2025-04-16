@@ -21,7 +21,7 @@ if #[cfg(feature = "ssr")] {
     use system::route::static_route_generator::get_static_route_generator;
     use system::handlers::{server_function_handler::server_function_handler, leptos_route_handler::leptos_routes_handler};
     use project::use_cases::make_system_project_cache_loading_use_case::MakeSystemProjectCacheLoadingUseCase;
-    use core::use_case::UseCase;
+    use core::behaviors::use_case::UseCase;
     use system::state::environment_context::EnvironmentContext;
 
     fn get_app_state() -> Result<AppState, Box<dyn Error>> {

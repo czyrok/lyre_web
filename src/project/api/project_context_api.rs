@@ -2,7 +2,7 @@ use leptos::{prelude::ServerFnError, server, server_fn::codec::GetUrl};
 
 use crate::{
     core::{
-        cursor_pagination::CursorPagination,
+        dto::cursor_pagination_dto::CursorPaginationDto,
         error::server_error_dto::ServerErrorDto,
     },
     project::dto::{
@@ -14,7 +14,7 @@ use crate::{
 
 #[server(prefix = "/api", endpoint = "project_contexts", input = GetUrl)]
 pub async fn get_ordered_project_contexts(
-    pagination: Option<CursorPagination>,
+    pagination: Option<CursorPaginationDto>,
     filter: Option<ProjectContextFilterDto>,
 ) -> Result<ProjectContextsDto, ServerFnError<ServerErrorDto>> {
     use crate::{

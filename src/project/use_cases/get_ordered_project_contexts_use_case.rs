@@ -2,7 +2,8 @@ use std::fmt::Display;
 
 use crate::{
     core::{
-        cursor_pagination::CursorPagination,
+        behaviors::use_case::UseCase,
+        dto::cursor_pagination_dto::CursorPaginationDto,
         error::{
             named::{
                 bad_request_server_error::BadRequestServerError,
@@ -10,7 +11,6 @@ use crate::{
             },
             server_function_error::ServerFunctionError,
         },
-        use_case::UseCase,
     },
     project::{
         dto::{
@@ -44,7 +44,7 @@ impl GetOrderedProjectContextsUseCase {
 
     async fn check_slug_pagination_cursor_after(
         &self,
-        pagination: &CursorPagination,
+        pagination: &CursorPaginationDto,
     ) -> Result<(), ServerFunctionError> {
         if let Some(slug_cursor_after) = pagination.cursor_after.clone() {
             let exists = self
@@ -80,12 +80,12 @@ impl GetOrderedProjectContextsUseCase {
     }
 }
 
-impl UseCase<(CursorPagination, ProjectContextFilterDto), ProjectContextsDto>
+impl UseCase<(CursorPaginationDto, ProjectContextFilterDto), ProjectContextsDto>
     for GetOrderedProjectContextsUseCase
 {
     async fn run(
         &mut self,
-        input: (CursorPagination, ProjectContextFilterDto),
+        input: (CursorPaginationDto, ProjectContextFilterDto),
     ) -> Result<ProjectContextsDto, ServerFunctionError> {
         self.check_slug_pagination_cursor_after(&input.0).await?;
 

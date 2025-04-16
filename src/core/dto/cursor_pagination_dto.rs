@@ -6,15 +6,14 @@ fn get_default_pagination_limit() -> u32 {
     DEFAULT_PAGINATION_LIMIT
 }
 
-// TODO: dto
 #[derive(Serialize, Deserialize, Clone, PartialEq, Debug)]
-pub struct CursorPagination {
+pub struct CursorPaginationDto {
     #[serde(default = "get_default_pagination_limit")]
     pub limit: u32,
     pub cursor_after: Option<String>,
 }
 
-impl CursorPagination {
+impl CursorPaginationDto {
     pub fn new_from_cursor(cursor_after: Option<String>) -> Self {
         Self {
             limit: get_default_pagination_limit(),
@@ -30,7 +29,7 @@ impl CursorPagination {
     }
 }
 
-impl Default for CursorPagination {
+impl Default for CursorPaginationDto {
     fn default() -> Self {
         Self {
             limit: get_default_pagination_limit(),

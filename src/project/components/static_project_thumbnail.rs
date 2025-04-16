@@ -1,9 +1,9 @@
 use leptos::prelude::*;
 
 use super::super::data::project_context::ProjectContext;
-use crate::{
-    core::component_size::ComponentSize,
-    shared::components::brand::{Brand, LayoutMode},
+use crate::shared::{
+    components::brand::{Brand, LayoutMode},
+    enums::component_size::ComponentSize,
 };
 
 #[component]

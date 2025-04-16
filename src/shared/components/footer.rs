@@ -1,14 +1,12 @@
 use leptos::prelude::*;
 
-use crate::{
-    core::component_size::ComponentSize,
-    shared::{
-        button::components::{
-            accentuation_button_as_link::AccentuationButtonAsLink,
-            secondary_button_as_link::SecondaryButtonAsLink,
-        },
-        components::theme_selector::ThemeSelector,
+use crate::shared::{
+    button::components::{
+        accentuation_button_as_link::AccentuationButtonAsLink,
+        secondary_button_as_link::SecondaryButtonAsLink,
     },
+    components::theme_selector::ThemeSelector,
+    enums::component_size::ComponentSize,
 };
 
 #[component]
