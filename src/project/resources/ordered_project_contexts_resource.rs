@@ -1,7 +1,10 @@
 use leptos::prelude::*;
 
 use crate::{
-    core::dto::cursor_pagination_dto::CursorPaginationDto,
+    core::{
+        dto::cursor_pagination_dto::CursorPaginationDto,
+        error::server_function_error::ServerFunctionException,
+    },
     project::{
         api::project_context_api::get_ordered_project_contexts,
         data::project_context::ProjectContext,
@@ -14,7 +17,7 @@ use crate::{
 
 #[derive(Clone, Copy)]
 pub struct OrderedProjectContextsResource(
-    pub  Resource<
+    Resource<
         Result<
             ProjectContextsDto,
             leptos::prelude::ServerFnError<
@@ -99,5 +102,17 @@ impl OrderedProjectContextsResource {
             self.0.get_untracked().map(|n| n.unwrap_or_default());
 
         project_contexts.is_some()
+    }
+
+    pub fn is_errored(&self) -> Result<(), ServerFunctionException> {
+        let resource_result = self.0.get_untracked();
+
+        if let Some(resource_result) = resource_result {
+            let resource_result = resource_result.map(|_| ());
+
+            return resource_result;
+        }
+
+        Ok(())
     }
 }

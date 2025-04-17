@@ -35,6 +35,14 @@ export const addProjectSearchPage: ComponentBuilderFunction = (
           // Sizing
           [`@apply ${classPrefix}gap-level2`]: {},
         },
+
+        // Children
+        '.middle-part-info': {
+          [`@apply ${classPrefix}flex ${classPrefix}flex-col ${classPrefix}items-center`]: {},
+
+          // Sizing
+          [`@apply ${classPrefix}gap-level2`]: {},
+        },
       },
 
       '.project-search-page-bottom-part': {

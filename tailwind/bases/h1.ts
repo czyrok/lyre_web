@@ -9,7 +9,7 @@ export const addH1Base: ComponentBuilderFunction = (
       [`@apply ${classPrefix}w-fit ${classPrefix}bg-clip-text ${classPrefix}text-transparent`]: {},
 
       // Colors
-      [`@apply ${classPrefix}bg-title-gradient`]: {},
+      [`@apply ${classPrefix}bg-bash-gradient`]: {},
       [`@apply ${classPrefix}from-blue-800 ${classPrefix}to-blue-500`]: {},
       [`${darkModeContext} &`]: {
         [`@apply ${classPrefix}from-blue-200 ${classPrefix}to-blue-400`]: {},

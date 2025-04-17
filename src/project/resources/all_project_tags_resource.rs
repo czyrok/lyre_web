@@ -10,7 +10,7 @@ use crate::{
 
 #[derive(Clone, Copy)]
 pub struct AllProjectTagsResource(
-    pub  OnceResource<
+    OnceResource<
         Result<
             ProjectTagsDto,
             leptos::prelude::ServerFnError<

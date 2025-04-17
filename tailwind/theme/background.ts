@@ -9,7 +9,7 @@ export const THEME_BACKGROUND: {
     'bubble-pattern': "url('backgrounds/button_rectangle_background.svg')",
     'button-gradient':
       'linear-gradient(100deg, var(--tw-gradient-from) 46%, var(--tw-gradient-to) 95.83%)',
-    'title-gradient':
+    'bash-gradient':
       'linear-gradient(90deg, var(--tw-gradient-from) 0%, var(--tw-gradient-to) 100%)',
     'landing-page-cover-gradient':
       'linear-gradient(180deg, var(--tw-gradient-from) 0%, var(--tw-gradient-to) 82%)',

@@ -1,35 +1,36 @@
 use leptos::prelude::*;
 
 use crate::{
-    project::{
-        api::project_context_api::get_relevant_project_contexts,
-        components::{
-            project_card::ProjectCard,
-            project_card_skeleton::ProjectCardSkeleton,
-        },
+    core::error::server_function_error::ServerFunctionException,
+    landing_page::resources::relevant_project_contexts_resource::RelevantProjectContextsResource,
+    project::components::{
+        project_card::ProjectCard, project_card_skeleton::ProjectCardSkeleton,
     },
     shared::{
         button::{
             components::primary_button_as_link::PrimaryButtonAsLink,
             types::icon_side::IconSide,
         },
-        components::icon::IconSet,
+        components::{fetch_error_display::FetchErrorDisplay, icon::IconSet},
         enums::component_size::ComponentSize,
     },
 };
 
 #[component]
 pub fn ProjectSection() -> impl IntoView {
-    let project_context_resource =
-        OnceResource::new(get_relevant_project_contexts());
+    let (last_fetch_error, set_last_fetch_error): (
+        ReadSignal<Result<(), ServerFunctionException>>,
+        WriteSignal<Result<(), ServerFunctionException>>,
+    ) = signal(Ok(()));
+    let resource = RelevantProjectContextsResource::new();
 
-    let relevant_project_contexts = move || {
-        project_context_resource
-            .get()
-            .map(|n| n.unwrap_or_default())
-            .map(|project_contexts_dto| project_contexts_dto.project_contexts)
-            .unwrap_or_default()
-    };
+    Effect::new(move || {
+        resource.track();
+
+        if let Err(error) = resource.is_errored() {
+            set_last_fetch_error.set(Err(error));
+        }
+    });
 
     view! {
         <div class="tw-landing-page-section-container tw-landing-page-project-section">
@@ -49,7 +50,9 @@ pub fn ProjectSection() -> impl IntoView {
                         <ProjectCardSkeleton />
                     }
                 }>
-                    <For each=relevant_project_contexts key=|project_context| project_context.slug.clone() let:project_context>
+                    <FetchErrorDisplay fetch_error=last_fetch_error.into() />
+
+                    <For each=move || resource.get_fetched_project_contexts() key=|project_context| project_context.slug.clone() let:project_context>
                         <ProjectCard project_context=project_context />
                     </For>
                 </Suspense>

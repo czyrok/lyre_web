@@ -16,9 +16,11 @@ import { addProjectThumbnailComponent } from './components/project/project_thumb
 import { addSearchedProjectTitleInputTextComponent } from './components/project_search_page/searched_project_title_input_text';
 import { addAccentuationButtonComponent } from './components/shared/accentuation_button';
 import { addAccentuationInputTextComponent } from './components/shared/accentuation_input_text';
+import { addAdditionalInfoComponent } from './components/shared/additional_info';
 import { addAnchorComponent } from './components/shared/anchor';
 import { addBrandComponent } from './components/shared/brand';
 import { addDropdownMenuComponent } from './components/shared/dropdown_menu';
+import { addErrorInfoComponent } from './components/shared/error_info';
 import { addFooterComponent } from './components/shared/footer';
 import { addNavBarComponent } from './components/shared/nav_bar';
 import { addPaginationComponent } from './components/shared/pagination';
@@ -208,6 +210,14 @@ export const TAILWIND_CONFIGURATION: Config = {
         classPrefix: TAILWIND_CLASS_PREFIX,
       });
       addSearchedProjectTitleInputTextComponent(pluginApi, {
+        darkModeContext,
+        classPrefix: TAILWIND_CLASS_PREFIX,
+      });
+      addAdditionalInfoComponent(pluginApi, {
+        darkModeContext,
+        classPrefix: TAILWIND_CLASS_PREFIX,
+      });
+      addErrorInfoComponent(pluginApi, {
         darkModeContext,
         classPrefix: TAILWIND_CLASS_PREFIX,
       });

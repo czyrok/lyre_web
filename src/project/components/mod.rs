@@ -1,4 +1,3 @@
-pub mod empty_search_result;
 pub mod implementation_year_selector;
 pub mod ordered_project_context_filter;
 pub mod ordered_project_context_paginator;
@@ -6,6 +5,7 @@ pub mod project_card;
 pub mod project_card_skeleton;
 pub mod project_tag;
 pub mod project_thumbnail;
+pub mod search_result_info;
 pub mod searched_project_title_input;
 pub mod static_project_thumbnail;
 pub mod tag_selector;
