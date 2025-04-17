@@ -17,7 +17,7 @@ export const addProjectCardSkeletonComponent: ComponentBuilderFunction = (
         // Colors
         [`@apply ${classPrefix}bg-white-200`]: {},
         [`${darkModeContext} &`]: {
-          [`@apply ${classPrefix}bg-black-500`]: {},
+          [`@apply ${classPrefix}bg-black-700`]: {},
         },
 
         // Sizing
@@ -29,7 +29,7 @@ export const addProjectCardSkeletonComponent: ComponentBuilderFunction = (
         // Colors
         [`@apply ${classPrefix}bg-white-200`]: {},
         [`${darkModeContext} &`]: {
-          [`@apply ${classPrefix}bg-black-500`]: {},
+          [`@apply ${classPrefix}bg-black-700`]: {},
         },
 
         // Sizing
@@ -48,7 +48,7 @@ export const addProjectCardSkeletonComponent: ComponentBuilderFunction = (
           // Colors
           [`@apply ${classPrefix}bg-white-200`]: {},
           [`${darkModeContext} &`]: {
-            [`@apply ${classPrefix}bg-black-500`]: {},
+            [`@apply ${classPrefix}bg-black-700`]: {},
           },
 
           // Sizing
