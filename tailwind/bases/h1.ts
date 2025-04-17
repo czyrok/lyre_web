@@ -12,7 +12,7 @@ export const addH1Base: ComponentBuilderFunction = (
       [`@apply ${classPrefix}bg-bash-gradient`]: {},
       [`@apply ${classPrefix}from-blue-800 ${classPrefix}to-blue-500`]: {},
       [`${darkModeContext} &`]: {
-        [`@apply ${classPrefix}from-blue-200 ${classPrefix}to-blue-400`]: {},
+        [`@apply ${classPrefix}from-blue-400 ${classPrefix}to-blue-200`]: {},
       },
 
       // Others
@@ -22,7 +22,7 @@ export const addH1Base: ComponentBuilderFunction = (
         // Colors
         [`@apply ${classPrefix}text-blue-800`]: {},
         [`${darkModeContext} &`]: {
-          [`@apply ${classPrefix}text-blue-200`]: {},
+          [`@apply ${classPrefix}text-blue-400`]: {},
         },
 
         // Others
