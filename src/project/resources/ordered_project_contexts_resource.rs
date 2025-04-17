@@ -1,10 +1,7 @@
 use leptos::prelude::*;
 
 use crate::{
-    core::{
-        dto::cursor_pagination_dto::CursorPaginationDto,
-        error::server_function_error::ServerFunctionException,
-    },
+    core::dto::cursor_pagination_dto::CursorPaginationDto,
     project::{
         api::project_context_api::get_ordered_project_contexts,
         data::project_context::ProjectContext,
@@ -13,6 +10,7 @@ use crate::{
             project_contexts_dto::ProjectContextsDto,
         },
     },
+    shared::components::fetch_error_display::FetchErrorState,
 };
 
 #[derive(Clone, Copy)]
@@ -97,22 +95,24 @@ impl OrderedProjectContextsResource {
         aggregate_project_contexts
     }
 
-    pub fn is_ready(&self) -> bool {
+    pub fn is_ready_untracked(&self) -> bool {
         let project_contexts =
             self.0.get_untracked().map(|n| n.unwrap_or_default());
 
         project_contexts.is_some()
     }
 
-    pub fn is_errored(&self) -> Result<(), ServerFunctionException> {
-        let resource_result = self.0.get_untracked();
+    pub fn get_fetch_state(&self) -> FetchErrorState {
+        let resource_result = self.0.get();
 
         if let Some(resource_result) = resource_result {
             let resource_result = resource_result.map(|_| ());
 
-            return resource_result;
+            if let Err(error) = resource_result {
+                return FetchErrorState::errored(error);
+            }
         }
 
-        Ok(())
+        FetchErrorState::default()
     }
 }

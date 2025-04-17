@@ -1,10 +1,7 @@
 use leptos::prelude::*;
 
 use crate::{
-    core::{
-        dto::cursor_pagination_dto::CursorPaginationDto,
-        error::server_function_error::ServerFunctionException,
-    },
+    core::dto::cursor_pagination_dto::CursorPaginationDto,
     project::{
         components::{
             ordered_project_context_filter::OrderedProjectContextFilter,
@@ -18,7 +15,10 @@ use crate::{
         dto::project_context_filter_dto::ProjectContextFilterDto,
         resources::ordered_project_contexts_resource::OrderedProjectContextsResource,
     },
-    shared::layouts::secondary_page_layout::SecondaryPageLayout,
+    shared::{
+        components::fetch_error_display::FetchErrorState,
+        layouts::secondary_page_layout::SecondaryPageLayout,
+    },
 };
 
 #[component]
@@ -36,10 +36,8 @@ pub fn ProjectSearchPage() -> impl IntoView {
     let (filter_reset_event, set_filter_reset_event) = signal(());
 
     let (is_loading, set_is_loading) = signal(false);
-    let (last_fetch_error, set_last_fetch_error): (
-        ReadSignal<Result<(), ServerFunctionException>>,
-        WriteSignal<Result<(), ServerFunctionException>>,
-    ) = signal(Ok(()));
+    let (last_fetch_error, set_last_fetch_error) =
+        signal(FetchErrorState::default());
     let resource = OrderedProjectContextsResource::new(
         pagination.into(),
         project_context_filter.into(),
@@ -65,13 +63,15 @@ pub fn ProjectSearchPage() -> impl IntoView {
         //// reaches the page and a second time when the resource gets a response from
         //// the server. So as to prevent `is_loading` equals to `true` the first running time,
         //// we must check if the resource is ready.
-        if resource.is_ready() {
+        if resource.is_ready_untracked() {
             set_is_loading.set(false);
         }
+    });
 
-        if let Err(error) = resource.is_errored() {
-            set_last_fetch_error.set(Err(error));
-        }
+    Effect::new(move || {
+        let fetch_state = resource.get_fetch_state();
+
+        set_last_fetch_error.set(fetch_state);
     });
 
     let reset_view_when_filter_updated = move || {

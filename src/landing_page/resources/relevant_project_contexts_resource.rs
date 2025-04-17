@@ -1,12 +1,12 @@
 use leptos::prelude::*;
 
 use crate::{
-    core::error::server_function_error::ServerFunctionException,
     project::{
         api::project_context_api::get_relevant_project_contexts,
         data::project_context::ProjectContext,
         dto::relevant_project_contexts_dto::RelevantProjectContextsDto,
     },
+    shared::components::fetch_error_display::FetchErrorState,
 };
 
 #[derive(Clone, Copy)]
@@ -22,13 +22,6 @@ pub struct RelevantProjectContextsResource(
 );
 
 impl RelevantProjectContextsResource {
-    // TODO: default impl
-    pub fn new() -> Self {
-        let resource = OnceResource::new(get_relevant_project_contexts());
-
-        Self(resource)
-    }
-
     pub fn get_fetched_project_contexts(&self) -> Vec<ProjectContext> {
         self.0
             .get()
@@ -37,19 +30,25 @@ impl RelevantProjectContextsResource {
             .unwrap_or_default()
     }
 
-    pub fn track(&self) {
-        self.0.track();
-    }
-
-    pub fn is_errored(&self) -> Result<(), ServerFunctionException> {
-        let resource_result = self.0.get_untracked();
+    pub fn get_fetch_state(&self) -> FetchErrorState {
+        let resource_result = self.0.get();
 
         if let Some(resource_result) = resource_result {
             let resource_result = resource_result.map(|_| ());
 
-            return resource_result;
+            if let Err(error) = resource_result {
+                return FetchErrorState::errored(error);
+            }
         }
 
-        Ok(())
+        FetchErrorState::default()
+    }
+}
+
+impl Default for RelevantProjectContextsResource {
+    fn default() -> Self {
+        let resource = OnceResource::new(get_relevant_project_contexts());
+
+        Self(resource)
     }
 }

@@ -1,7 +1,6 @@
 use leptos::prelude::*;
 
 use crate::{
-    core::error::server_function_error::ServerFunctionException,
     landing_page::resources::relevant_project_contexts_resource::RelevantProjectContextsResource,
     project::components::{
         project_card::ProjectCard, project_card_skeleton::ProjectCardSkeleton,
@@ -11,25 +10,24 @@ use crate::{
             components::primary_button_as_link::PrimaryButtonAsLink,
             types::icon_side::IconSide,
         },
-        components::{fetch_error_display::FetchErrorDisplay, icon::IconSet},
+        components::{
+            fetch_error_display::{FetchErrorDisplay, FetchErrorState},
+            icon::IconSet,
+        },
         enums::component_size::ComponentSize,
     },
 };
 
 #[component]
 pub fn ProjectSection() -> impl IntoView {
-    let (last_fetch_error, set_last_fetch_error): (
-        ReadSignal<Result<(), ServerFunctionException>>,
-        WriteSignal<Result<(), ServerFunctionException>>,
-    ) = signal(Ok(()));
-    let resource = RelevantProjectContextsResource::new();
+    let (last_fetch_error, set_last_fetch_error) =
+        signal(FetchErrorState::default());
+    let resource = RelevantProjectContextsResource::default();
 
     Effect::new(move || {
-        resource.track();
+        let fetch_state = resource.get_fetch_state();
 
-        if let Err(error) = resource.is_errored() {
-            set_last_fetch_error.set(Err(error));
-        }
+        set_last_fetch_error.set(fetch_state);
     });
 
     view! {
