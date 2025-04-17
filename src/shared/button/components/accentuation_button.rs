@@ -20,8 +20,9 @@ pub fn AccentuationButton(
     #[prop(optional, into)] icon: Option<IconSet>,
     #[prop(optional, into)] icon_side: Option<IconSide>,
     #[prop(into, default = "".into())] anchor_name: String,
+    #[prop(optional, into)] shows_ping: Option<Signal<bool>>,
 ) -> impl IntoView {
     view! {
-        <UnthemedButton theme=ButtonTheme::Accentuation size text on_click icon icon_side anchor_name />
+        <UnthemedButton theme=ButtonTheme::Accentuation size text on_click icon icon_side anchor_name shows_ping />
     }
 }

@@ -66,7 +66,14 @@ pub fn TagSelector(
                 });
 
                 view! {
-                    <Select size=ComponentSize::MD dropdown_menu_position=Position::Bottom text="#Tags" identifier="tag-selector" choices=select_choices />
+                    <Select
+                        size=ComponentSize::MD
+                        dropdown_menu_position=Position::Bottom
+                        text="#Tags"
+                        identifier="tag-selector"
+                        select_choices=select_choices
+                        shows_ping_when_least_one_selected=true
+                    />
                 }
             })}
         </Suspense>

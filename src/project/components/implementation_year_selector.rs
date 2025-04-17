@@ -78,6 +78,14 @@ pub fn ImplementationYearSelector(
     });
 
     view! {
-        <Select size=ComponentSize::MD icon=IconSet::Calendar dropdown_menu_position=Position::Bottom text="Réalisation" identifier="year-of-implementation-selector" choices=select_choices />
+        <Select
+            size=ComponentSize::MD
+            icon=IconSet::Calendar
+            dropdown_menu_position=Position::Bottom
+            text="Réalisation"
+            identifier="year-of-implementation-selector"
+            select_choices=select_choices
+            shows_ping_when_least_one_selected=true
+        />
     }
 }

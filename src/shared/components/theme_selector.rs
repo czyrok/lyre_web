@@ -45,6 +45,6 @@ pub fn ThemeSelector() -> impl IntoView {
     let choices = SingleSelectChoices::new([dark_choice, light_choice].into());
 
     view! {
-        <Select size=ComponentSize::SM dropdown_menu_position=Position::Right text="Thème" identifier="theme-selector" choices=choices />
+        <Select size=ComponentSize::SM dropdown_menu_position=Position::Right text="Thème" identifier="theme-selector" select_choices=choices />
     }
 }

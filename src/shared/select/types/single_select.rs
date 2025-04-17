@@ -1,5 +1,7 @@
 use std::fmt::Debug;
 
+use leptos::prelude::Signal;
+
 use super::{
     select_choice::SelectChoice,
     select_choices_behavior::SelectChoicesBehavior,
@@ -46,5 +48,13 @@ where
 
     fn attach_consistency_behavior(&self) {
         self.0.attach_consistency_behavior();
+    }
+
+    fn update_selected_choice_keys_from_updates(&self) {
+        self.0.update_selected_choice_keys_from_updates();
+    }
+
+    fn get_selected_choice_keys(&self) -> Option<Signal<Vec<TKey>>> {
+        self.0.get_selected_choice_keys()
     }
 }
