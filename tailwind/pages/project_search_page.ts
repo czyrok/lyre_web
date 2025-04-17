@@ -11,7 +11,7 @@ export const addProjectSearchPage: ComponentBuilderFunction = (
         [`@apply ${classPrefix}flex ${classPrefix}flex-col`]: {},
 
         // Sizing
-        [`@apply ${classPrefix}gap-level2`]: {},
+        [`@apply ${classPrefix}container-level2`]: {},
 
         // Children
         '.top-part-filter': {
@@ -26,22 +26,21 @@ export const addProjectSearchPage: ComponentBuilderFunction = (
         [`@apply ${classPrefix}flex ${classPrefix}flex-col ${classPrefix}items-center`]: {},
 
         // Sizing
-        [`@apply ${classPrefix}gap-level3`]: {},
-
-        // Children
-        '.middle-part-list': {
-          [`@apply ${classPrefix}flex ${classPrefix}flex-wrap ${classPrefix}justify-center`]: {},
-
-          // Sizing
-          [`@apply ${classPrefix}gap-level2`]: {},
-        },
+        [`@apply ${classPrefix}container-level3`]: {},
 
         // Children
         '.middle-part-info': {
           [`@apply ${classPrefix}flex ${classPrefix}flex-col ${classPrefix}items-center`]: {},
 
           // Sizing
-          [`@apply ${classPrefix}gap-level2`]: {},
+          [`@apply ${classPrefix}container-level2`]: {},
+        },
+
+        '.middle-part-list': {
+          [`@apply ${classPrefix}flex ${classPrefix}flex-wrap ${classPrefix}justify-center`]: {},
+
+          // Sizing
+          [`@apply ${classPrefix}container-level2`]: {},
         },
       },
 

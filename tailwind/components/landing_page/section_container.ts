@@ -9,8 +9,8 @@ export const addSectionContainerComponent: ComponentBuilderFunction = (
       [`@apply ${classPrefix}flex ${classPrefix}flex-col ${classPrefix}items-center`]: {},
 
       // Sizing
-      [`@apply ${classPrefix}p-2 sm:${classPrefix}p-3 md:${classPrefix}p-6`]: {},
-      [`@apply ${classPrefix}gap-level3`]: {},
+      [`@apply ${classPrefix}p-4 sm:${classPrefix}p-6 md:${classPrefix}p-8`]: {},
+      [`@apply ${classPrefix}container-level3`]: {},
 
       // Children
       '.section-text': {
@@ -18,7 +18,7 @@ export const addSectionContainerComponent: ComponentBuilderFunction = (
 
         // Sizing
         [`@apply ${classPrefix}max-w-103`]: {},
-        [`@apply ${classPrefix}gap-level2`]: {},
+        [`@apply ${classPrefix}container-level2`]: {},
       },
 
       '.section-actions': {

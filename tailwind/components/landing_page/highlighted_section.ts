@@ -21,7 +21,7 @@ export const addHighlightedSectionComponent: ComponentBuilderFunction = (
         [`@apply ${classPrefix}flex ${classPrefix}flex-col xl:${classPrefix}flex-row`]: {},
 
         // Sizing
-        [`@apply ${classPrefix}gap-level3`]: {},
+        [`@apply ${classPrefix}container-level3`]: {},
       },
 
       // Overrides

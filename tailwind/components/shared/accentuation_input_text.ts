@@ -5,7 +5,6 @@ export const addAccentuationInputTextComponent: ComponentBuilderFunction = (
   { darkModeContext, classPrefix }
 ) => {
   addComponents({
-    // TODO: width !!!!
     '.accentuation-input-text': {
       [`@apply ${classPrefix}relative`]: {},
       // Ensure that content stays above the pseudo-element

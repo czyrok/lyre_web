@@ -5,6 +5,9 @@ import { addBodyBase } from './bases/body';
 import { addH1Base } from './bases/h1';
 import { addHtmlBase } from './bases/html';
 import { addPBase } from './bases/p';
+import { addContainerLevel2Component } from './components/containers/container_level2';
+import { addContainerLevel3Component } from './components/containers/container_level3';
+import { addContainerLevel4Component } from './components/containers/container_level4';
 import { addContactSectionComponent } from './components/landing_page/contact_section';
 import { addHighlightedSectionComponent } from './components/landing_page/highlighted_section';
 import { addProjectSectionComponent } from './components/landing_page/project_section';
@@ -218,6 +221,18 @@ export const TAILWIND_CONFIGURATION: Config = {
         classPrefix: TAILWIND_CLASS_PREFIX,
       });
       addErrorInfoComponent(pluginApi, {
+        darkModeContext,
+        classPrefix: TAILWIND_CLASS_PREFIX,
+      });
+      addContainerLevel2Component(pluginApi, {
+        darkModeContext,
+        classPrefix: TAILWIND_CLASS_PREFIX,
+      });
+      addContainerLevel3Component(pluginApi, {
+        darkModeContext,
+        classPrefix: TAILWIND_CLASS_PREFIX,
+      });
+      addContainerLevel4Component(pluginApi, {
         darkModeContext,
         classPrefix: TAILWIND_CLASS_PREFIX,
       });

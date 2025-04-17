@@ -9,7 +9,7 @@ export const addFooterComponent: ComponentBuilderFunction = (
       [`@apply ${classPrefix}flex ${classPrefix}flex-col`]: {},
 
       // Sizing
-      [`@apply ${classPrefix}gap-level4`]: {},
+      [`@apply ${classPrefix}container-level4`]: {},
       [`@apply ${classPrefix}p-4`]: {},
 
       // Children

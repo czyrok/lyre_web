@@ -11,7 +11,7 @@ export const addProjectSectionComponent: ComponentBuilderFunction = (
         [`@apply ${classPrefix}flex ${classPrefix}flex-wrap ${classPrefix}justify-center`]: {},
 
         // Sizing
-        [`@apply ${classPrefix}gap-level2`]: {},
+        [`@apply ${classPrefix}container-level2`]: {},
       },
 
       // Overrides

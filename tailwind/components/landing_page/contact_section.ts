@@ -41,7 +41,7 @@ export const addContactSectionComponent: ComponentBuilderFunction = (
         [`@apply ${classPrefix}flex ${classPrefix}flex-col`]: {},
 
         // Sizing
-        [`@apply ${classPrefix}gap-level3`]: {},
+        [`@apply ${classPrefix}container-level3`]: {},
       },
 
       // Overrides

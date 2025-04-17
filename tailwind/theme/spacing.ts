@@ -19,6 +19,7 @@ export const THEME_SPACING: ThemeConfig['spacing'] = {
   8: '64px',
   9: '72px',
   10: '80px',
+  11: '88px',
   14: '112px',
   16: '128px',
   25: '200px',
