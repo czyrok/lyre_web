@@ -102,7 +102,7 @@ export const addSecondaryCheckboxComponent: ComponentBuilderFunction = (
       '&.checkbox-size-xl': {
         // Sizing
         [`@apply ${classPrefix}text-8`]: {},
-        [`@apply ${classPrefix}gap-1,5`]: {},
+        [`@apply ${classPrefix}gap-2,5`]: {},
 
         // Children
         '.checkbox-box': {
@@ -118,7 +118,7 @@ export const addSecondaryCheckboxComponent: ComponentBuilderFunction = (
       '&.checkbox-size-lg': {
         // Sizing
         [`@apply ${classPrefix}text-6`]: {},
-        [`@apply ${classPrefix}gap-1`]: {},
+        [`@apply ${classPrefix}gap-2`]: {},
 
         // Children
         '.checkbox-box': {
@@ -134,7 +134,7 @@ export const addSecondaryCheckboxComponent: ComponentBuilderFunction = (
       '&.checkbox-size-md': {
         // Sizing
         [`@apply ${classPrefix}text-5`]: {},
-        [`@apply ${classPrefix}gap-1`]: {},
+        [`@apply ${classPrefix}gap-2`]: {},
 
         // Children
         '.checkbox-box': {
@@ -150,7 +150,7 @@ export const addSecondaryCheckboxComponent: ComponentBuilderFunction = (
       '&.checkbox-size-sm': {
         // Sizing
         [`@apply ${classPrefix}text-4`]: {},
-        [`@apply ${classPrefix}gap-1`]: {},
+        [`@apply ${classPrefix}gap-2`]: {},
 
         // Children
         '.checkbox-box': {
