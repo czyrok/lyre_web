@@ -1,4 +1,4 @@
-use leptos::prelude::{Get, Resource, Signal};
+use leptos::prelude::*;
 
 use crate::{
     core::dto::cursor_pagination_dto::CursorPaginationDto,
@@ -28,10 +28,13 @@ impl OrderedProjectContextsResource {
     pub fn new(
         pagination: Signal<CursorPaginationDto>,
         filter: Signal<ProjectContextFilterDto>,
+        set_is_loading: WriteSignal<bool>,
     ) -> Self {
         let resource = Resource::new(
             move || (pagination.get(), filter.get()),
-            |input| {
+            move |input| {
+                set_is_loading.set(true);
+
                 get_ordered_project_contexts(input.0.into(), input.1.into())
             },
         );
@@ -70,7 +73,7 @@ impl OrderedProjectContextsResource {
             .unwrap_or_default()
     }
 
-    pub fn aggregate_project_contexts(
+    pub fn aggregate_fetched_project_contexts(
         &self,
         previous_project_contexts: Vec<ProjectContext>,
     ) -> Vec<ProjectContext> {
@@ -89,5 +92,12 @@ impl OrderedProjectContextsResource {
                 .collect();
 
         aggregate_project_contexts
+    }
+
+    pub fn is_ready(&self) -> bool {
+        let project_contexts =
+            self.0.get_untracked().map(|n| n.unwrap_or_default());
+
+        project_contexts.is_some()
     }
 }
