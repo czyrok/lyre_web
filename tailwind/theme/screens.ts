@@ -37,4 +37,10 @@ export const THEME_SCREENS: ThemeConfig['screens'] = {
   'max-v-xl': {
     raw: '(max-height:1280px)',
   },
+  '2xl': {
+    min: '1536px',
+  },
+  'max-2xl': {
+    max: '1536px',
+  },
 } as const;
