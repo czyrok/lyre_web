@@ -16,7 +16,9 @@ use crate::{
         resources::ordered_project_contexts_resource::OrderedProjectContextsResource,
     },
     shared::{
+        button::components::secondary_button_as_link::SecondaryButtonAsLink,
         components::fetch_error_display::FetchErrorState,
+        enums::component_size::ComponentSize,
         layouts::secondary_page_layout::SecondaryPageLayout,
     },
 };
@@ -27,6 +29,12 @@ pub fn ProjectSearchPage() -> impl IntoView {
         ReadSignal<Vec<ProjectContext>>,
         WriteSignal<Vec<ProjectContext>>,
     ) = signal(vec![]);
+
+    let first_project_context = Signal::derive(move || {
+        let project_contexts = project_contexts.get();
+
+        project_contexts.first().map(|first| first.clone())
+    });
 
     let (pagination, set_pagination) = signal(CursorPaginationDto::default());
     let (project_context_filter, set_project_context_filter) =
@@ -93,42 +101,51 @@ pub fn ProjectSearchPage() -> impl IntoView {
 
     view! {
         <SecondaryPageLayout
-            content_render=move || {
-                view! {
-                    <div class="tw-project-search-page-top-part">
-                        <h1 class="tw-title-size-lg">"Mes Projets"</h1>
+            content_render=move || view! {
+                <div class="tw-project-search-page-top-part">
+                    <h1 class="tw-title-size-lg">"Mes Projets"</h1>
 
-                        <OrderedProjectContextFilter default_filter=project_context_filter.get_untracked() searched_project_title=searched_project_title.into() reset_event=(filter_reset_event, set_filter_reset_event) on_update=move |project_context_filter| {
-                            set_project_context_filter.set(project_context_filter);
-                            reset_view_when_filter_updated();
-                        } />
-                    </div>
+                    <OrderedProjectContextFilter default_filter=project_context_filter.get_untracked() searched_project_title=searched_project_title.into() reset_event=(filter_reset_event, set_filter_reset_event) on_update=move |project_context_filter| {
+                        set_project_context_filter.set(project_context_filter);
+                        reset_view_when_filter_updated();
+                    } />
+                </div>
 
-                    <div class="tw-project-search-page-middle-part">
-                        <SearchedProjectTitleInput set_searched_project_title reset_event=filter_reset_event.into() />
+                <div class="tw-project-search-page-middle-part">
+                    <SearchedProjectTitleInput set_searched_project_title reset_event=filter_reset_event.into() />
 
-                        <Show when=move || { !displays_list_block.get() }>
-                            <SearchResultInfo last_fetch_error=last_fetch_error.into() project_contexts=project_contexts.into() />
-                        </Show>
-
-                        <Show when=move || { displays_list_block.get() }>
-                            <div class="tw-middle-part-list">
-                                <For each=move || project_contexts.get() key=|project_context| project_context.slug.clone() let:project_context>
-                                    <ProjectCard project_context=project_context />
-                                </For>
-
-                                <Show when=move || { is_loading.get() }>
-                                    <ProjectCardSkeleton />
-                                </Show>
-                            </div>
-                        </Show>
-                    </div>
-
-                    <Show when=move || { !is_loading.get() && displays_list_block.get() }>
-                        <OrderedProjectContextPaginator resource=resource project_contexts=project_contexts.into() set_pagination />
+                    <Show when=move || { !displays_list_block.get() }>
+                        <SearchResultInfo last_fetch_error=last_fetch_error.into() project_contexts=project_contexts.into() />
                     </Show>
-                }
-            }
+
+                    <Show when=move || { displays_list_block.get() }>
+                        <div class="tw-middle-part-list">
+                            <For each=move || project_contexts.get() key=|project_context| project_context.slug.clone() let:project_context>
+                                <ProjectCard project_context=project_context />
+                            </For>
+
+                            <Show when=move || { is_loading.get() }>
+                                <ProjectCardSkeleton />
+                            </Show>
+                        </div>
+                    </Show>
+                </div>
+
+                <Show when=move || { !is_loading.get() && displays_list_block.get() }>
+                    <OrderedProjectContextPaginator resource=resource project_contexts=project_contexts.into() set_pagination />
+                </Show>
+            }.into_any()
+
+            footer_actions_render=Box::new(move || view! {
+                <Show
+                    when=move || { first_project_context.get().is_some() }
+                    fallback=|| view! {
+                        <SecondaryButtonAsLink size=ComponentSize::MD text="Accueil" href="/" />
+                    }
+                >
+                    <SecondaryButtonAsLink size=ComponentSize::MD text="Project au Hasard" href=format!("/projects/{}/", first_project_context.get().unwrap().slug) />
+                </Show>
+            }.into_any())
         />
     }
 }

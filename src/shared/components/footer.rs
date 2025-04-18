@@ -10,11 +10,10 @@ use crate::shared::{
 };
 
 #[component]
-pub fn Footer<TRenderFunction, TIntoView>(
-    actions_render: TRenderFunction,
+pub fn Footer<TIntoView>(
+    actions_render: impl Fn() -> TIntoView,
 ) -> impl IntoView
 where
-    TRenderFunction: Fn() -> TIntoView,
     TIntoView: IntoView,
 {
     view! {

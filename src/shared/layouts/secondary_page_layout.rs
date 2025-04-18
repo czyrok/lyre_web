@@ -10,23 +10,26 @@ use crate::shared::{
 };
 
 #[component]
-pub fn SecondaryPageLayout<TContentRenderFunction, TContentIntoView>(
+pub fn SecondaryPageLayout(
     #[prop(optional)] intro_render: Option<Box<dyn Fn() -> AnyView>>,
-    content_render: TContentRenderFunction,
-) -> impl IntoView
-where
-    TContentRenderFunction: Fn() -> TContentIntoView,
-    TContentIntoView: IntoView,
-{
-    let intro_render = match intro_render {
-        Some(intro_render) => intro_render,
-        None => Box::new(move || {
+    content_render: impl Fn() -> AnyView,
+    #[prop(optional)] footer_actions_render: Option<Box<dyn Fn() -> AnyView>>,
+) -> impl IntoView {
+    let intro_render = intro_render.unwrap_or(Box::new(move || {
+        view! {
+            <Brand size=ComponentSize::LG layout_mode=LayoutMode::BadgeOnly />
+        }
+        .into_any()
+    }));
+
+    let footer_actions_render =
+        footer_actions_render.unwrap_or(Box::new(move || {
             view! {
-                <Brand size=ComponentSize::LG layout_mode=LayoutMode::BadgeOnly />
+                <SecondaryButtonAsLink size=ComponentSize::MD text="Accueil" href="/" />
             }
             .into_any()
-        }),
-    };
+        }
+    ));
 
     view! {
         <div class="tw-secondary-page-layout">
@@ -40,9 +43,7 @@ where
                 {content_render()}
             </div>
 
-            <Footer actions_render=|| view! {
-                <SecondaryButtonAsLink size=ComponentSize::MD text="Accueil" href="/" />
-            } />
+            <Footer actions_render=footer_actions_render />
         </div>
     }
 }
