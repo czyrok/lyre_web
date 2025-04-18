@@ -65,12 +65,10 @@ export const addSecondaryLinkComponent: ComponentBuilderFunction = (
       ':is(&:focus, a:focus &)': {
         // Colors
         [`@apply ${classPrefix}ring-green-400`]: {},
-        [`${darkModeContext} &`]: {
-          [`@apply ${classPrefix}ring-green-600`]: {},
-        },
         //// This needs to correspond to page background
         [`@apply ${classPrefix}ring-offset-white-50`]: {},
         [`${darkModeContext} &`]: {
+          [`@apply ${classPrefix}ring-green-600`]: {},
           [`@apply ${classPrefix}ring-offset-black-950`]: {},
         },
 

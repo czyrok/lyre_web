@@ -8,11 +8,9 @@ export const addProjectTagComponent: ComponentBuilderFunction = (
     '.project-tag': {
       // Colors
       [`@apply ${classPrefix}bg-blue-300`]: {},
-      [`${darkModeContext} &`]: {
-        [`@apply ${classPrefix}bg-blue-400`]: {},
-      },
       [`@apply ${classPrefix}text-blue-700`]: {},
       [`${darkModeContext} &`]: {
+        [`@apply ${classPrefix}bg-blue-400`]: {},
         [`@apply ${classPrefix}text-blue-950`]: {},
       },
 

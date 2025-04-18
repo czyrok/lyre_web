@@ -36,12 +36,10 @@ export const addProjectThumbnailComponent: ComponentBuilderFunction = (
       ':is(&:has(.thumbnail-hover):focus, a:focus &:has(.thumbnail-hover))': {
         // Colors
         [`@apply ${classPrefix}ring-green-400`]: {},
-        [`${darkModeContext} &`]: {
-          [`@apply ${classPrefix}ring-green-600`]: {},
-        },
         //// This needs to correspond to page background
         [`@apply ${classPrefix}ring-offset-white-50`]: {},
         [`${darkModeContext} &`]: {
+          [`@apply ${classPrefix}ring-green-600`]: {},
           [`@apply ${classPrefix}ring-offset-black-950`]: {},
         },
 
@@ -64,11 +62,9 @@ export const addProjectThumbnailComponent: ComponentBuilderFunction = (
 
         // Colors
         [`@apply ${classPrefix}bg-purple-blue-200/33`]: {},
-        [`${darkModeContext} &`]: {
-          [`@apply ${classPrefix}bg-purple-blue-500/33`]: {},
-        },
         [`@apply ${classPrefix}outline-purple-blue-400`]: {},
         [`${darkModeContext} &`]: {
+          [`@apply ${classPrefix}bg-purple-blue-500/33`]: {},
           [`@apply ${classPrefix}outline-purple-blue-500`]: {},
         },
 
