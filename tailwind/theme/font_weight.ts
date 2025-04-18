@@ -7,6 +7,8 @@ export const THEME_FONT_WEIGHT: ThemeConfig['fontWeight'] = {
   'brand-name': '600',
   'title-xl': '900',
   'title-lg': '600',
-  regular: '400',
-  light: '300',
+  //// There is a difference of 100 between here and Figma
+  regular: '300',
+  //// There is a difference of 200 between here and Figma
+  light: '100',
 } as const;
