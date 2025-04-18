@@ -59,6 +59,7 @@ pub fn App() -> impl IntoView {
             <Router>
                 <NavBarContainer />
 
+                // TODO: mettre dans layout au niveau du content
                 <main>
                     <FlatRoutes fallback>
                         <Route
@@ -83,7 +84,7 @@ pub fn App() -> impl IntoView {
                         />
 
                         <Route
-                            path=path!("/projects/:slug/")
+                            path=path!("/projects/:slug")
                             view=ProjectDetails
                             ssr=SsrMode::Static(
                                 StaticRoute::new()

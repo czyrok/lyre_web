@@ -14,7 +14,7 @@ pub fn shell(options: LeptosOptions) -> impl IntoView {
                 <HydrationScripts options/>
                 <MetaTags/>
                 <Meta name="color-scheme" content="dark light"/>
-                <Stylesheet id="theme" href="tailwind_output.css"/>
+                <Stylesheet id="theme" href="/tailwind_output.css"/>
                 // TODO:
                 //<Link rel="shortcut icon" type_="image/ico" href="/favicon.ico"/>
 
