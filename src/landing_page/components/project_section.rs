@@ -1,6 +1,7 @@
 use leptos::prelude::*;
 
 use crate::{
+    core::data::fetch_state::FetchState,
     landing_page::resources::relevant_project_contexts_resource::RelevantProjectContextsResource,
     project::components::{
         project_card::ProjectCard, project_card_skeleton::ProjectCardSkeleton,
@@ -10,24 +11,21 @@ use crate::{
             components::primary_button_as_link::PrimaryButtonAsLink,
             types::icon_side::IconSide,
         },
-        components::{
-            fetch_error_display::{FetchErrorDisplay, FetchErrorState},
-            icon::IconSet,
-        },
+        components::{fetch_error_display::FetchErrorDisplay, icon::IconSet},
         enums::component_size::ComponentSize,
     },
 };
 
 #[component]
 pub fn ProjectSection() -> impl IntoView {
-    let (last_fetch_error, set_last_fetch_error) =
-        signal(FetchErrorState::default());
+    let (last_fetch_state, set_last_fetch_state) =
+        signal(FetchState::default());
     let resource = RelevantProjectContextsResource::default();
 
     Effect::new(move || {
         let fetch_state = resource.get_fetch_state();
 
-        set_last_fetch_error.set(fetch_state);
+        set_last_fetch_state.set(fetch_state);
     });
 
     view! {
@@ -48,9 +46,9 @@ pub fn ProjectSection() -> impl IntoView {
                         <ProjectCardSkeleton />
                     }
                 }>
-                    <FetchErrorDisplay fetch_error=last_fetch_error.into() />
+                    <FetchErrorDisplay fetch_state=last_fetch_state.into() />
 
-                    <For each=move || resource.get_fetched_project_contexts() key=|project_context| project_context.slug.clone() let:project_context>
+                    <For each=move || resource.get_fetched_project_contexts() key=|project_context| project_context.slug.clone().expect("`slug` should exist") let:project_context>
                         <ProjectCard project_context=project_context />
                     </For>
                 </Suspense>

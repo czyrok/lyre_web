@@ -1,7 +1,10 @@
 use leptos::prelude::*;
 
 use crate::{
-    core::dto::cursor_pagination_dto::CursorPaginationDto,
+    core::{
+        data::fetch_state::FetchState,
+        dto::cursor_pagination_dto::CursorPaginationDto,
+    },
     project::{
         api::project_context_api::get_ordered_project_contexts,
         data::project_context::ProjectContext,
@@ -10,7 +13,6 @@ use crate::{
             project_contexts_dto::ProjectContextsDto,
         },
     },
-    shared::components::fetch_error_display::FetchErrorState,
 };
 
 #[derive(Clone, Copy)]
@@ -102,17 +104,19 @@ impl OrderedProjectContextsResource {
         project_contexts.is_some()
     }
 
-    pub fn get_fetch_state(&self) -> FetchErrorState {
+    pub fn get_fetch_state(&self) -> FetchState {
         let resource_result = self.0.get();
 
         if let Some(resource_result) = resource_result {
             let resource_result = resource_result.map(|_| ());
 
             if let Err(error) = resource_result {
-                return FetchErrorState::errored(error);
+                return FetchState::Errored(error);
             }
+
+            return FetchState::Resolved;
         }
 
-        FetchErrorState::default()
+        FetchState::Pending
     }
 }

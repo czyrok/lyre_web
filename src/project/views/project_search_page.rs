@@ -1,7 +1,10 @@
 use leptos::prelude::*;
 
 use crate::{
-    core::dto::cursor_pagination_dto::CursorPaginationDto,
+    core::{
+        data::fetch_state::FetchState,
+        dto::cursor_pagination_dto::CursorPaginationDto,
+    },
     project::{
         components::{
             ordered_project_context_filter::OrderedProjectContextFilter,
@@ -17,7 +20,7 @@ use crate::{
     },
     shared::{
         button::components::secondary_button_as_link::SecondaryButtonAsLink,
-        components::fetch_error_display::FetchErrorState,
+        components::footer::Footer, enums::component_size::ComponentSize,
         enums::component_size::ComponentSize,
         layouts::secondary_page_layout::SecondaryPageLayout,
     },
@@ -79,7 +82,7 @@ pub fn ProjectSearchPage() -> impl IntoView {
     Effect::new(move || {
         let fetch_state = resource.get_fetch_state();
 
-        set_last_fetch_error.set(fetch_state);
+        set_last_fetch_state.set(fetch_state);
     });
 
     let reset_view_when_filter_updated = move || {
@@ -89,7 +92,7 @@ pub fn ProjectSearchPage() -> impl IntoView {
 
     let displays_list_block = Signal::derive(move || {
         let is_loading = is_loading.get();
-        let last_fetch_error = last_fetch_error.get();
+        let last_fetch_error = last_fetch_state.get();
         let project_contexts = project_contexts.get();
 
         if is_loading {
@@ -115,7 +118,7 @@ pub fn ProjectSearchPage() -> impl IntoView {
                     <SearchedProjectTitleInput set_searched_project_title reset_event=filter_reset_event.into() />
 
                     <Show when=move || { !displays_list_block.get() }>
-                        <SearchResultInfo last_fetch_error=last_fetch_error.into() project_contexts=project_contexts.into() />
+                        <SearchResultInfo last_fetch_state=last_fetch_state.into() project_contexts=project_contexts.into() />
                     </Show>
 
                     <Show when=move || { displays_list_block.get() }>

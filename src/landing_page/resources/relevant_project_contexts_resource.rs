@@ -1,12 +1,12 @@
 use leptos::prelude::*;
 
 use crate::{
+    core::data::fetch_state::FetchState,
     project::{
         api::project_context_api::get_relevant_project_contexts,
         data::project_context::ProjectContext,
         dto::relevant_project_contexts_dto::RelevantProjectContextsDto,
     },
-    shared::components::fetch_error_display::FetchErrorState,
 };
 
 #[derive(Clone, Copy)]
@@ -30,18 +30,20 @@ impl RelevantProjectContextsResource {
             .unwrap_or_default()
     }
 
-    pub fn get_fetch_state(&self) -> FetchErrorState {
+    pub fn get_fetch_state(&self) -> FetchState {
         let resource_result = self.0.get();
 
         if let Some(resource_result) = resource_result {
             let resource_result = resource_result.map(|_| ());
 
             if let Err(error) = resource_result {
-                return FetchErrorState::errored(error);
+                return FetchState::Errored(error);
             }
+
+            return FetchState::Resolved;
         }
 
-        FetchErrorState::default()
+        FetchState::Pending
     }
 }
 
