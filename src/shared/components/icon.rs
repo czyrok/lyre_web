@@ -1,6 +1,9 @@
 use leptos::prelude::*;
+use serde::{Deserialize, Serialize};
 
-#[derive(Clone)]
+// TODO: déplacer dans le dossier core/data
+#[derive(Serialize, Deserialize, Clone, Debug)]
+#[serde(rename_all = "SCREAMING_SNAKE_CASE")]
 pub enum IconSet {
     Check,
     External,
@@ -16,6 +19,18 @@ pub enum IconSet {
     Email,
     Undo,
     Calendar,
+    Github,
+}
+
+#[cfg(feature = "ssr")]
+impl From<IconSet> for String {
+    fn from(icon: IconSet) -> String {
+        //// `trim_matches` removes the quotes added by `serde_json`
+        serde_json::to_string(&icon)
+            .unwrap()
+            .trim_matches('"')
+            .into()
+    }
 }
 
 #[component]
@@ -102,6 +117,12 @@ pub fn Icon(icon: IconSet) -> impl IntoView {
         IconSet::Calendar => view! {
             <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" fill="none" viewBox="0 0 60 60">
                 <path stroke="currentColor" stroke-linecap="round" stroke-width="1.5" d="M7.5 22.5h45m-35-15v5m25-5v5M15 30h5m7.5 0h5m7.5 0h5m-30 7.5h5m7.5 0h5m7.5 0h5M15 45h5m7.5 0h5m7.5 0h5m-29.5 7.5h29c2.8 0 4.2 0 5.27-.545a5 5 0 0 0 2.185-2.185c.545-1.07.545-2.47.545-5.27v-24c0-2.8 0-4.2-.545-5.27a4.999 4.999 0 0 0-2.185-2.185C48.7 12.5 47.3 12.5 44.5 12.5h-29c-2.8 0-4.2 0-5.27.545a4.999 4.999 0 0 0-2.185 2.185C7.5 16.3 7.5 17.7 7.5 20.5v24c0 2.8 0 4.2.545 5.27a5 5 0 0 0 2.185 2.185c1.07.545 2.47.545 5.27.545Z"/>
+            </svg>
+        }.into_any(),
+        IconSet::Github => view! {
+            <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" fill="none" viewBox="0 0 60 60">
+                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M22.895 52.281v-6.398l.084-4.547a6.424 6.424 0 0 1 1.599-3.825.065.065 0 0 0-.04-.109c-6.059-.756-12.372-3.314-12.372-14.452-.039-2.744.856-5.403 2.51-7.489.058-.073.117-.145.177-.216a.359.359 0 0 0 .067-.336l-.006-.02a11.328 11.328 0 0 1 .284-7.41.249.249 0 0 1 .185-.16c.537-.096 2.708-.225 6.865 2.646.13.089.26.181.394.277.096.068.218.09.332.057l.01-.003a24.366 24.366 0 0 1 13.327-.01l.014.004a.458.458 0 0 0 .39-.068c.125-.088.247-.174.368-.257 4.147-2.865 6.306-2.743 6.846-2.647a.255.255 0 0 1 .189.162l.012.032a11.269 11.269 0 0 1 .283 7.387.38.38 0 0 0 .072.354l.008.01c.054.065.108.131.161.198 1.654 2.086 2.55 4.745 2.51 7.489 0 11.198-6.358 13.69-12.445 14.369a.043.043 0 0 0-.028.072l.028.03a7.004 7.004 0 0 1 1.399 2.386c.322.93.454 1.923.385 2.912v9.562"/>
+                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.665 42.281a6.131 6.131 0 0 1 4.46 3.02 6.25 6.25 0 0 0 3.738 2.99 6.208 6.208 0 0 0 4.75-.546"/>
             </svg>
         }.into_any()
     }

@@ -2,7 +2,7 @@ import { ComponentBuilderFunction } from '../types/component_builder_function';
 
 export const addProjectSearchPage: ComponentBuilderFunction = (
   { addComponents },
-  { classPrefix, darkModeContext }
+  { classPrefix }
 ) => {
   addComponents({
     '.secondary-page-layout': {

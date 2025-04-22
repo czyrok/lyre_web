@@ -39,6 +39,7 @@ pub fn ProjectSection() -> impl IntoView {
             </div>
 
             <div class="tw-section-projects">
+                // TODO: utiliser error boundary comme dans project_details
                 <Suspense fallback=move || {
                     view! {
                         <ProjectCardSkeleton />

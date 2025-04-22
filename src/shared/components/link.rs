@@ -9,9 +9,10 @@ use crate::shared::{
 #[component]
 pub fn Link(
     size: ComponentSize,
-    text: String,
-    href: String,
-    is_external: bool,
+    #[prop(into)] text: String,
+    #[prop(into)] href: String,
+    // TODO: sert a rien mdr, remplacé par icon + target
+    #[prop(default = false)] is_external: bool,
 ) -> impl IntoView {
     let is_xl_size = size == ComponentSize::XL;
     let is_lg_size = size == ComponentSize::LG;

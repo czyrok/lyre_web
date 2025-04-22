@@ -139,10 +139,17 @@ impl ProjectContextRepository {
             "
             SELECT    `projects`.`slug`,
                     `projects`.`next_slug`,
+                    (
+                    SELECT    `projects_for_next`.`title`
+                    FROM      `projects` AS `projects_for_next`
+                    WHERE     `projects_for_next`.`slug` = \
+             `projects`.`next_slug`
+                    ) AS `next_title`,
                     `projects`.`title`,
                     `projects`.`image_url`,
                     `projects`.`date`,
-                    GROUP_CONCAT(`project_tags`.`name`) AS `tags`
+                    ---- https://www.sqlitetutorial.net/sqlite-json-functions/sqlite-json_group_array-function/
+                    JSON_GROUP_ARRAY (`project_tags`.`name`) AS `tags`
             FROM      `projects`
             INNER JOIN `project_tags` ON `project_tags`.`project_slug` = \
              `projects`.`slug`

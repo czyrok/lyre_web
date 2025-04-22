@@ -52,7 +52,9 @@ impl OrderedProjectContextsResource {
             .map(|project_contexts_dto| project_contexts_dto.project_contexts)
             .unwrap_or_default()
             .last()
-            .map(|last_project_context| last_project_context.next_slug.clone())
+            .map(|last_project_context| {
+                last_project_context.next.clone().map(|next| next.slug)
+            })
             .unwrap_or_default()
     }
 

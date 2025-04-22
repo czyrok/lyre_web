@@ -1,11 +1,12 @@
 use std::error::Error;
 
-use leptos::logging::log;
+use leptos::logging::{error, log};
 
 use crate::{
     project::{
         data::project::Project,
         repositories::{
+            project_link_repository::ProjectLinkRepository,
             project_repository::ProjectRepository,
             project_tag_repository::ProjectTagRepository,
         },
@@ -17,16 +18,19 @@ use crate::{
 pub struct ProjectService {
     project_repository: ProjectRepository,
     project_tag_repository: ProjectTagRepository,
+    project_link_repository: ProjectLinkRepository,
 }
 
 impl ProjectService {
     pub fn new(
         project_repository: ProjectRepository,
         project_tag_repository: ProjectTagRepository,
+        project_link_repository: ProjectLinkRepository,
     ) -> Self {
         Self {
             project_repository,
             project_tag_repository,
+            project_link_repository,
         }
     }
 
@@ -36,6 +40,9 @@ impl ProjectService {
     ) -> Result<(), Box<dyn Error>> {
         self.project_tag_repository
             .clean_project_tags(local_database_transaction)
+            .await?;
+        self.project_link_repository
+            .clean_project_links(local_database_transaction)
             .await?;
         self.project_repository
             .clean_projects(local_database_transaction)
@@ -55,12 +62,23 @@ impl ProjectService {
             .save_project(project.clone(), local_database_transaction)
             .await?;
 
-        log!("Project `{}` cached", project.context.slug);
+        let project_slug = project.context.slug.expect("`slug` should exist");
+        log!("Project `{}` cached", project_slug);
+
+        for link in project.links.0 {
+            self.project_link_repository
+                .save_project_link(
+                    project_slug.clone(),
+                    link,
+                    local_database_transaction,
+                )
+                .await?;
+        }
 
         for tag in project.context.tags.0 {
             self.project_tag_repository
                 .save_project_tag(
-                    project.context.slug.clone(),
+                    project_slug.clone(),
                     tag,
                     local_database_transaction,
                 )
@@ -82,8 +100,18 @@ impl ProjectService {
         sorted_projects.reverse();
 
         for project in sorted_projects {
-            self.cache_project(project, local_database_transaction)
-                .await?;
+            let result = self
+                .cache_project(project.clone(), local_database_transaction)
+                .await;
+
+            if let Err(error) = result {
+                error!(
+                    "Unable to cache this project `{:?}`, \n{:?}",
+                    project, error
+                );
+
+                return Err(Box::new(error));
+            }
         }
 
         Ok(())

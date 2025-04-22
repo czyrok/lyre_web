@@ -1,12 +1,9 @@
 ---
-next:
-  slug: wolfgang2
-title: Wolfgang
+title: Wolfgang2
 image_url: # TODO:
 date: 2025-10-21 # TODO:
 tags:
   - name: TS
-  - name: Angular
   - name: Socket.io
 ---
 

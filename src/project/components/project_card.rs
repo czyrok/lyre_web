@@ -2,7 +2,7 @@ use leptos::prelude::*;
 
 use crate::project::{
     components::{
-        project_tag::ProjectTag, project_thumbnail::ProjectThumbnail,
+        project_tag_items::ProjectTagItems, project_thumbnail::ProjectThumbnail,
     },
     data::project_context::ProjectContext,
 };
@@ -18,9 +18,7 @@ pub fn ProjectCard(project_context: ProjectContext) -> impl IntoView {
             </span>
 
             <div class="tw-card-tag-container">
-                <For each=move || project_context.tags.0.clone() key=|tag| tag.name.clone() let:tag>
-                    <ProjectTag text=tag.name />
-                </For>
+                <ProjectTagItems project_tags=project_context.tags />
             </div>
         </div>
     }

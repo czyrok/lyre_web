@@ -8,6 +8,7 @@ import { addPBase } from './bases/p';
 import { addContainerLevel2Component } from './components/containers/container_level2';
 import { addContainerLevel3Component } from './components/containers/container_level3';
 import { addContainerLevel4Component } from './components/containers/container_level4';
+import { addXContainerLevel2Component } from './components/containers/x_container_level2';
 import { addContactSectionComponent } from './components/landing_page/contact_section';
 import { addHighlightedSectionComponent } from './components/landing_page/highlighted_section';
 import { addProjectSectionComponent } from './components/landing_page/project_section';
@@ -31,8 +32,11 @@ import { addSecondaryButtonComponent } from './components/shared/secondary_butto
 import { addSecondaryCheckboxComponent } from './components/shared/secondary_checkbox';
 import { addSecondaryLinkComponent } from './components/shared/secondary_link';
 import { addSecondarySelectComponent } from './components/shared/secondary_select';
+import { addInfoErrorPageLayout } from './layouts/info_error_page_layout';
+import { addNotFoundErrorPageLayout } from './layouts/not_found_error_page_layout';
 import { addSecondaryPageLayout } from './layouts/secondary_page_layout';
 import { addLandingPage } from './pages/landing_page';
+import { addProjectDetailsPage } from './pages/project_details_page';
 import { addProjectSearchPage } from './pages/project_search_page';
 import { THEME_BACKGROUND } from './theme/background';
 import { THEME_BLUR } from './theme/blur';
@@ -231,6 +235,10 @@ export const TAILWIND_CONFIGURATION: Config = {
         darkModeContext,
         classPrefix: TAILWIND_CLASS_PREFIX,
       });
+      addXContainerLevel2Component(pluginApi, {
+        darkModeContext,
+        classPrefix: TAILWIND_CLASS_PREFIX,
+      });
 
       addLandingPage(pluginApi, {
         darkModeContext,
@@ -240,8 +248,20 @@ export const TAILWIND_CONFIGURATION: Config = {
         darkModeContext,
         classPrefix: TAILWIND_CLASS_PREFIX,
       });
+      addProjectDetailsPage(pluginApi, {
+        darkModeContext,
+        classPrefix: TAILWIND_CLASS_PREFIX,
+      });
 
       addSecondaryPageLayout(pluginApi, {
+        darkModeContext,
+        classPrefix: TAILWIND_CLASS_PREFIX,
+      });
+      addInfoErrorPageLayout(pluginApi, {
+        darkModeContext,
+        classPrefix: TAILWIND_CLASS_PREFIX,
+      });
+      addNotFoundErrorPageLayout(pluginApi, {
         darkModeContext,
         classPrefix: TAILWIND_CLASS_PREFIX,
       });

@@ -85,8 +85,7 @@ where
     }
 
     pub fn get_selected_choice_keys(&self) -> Option<Signal<Vec<TKey>>> {
-        return self
-            .selected_choice_keys
-            .map(|selected_choice_keys| selected_choice_keys.into());
+        self.selected_choice_keys
+            .map(|selected_choice_keys| selected_choice_keys.into())
     }
 }

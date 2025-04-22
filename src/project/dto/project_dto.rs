@@ -2,7 +2,7 @@ use serde::{Deserialize, Serialize};
 
 use crate::project::data::project::Project;
 
-#[derive(Serialize, Deserialize, Clone)]
+#[derive(Default, Serialize, Deserialize, Clone)]
 pub struct ProjectDto {
     pub project: Project,
 }

@@ -4,11 +4,10 @@ use std::{
     io,
 };
 
+use leptos::logging::error;
+
 use crate::{
-    project::data::{
-        project::Project, project_content::ProjectContent,
-        project_context::ProjectContext, project_tags::ProjectTags,
-    },
+    project::data::project::Project,
     system::{
         database::{
             local_database::LocalDatabase,
@@ -52,10 +51,24 @@ impl ProjectRepository {
         let project_data_files = self.get_project_data_entries()?;
 
         for project_data_file in project_data_files {
-            let project =
-                Project::parse_from_markdown_file(project_data_file).await?;
+            let file_name = project_data_file.file_name();
 
-            projects.push(project);
+            let parse_result =
+                Project::parse_from_markdown_file(project_data_file).await;
+
+            match parse_result {
+                Ok(project) => {
+                    projects.push(project);
+                }
+                Err(error) => {
+                    error!(
+                        "Unable to parse this project `{:?}`, \n{:?}",
+                        file_name, error
+                    );
+
+                    return Err(error);
+                }
+            }
         }
 
         Ok(projects)
@@ -81,6 +94,8 @@ impl ProjectRepository {
         project: Project,
         local_database_transaction: &mut LocalDatabaseTransaction<'_>,
     ) -> Result<(), sqlx::Error> {
+        let next_slug = project.context.next.map(|next| next.slug);
+
         sqlx::query!(
             "
                 INSERT INTO `projects` (`slug`, `next_slug`, `position`, \
@@ -88,7 +103,7 @@ impl ProjectRepository {
              ?, ?);
                 ",
             project.context.slug,
-            project.context.next_slug,
+            next_slug,
             project.position,
             project.context.title,
             project.context.image_url,
@@ -132,36 +147,39 @@ impl ProjectRepository {
         let mut local_database =
             LocalDatabase::new(&self.environment.local_database_uri).await?;
 
-        // TODO: query_as
-        let project = sqlx::query!(
+        let project = sqlx::query_as::<_, Project>(
             "
-                SELECT    `projects`.`slug`,
-                        `projects`.`next_slug`,
-                        `projects`.`title`,
-                        `projects`.`image_url`,
-                        `projects`.`date`,
-                        `projects`.`content`,
-                        GROUP_CONCAT(`project_tags`.`name`) AS `tags: \
-             ProjectTags`
-                FROM      `projects`
-                LEFT JOIN `project_tags` ON `project_tags`.`project_slug` = \
-             `projects`.`slug`
-                WHERE     `projects`.`slug` = ?;
-                ",
-            slug
+            SELECT    `projects`.`slug`,
+                    `projects`.`next_slug`,
+                    (
+                    SELECT    `projects_for_next`.`title`
+                    FROM      `projects` AS `projects_for_next`
+                    WHERE     `projects_for_next`.`slug` = `projects`.`next_slug`
+                    ) AS `next_title`,
+                    `projects`.`title`,
+                    `projects`.`image_url`,
+                    `projects`.`date`,
+                    `projects`.`content`,
+                    (
+                    ---- https://www.sqlitetutorial.net/sqlite-json-functions/sqlite-json_group_array-function/
+                    SELECT    JSON_GROUP_ARRAY (`project_tags`.`name`)
+                    FROM      `project_tags`
+                    WHERE     `project_tags`.`project_slug` = `projects`.`slug`
+                    ) AS `tags`,
+                    (
+                    ---- https://www.sqlitetutorial.net/sqlite-json-functions/sqlite-json_group_array-function/
+                    ---- https://www.sqlitetutorial.net/sqlite-json-functions/sqlite-json_object-function/
+                    SELECT    JSON_GROUP_ARRAY (
+                                JSON_OBJECT('url', `project_links`.`url`, 'title', `project_links`.`title`, 'icon', `project_links`.`icon`)
+                                )
+                    FROM      `project_links`
+                    WHERE     `project_links`.`project_slug` = `projects`.`slug`
+                    ) AS `links`
+            FROM      `projects`
+            WHERE     `projects`.`slug` = ?;
+            ",
         )
-        .map(|row| Project {
-            position: None,
-            context: ProjectContext {
-                slug: row.slug.unwrap(),
-                next_slug: row.next_slug,
-                title: row.title.unwrap(),
-                image_url: row.image_url.unwrap(),
-                date: row.date.unwrap(),
-                tags: row.tags.unwrap_or_default(),
-            },
-            content: ProjectContent(row.content.unwrap()),
-        })
+        .bind(slug)
         .fetch_optional(&mut local_database.connection)
         .await?;
 

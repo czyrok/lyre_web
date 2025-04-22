@@ -65,7 +65,8 @@ pub fn UnthemedButton(
 
             class=(["tw-button-ping"], move || shows_ping.get())
 
-            on:click=on_click_callback
+            // FIXME:
+            // on:click=on_click_callback
             popovertarget=popover_target_id
             style=format!("anchor-name: --{}", anchor_name)
         >
@@ -93,3 +94,21 @@ pub fn UnthemedButton(
         </button>
     }
 }
+
+// FIXME: a suppr
+// #[component]
+// pub fn UnthemedButton2(
+//     #[prop(optional)] on_click: Option<Box<dyn FnMut(MouseEvent)>>,
+// ) -> impl IntoView {
+//     let on_click = on_click.unwrap_or(Box::new(move |_| {
+//         leptos::logging::log!("no callback");
+//     }));
+
+//     view! {
+//         <button
+//             on:click=on_click
+//         >
+//             "click"
+//         </button>
+//     }
+// }

@@ -61,9 +61,9 @@ pub fn LandingPage() -> impl IntoView {
                 <ContactSection />
             </div>
 
-            <Footer actions_render=|| view! {
+            <Footer middle_action_renderer=Box::new(|| view! {
                 <SecondaryButtonAsLink size=ComponentSize::MD text="Explorer mes Projets" href="/projects" />
-            } />
+            }.into_any()) />
         </div>
     }
 }

@@ -5,6 +5,7 @@ use super::environment_context::EnvironmentContext;
 use crate::project::{
     repositories::{
         project_context_repository::ProjectContextRepository,
+        project_link_repository::ProjectLinkRepository,
         project_repository::ProjectRepository,
         project_slug_repository::ProjectSlugRepository,
         project_tag_repository::ProjectTagRepository,
@@ -40,10 +41,12 @@ impl AppState {
             ProjectContextRepository::new(environment.clone());
         let project_slug_repository =
             ProjectSlugRepository::new(environment.clone());
+        let project_link_repository = ProjectLinkRepository::default();
 
         let project_service = ProjectService::new(
             project_repository,
             project_tag_repository.clone(),
+            project_link_repository,
         );
         let project_context_service =
             ProjectContextService::new(project_context_repository);

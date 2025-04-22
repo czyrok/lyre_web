@@ -21,7 +21,6 @@ use crate::{
     shared::{
         button::components::secondary_button_as_link::SecondaryButtonAsLink,
         components::footer::Footer, enums::component_size::ComponentSize,
-        enums::component_size::ComponentSize,
         layouts::secondary_page_layout::SecondaryPageLayout,
     },
 };
@@ -36,7 +35,7 @@ pub fn ProjectSearchPage() -> impl IntoView {
     let first_project_context = Signal::derive(move || {
         let project_contexts = project_contexts.get();
 
-        project_contexts.first().map(|first| first.clone())
+        project_contexts.first().cloned()
     });
 
     let (pagination, set_pagination) = signal(CursorPaginationDto::default());
@@ -47,8 +46,8 @@ pub fn ProjectSearchPage() -> impl IntoView {
     let (filter_reset_event, set_filter_reset_event) = signal(());
 
     let (is_loading, set_is_loading) = signal(false);
-    let (last_fetch_error, set_last_fetch_error) =
-        signal(FetchErrorState::default());
+    let (last_fetch_state, set_last_fetch_state) =
+        signal(FetchState::default());
     let resource = OrderedProjectContextsResource::new(
         pagination.into(),
         project_context_filter.into(),
@@ -104,7 +103,7 @@ pub fn ProjectSearchPage() -> impl IntoView {
 
     view! {
         <SecondaryPageLayout
-            content_render=move || view! {
+            content_renderer=move || view! {
                 <div class="tw-project-search-page-top-part">
                     <h1 class="tw-title-size-lg">"Mes Projets"</h1>
 
@@ -139,15 +138,23 @@ pub fn ProjectSearchPage() -> impl IntoView {
                 </Show>
             }.into_any()
 
-            footer_actions_render=Box::new(move || view! {
-                <Show
-                    when=move || { first_project_context.get().is_some() }
-                    fallback=|| view! {
-                        <SecondaryButtonAsLink size=ComponentSize::MD text="Accueil" href="/" />
-                    }
-                >
-                    <SecondaryButtonAsLink size=ComponentSize::MD text="Project au Hasard" href=format!("/projects/{}", first_project_context.get().unwrap().slug) />
-                </Show>
+            footer_renderer=Box::new(move || view! {
+                <Footer middle_action_renderer=
+                    Box::new(move || view! {
+                        <Show
+                            when=move || { first_project_context.get().is_some() }
+                            fallback=|| view! {
+                                <SecondaryButtonAsLink size=ComponentSize::MD text="Accueil" href="/" />
+                            }
+                        >
+                            <SecondaryButtonAsLink
+                                size=ComponentSize::MD
+                                text="Project au Hasard"
+                                href=format!("/projects/{}", first_project_context.get().unwrap().slug.expect("`slug` should exist"))
+                            />
+                        </Show>
+                    }.into_any())
+                />
             }.into_any())
         />
     }

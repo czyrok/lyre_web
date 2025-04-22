@@ -32,23 +32,24 @@ pub fn Checkbox(
                 class="tw-checkbox-input"
                 type="checkbox"
 
-                on:input:target=move |event| {
-                    let is_checked = event.target().checked();
+                // FIXME:
+                // on:input:target=move |event| {
+                //     let is_checked = event.target().checked();
 
-                    if is_checked {
-                        set_is_checked.set(is_checked);
+                //     if is_checked {
+                //         set_is_checked.set(is_checked);
 
-                        return;
-                    }
+                //         return;
+                //     }
 
-                    if can_user_unchecked {
-                        set_is_checked.set(is_checked);
-                    } else {
-                        //// We need to restore the checked view
-                        set_is_checked.set(true);
-                    }
-                }
-                prop:checked=is_checked
+                //     if can_user_unchecked {
+                //         set_is_checked.set(is_checked);
+                //     } else {
+                //         //// We need to restore the checked view
+                //         set_is_checked.set(true);
+                //     }
+                // }
+                // prop:checked=is_checked
             />
 
             <div class="tw-checkbox-box">
