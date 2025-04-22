@@ -1,7 +1,7 @@
 import { ComponentBuilderFunction } from '../types/component_builder_function';
 
 export const addH1Base: ComponentBuilderFunction = (
-  { addBase },
+  { addBase, addComponents },
   { darkModeContext, classPrefix }
 ) => {
   addBase({
@@ -38,13 +38,37 @@ export const addH1Base: ComponentBuilderFunction = (
         [`@apply ${classPrefix}font-title-xl`]: {},
       },
 
-      // Variants
       [`&.${classPrefix}title-size-lg`]: {
         // Sizing
         [`@apply ${classPrefix}text-10 sm:${classPrefix}text-12 md:${classPrefix}text-15`]: {},
 
         // Others
         [`@apply ${classPrefix}font-title-lg`]: {},
+      },
+    },
+  });
+
+  addComponents({
+    '.h1-skeleton': {
+      [`@apply ${classPrefix}animate-pulse ${classPrefix}box-content`]: {},
+
+      // Colors
+      [`@apply ${classPrefix}bg-white-200 dark:${classPrefix}bg-black-700`]: {},
+
+      // Sizing
+      [`@apply ${classPrefix}w-[5em] ${classPrefix}h-[1em]`]: {},
+      [`@apply ${classPrefix}my-[0.25em]`]: {},
+      [`@apply ${classPrefix}rounded-10`]: {},
+
+      // Variants
+      [`&.title-size-xl`]: {
+        // Sizing
+        [`@apply ${classPrefix}text-13 sm:${classPrefix}text-15 md:${classPrefix}text-20`]: {},
+      },
+
+      [`&.title-size-lg`]: {
+        // Sizing
+        [`@apply ${classPrefix}text-10 sm:${classPrefix}text-12 md:${classPrefix}text-15`]: {},
       },
     },
   });

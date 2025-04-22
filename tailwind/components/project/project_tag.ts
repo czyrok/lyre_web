@@ -22,5 +22,24 @@ export const addProjectTagComponent: ComponentBuilderFunction = (
       // Others
       [`@apply ${classPrefix}font-tag-text ${classPrefix}font-geist`]: {},
     },
+
+    '.project-tag-skeleton': {
+      [`@apply ${classPrefix}animate-pulse ${classPrefix}box-content`]: {},
+
+      // Colors
+      [`@apply ${classPrefix}bg-white-200`]: {},
+      [`${darkModeContext} &`]: {
+        [`@apply ${classPrefix}bg-black-700`]: {},
+      },
+
+      // Sizing
+      [`@apply ${classPrefix}w-[2.5em] ${classPrefix}h-[1.5em]`]: {},
+      '&:last-child': {
+        [`@apply ${classPrefix}w-[4em]`]: {},
+      },
+      [`@apply ${classPrefix}px-3 ${classPrefix}py-1`]: {},
+      [`@apply ${classPrefix}text-4`]: {},
+      [`@apply ${classPrefix}rounded-25`]: {},
+    },
   });
 };

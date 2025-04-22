@@ -104,5 +104,32 @@ export const addProjectThumbnailComponent: ComponentBuilderFunction = (
         [`@apply ${classPrefix}right-l7/1 ${classPrefix}bottom-l7/1`]: {},
       },
     },
+
+    '.project-thumbnail-skeleton': {
+      [`@apply ${classPrefix}inline-block ${classPrefix}relative ${classPrefix}overflow-visible`]:
+        {},
+
+      // Children
+      '.thumbnail-skeleton-image': {
+        [`@apply ${classPrefix}animate-pulse`]: {},
+
+        // Colors
+        [`@apply ${classPrefix}bg-white-200`]: {},
+        [`${darkModeContext} &`]: {
+          [`@apply ${classPrefix}bg-black-700`]: {},
+        },
+
+        // Sizing
+        [`@apply ${classPrefix}w-41 ${classPrefix}h-28`]: {},
+        [`@apply ${classPrefix}rounded-5`]: {},
+      },
+
+      '.thumbnail-skeleton-brand': {
+        [`@apply ${classPrefix}absolute ${classPrefix}animate-none`]: {},
+
+        // Sizing (required for the border)
+        [`@apply ${classPrefix}right-l7/1 ${classPrefix}bottom-l7/1`]: {},
+      },
+    },
   });
 };

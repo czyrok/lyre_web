@@ -13,7 +13,6 @@ import { addHighlightedSectionComponent } from './components/landing_page/highli
 import { addProjectSectionComponent } from './components/landing_page/project_section';
 import { addSectionContainerComponent } from './components/landing_page/section_container';
 import { addProjectCardComponent } from './components/project/project_card';
-import { addProjectCardSkeletonComponent } from './components/project/project_card_skeleton';
 import { addProjectTagComponent } from './components/project/project_tag';
 import { addProjectThumbnailComponent } from './components/project/project_thumbnail';
 import { addSearchedProjectTitleInputTextComponent } from './components/project_search_page/searched_project_title_input_text';
@@ -141,10 +140,6 @@ export const TAILWIND_CONFIGURATION: Config = {
         classPrefix: TAILWIND_CLASS_PREFIX,
       });
       addSecondaryButtonComponent(pluginApi, {
-        darkModeContext,
-        classPrefix: TAILWIND_CLASS_PREFIX,
-      });
-      addProjectCardSkeletonComponent(pluginApi, {
         darkModeContext,
         classPrefix: TAILWIND_CLASS_PREFIX,
       });

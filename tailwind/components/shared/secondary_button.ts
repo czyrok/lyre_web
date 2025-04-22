@@ -181,5 +181,47 @@ export const addSecondaryButtonComponent: ComponentBuilderFunction = (
         },
       },
     },
+
+    '.secondary-button-skeleton': {
+      [`@apply ${classPrefix}animate-pulse ${classPrefix}box-content`]: {},
+
+      // Colors
+      [`@apply ${classPrefix}bg-white-200`]: {},
+      [`${darkModeContext} &`]: {
+        [`@apply ${classPrefix}bg-black-700`]: {},
+      },
+
+      // Sizing
+      [`@apply ${classPrefix}w-[5em] ${classPrefix}h-[1.5em]`]: {},
+      '&:last-child': {
+        [`@apply ${classPrefix}w-[7em]`]: {},
+      },
+      [`@apply ${classPrefix}rounded-25`]: {},
+
+      // Variants
+      '&.button-size-xl': {
+        // Sizing
+        [`@apply ${classPrefix}px-5 ${classPrefix}py-2`]: {},
+        [`@apply ${classPrefix}text-6`]: {},
+      },
+
+      '&.button-size-lg': {
+        // Sizing
+        [`@apply ${classPrefix}px-4 ${classPrefix}py-2`]: {},
+        [`@apply ${classPrefix}text-5`]: {},
+      },
+
+      '&.button-size-md': {
+        // Sizing
+        [`@apply ${classPrefix}px-4 ${classPrefix}py-2`]: {},
+        [`@apply ${classPrefix}text-4`]: {},
+      },
+
+      '&.button-size-sm': {
+        // Sizing
+        [`@apply ${classPrefix}px-3 ${classPrefix}py-1,5`]: {},
+        [`@apply ${classPrefix}text-3`]: {},
+      },
+    },
   });
 };
