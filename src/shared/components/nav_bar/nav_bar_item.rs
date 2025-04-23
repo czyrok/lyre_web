@@ -5,8 +5,8 @@ use crate::shared::components::icon::{Icon, IconSet};
 
 #[component]
 pub fn NavBarItem(
-    text: String,
-    href: String,
+    #[prop(into)] text: String,
+    #[prop(into)] href: String,
     icon: IconSet,
     #[prop(default = true)] uses_active_behavior: bool,
 ) -> impl IntoView {
