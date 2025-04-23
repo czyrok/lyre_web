@@ -20,9 +20,9 @@ pub fn InfoErrorPageLayout(
                 <Brand size=ComponentSize::LG layout_mode=LayoutMode::BadgeOnly />
             </div>
 
-            <div class="tw-secondary-page-layout-content">
+            <main class="tw-secondary-page-layout-content">
                 {content_renderer()}
-            </div>
+            </main>
 
             <Footer displays_actions=false />
         </div>

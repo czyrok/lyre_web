@@ -36,9 +36,9 @@ pub fn SecondaryPageLayout(
                 {intro_renderer()}
             </div>
 
-            <div class="tw-secondary-page-layout-content">
+            <main class="tw-secondary-page-layout-content">
                 {content_renderer()}
-            </div>
+            </main>
 
             {footer_renderer()}
         </div>

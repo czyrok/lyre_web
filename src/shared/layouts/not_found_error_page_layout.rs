@@ -21,15 +21,15 @@ pub fn NotFoundErrorPageLayout(
                 <Brand size=ComponentSize::LG layout_mode=LayoutMode::BadgeOnly />
             </div>
 
-            <div class="tw-secondary-page-layout-content">
+            <main class="tw-secondary-page-layout-content">
                 <h1 class="tw-title-size-lg">{title.clone()}</h1>
 
                 <div class="tw-not-found-error-page-layout-home-back">
-                    <p>"Tu t’es perdu ? Pas de problèmes."</p>
+                    <p>"Tu t’es perdu ? Pas de problème."</p>
 
                     <AccentuationButtonAsLink size=ComponentSize::XL text="Retour à l'Accueil" href="/" />
                 </div>
-            </div>
+            </main>
 
             <Footer displays_actions=false />
         </div>

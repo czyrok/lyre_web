@@ -52,11 +52,11 @@ pub fn LandingPage() -> impl IntoView {
                 </div>
             </div>
 
-            <div class="tw-landing-page-content">
+            <main class="tw-landing-page-content">
                 <ProjectSection />
                 <HighlightedSection />
                 <ContactSection />
-            </div>
+            </main>
 
             <Footer middle_action_renderer=Box::new(|| view! {
                 <SecondaryButtonAsLink size=ComponentSize::MD text="Explorer mes Projets" href="/projects" />
