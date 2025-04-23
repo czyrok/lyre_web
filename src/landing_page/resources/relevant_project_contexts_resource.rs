@@ -22,28 +22,13 @@ pub struct RelevantProjectContextsResource(
 );
 
 impl RelevantProjectContextsResource {
-    pub fn get_fetched_project_contexts(&self) -> Vec<ProjectContext> {
+    pub async fn get_project_contexts(
+        &self,
+    ) -> Result<Vec<ProjectContext>, FetchState> {
         self.0
-            .get()
-            .map(|n| n.unwrap_or_default())
+            .await
             .map(|project_contexts_dto| project_contexts_dto.project_contexts)
-            .unwrap_or_default()
-    }
-
-    pub fn get_fetch_state(&self) -> FetchState {
-        let resource_result = self.0.get();
-
-        if let Some(resource_result) = resource_result {
-            let resource_result = resource_result.map(|_| ());
-
-            if let Err(error) = resource_result {
-                return FetchState::Errored(error);
-            }
-
-            return FetchState::Resolved;
-        }
-
-        FetchState::Pending
+            .map_err(FetchState::Errored)
     }
 }
 

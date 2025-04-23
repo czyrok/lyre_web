@@ -1,6 +1,7 @@
 pub mod brand;
 pub mod checkbox;
 pub mod dropdown_menu;
+pub mod errors_display;
 pub mod fetch_error_display;
 pub mod footer;
 pub mod icon;
