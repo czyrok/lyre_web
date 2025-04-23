@@ -1,4 +1,8 @@
+#[cfg(feature = "ssr")]
+use http::StatusCode;
 use leptos::prelude::*;
+#[cfg(feature = "ssr")]
+use leptos_axum::ResponseOptions;
 
 use crate::shared::{
     button::components::accentuation_button_as_link::AccentuationButtonAsLink,
@@ -13,6 +17,13 @@ use crate::shared::{
 pub fn NotFoundErrorPageLayout(
     #[prop(default = "Page non trouvée".into(), into)] title: String,
 ) -> impl IntoView {
+    #[cfg(feature = "ssr")]
+    {
+        let response = expect_context::<ResponseOptions>();
+
+        response.set_status(StatusCode::NOT_FOUND);
+    }
+
     view! {
         <div class="tw-secondary-page-layout tw-not-found-error-page-layout">
             <div id="top" class="tw-anchor"></div>

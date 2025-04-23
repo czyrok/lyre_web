@@ -19,7 +19,10 @@ use crate::{
             project_search_page::ProjectSearchPage,
         },
     },
-    shared::components::nav_bar::nav_bar_container::NavBarContainer,
+    shared::{
+        components::nav_bar::nav_bar_container::NavBarContainer,
+        layouts::not_found_error_page_layout::NotFoundErrorPageLayout,
+    },
     system::{
         state::frontend_contexts::use_app_settings, watch_path::watch_path,
     },
@@ -42,13 +45,6 @@ pub fn App() -> impl IntoView {
         set_uses_dark_theme.set(current.0);
     });
 
-    let fallback = || {
-        (view! {
-          "Page not found."
-        })
-        .into_view()
-    };
-
     view! {
         <Title text="Welcome to Leptos"/>
 
@@ -59,49 +55,44 @@ pub fn App() -> impl IntoView {
             <Router>
                 <NavBarContainer />
 
-                // TODO: mettre dans layout au niveau du content
-                <main>
-                    <FlatRoutes fallback>
-                        <Route
-                            path=path!("/")
-                            view=LandingPage
-                            ssr=SsrMode::Static(
-                                StaticRoute::new().regenerate(|_| watch_path(Path::new("./project_data"))),
-                            )
-                        />
+                <FlatRoutes fallback=|| {
+                    view! {
+                        <NotFoundErrorPageLayout />
+                    }
+                    .into_view()
+                }>
+                    <Route
+                        path=path!("/")
+                        view=LandingPage
+                        ssr=SsrMode::Static(
+                            StaticRoute::new().regenerate(|_| watch_path(Path::new("./project_data"))),
+                        )
+                    />
 
-                        // TODO: y'a un intru
-                        <Route
-                            path=path!("/about")
-                            view=move || view! { <Redirect path="/"/> }
-                            ssr=SsrMode::Static(StaticRoute::new())
-                        />
+                    <Route
+                        path=path!("/projects")
+                        view=ProjectSearchPage
+                        ssr=SsrMode::Static(StaticRoute::new())
+                    />
 
-                        <Route
-                            path=path!("/projects")
-                            view=ProjectSearchPage
-                            ssr=SsrMode::Static(StaticRoute::new())
-                        />
-
-                        <Route
-                            path=path!("/projects/:slug/")
-                            view=ProjectDetails
-                            ssr=SsrMode::Static(
-                                StaticRoute::new()
-                                    .prerender_params(|| async move {
-                                        [("slug".into(), get_project_slugs().await.unwrap_or_default())]
-                                            .into_iter()
-                                            .map(|params| (params.0, params.1.project_slugs))
-                                            .collect()
-                                    })
-                                    .regenerate(|params| {
-                                        let slug = params.get("slug").unwrap();
-                                        watch_path(Path::new(&format!("./project_data/{slug}.md")))
-                                    }),
-                            )
-                        />
-                    </FlatRoutes>
-                </main>
+                    <Route
+                        path=path!("/projects/:slug/")
+                        view=ProjectDetails
+                        ssr=SsrMode::Static(
+                            StaticRoute::new()
+                                .prerender_params(|| async move {
+                                    [("slug".into(), get_project_slugs().await.unwrap_or_default())]
+                                        .into_iter()
+                                        .map(|params| (params.0, params.1.project_slugs))
+                                        .collect()
+                                })
+                                .regenerate(|params| {
+                                    let slug = params.get("slug").unwrap();
+                                    watch_path(Path::new(&format!("./project_data/{slug}.md")))
+                                }),
+                        )
+                    />
+                </FlatRoutes>
             </Router>
         </div>
     }

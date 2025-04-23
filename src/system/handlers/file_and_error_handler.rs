@@ -2,35 +2,31 @@ use axum::{
     body::Body,
     extract::State,
     http::{Request, Response, StatusCode, Uri},
-    response::{IntoResponse, Response as AxumResponse},
+    response::{IntoResponse, Redirect, Response as AxumResponse},
 };
 use leptos::prelude::*;
 use tower::ServiceExt;
 use tower_http::services::{fs::ServeFileSystemResponseBody, ServeDir};
 
+use super::leptos_route_handler::leptos_routes_handler;
+use crate::{
+    shared::layouts::not_found_error_page_layout::NotFoundErrorPageLayout,
+    system::state::app_state::AppState,
+};
+
 pub async fn file_and_error_handler(
     uri: Uri,
-    State(options): State<LeptosOptions>,
+    app_state: State<AppState>,
     req: Request<Body>,
 ) -> AxumResponse {
-    let root = options.site_root.clone();
+    let root = app_state.options.site_root.clone();
     let res = get_static_file(uri.clone(), &root).await.unwrap();
 
     if res.status() == StatusCode::OK {
         res.into_response()
     } else {
-        // TODO: faire la page not found lol ou c'est une page d'erreur jsp, faire un redirect ?
-        // TODO: l'exemple provient du truc session mes couilles
-        // https://github.com/leptos-rs/leptos/blob/19ea6fae6aec2a493d79cc86612622d219e6eebb/examples/session_auth_axum/src/todo.rs
-
-        //let mut errors = Errors::default();
-        //errors.insert_with_default_key(TodoAppError::NotFound);
-        let handler = leptos_axum::render_app_to_stream(move || {
-            view! {
-                marche pqs
-            }
-        });
-        handler(req).await.into_response()
+        //// If the static file is not found, it render the app directly
+        leptos_routes_handler(app_state, req).await
     }
 }
 
