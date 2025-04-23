@@ -1,27 +1,35 @@
+#[cfg(feature = "ssr")]
+use leptos::nonce::use_nonce;
 use leptos::{config::LeptosOptions, prelude::*, IntoView};
-use leptos_meta::{MetaTags, *};
+use leptos_meta::*;
 
 use crate::app::App;
 
 pub fn shell(options: LeptosOptions) -> impl IntoView {
+    #[cfg(feature = "ssr")]
+    let nonce: Option<String> = use_nonce().map(|nonce| nonce.to_string());
+    #[cfg(not(feature = "ssr"))]
+    let nonce = None::<String>;
+
     view! {
         <!DOCTYPE html>
         <html lang="fr">
             <head>
                 <meta charset="utf-8"/>
                 <meta name="viewport" content="width=device-width, initial-scale=1"/>
+
                 <AutoReload options=options.clone()/>
                 <HydrationScripts options/>
                 <MetaTags/>
-                <Meta name="color-scheme" content="dark light"/>
-                <Stylesheet id="theme" href="/tailwind_output.css"/>
-                // TODO:
-                //<Link rel="shortcut icon" type_="image/ico" href="/favicon.ico"/>
 
-                // TODO: preload
-                // <link rel="preload" href="./button_rectangle_background.svg" as="image" type="image/svg+xml" crossorigin>
-                // <link rel="preload" href="./GeistMonoVF.woff" as="font" type="font/woff" crossorigin>
-                // <link rel="preload" href="./GeistVF.woff" as="font" type="font/woff" crossorigin>
+                //// It's only useful when `@media (prefers-color-scheme: dark)` is used
+                // <Meta name="color-scheme" content="dark light"/>
+
+                // TODO: favicon
+                //<Link rel="shortcut icon" type_="image/ico" href="/favicon.ico"/>
+                <Link id="theme" rel="stylesheet" href="/tailwind_output.css" crossorigin=nonce.clone().unwrap_or_default() />
+                <Link rel="preload" href="/fonts/GeistMono-1.3.0/variable-woff/GeistMonoVF.woff" as_="font" type_="font/woff2" crossorigin=nonce.clone().unwrap_or_default() />
+                <Link rel="preload" href="/fonts/Geist-1.3.0/variable-woff/GeistVF.woff" as_="font" type_="font/woff2" crossorigin=nonce.clone().unwrap_or_default() />
             </head>
             <body>
                 <App/>

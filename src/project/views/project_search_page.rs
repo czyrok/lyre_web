@@ -122,6 +122,7 @@ pub fn ProjectSearchPage() -> impl IntoView {
 
                     <Show when=move || { displays_list_block.get() }>
                         <div class="tw-middle-part-list">
+                            // TODO: recycler view...
                             <For each=move || project_contexts.get() key=|project_context| project_context.slug.clone() let:project_context>
                                 <ProjectCard project_context=project_context />
                             </For>

@@ -3,7 +3,7 @@ use std::path::Path;
 use leptos::prelude::*;
 use leptos_meta::*;
 use leptos_router::{
-    components::{FlatRoutes, Redirect, Route, Router},
+    components::{FlatRoutes, Route, Router},
     path,
     static_routes::StaticRoute,
     SsrMode,
