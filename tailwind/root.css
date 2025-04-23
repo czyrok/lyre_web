@@ -25,3 +25,7 @@
   font-family: 'Geist';
   src: url(/fonts/Geist-1.3.0/variable-woff/GeistVF.woff), format('woff');
 }
+
+:root {
+  @apply tw-text-[14px] sm:tw-text-[15px] md:tw-text-[16px];
+}

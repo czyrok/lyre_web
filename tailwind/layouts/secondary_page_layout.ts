@@ -28,7 +28,7 @@ export const addSecondaryPageLayout: ComponentBuilderFunction = (
         [`@apply ${classPrefix}py-4 sm:${classPrefix}py-6`]: {},
         [`@apply ${classPrefix}mb-6 sm:${classPrefix}mb-7 md:${classPrefix}mb-11 lg:${classPrefix}mb-16`]:
           {},
-        [`@apply ${classPrefix}container-level4`]: {},
+        [`@apply ${classPrefix}gap-level4`]: {},
       },
     },
   });

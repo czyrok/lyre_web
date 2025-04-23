@@ -11,29 +11,14 @@ export const EXTENDED_THEME_SIZE: {
   width: {
     'button-icon': '1.5em',
     'brand-badge-logo': '58%',
-    'contact-photo': '328px',
-    7: '56px',
-    13: '104px',
-    33: '264px',
-    41: '328px',
   },
-  minWidth: {
-    'contact-photo': '328px',
-  },
+  minWidth: {},
   maxWidth: {
     'landing-page-shape': '950px',
-    62: '496px',
   },
   height: {
     'button-icon': '1.5em',
-    'contact-photo': '328px',
-    4: '32px',
-    7: '56px',
-    28: '224px',
-    33: '264px',
   },
-  minHeight: {
-    'contact-photo': '328px',
-  },
+  minHeight: {},
   maxHeight: {},
 } as const;

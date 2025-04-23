@@ -1,12 +1,11 @@
 import { ThemeConfig } from 'tailwindcss/types/config';
 
 export const THEME_BORDER_RADIUS: ThemeConfig['borderRadius'] = {
-  // TODO: les convertir tous en em
-  2: '8px',
-  3: '0.6em',
-  5: '20px',
-  10: '40px',
-  18: '72px',
-  25: '100px',
+  2: '0.5rem',
+  3: '0.75em',
+  5: '1.25rem',
+  10: '2.5rem',
+  18: '4.5rem',
+  25: '6.25rem',
   full: '9999px',
 } as const;

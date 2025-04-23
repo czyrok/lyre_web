@@ -11,7 +11,7 @@ export const addNotFoundErrorPageLayout: ComponentBuilderFunction = (
         [`@apply ${classPrefix}flex ${classPrefix}flex-col ${classPrefix}items-center`]: {},
 
         // Sizing
-        [`@apply ${classPrefix}container-level2`]: {},
+        [`@apply ${classPrefix}gap-level2`]: {},
       },
     },
   });

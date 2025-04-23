@@ -11,14 +11,14 @@ export const addHighlightedSectionComponent: ComponentBuilderFunction = (
       [`@apply dark:${classPrefix}bg-blue-950`]: {},
 
       // Sizing
-      [`@apply ${classPrefix}py-6 sm:${classPrefix}py-7 md:${classPrefix}py-10`]: {},
+      [`@apply ${classPrefix}py-10`]: {},
 
       // Children
       '.section-text-timeline': {
         [`@apply ${classPrefix}flex ${classPrefix}flex-col 2xl:${classPrefix}flex-row`]: {},
 
         // Sizing
-        [`@apply ${classPrefix}container-level3`]: {},
+        [`@apply ${classPrefix}gap-level3`]: {},
 
         // Children
         '.timeline-item': {
@@ -26,7 +26,7 @@ export const addHighlightedSectionComponent: ComponentBuilderFunction = (
             {},
 
           // Sizing
-          [`@apply ${classPrefix}container-level2`]: {},
+          [`@apply ${classPrefix}gap-level2`]: {},
 
           // Children
           '.item-date': {
@@ -59,7 +59,7 @@ export const addHighlightedSectionComponent: ComponentBuilderFunction = (
       // Overrides
       '.section-text': {
         [`@apply ${classPrefix}max-w-210`]: {},
-        [`@apply ${classPrefix}container-level3`]: {},
+        [`@apply ${classPrefix}gap-level3`]: {},
       },
       '.anchor': {
         // Apply variants

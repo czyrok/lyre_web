@@ -8,7 +8,7 @@ export const addPBase: ComponentBuilderFunction = ({ addBase, addComponents }, {
       [`@apply dark:${classPrefix}text-white-50`]: {},
 
       // Sizing
-      [`@apply ${classPrefix}text-4 sm:${classPrefix}text-5 md:${classPrefix}text-6`]: {},
+      [`@apply ${classPrefix}text-6`]: {},
 
       // Others
       [`@apply ${classPrefix}font-regular ${classPrefix}font-geist`]: {},
@@ -28,7 +28,7 @@ export const addPBase: ComponentBuilderFunction = ({ addBase, addComponents }, {
         [`@apply ${classPrefix}w-[9em]`]: {},
       },
       [`@apply ${classPrefix}rounded-25`]: {},
-      [`@apply ${classPrefix}text-4 sm:${classPrefix}text-5 md:${classPrefix}text-6`]: {},
+      [`@apply ${classPrefix}text-6`]: {},
     },
   });
 };

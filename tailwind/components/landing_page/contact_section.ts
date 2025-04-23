@@ -15,7 +15,7 @@ export const addContactSectionComponent: ComponentBuilderFunction = (
           {},
 
         // Sizing
-        [`@apply ${classPrefix}w-contact-photo ${classPrefix}min-w-contact-photo ${classPrefix}h-contact-photo ${classPrefix}min-h-contact-photo`]:
+        [`@apply ${classPrefix}w-41 ${classPrefix}min-w-41 ${classPrefix}h-41 ${classPrefix}min-h-41`]:
           {},
         [`@apply ${classPrefix}rounded-full`]: {},
 
@@ -39,7 +39,7 @@ export const addContactSectionComponent: ComponentBuilderFunction = (
         [`@apply ${classPrefix}flex ${classPrefix}flex-col`]: {},
 
         // Sizing
-        [`@apply ${classPrefix}container-level3`]: {},
+        [`@apply ${classPrefix}gap-level3`]: {},
       },
 
       // Overrides

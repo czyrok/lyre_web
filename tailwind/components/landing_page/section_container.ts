@@ -10,7 +10,7 @@ export const addSectionContainerComponent: ComponentBuilderFunction = (
 
       // Sizing
       [`@apply ${classPrefix}p-4 sm:${classPrefix}p-6 md:${classPrefix}p-8`]: {},
-      [`@apply ${classPrefix}container-level3`]: {},
+      [`@apply ${classPrefix}gap-level3`]: {},
 
       // Children
       '.section-text': {
@@ -18,7 +18,7 @@ export const addSectionContainerComponent: ComponentBuilderFunction = (
 
         // Sizing
         [`@apply ${classPrefix}max-w-103`]: {},
-        [`@apply ${classPrefix}container-level2`]: {},
+        [`@apply ${classPrefix}gap-level2`]: {},
       },
 
       '.section-actions': {

@@ -20,10 +20,9 @@ export const addProjectDetailsPage: ComponentBuilderFunction = (
             [`@apply ${classPrefix}flex ${classPrefix}flex-wrap`]: {},
 
             // Sizing
-            [`@apply ${classPrefix}x-container-level2`]: {},
+            [`@apply ${classPrefix}gap-x-level2`]: {},
 
             // Children
-            // TODO: bug de responsive revient à la ligne puis revient
             '.details-tags': {
               [`@apply ${classPrefix}flex ${classPrefix}flex-wrap ${classPrefix}items-center`]: {},
 
@@ -50,7 +49,7 @@ export const addProjectDetailsPage: ComponentBuilderFunction = (
 
           // Sizing
           [`@apply ${classPrefix}max-w-119`]: {},
-          [`@apply ${classPrefix}container-level2`]: {},
+          [`@apply ${classPrefix}gap-level2`]: {},
           //// Used for skeleton
           [`@apply ${classPrefix}w-full`]: {},
 
@@ -60,7 +59,7 @@ export const addProjectDetailsPage: ComponentBuilderFunction = (
 
             // Sizing
             [`@apply ${classPrefix}max-w-119`]: {},
-            [`@apply ${classPrefix}container-level2`]: {},
+            [`@apply ${classPrefix}gap-level2`]: {},
             //// Used for skeleton
             [`@apply ${classPrefix}w-full`]: {},
           },
