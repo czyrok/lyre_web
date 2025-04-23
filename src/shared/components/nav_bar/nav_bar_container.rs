@@ -1,7 +1,8 @@
 use leptos::prelude::*;
 
-use crate::shared::components::{
-    icon::IconSet, nav_bar::nav_bar_item::NavBarItem,
+use crate::{
+    core::data::icon_set::IconSet,
+    shared::components::nav_bar::nav_bar_item::NavBarItem,
 };
 
 #[component]

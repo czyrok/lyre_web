@@ -3,9 +3,9 @@ use leptos::{ev::MouseEvent, prelude::*};
 use super::super::types::{
     button_action::ButtonAction, button_theme::ButtonTheme, icon_side::IconSide,
 };
-use crate::shared::{
-    components::icon::{Icon, IconSet},
-    enums::component_size::ComponentSize,
+use crate::{
+    core::data::icon_set::IconSet,
+    shared::{components::icon::Icon, enums::component_size::ComponentSize},
 };
 
 #[component]

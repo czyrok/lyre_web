@@ -1,7 +1,7 @@
 use leptos::prelude::*;
 
 use crate::{
-    core::data::fetch_state::FetchState,
+    core::data::{fetch_state::FetchState, icon_set::IconSet},
     landing_page::resources::relevant_project_contexts_resource::RelevantProjectContextsResource,
     project::components::{
         project_card::ProjectCard, project_card_skeleton::ProjectCardSkeleton,
@@ -11,7 +11,7 @@ use crate::{
             components::primary_button_as_link::PrimaryButtonAsLink,
             types::icon_side::IconSide,
         },
-        components::{fetch_error_display::FetchErrorDisplay, icon::IconSet},
+        components::fetch_error_display::FetchErrorDisplay,
         enums::component_size::ComponentSize,
     },
 };

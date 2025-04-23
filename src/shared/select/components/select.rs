@@ -1,17 +1,19 @@
 use leptos::prelude::*;
 
-use crate::shared::{
-    button::{
-        components::secondary_button::SecondaryButton,
-        types::icon_side::IconSide,
+use crate::{
+    core::data::icon_set::IconSet,
+    shared::{
+        button::{
+            components::secondary_button::SecondaryButton,
+            types::icon_side::IconSide,
+        },
+        components::{
+            checkbox::Checkbox,
+            dropdown_menu::{DropdownMenu, Position},
+        },
+        enums::component_size::ComponentSize,
+        select::types::select_choices_behavior::SelectChoicesBehavior,
     },
-    components::{
-        checkbox::Checkbox,
-        dropdown_menu::{DropdownMenu, Position},
-        icon::IconSet,
-    },
-    enums::component_size::ComponentSize,
-    select::types::select_choices_behavior::SelectChoicesBehavior,
 };
 
 #[component]

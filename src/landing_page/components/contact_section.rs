@@ -1,15 +1,17 @@
 use leptos::prelude::*;
 
-use crate::shared::{
-    button::{
-        components::{
-            primary_button_as_link::PrimaryButtonAsLink,
-            secondary_button_as_link::SecondaryButtonAsLink,
+use crate::{
+    core::data::icon_set::IconSet,
+    shared::{
+        button::{
+            components::{
+                primary_button_as_link::PrimaryButtonAsLink,
+                secondary_button_as_link::SecondaryButtonAsLink,
+            },
+            types::icon_side::IconSide,
         },
-        types::icon_side::IconSide,
+        enums::component_size::ComponentSize,
     },
-    components::icon::IconSet,
-    enums::component_size::ComponentSize,
 };
 
 #[component]

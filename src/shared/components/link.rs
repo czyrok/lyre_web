@@ -1,9 +1,9 @@
 use leptos::prelude::*;
 use leptos_router::components::A;
 
-use crate::shared::{
-    components::icon::{Icon, IconSet},
-    enums::component_size::ComponentSize,
+use crate::{
+    core::data::icon_set::IconSet,
+    shared::{components::icon::Icon, enums::component_size::ComponentSize},
 };
 
 #[component]

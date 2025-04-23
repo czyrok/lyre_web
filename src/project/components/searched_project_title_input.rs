@@ -1,9 +1,11 @@
 use leptos::prelude::*;
 use leptos_use::signal_debounced;
 
-use crate::shared::{
-    components::{icon::IconSet, input_text::InputText},
-    enums::component_size::ComponentSize,
+use crate::{
+    core::data::icon_set::IconSet,
+    shared::{
+        components::input_text::InputText, enums::component_size::ComponentSize,
+    },
 };
 
 #[component]

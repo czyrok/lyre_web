@@ -1,6 +1,6 @@
 use serde::{Deserialize, Serialize};
 
-use crate::shared::components::icon::IconSet;
+use crate::core::data::icon_set::IconSet;
 
 #[derive(Serialize, Deserialize, Clone, Debug)]
 pub struct ProjectLink {

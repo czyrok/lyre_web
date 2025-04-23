@@ -1,15 +1,17 @@
 use leptos::prelude::*;
 
-use crate::shared::{
-    button::{
-        components::unthemed_button::UnthemedButton,
-        types::{
-            button_action::ButtonAction, button_theme::ButtonTheme,
-            icon_side::IconSide,
+use crate::{
+    core::data::icon_set::IconSet,
+    shared::{
+        button::{
+            components::unthemed_button::UnthemedButton,
+            types::{
+                button_action::ButtonAction, button_theme::ButtonTheme,
+                icon_side::IconSide,
+            },
         },
+        enums::component_size::ComponentSize,
     },
-    components::icon::IconSet,
-    enums::component_size::ComponentSize,
 };
 
 #[component]

@@ -1,6 +1,7 @@
 use leptos::prelude::*;
 
 use crate::{
+    core::data::icon_set::IconSet,
     landing_page::components::{
         contact_section::ContactSection,
         highlighted_section::HighlightedSection,
@@ -11,11 +12,7 @@ use crate::{
             accentuation_button_as_link::AccentuationButtonAsLink,
             secondary_button_as_link::SecondaryButtonAsLink,
         },
-        components::{
-            brand::Brand,
-            footer::Footer,
-            icon::{Icon, IconSet},
-        },
+        components::{brand::Brand, footer::Footer, icon::Icon},
         enums::component_size::ComponentSize,
     },
 };

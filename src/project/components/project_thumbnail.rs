@@ -2,11 +2,12 @@ use leptos::prelude::*;
 use leptos_router::components::A;
 
 use crate::{
+    core::data::icon_set::IconSet,
     project::data::project_context::ProjectContext,
     shared::{
         components::{
             brand::{Brand, LayoutMode},
-            icon::{Icon, IconSet},
+            icon::Icon,
         },
         enums::component_size::ComponentSize,
     },

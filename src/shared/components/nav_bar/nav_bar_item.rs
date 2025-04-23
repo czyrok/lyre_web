@@ -1,7 +1,7 @@
 use leptos::prelude::*;
 use leptos_router::components::A;
 
-use crate::shared::components::icon::{Icon, IconSet};
+use crate::{core::data::icon_set::IconSet, shared::components::icon::Icon};
 
 #[component]
 pub fn NavBarItem(
