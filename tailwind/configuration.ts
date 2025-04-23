@@ -1,6 +1,7 @@
 import { Config } from 'tailwindcss';
 import plugin from 'tailwindcss/plugin';
 import { addABase } from './bases/a';
+import { addBBase } from './bases/b';
 import { addBodyBase } from './bases/body';
 import { addH1Base } from './bases/h1';
 import { addHtmlBase } from './bases/html';
@@ -109,6 +110,9 @@ export const TAILWIND_CONFIGURATION: Config = {
         classPrefix: TAILWIND_CLASS_PREFIX,
       });
       addBodyBase(pluginApi, {
+        classPrefix: TAILWIND_CLASS_PREFIX,
+      });
+      addBBase(pluginApi, {
         classPrefix: TAILWIND_CLASS_PREFIX,
       });
 
