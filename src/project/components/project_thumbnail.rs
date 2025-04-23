@@ -36,7 +36,7 @@ pub fn ProjectThumbnail(
 
     if enables_hover {
         view = view! {
-            <A href=format!("/projects/{}", project_context.slug.expect("`slug` should exist"))>
+            <A href=format!("/projects/{}/", project_context.slug.expect("`slug` should exist"))>
                 <div class="tw-project-thumbnail">
                     <div class="tw-thumbnail-image">
                         <img src=format!("/project_data_images/{}", project_context.image_url) alt="Screenshot of the project" />

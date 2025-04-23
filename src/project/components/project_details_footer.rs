@@ -25,7 +25,7 @@ pub fn ProjectDetailsFooter(
                 <SecondaryButtonAsLink
                     size=ComponentSize::MD
                     text="Project Suivant"
-                    href=format!("/projects/{}", next.clone().slug)
+                    href=format!("/projects/{}/", next.clone().slug)
                 />
             }
             .into_any()

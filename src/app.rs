@@ -84,7 +84,7 @@ pub fn App() -> impl IntoView {
                         />
 
                         <Route
-                            path=path!("/projects/:slug")
+                            path=path!("/projects/:slug/")
                             view=ProjectDetails
                             ssr=SsrMode::Static(
                                 StaticRoute::new()
@@ -100,7 +100,6 @@ pub fn App() -> impl IntoView {
                                     }),
                             )
                         />
-
                     </FlatRoutes>
                 </main>
             </Router>

@@ -150,7 +150,7 @@ pub fn ProjectSearchPage() -> impl IntoView {
                             <SecondaryButtonAsLink
                                 size=ComponentSize::MD
                                 text="Project au Hasard"
-                                href=format!("/projects/{}", first_project_context.get().unwrap().slug.expect("`slug` should exist"))
+                                href=format!("/projects/{}/", first_project_context.get().unwrap().slug.expect("`slug` should exist"))
                             />
                         </Show>
                     }.into_any())
