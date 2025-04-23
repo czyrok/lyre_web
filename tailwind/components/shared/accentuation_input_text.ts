@@ -2,7 +2,7 @@ import { ComponentBuilderFunction } from '../../types/component_builder_function
 
 export const addAccentuationInputTextComponent: ComponentBuilderFunction = (
   { addComponents },
-  { darkModeContext, classPrefix }
+  { classPrefix }
 ) => {
   addComponents({
     '.accentuation-input-text': {
@@ -29,9 +29,7 @@ export const addAccentuationInputTextComponent: ComponentBuilderFunction = (
 
       // Colors
       [`@apply ${classPrefix}bg-green-100`]: {},
-      [`${darkModeContext} &`]: {
-        [`@apply ${classPrefix}bg-green-700`]: {},
-      },
+      [`@apply dark:${classPrefix}bg-green-700`]: {},
 
       // Sizing (required for the background gradient)
       [`@apply ${classPrefix}rounded-25`]: {},
@@ -46,14 +44,9 @@ export const addAccentuationInputTextComponent: ComponentBuilderFunction = (
         // Colors
         '&::placeholder': {
           [`@apply ${classPrefix}text-green-950/50`]: {},
-          [`${darkModeContext} &`]: {
-            [`@apply ${classPrefix}text-green-950/50`]: {},
-          },
+          [`@apply dark:${classPrefix}text-green-950/50`]: {},
         },
         [`@apply ${classPrefix}text-green-950`]: {},
-        [`${darkModeContext} &`]: {
-          [`@apply ${classPrefix}text-green-950`]: {},
-        },
 
         // Others
         [`@apply ${classPrefix}font-button-text ${classPrefix}font-geist-mono`]: {},
@@ -64,9 +57,6 @@ export const addAccentuationInputTextComponent: ComponentBuilderFunction = (
 
         // Colors
         [`@apply ${classPrefix}text-green-950`]: {},
-        [`${darkModeContext} &`]: {
-          [`@apply ${classPrefix}text-green-950`]: {},
-        },
 
         // Sizing
         [`@apply ${classPrefix}w-button-icon ${classPrefix}h-button-icon`]: {},
@@ -85,12 +75,12 @@ export const addAccentuationInputTextComponent: ComponentBuilderFunction = (
       '&:has(.input-text-input:focus)': {
         // Colors
         [`@apply ${classPrefix}ring-green-400`]: {},
+        [`@apply dark:${classPrefix}ring-green-600`]: {},
+
         //// This needs to correspond to page background
         [`@apply ${classPrefix}ring-offset-white-50`]: {},
-        [`${darkModeContext} &`]: {
-          [`@apply ${classPrefix}ring-green-600`]: {},
-          [`@apply ${classPrefix}ring-offset-black-950`]: {},
-        },
+        //// This needs to correspond to page background
+        [`@apply dark:${classPrefix}ring-offset-black-950`]: {},
 
         // Sizing
         [`@apply ${classPrefix}ring-3 ${classPrefix}ring-offset-3`]: {},

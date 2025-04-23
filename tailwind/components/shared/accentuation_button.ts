@@ -2,7 +2,7 @@ import { ComponentBuilderFunction } from '../../types/component_builder_function
 
 export const addAccentuationButtonComponent: ComponentBuilderFunction = (
   { addComponents },
-  { darkModeContext, classPrefix }
+  { classPrefix }
 ) => {
   addComponents({
     '.accentuation-button': {
@@ -31,9 +31,7 @@ export const addAccentuationButtonComponent: ComponentBuilderFunction = (
       // Colors
       [`@apply ${classPrefix}bg-button-gradient`]: {},
       [`@apply ${classPrefix}from-green-400 ${classPrefix}to-green-500`]: {},
-      [`${darkModeContext} &`]: {
-        [`@apply ${classPrefix}from-green-500 ${classPrefix}to-green-600`]: {},
-      },
+      [`@apply dark:${classPrefix}from-green-500 dark:${classPrefix}to-green-600`]: {},
 
       // Sizing (required for the background gradient)
       [`@apply ${classPrefix}rounded-25`]: {},
@@ -45,9 +43,7 @@ export const addAccentuationButtonComponent: ComponentBuilderFunction = (
 
         // Colors
         [`@apply ${classPrefix}bg-green-500`]: {},
-        [`${darkModeContext} &`]: {
-          [`@apply ${classPrefix}bg-green-600`]: {},
-        },
+        [`@apply dark:${classPrefix}bg-green-600`]: {},
 
         // Sizing (required for the background color)
         [`@apply ${classPrefix}rounded-25`]: {},
@@ -61,9 +57,6 @@ export const addAccentuationButtonComponent: ComponentBuilderFunction = (
       '.button-text': {
         // Colors
         [`@apply ${classPrefix}text-green-950`]: {},
-        [`${darkModeContext} &`]: {
-          [`@apply ${classPrefix}text-green-950`]: {},
-        },
 
         // Others
         [`@apply ${classPrefix}font-button-text ${classPrefix}font-geist-mono`]: {},
@@ -74,9 +67,6 @@ export const addAccentuationButtonComponent: ComponentBuilderFunction = (
 
         // Colors
         [`@apply ${classPrefix}text-green-950`]: {},
-        [`${darkModeContext} &`]: {
-          [`@apply ${classPrefix}text-green-950`]: {},
-        },
 
         // Sizing
         [`@apply ${classPrefix}w-button-icon ${classPrefix}h-button-icon`]: {},
@@ -100,12 +90,12 @@ export const addAccentuationButtonComponent: ComponentBuilderFunction = (
       ':is(&:focus, a:focus &)': {
         // Colors
         [`@apply ${classPrefix}ring-green-400`]: {},
+        [`@apply dark:${classPrefix}ring-green-600`]: {},
+
         //// This needs to correspond to page background
         [`@apply ${classPrefix}ring-offset-white-50`]: {},
-        [`${darkModeContext} &`]: {
-          [`@apply ${classPrefix}ring-green-600`]: {},
-          [`@apply ${classPrefix}ring-offset-black-950`]: {},
-        },
+        //// This needs to correspond to page background
+        [`@apply dark:${classPrefix}ring-offset-black-950`]: {},
 
         // Sizing
         [`@apply ${classPrefix}ring-3 ${classPrefix}ring-offset-3`]: {},

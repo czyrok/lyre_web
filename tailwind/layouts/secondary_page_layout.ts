@@ -2,7 +2,7 @@ import { ComponentBuilderFunction } from '../types/component_builder_function';
 
 export const addSecondaryPageLayout: ComponentBuilderFunction = (
   { addComponents },
-  { classPrefix, darkModeContext }
+  { classPrefix }
 ) => {
   addComponents({
     '.secondary-page-layout': {
@@ -13,9 +13,7 @@ export const addSecondaryPageLayout: ComponentBuilderFunction = (
         // Colors
         [`@apply ${classPrefix}bg-secondary-page-layout-cover-gradient`]: {},
         [`@apply ${classPrefix}from-blue-100 ${classPrefix}to-white-50`]: {},
-        [`${darkModeContext} &`]: {
-          [`@apply ${classPrefix}from-blue-900 ${classPrefix}to-black-950`]: {},
-        },
+        [`@apply dark:${classPrefix}from-blue-900 dark:${classPrefix}to-black-950`]: {},
 
         // Sizing
         [`@apply ${classPrefix}pt-16 ${classPrefix}pb-4`]: {},

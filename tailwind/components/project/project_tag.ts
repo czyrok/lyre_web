@@ -2,17 +2,15 @@ import { ComponentBuilderFunction } from '../../types/component_builder_function
 
 export const addProjectTagComponent: ComponentBuilderFunction = (
   { addComponents },
-  { darkModeContext, classPrefix }
+  { classPrefix }
 ) => {
   addComponents({
     '.project-tag': {
       // Colors
       [`@apply ${classPrefix}bg-blue-300`]: {},
       [`@apply ${classPrefix}text-blue-700`]: {},
-      [`${darkModeContext} &`]: {
-        [`@apply ${classPrefix}bg-blue-400`]: {},
-        [`@apply ${classPrefix}text-blue-950`]: {},
-      },
+      [`@apply dark:${classPrefix}bg-blue-400`]: {},
+      [`@apply dark:${classPrefix}text-blue-950`]: {},
 
       // Sizing
       [`@apply ${classPrefix}px-3 ${classPrefix}py-1`]: {},
@@ -28,9 +26,7 @@ export const addProjectTagComponent: ComponentBuilderFunction = (
 
       // Colors
       [`@apply ${classPrefix}bg-white-200`]: {},
-      [`${darkModeContext} &`]: {
-        [`@apply ${classPrefix}bg-black-700`]: {},
-      },
+      [`@apply dark:${classPrefix}bg-black-700`]: {},
 
       // Sizing
       [`@apply ${classPrefix}w-[2.5em] ${classPrefix}h-[1.5em]`]: {},

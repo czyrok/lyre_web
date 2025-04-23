@@ -1,9 +1,6 @@
 import { ComponentBuilderFunction } from '../types/component_builder_function';
 
-export const addLandingPage: ComponentBuilderFunction = (
-  { addComponents },
-  { classPrefix, darkModeContext }
-) => {
+export const addLandingPage: ComponentBuilderFunction = ({ addComponents }, { classPrefix }) => {
   addComponents({
     '.landing-page': {
       // Children
@@ -13,9 +10,7 @@ export const addLandingPage: ComponentBuilderFunction = (
         // Colors
         [`@apply ${classPrefix}bg-landing-page-cover-gradient`]: {},
         [`@apply ${classPrefix}from-blue-100 ${classPrefix}to-white-50`]: {},
-        [`${darkModeContext} &`]: {
-          [`@apply ${classPrefix}from-blue-900 ${classPrefix}to-black-950`]: {},
-        },
+        [`@apply dark:${classPrefix}from-blue-900 dark:${classPrefix}to-black-950`]: {},
 
         '.cover-middle-part': {
           [`@apply ${classPrefix}relative ${classPrefix}grow ${classPrefix}flex ${classPrefix}items-center ${classPrefix}justify-center`]:
@@ -27,9 +22,7 @@ export const addLandingPage: ComponentBuilderFunction = (
 
             // Colors
             [`@apply ${classPrefix}text-blue-100`]: {},
-            [`${darkModeContext} &`]: {
-              [`@apply ${classPrefix}text-blue-950`]: {},
-            },
+            [`@apply dark:${classPrefix}text-blue-950`]: {},
 
             // Sizing
             [`@apply ${classPrefix}max-w-landing-page-shape`]: {},
@@ -50,9 +43,7 @@ export const addLandingPage: ComponentBuilderFunction = (
 
             // Colors
             [`@apply ${classPrefix}text-black-950`]: {},
-            [`${darkModeContext} &`]: {
-              [`@apply ${classPrefix}text-white-50`]: {},
-            },
+            [`@apply dark:${classPrefix}text-white-50`]: {},
 
             // Sizing
             [`@apply ${classPrefix}text-6`]: {},
@@ -72,9 +63,7 @@ export const addLandingPage: ComponentBuilderFunction = (
             '.discover-scroll-down': {
               // Colors
               [`@apply ${classPrefix}text-green-500`]: {},
-              [`${darkModeContext} &`]: {
-                [`@apply ${classPrefix}text-green-600`]: {},
-              },
+              [`@apply dark:${classPrefix}text-green-600`]: {},
 
               // Sizing
               [`@apply ${classPrefix}w-3`]: {},

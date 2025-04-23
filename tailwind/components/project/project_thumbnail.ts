@@ -2,7 +2,7 @@ import { ComponentBuilderFunction } from '../../types/component_builder_function
 
 export const addProjectThumbnailComponent: ComponentBuilderFunction = (
   { addComponents },
-  { darkModeContext, classPrefix }
+  { classPrefix }
 ) => {
   addComponents({
     '.project-thumbnail': {
@@ -11,9 +11,7 @@ export const addProjectThumbnailComponent: ComponentBuilderFunction = (
 
       // Colors
       [`@apply ${classPrefix}outline-white-200`]: {},
-      [`${darkModeContext} &`]: {
-        [`@apply ${classPrefix}outline-black-500`]: {},
-      },
+      [`@apply dark:${classPrefix}outline-black-500`]: {},
 
       // Sizing
       [`@apply ${classPrefix}w-41 ${classPrefix}h-28`]: {},
@@ -36,12 +34,12 @@ export const addProjectThumbnailComponent: ComponentBuilderFunction = (
       ':is(&:has(.thumbnail-hover):focus, a:focus &:has(.thumbnail-hover))': {
         // Colors
         [`@apply ${classPrefix}ring-green-400`]: {},
+        [`@apply dark:${classPrefix}ring-green-600`]: {},
+
         //// This needs to correspond to page background
         [`@apply ${classPrefix}ring-offset-white-50`]: {},
-        [`${darkModeContext} &`]: {
-          [`@apply ${classPrefix}ring-green-600`]: {},
-          [`@apply ${classPrefix}ring-offset-black-950`]: {},
-        },
+        //// This needs to correspond to page background
+        [`@apply dark:${classPrefix}ring-offset-black-950`]: {},
 
         // Sizing
         [`@apply ${classPrefix}ring-3 ${classPrefix}ring-offset-3`]: {},
@@ -63,10 +61,8 @@ export const addProjectThumbnailComponent: ComponentBuilderFunction = (
         // Colors
         [`@apply ${classPrefix}bg-purple-blue-200/33`]: {},
         [`@apply ${classPrefix}outline-purple-blue-400`]: {},
-        [`${darkModeContext} &`]: {
-          [`@apply ${classPrefix}bg-purple-blue-500/33`]: {},
-          [`@apply ${classPrefix}outline-purple-blue-500`]: {},
-        },
+        [`@apply dark:${classPrefix}bg-purple-blue-500/33`]: {},
+        [`@apply dark:${classPrefix}outline-purple-blue-500`]: {},
 
         // Sizing (required for the border)
         [`@apply ${classPrefix}rounded-5`]: {},
@@ -83,9 +79,7 @@ export const addProjectThumbnailComponent: ComponentBuilderFunction = (
 
           // Colors
           [`@apply ${classPrefix}text-purple-blue-400`]: {},
-          [`${darkModeContext} &`]: {
-            [`@apply ${classPrefix}text-purple-blue-500`]: {},
-          },
+          [`@apply dark:${classPrefix}text-purple-blue-500`]: {},
 
           // Sizing
           [`@apply ${classPrefix}w-7 ${classPrefix}h-7`]: {},
@@ -115,9 +109,7 @@ export const addProjectThumbnailComponent: ComponentBuilderFunction = (
 
         // Colors
         [`@apply ${classPrefix}bg-white-200`]: {},
-        [`${darkModeContext} &`]: {
-          [`@apply ${classPrefix}bg-black-700`]: {},
-        },
+        [`@apply dark:${classPrefix}bg-black-700`]: {},
 
         // Sizing
         [`@apply ${classPrefix}w-41 ${classPrefix}h-28`]: {},

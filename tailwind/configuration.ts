@@ -100,169 +100,121 @@ export const TAILWIND_CONFIGURATION: Config = {
   },
   plugins: [
     plugin(function (pluginApi) {
-      const darkModeConfig: string = pluginApi.config('darkMode', 'selector');
-
-      let darkModeContext = `.${DARK_MODE_CLASS}`;
-      let darkModeContextForBases = `.${TAILWIND_CLASS_PREFIX}${DARK_MODE_CLASS}`;
-
-      if (darkModeConfig === 'media') {
-        darkModeContext = '@media (prefers-color-scheme: dark)';
-        darkModeContextForBases = '@media (prefers-color-scheme: dark)';
-      }
-
       addH1Base(pluginApi, {
-        darkModeContext: darkModeContextForBases,
         classPrefix: TAILWIND_CLASS_PREFIX,
       });
       addPBase(pluginApi, {
-        darkModeContext: darkModeContextForBases,
         classPrefix: TAILWIND_CLASS_PREFIX,
       });
       addABase(pluginApi, {
-        darkModeContext: darkModeContextForBases,
         classPrefix: TAILWIND_CLASS_PREFIX,
       });
       addHtmlBase(pluginApi, {
-        darkModeContext: darkModeContextForBases,
         classPrefix: TAILWIND_CLASS_PREFIX,
       });
       addBodyBase(pluginApi, {
-        darkModeContext: darkModeContextForBases,
         classPrefix: TAILWIND_CLASS_PREFIX,
       });
 
       addProjectTagComponent(pluginApi, {
-        darkModeContext,
         classPrefix: TAILWIND_CLASS_PREFIX,
       });
       addPrimaryButtonComponent(pluginApi, {
-        darkModeContext,
         classPrefix: TAILWIND_CLASS_PREFIX,
       });
       addAccentuationButtonComponent(pluginApi, {
-        darkModeContext,
         classPrefix: TAILWIND_CLASS_PREFIX,
       });
       addSecondaryButtonComponent(pluginApi, {
-        darkModeContext,
         classPrefix: TAILWIND_CLASS_PREFIX,
       });
       addProjectThumbnailComponent(pluginApi, {
-        darkModeContext,
         classPrefix: TAILWIND_CLASS_PREFIX,
       });
       addProjectCardComponent(pluginApi, {
-        darkModeContext,
         classPrefix: TAILWIND_CLASS_PREFIX,
       });
       addNavBarComponent(pluginApi, {
-        darkModeContext,
         classPrefix: TAILWIND_CLASS_PREFIX,
       });
       addSecondarySelectComponent(pluginApi, {
-        darkModeContext,
         classPrefix: TAILWIND_CLASS_PREFIX,
       });
       addAccentuationInputTextComponent(pluginApi, {
-        darkModeContext,
         classPrefix: TAILWIND_CLASS_PREFIX,
       });
       addSecondaryLinkComponent(pluginApi, {
-        darkModeContext,
         classPrefix: TAILWIND_CLASS_PREFIX,
       });
       addPaginationComponent(pluginApi, {
-        darkModeContext,
         classPrefix: TAILWIND_CLASS_PREFIX,
       });
       addBrandComponent(pluginApi, {
-        darkModeContext,
         classPrefix: TAILWIND_CLASS_PREFIX,
       });
       addSecondaryCheckboxComponent(pluginApi, {
-        darkModeContext,
         classPrefix: TAILWIND_CLASS_PREFIX,
       });
       addDropdownMenuComponent(pluginApi, {
-        darkModeContext,
         classPrefix: TAILWIND_CLASS_PREFIX,
       });
       addProjectSectionComponent(pluginApi, {
-        darkModeContext,
         classPrefix: TAILWIND_CLASS_PREFIX,
       });
       addSectionContainerComponent(pluginApi, {
-        darkModeContext,
         classPrefix: TAILWIND_CLASS_PREFIX,
       });
       addHighlightedSectionComponent(pluginApi, {
-        darkModeContext,
         classPrefix: TAILWIND_CLASS_PREFIX,
       });
       addContactSectionComponent(pluginApi, {
-        darkModeContext,
         classPrefix: TAILWIND_CLASS_PREFIX,
       });
       addAnchorComponent(pluginApi, {
-        darkModeContext,
         classPrefix: TAILWIND_CLASS_PREFIX,
       });
       addFooterComponent(pluginApi, {
-        darkModeContext,
         classPrefix: TAILWIND_CLASS_PREFIX,
       });
       addSearchedProjectTitleInputTextComponent(pluginApi, {
-        darkModeContext,
         classPrefix: TAILWIND_CLASS_PREFIX,
       });
       addAdditionalInfoComponent(pluginApi, {
-        darkModeContext,
         classPrefix: TAILWIND_CLASS_PREFIX,
       });
       addErrorInfoComponent(pluginApi, {
-        darkModeContext,
         classPrefix: TAILWIND_CLASS_PREFIX,
       });
       addContainerLevel2Component(pluginApi, {
-        darkModeContext,
         classPrefix: TAILWIND_CLASS_PREFIX,
       });
       addContainerLevel3Component(pluginApi, {
-        darkModeContext,
         classPrefix: TAILWIND_CLASS_PREFIX,
       });
       addContainerLevel4Component(pluginApi, {
-        darkModeContext,
         classPrefix: TAILWIND_CLASS_PREFIX,
       });
       addXContainerLevel2Component(pluginApi, {
-        darkModeContext,
         classPrefix: TAILWIND_CLASS_PREFIX,
       });
 
       addLandingPage(pluginApi, {
-        darkModeContext,
         classPrefix: TAILWIND_CLASS_PREFIX,
       });
       addProjectSearchPage(pluginApi, {
-        darkModeContext,
         classPrefix: TAILWIND_CLASS_PREFIX,
       });
       addProjectDetailsPage(pluginApi, {
-        darkModeContext,
         classPrefix: TAILWIND_CLASS_PREFIX,
       });
 
       addSecondaryPageLayout(pluginApi, {
-        darkModeContext,
         classPrefix: TAILWIND_CLASS_PREFIX,
       });
       addInfoErrorPageLayout(pluginApi, {
-        darkModeContext,
         classPrefix: TAILWIND_CLASS_PREFIX,
       });
       addNotFoundErrorPageLayout(pluginApi, {
-        darkModeContext,
         classPrefix: TAILWIND_CLASS_PREFIX,
       });
     }),

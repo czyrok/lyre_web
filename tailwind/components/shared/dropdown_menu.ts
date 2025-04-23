@@ -2,7 +2,7 @@ import { ComponentBuilderFunction } from '../../types/component_builder_function
 
 export const addDropdownMenuComponent: ComponentBuilderFunction = (
   { addComponents },
-  { darkModeContext, classPrefix }
+  { classPrefix }
 ) => {
   addComponents({
     '.dropdown-menu': {
@@ -12,9 +12,7 @@ export const addDropdownMenuComponent: ComponentBuilderFunction = (
 
       // Colors
       [`@apply ${classPrefix}bg-white-100/50`]: {},
-      [`${darkModeContext} &`]: {
-        [`@apply ${classPrefix}bg-black-600/50`]: {},
-      },
+      [`@apply dark:${classPrefix}bg-black-600/50`]: {},
 
       // Sizing
       [`@apply ${classPrefix}py-1`]: {},

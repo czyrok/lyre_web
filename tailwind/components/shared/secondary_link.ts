@@ -2,7 +2,7 @@ import { ComponentBuilderFunction } from '../../types/component_builder_function
 
 export const addSecondaryLinkComponent: ComponentBuilderFunction = (
   { addComponents },
-  { darkModeContext, classPrefix }
+  { classPrefix }
 ) => {
   addComponents({
     '.secondary-link': {
@@ -10,9 +10,7 @@ export const addSecondaryLinkComponent: ComponentBuilderFunction = (
       '.link-text': {
         // Colors
         [`@apply ${classPrefix}text-purple-blue-400`]: {},
-        [`${darkModeContext} &`]: {
-          [`@apply ${classPrefix}text-purple-blue-500`]: {},
-        },
+        [`@apply dark:${classPrefix}text-purple-blue-500`]: {},
 
         // Others
         [`@apply ${classPrefix}font-link-text ${classPrefix}font-geist-mono`]: {},
@@ -25,9 +23,7 @@ export const addSecondaryLinkComponent: ComponentBuilderFunction = (
 
         // Colors
         [`@apply ${classPrefix}text-purple-blue-400`]: {},
-        [`${darkModeContext} &`]: {
-          [`@apply ${classPrefix}text-purple-blue-500`]: {},
-        },
+        [`@apply dark:${classPrefix}text-purple-blue-500`]: {},
 
         // Sizing
         [`@apply ${classPrefix}w-button-icon ${classPrefix}h-button-icon`]: {},
@@ -47,17 +43,13 @@ export const addSecondaryLinkComponent: ComponentBuilderFunction = (
         '.link-text': {
           // Colors
           [`@apply ${classPrefix}text-purple-blue-300`]: {},
-          [`${darkModeContext} &`]: {
-            [`@apply ${classPrefix}text-purple-blue-400`]: {},
-          },
+          [`@apply dark:${classPrefix}text-purple-blue-400`]: {},
         },
 
         '.link-icon': {
           // Colors
           [`@apply ${classPrefix}text-purple-blue-300`]: {},
-          [`${darkModeContext} &`]: {
-            [`@apply ${classPrefix}text-purple-blue-400`]: {},
-          },
+          [`@apply dark:${classPrefix}text-purple-blue-400`]: {},
         },
       },
 
@@ -65,12 +57,12 @@ export const addSecondaryLinkComponent: ComponentBuilderFunction = (
       ':is(&:focus, a:focus &)': {
         // Colors
         [`@apply ${classPrefix}ring-green-400`]: {},
+        [`@apply dark:${classPrefix}ring-green-600`]: {},
+
         //// This needs to correspond to page background
         [`@apply ${classPrefix}ring-offset-white-50`]: {},
-        [`${darkModeContext} &`]: {
-          [`@apply ${classPrefix}ring-green-600`]: {},
-          [`@apply ${classPrefix}ring-offset-black-950`]: {},
-        },
+        //// This needs to correspond to page background
+        [`@apply dark:${classPrefix}ring-offset-black-950`]: {},
 
         // Sizing
         [`@apply ${classPrefix}rounded-25`]: {},

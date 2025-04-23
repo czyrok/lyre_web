@@ -2,7 +2,7 @@ import { ComponentBuilderFunction } from '../types/component_builder_function';
 
 export const addH1Base: ComponentBuilderFunction = (
   { addBase, addComponents },
-  { darkModeContext, classPrefix }
+  { classPrefix }
 ) => {
   addBase({
     h1: {
@@ -11,9 +11,7 @@ export const addH1Base: ComponentBuilderFunction = (
       // Colors
       [`@apply ${classPrefix}bg-bash-gradient`]: {},
       [`@apply ${classPrefix}from-blue-800 ${classPrefix}to-blue-500`]: {},
-      [`${darkModeContext} &`]: {
-        [`@apply ${classPrefix}from-blue-400 ${classPrefix}to-blue-200`]: {},
-      },
+      [`@apply dark:${classPrefix}from-blue-400 dark:${classPrefix}to-blue-200`]: {},
 
       // Others
       [`@apply ${classPrefix}font-geist-mono`]: {},
@@ -21,9 +19,7 @@ export const addH1Base: ComponentBuilderFunction = (
       '&::before': {
         // Colors
         [`@apply ${classPrefix}text-blue-800`]: {},
-        [`${darkModeContext} &`]: {
-          [`@apply ${classPrefix}text-blue-400`]: {},
-        },
+        [`@apply dark:${classPrefix}text-blue-400`]: {},
 
         // Others
         [`@apply ${classPrefix}content-bash`]: {},

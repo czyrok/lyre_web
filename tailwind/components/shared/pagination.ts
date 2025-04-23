@@ -2,7 +2,7 @@ import { ComponentBuilderFunction } from '../../types/component_builder_function
 
 export const addPaginationComponent: ComponentBuilderFunction = (
   { addComponents },
-  { darkModeContext, classPrefix }
+  { classPrefix }
 ) => {
   addComponents({
     '.pagination': {
@@ -15,9 +15,7 @@ export const addPaginationComponent: ComponentBuilderFunction = (
       '.pagination-text': {
         // Colors
         [`@apply ${classPrefix}text-black-950`]: {},
-        [`${darkModeContext} &`]: {
-          [`@apply ${classPrefix}text-white-50`]: {},
-        },
+        [`@apply dark:${classPrefix}text-white-50`]: {},
 
         // Sizing
         [`@apply ${classPrefix}text-4`]: {},

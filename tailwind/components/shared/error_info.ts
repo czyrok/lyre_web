@@ -2,7 +2,7 @@ import { ComponentBuilderFunction } from '../../types/component_builder_function
 
 export const addErrorInfoComponent: ComponentBuilderFunction = (
   { addComponents },
-  { darkModeContext, classPrefix }
+  { classPrefix }
 ) => {
   addComponents({
     '.error-info': {
@@ -11,9 +11,7 @@ export const addErrorInfoComponent: ComponentBuilderFunction = (
       // Colors
       [`@apply ${classPrefix}bg-bash-gradient`]: {},
       [`@apply ${classPrefix}from-red-800 ${classPrefix}to-red-500`]: {},
-      [`${darkModeContext} &`]: {
-        [`@apply ${classPrefix}from-red-400 ${classPrefix}to-red-200`]: {},
-      },
+      [`@apply dark:${classPrefix}from-red-400 dark:${classPrefix}to-red-200`]: {},
 
       // Sizing
       [`@apply ${classPrefix}text-5`]: {},
@@ -24,9 +22,7 @@ export const addErrorInfoComponent: ComponentBuilderFunction = (
       '&::before': {
         // Colors
         [`@apply ${classPrefix}text-red-800`]: {},
-        [`${darkModeContext} &`]: {
-          [`@apply ${classPrefix}text-red-400`]: {},
-        },
+        [`@apply dark:${classPrefix}text-red-400`]: {},
 
         // Others
         [`@apply ${classPrefix}content-bash`]: {},

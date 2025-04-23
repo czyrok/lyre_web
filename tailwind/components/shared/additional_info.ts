@@ -2,15 +2,13 @@ import { ComponentBuilderFunction } from '../../types/component_builder_function
 
 export const addAdditionalInfoComponent: ComponentBuilderFunction = (
   { addComponents },
-  { darkModeContext, classPrefix }
+  { classPrefix }
 ) => {
   addComponents({
     '.additional-info': {
       // Colors
       [`@apply ${classPrefix}text-black-950`]: {},
-      [`${darkModeContext} &`]: {
-        [`@apply ${classPrefix}text-white-50`]: {},
-      },
+      [`@apply dark:${classPrefix}text-white-50`]: {},
 
       // Sizing
       [`@apply ${classPrefix}text-5`]: {},

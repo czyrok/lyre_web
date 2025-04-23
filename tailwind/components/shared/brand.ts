@@ -1,9 +1,6 @@
 import { ComponentBuilderFunction } from '../../types/component_builder_function';
 
-export const addBrandComponent: ComponentBuilderFunction = (
-  { addComponents },
-  { darkModeContext, classPrefix }
-) => {
+export const addBrandComponent: ComponentBuilderFunction = ({ addComponents }, { classPrefix }) => {
   addComponents({
     '.brand': {
       [`@apply ${classPrefix}w-fit ${classPrefix}flex ${classPrefix}flex-col ${classPrefix}items-center`]:
@@ -15,9 +12,7 @@ export const addBrandComponent: ComponentBuilderFunction = (
 
         // Colors
         [`@apply ${classPrefix}bg-blue-200`]: {},
-        [`${darkModeContext} &`]: {
-          [`@apply ${classPrefix}bg-blue-800`]: {},
-        },
+        [`@apply dark:${classPrefix}bg-blue-800`]: {},
 
         // Sizing
         [`@apply ${classPrefix}rounded-full`]: {},
@@ -28,9 +23,7 @@ export const addBrandComponent: ComponentBuilderFunction = (
 
           // Colors
           [`@apply ${classPrefix}text-blue-50`]: {},
-          [`${darkModeContext} &`]: {
-            [`@apply ${classPrefix}text-blue-200`]: {},
-          },
+          [`@apply dark:${classPrefix}text-blue-200`]: {},
 
           // Sizing
           [`@apply ${classPrefix}w-brand-badge-logo`]: {},
@@ -40,9 +33,7 @@ export const addBrandComponent: ComponentBuilderFunction = (
       '.brand-name': {
         // Colors
         [`@apply ${classPrefix}text-black-950`]: {},
-        [`${darkModeContext} &`]: {
-          [`@apply ${classPrefix}text-white-50`]: {},
-        },
+        [`@apply dark:${classPrefix}text-white-50`]: {},
 
         // Others
         [`@apply ${classPrefix}font-brand-name ${classPrefix}font-geist-mono`]: {},

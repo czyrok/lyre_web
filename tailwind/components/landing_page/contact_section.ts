@@ -2,7 +2,7 @@ import { ComponentBuilderFunction } from '../../types/component_builder_function
 
 export const addContactSectionComponent: ComponentBuilderFunction = (
   { addComponents },
-  { classPrefix, darkModeContext }
+  { classPrefix }
 ) => {
   addComponents({
     '.landing-page-contact-section': {
@@ -26,9 +26,7 @@ export const addContactSectionComponent: ComponentBuilderFunction = (
 
           // Colors
           [`@apply ${classPrefix}border-white-300/70`]: {},
-          [`${darkModeContext} &`]: {
-            [`@apply ${classPrefix}border-black-800/70`]: {},
-          },
+          [`@apply dark:${classPrefix}border-black-800/70`]: {},
 
           // Sizing
           [`@apply ${classPrefix}border-6`]: {},

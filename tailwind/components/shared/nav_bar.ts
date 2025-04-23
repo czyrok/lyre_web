@@ -2,7 +2,7 @@ import { ComponentBuilderFunction } from '../../types/component_builder_function
 
 export const addNavBarComponent: ComponentBuilderFunction = (
   { addComponents },
-  { darkModeContext, classPrefix }
+  { classPrefix }
 ) => {
   addComponents({
     '.nav-bar-wrapper': {
@@ -34,9 +34,7 @@ export const addNavBarComponent: ComponentBuilderFunction = (
 
         // Colors
         [`@apply ${classPrefix}bg-purple-blue-400/30`]: {},
-        [`${darkModeContext} &`]: {
-          [`@apply ${classPrefix}bg-purple-blue-700/30`]: {},
-        },
+        [`@apply dark:${classPrefix}bg-purple-blue-700/30`]: {},
 
         // Sizing
         [`@apply ${classPrefix}rounded-25`]: {},
@@ -59,9 +57,7 @@ export const addNavBarComponent: ComponentBuilderFunction = (
           '&:hover': {
             // Colors
             [`@apply ${classPrefix}bg-purple-blue-300/66`]: {},
-            [`${darkModeContext} &`]: {
-              [`@apply ${classPrefix}bg-purple-blue-800/66`]: {},
-            },
+            [`@apply dark:${classPrefix}bg-purple-blue-800/66`]: {},
           },
 
           // Children
@@ -70,9 +66,7 @@ export const addNavBarComponent: ComponentBuilderFunction = (
 
             // Colors
             [`@apply ${classPrefix}text-purple-blue-800`]: {},
-            [`${darkModeContext} &`]: {
-              [`@apply ${classPrefix}text-purple-blue-300`]: {},
-            },
+            [`@apply dark:${classPrefix}text-purple-blue-300`]: {},
 
             // Others
             [`@apply ${classPrefix}font-button-text ${classPrefix}font-geist-mono`]: {},
@@ -83,9 +77,7 @@ export const addNavBarComponent: ComponentBuilderFunction = (
 
             // Colors
             [`@apply ${classPrefix}text-purple-blue-800`]: {},
-            [`${darkModeContext} &`]: {
-              [`@apply ${classPrefix}text-purple-blue-300`]: {},
-            },
+            [`@apply dark:${classPrefix}text-purple-blue-300`]: {},
 
             // Sizing
             [`@apply ${classPrefix}w-button-icon ${classPrefix}h-button-icon`]: {},
@@ -107,17 +99,13 @@ export const addNavBarComponent: ComponentBuilderFunction = (
           '.item-text': {
             // Colors
             [`@apply ${classPrefix}text-purple-blue-600`]: {},
-            [`${darkModeContext} &`]: {
-              [`@apply ${classPrefix}text-purple-blue-50`]: {},
-            },
+            [`@apply dark:${classPrefix}text-purple-blue-50`]: {},
           },
 
           '.item-icon': {
             // Colors
             [`@apply ${classPrefix}text-purple-blue-600`]: {},
-            [`${darkModeContext} &`]: {
-              [`@apply ${classPrefix}text-purple-blue-50`]: {},
-            },
+            [`@apply dark:${classPrefix}text-purple-blue-50`]: {},
           },
         },
 
@@ -129,12 +117,12 @@ export const addNavBarComponent: ComponentBuilderFunction = (
 
           // Colors
           [`@apply ${classPrefix}outline-green-400`]: {},
+          [`@apply dark:${classPrefix}outline-green-600`]: {},
+
           //// This needs to correspond to page background
           [`@apply ${classPrefix}ring-offset-white-50`]: {},
-          [`${darkModeContext} &`]: {
-            [`@apply ${classPrefix}outline-green-600`]: {},
-            [`@apply ${classPrefix}ring-offset-black-950`]: {},
-          },
+          //// This needs to correspond to page background
+          [`@apply dark:${classPrefix}ring-offset-black-950`]: {},
 
           // Sizing
           [`@apply ${classPrefix}outline ${classPrefix}outline-3 ${classPrefix}outline-offset-3`]:

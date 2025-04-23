@@ -1,16 +1,11 @@
 import { ComponentBuilderFunction } from '../types/component_builder_function';
 
-export const addPBase: ComponentBuilderFunction = (
-  { addBase, addComponents },
-  { darkModeContext, classPrefix }
-) => {
+export const addPBase: ComponentBuilderFunction = ({ addBase, addComponents }, { classPrefix }) => {
   addBase({
     p: {
       // Colors
       [`@apply ${classPrefix}text-black-950`]: {},
-      [`${darkModeContext} &`]: {
-        [`@apply ${classPrefix}text-white-50`]: {},
-      },
+      [`@apply dark:${classPrefix}text-white-50`]: {},
 
       // Sizing
       [`@apply ${classPrefix}text-4 sm:${classPrefix}text-5 md:${classPrefix}text-6`]: {},

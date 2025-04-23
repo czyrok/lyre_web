@@ -2,7 +2,7 @@ import { ComponentBuilderFunction } from '../../types/component_builder_function
 
 export const addProjectCardComponent: ComponentBuilderFunction = (
   { addComponents },
-  { darkModeContext, classPrefix }
+  { classPrefix }
 ) => {
   addComponents({
     '.project-card': {
@@ -16,9 +16,7 @@ export const addProjectCardComponent: ComponentBuilderFunction = (
       '.card-title': {
         // Colors
         [`@apply ${classPrefix}text-black-950`]: {},
-        [`${darkModeContext} &`]: {
-          [`@apply ${classPrefix}text-white-50`]: {},
-        },
+        [`@apply dark:${classPrefix}text-white-50`]: {},
 
         // Sizing
         [`@apply ${classPrefix}text-7`]: {},
@@ -46,9 +44,7 @@ export const addProjectCardComponent: ComponentBuilderFunction = (
       '.card-skeleton-title': {
         // Colors
         [`@apply ${classPrefix}bg-white-200`]: {},
-        [`${darkModeContext} &`]: {
-          [`@apply ${classPrefix}bg-black-700`]: {},
-        },
+        [`@apply dark:${classPrefix}bg-black-700`]: {},
 
         // Sizing
         [`@apply ${classPrefix}w-[6em] ${classPrefix}h-[1.5em]`]: {},

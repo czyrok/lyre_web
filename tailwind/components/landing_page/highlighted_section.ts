@@ -2,15 +2,13 @@ import { ComponentBuilderFunction } from '../../types/component_builder_function
 
 export const addHighlightedSectionComponent: ComponentBuilderFunction = (
   { addComponents },
-  { classPrefix, darkModeContext }
+  { classPrefix }
 ) => {
   addComponents({
     '.landing-page-highlighted-section': {
       // Colors
       [`@apply ${classPrefix}bg-blue-100`]: {},
-      [`${darkModeContext} &`]: {
-        [`@apply ${classPrefix}bg-blue-950`]: {},
-      },
+      [`@apply dark:${classPrefix}bg-blue-950`]: {},
 
       // Sizing
       [`@apply ${classPrefix}py-6 sm:${classPrefix}py-7 md:${classPrefix}py-10`]: {},
@@ -37,10 +35,8 @@ export const addHighlightedSectionComponent: ComponentBuilderFunction = (
             // Colors
             [`@apply ${classPrefix}bg-blue-200`]: {},
             [`@apply ${classPrefix}text-blue-950`]: {},
-            [`${darkModeContext} &`]: {
-              [`@apply ${classPrefix}bg-blue-900`]: {},
-              [`@apply ${classPrefix}text-blue-50`]: {},
-            },
+            [`@apply dark:${classPrefix}bg-blue-900`]: {},
+            [`@apply dark:${classPrefix}text-blue-50`]: {},
 
             // Sizing
             [`@apply ${classPrefix}h-fit lg:${classPrefix}min-w-33 2xl:${classPrefix}w-full`]: {},

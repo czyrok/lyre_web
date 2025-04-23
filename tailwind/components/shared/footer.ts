@@ -2,7 +2,7 @@ import { ComponentBuilderFunction } from '../../types/component_builder_function
 
 export const addFooterComponent: ComponentBuilderFunction = (
   { addComponents },
-  { darkModeContext, classPrefix }
+  { classPrefix }
 ) => {
   addComponents({
     '.footer': {
@@ -25,9 +25,7 @@ export const addFooterComponent: ComponentBuilderFunction = (
 
           // Colors
           [`@apply ${classPrefix}text-black-950`]: {},
-          [`${darkModeContext} &`]: {
-            [`@apply ${classPrefix}text-white-50`]: {},
-          },
+          [`@apply dark:${classPrefix}text-white-50`]: {},
 
           // Sizing
           [`@apply ${classPrefix}text-6`]: {},
@@ -57,9 +55,7 @@ export const addFooterComponent: ComponentBuilderFunction = (
 
           // Colors
           [`@apply ${classPrefix}text-white-200`]: {},
-          [`${darkModeContext} &`]: {
-            [`@apply ${classPrefix}text-black-800`]: {},
-          },
+          [`@apply dark:${classPrefix}text-black-800`]: {},
         },
 
         '.bottom-part-settings': {
@@ -73,9 +69,7 @@ export const addFooterComponent: ComponentBuilderFunction = (
         '.bottom-part-copyright-text': {
           // Colors
           [`@apply ${classPrefix}text-black-950`]: {},
-          [`${darkModeContext} &`]: {
-            [`@apply ${classPrefix}text-white-50`]: {},
-          },
+          [`@apply dark:${classPrefix}text-white-50`]: {},
 
           // Sizing
           [`@apply ${classPrefix}text-5`]: {},

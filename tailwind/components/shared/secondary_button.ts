@@ -2,7 +2,7 @@ import { ComponentBuilderFunction } from '../../types/component_builder_function
 
 export const addSecondaryButtonComponent: ComponentBuilderFunction = (
   { addComponents },
-  { darkModeContext, classPrefix }
+  { classPrefix }
 ) => {
   addComponents({
     '.secondary-button': {
@@ -10,9 +10,7 @@ export const addSecondaryButtonComponent: ComponentBuilderFunction = (
 
       // Colors
       [`@apply ${classPrefix}outline-purple-blue-400`]: {},
-      [`${darkModeContext} &`]: {
-        [`@apply ${classPrefix}outline-purple-blue-500`]: {},
-      },
+      [`@apply dark:${classPrefix}outline-purple-blue-500`]: {},
 
       // Sizing
       [`@apply ${classPrefix}rounded-25`]: {},
@@ -26,9 +24,7 @@ export const addSecondaryButtonComponent: ComponentBuilderFunction = (
       '.button-text': {
         // Colors
         [`@apply ${classPrefix}text-purple-blue-400`]: {},
-        [`${darkModeContext} &`]: {
-          [`@apply ${classPrefix}text-purple-blue-500`]: {},
-        },
+        [`@apply dark:${classPrefix}text-purple-blue-500`]: {},
 
         // Others
         [`@apply ${classPrefix}font-button-text ${classPrefix}font-geist-mono`]: {},
@@ -39,9 +35,7 @@ export const addSecondaryButtonComponent: ComponentBuilderFunction = (
 
         // Colors
         [`@apply ${classPrefix}text-purple-blue-400`]: {},
-        [`${darkModeContext} &`]: {
-          [`@apply ${classPrefix}text-purple-blue-500`]: {},
-        },
+        [`@apply dark:${classPrefix}text-purple-blue-500`]: {},
 
         // Sizing
         [`@apply ${classPrefix}w-button-icon ${classPrefix}h-button-icon`]: {},
@@ -55,23 +49,19 @@ export const addSecondaryButtonComponent: ComponentBuilderFunction = (
       '&:hover': {
         // Colors
         [`@apply ${classPrefix}bg-purple-blue-50/90`]: {},
-        [`${darkModeContext} &`]: {
-          [`@apply ${classPrefix}bg-purple-blue-950/90`]: {},
-        },
+        [`@apply dark:${classPrefix}bg-purple-blue-950/90`]: {},
       },
 
       // Focus state
       ':is(&:focus, a:focus &)': {
         // Colors
         [`@apply ${classPrefix}ring-green-400`]: {},
-        [`${darkModeContext} &`]: {
-          [`@apply ${classPrefix}ring-green-600`]: {},
-        },
+        [`@apply dark:${classPrefix}ring-green-600`]: {},
+
         //// This needs to correspond to page background
         [`@apply ${classPrefix}ring-offset-white-50`]: {},
-        [`${darkModeContext} &`]: {
-          [`@apply ${classPrefix}ring-offset-black-950`]: {},
-        },
+        //// This needs to correspond to page background
+        [`@apply dark:${classPrefix}ring-offset-black-950`]: {},
 
         // Sizing
         [`@apply ${classPrefix}ring-3 ${classPrefix}ring-offset-3`]: {},
@@ -172,9 +162,7 @@ export const addSecondaryButtonComponent: ComponentBuilderFunction = (
 
           // Colors
           [`@apply ${classPrefix}bg-purple-blue-400`]: {},
-          [`${darkModeContext} &`]: {
-            [`@apply ${classPrefix}bg-purple-blue-500`]: {},
-          },
+          [`@apply dark:${classPrefix}bg-purple-blue-500`]: {},
 
           // Sizing
           [`@apply ${classPrefix}rounded-full`]: {},
@@ -187,9 +175,7 @@ export const addSecondaryButtonComponent: ComponentBuilderFunction = (
 
       // Colors
       [`@apply ${classPrefix}bg-white-200`]: {},
-      [`${darkModeContext} &`]: {
-        [`@apply ${classPrefix}bg-black-700`]: {},
-      },
+      [`@apply dark:${classPrefix}bg-black-700`]: {},
 
       // Sizing
       [`@apply ${classPrefix}w-[5em] ${classPrefix}h-[1.5em]`]: {},
