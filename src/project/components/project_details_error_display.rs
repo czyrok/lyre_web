@@ -43,34 +43,34 @@ pub fn ProjectDetailsErrorDisplay(
     }
 
     let mut view = view! {
-        <NotFoundErrorPageLayout title="Projet non trouvé" />
-    }
-    .into_any();
+        <InfoErrorPageLayout
+            content_renderer=move || {
+                let errors = errors.clone();
+
+                view! {
+                    <h1 class="tw-title-size-lg">"Page d'erreur"</h1>
+
+                    <div class="tw-info-error-page-layout-errors">
+                        {move || {
+                            errors
+                                .get()
+                                .into_iter()
+                                .map(|(_, error)| view! {
+                                    <span class="tw-error-info">{error.to_string()}</span>
+                                })
+                                .collect::<Vec<_>>()
+                        }}
+                    </div>
+                }.into_any()
+            }
+        />
+    }.into_any();
 
     if is_project_not_found_error {
         view = view! {
-            <InfoErrorPageLayout
-                content_renderer=move || {
-                    let errors = errors.clone();
-
-                    view! {
-                        <h1 class="tw-title-size-lg">"Page d'erreur"</h1>
-
-                        <div class="tw-info-error-page-layout-errors">
-                            {move || {
-                                errors
-                                    .get()
-                                    .into_iter()
-                                    .map(|(_, error)| view! {
-                                        <span class="tw-error-info">{error.to_string()}</span>
-                                    })
-                                    .collect::<Vec<_>>()
-                            }}
-                        </div>
-                    }.into_any()
-                }
-            />
-        }.into_any()
+            <NotFoundErrorPageLayout title="Projet non trouvé" />
+        }
+        .into_any();
     }
 
     view
