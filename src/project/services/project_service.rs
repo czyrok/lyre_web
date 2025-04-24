@@ -128,6 +128,12 @@ impl ProjectService {
         &self,
         slug: &str,
     ) -> Result<Option<Project>, sqlx::Error> {
-        self.project_repository.get_project(slug).await
+        let project = self.project_repository.get_project(slug).await?;
+
+        Ok(project.map(|mut project| {
+            project.context.complete_formatted_date();
+
+            project
+        }))
     }
 }

@@ -1,24 +1,20 @@
 use std::str::FromStr;
 
 use chrono::{Datelike, NaiveDate};
-use icu::{
-    calendar::Date,
-    datetime::{options::length, DateFormatter},
-    locid::Locale,
-};
 use serde::{Deserialize, Serialize};
 #[cfg(feature = "ssr")]
 use sqlx::{sqlite::SqliteRow, FromRow, Row};
 
 use super::{next_project::NextProject, project_tags::ProjectTags};
 
-#[derive(Default, Serialize, Deserialize, Clone, Debug)]
+#[derive(Default, Deserialize, Serialize, Clone, Debug)]
 pub struct ProjectContext {
     pub slug: Option<String>,
     pub next: Option<NextProject>,
     pub title: String,
     pub image_url: String,
     pub date: NaiveDate,
+    pub formatted_date: Option<String>,
     pub tags: ProjectTags,
 }
 
@@ -35,7 +31,20 @@ impl ProjectContext {
         Ok(deserialized_context)
     }
 
+    #[cfg(feature = "ssr")]
+    pub fn complete_formatted_date(&mut self) {
+        self.formatted_date = self.get_formatted_date().into();
+    }
+
+    //// `SSR` because it adds 4,8 Mo to the WASM in release mode
+    #[cfg(feature = "ssr")]
     pub fn get_formatted_date(&self) -> String {
+        use icu::{
+            calendar::Date,
+            datetime::{options::length, DateFormatter},
+            locid::Locale,
+        };
+
         let date = Date::try_new_iso_date(
             self.date.year(),
             self.date.month() as u8,
@@ -75,6 +84,7 @@ impl<'row> FromRow<'row, SqliteRow> for ProjectContext {
                 .try_get("image_url")
                 .expect("`row.image_url` should exist"),
             date: row.try_get("date").expect("`row.date` should exist"),
+            formatted_date: None,
             tags: row.try_get("tags").expect("`row.tags` should exist"),
         })
     }

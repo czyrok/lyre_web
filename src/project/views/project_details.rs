@@ -79,7 +79,7 @@ pub fn ProjectDetails() -> impl IntoView {
                                         <div class="tw-middle-part-text">
                                             <div class="tw-text-content" inner_html=project.content.0.clone() />
 
-                                            <span class="tw-additional-info">{project.context.get_formatted_date()}</span>
+                                            <span class="tw-additional-info">{project.context.formatted_date.clone().expect("`formatted_date` should exist")}</span>
                                         </div>
                                     </div>
 
