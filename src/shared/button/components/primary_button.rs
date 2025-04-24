@@ -23,8 +23,9 @@ pub fn PrimaryButton(
     #[prop(optional, into)] icon_side: Option<IconSide>,
     #[prop(into, default = "".into())] anchor_name: String,
     #[prop(optional, into)] shows_ping: Option<Signal<bool>>,
+    #[prop(optional, into)] is_errored: Option<Signal<bool>>,
 ) -> impl IntoView {
     view! {
-        <UnthemedButton theme=ButtonTheme::Primary size text on_click icon icon_side anchor_name shows_ping />
+        <UnthemedButton theme=ButtonTheme::Primary size text on_click icon icon_side anchor_name shows_ping is_errored />
     }
 }

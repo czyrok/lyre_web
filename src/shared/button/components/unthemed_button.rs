@@ -18,6 +18,7 @@ pub fn UnthemedButton(
     #[prop(into)] icon_side: Option<IconSide>,
     #[prop(into, default = "".into())] anchor_name: String,
     #[prop(into)] shows_ping: Option<Signal<bool>>,
+    #[prop(into)] is_errored: Option<Signal<bool>>,
 ) -> impl IntoView {
     let is_accentuation_theme = theme == ButtonTheme::Accentuation;
     let is_primary_theme = theme == ButtonTheme::Primary;
@@ -46,11 +47,14 @@ pub fn UnthemedButton(
         ButtonAction::Popover(target_id) => {
             popover_target_id = target_id;
         }
+        _ => (),
     };
 
     let has_text = !text.is_empty();
 
     let shows_ping = shows_ping.unwrap_or(signal(false).0.into());
+
+    let is_errored = is_errored.unwrap_or(signal(false).0.into());
 
     view! {
         <button
@@ -64,6 +68,9 @@ pub fn UnthemedButton(
             class=(["tw-button-size-sm"], move || is_sm_size)
 
             class=(["tw-button-ping"], move || shows_ping.get())
+
+            class=(["tw-button-errored"], move || is_errored.get())
+            disabled=is_errored.get()
 
             // FIXME:
             // on:click=on_click_callback

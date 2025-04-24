@@ -1,8 +1,13 @@
 use leptos::prelude::*;
 
 use crate::{
+    core::data::fetch_state::FetchState,
     project::resources::all_project_tags_resource::AllProjectTagsResource,
     shared::{
+        button::{
+            components::secondary_button::SecondaryButton,
+            types::button_action::ButtonAction,
+        },
         components::dropdown_menu::Position,
         enums::component_size::ComponentSize,
         select::{
@@ -41,41 +46,51 @@ pub fn TagSelector(
     });
 
     let get_tag_select_choices = async move || {
-        let tag_choices = project_tag_resource.get_select_choices().await;
+        let tag_choices = project_tag_resource.get_select_choices().await?;
 
-        MultiSelectChoices::new(tag_choices, project_tags)
+        Ok(MultiSelectChoices::new(tag_choices, project_tags))
     };
 
     view! {
-        <Suspense>
-            {move || Suspend::new(async move {
-                let select_choices = get_tag_select_choices().await;
-
-                let cloned_select_choices = select_choices.clone();
-
-                Effect::new(move |last_event: Option<()>| {
-                    reset_event.track();
-
-                    cloned_select_choices.change_all_status(false, None);
-
-                    let is_first_event = last_event.is_none();
-
-                    if !is_first_event {
-                        cloned_select_choices.change_all_status(false, None);
-                    }
-                });
+        <Suspense fallback=move || view! {
+            <div class="tw-secondary-button-skeleton tw-button-size-md"></div>
+        }>
+            <ErrorBoundary fallback=|_| {
+                let (is_errored, _) = signal(true);
 
                 view! {
-                    <Select
-                        size=ComponentSize::MD
-                        dropdown_menu_position=Position::Bottom
-                        text="#Tags"
-                        identifier="tag-selector"
-                        select_choices=select_choices
-                        shows_ping_when_least_one_selected=true
-                    />
+                    <SecondaryButton size=ComponentSize::MD text="Erreur" on_click=ButtonAction::None is_errored />
                 }
-            })}
+            }>
+                {move || Suspend::<Result<_, FetchState>>::new(async move {
+                    get_tag_select_choices().await.map(|select_choices| {
+                        let cloned_select_choices = select_choices.clone();
+
+                        Effect::new(move |last_event: Option<()>| {
+                            reset_event.track();
+
+                            cloned_select_choices.change_all_status(false, None);
+
+                            let is_first_event = last_event.is_none();
+
+                            if !is_first_event {
+                                cloned_select_choices.change_all_status(false, None);
+                            }
+                        });
+
+                        view! {
+                            <Select
+                                size=ComponentSize::MD
+                                dropdown_menu_position=Position::Bottom
+                                text="#Tags"
+                                identifier="tag-selector"
+                                select_choices=select_choices
+                                shows_ping_when_least_one_selected=true
+                            />
+                        }
+                    })
+                })}
+            </ErrorBoundary>
         </Suspense>
     }
 }

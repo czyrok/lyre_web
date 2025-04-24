@@ -46,14 +46,14 @@ export const addSecondaryButtonComponent: ComponentBuilderFunction = (
       },
 
       // Hover state
-      '&:hover': {
+      '&:hover:not(:disabled)': {
         // Colors
         [`@apply ${classPrefix}bg-purple-blue-50/90`]: {},
         [`@apply dark:${classPrefix}bg-purple-blue-950/90`]: {},
       },
 
       // Focus state
-      ':is(&:focus, a:focus &)': {
+      ':is(&:focus, a:focus &):not(:disabled)': {
         // Colors
         [`@apply ${classPrefix}ring-green-400`]: {},
         [`@apply dark:${classPrefix}ring-green-600`]: {},
@@ -166,6 +166,19 @@ export const addSecondaryButtonComponent: ComponentBuilderFunction = (
 
           // Sizing
           [`@apply ${classPrefix}rounded-full`]: {},
+        },
+      },
+
+      '&.button-errored': {
+        // Colors
+        [`@apply ${classPrefix}outline-red-300`]: {},
+        [`@apply dark:${classPrefix}outline-red-400`]: {},
+
+        // Children
+        '.button-text': {
+          // Colors
+          [`@apply ${classPrefix}text-red-300`]: {},
+          [`@apply dark:${classPrefix}text-red-400`]: {},
         },
       },
     },

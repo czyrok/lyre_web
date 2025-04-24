@@ -32,11 +32,9 @@ pub fn ProjectSection() -> impl IntoView {
 
             <div class="tw-section-projects">
                 <Suspense fallback=move || view! {
-                    <Suspense>
-                        <ProjectCardSkeleton />
-                        <ProjectCardSkeleton />
-                        <ProjectCardSkeleton />
-                    </Suspense>
+                    <ProjectCardSkeleton />
+                    <ProjectCardSkeleton />
+                    <ProjectCardSkeleton />
                 }>
                     <ErrorBoundary fallback=|errors| {
                         view! {

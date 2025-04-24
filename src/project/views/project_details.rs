@@ -40,9 +40,7 @@ pub fn ProjectDetails() -> impl IntoView {
 
     view! {
         <Suspense fallback=move || view! {
-            <Suspense>
-                <ProjectDetailsSkeleton />
-            </Suspense>
+            <ProjectDetailsSkeleton />
         }>
             <ErrorBoundary fallback=|errors| {
                 view! {

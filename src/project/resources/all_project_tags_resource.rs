@@ -1,6 +1,7 @@
 use leptos::prelude::OnceResource;
 
 use crate::{
+    core::data::fetch_state::FetchState,
     project::{
         api::project_tag_api::get_all_project_tags,
         dto::project_tags_dto::ProjectTagsDto,
@@ -21,15 +22,26 @@ pub struct AllProjectTagsResource(
 );
 
 impl AllProjectTagsResource {
-    pub async fn get_select_choices(&self) -> Vec<SelectChoice<String>> {
-        let project_tags = self.0.await.unwrap_or_default().project_tags.0;
-
-        project_tags
-            .iter()
-            .map(|tag| {
-                SelectChoice::new(tag.name.clone(), tag.name.clone(), None)
+    pub async fn get_select_choices(
+        &self,
+    ) -> Result<Vec<SelectChoice<String>>, FetchState> {
+        self.0
+            .await
+            .map(|project_tags_dto| {
+                project_tags_dto
+                    .project_tags
+                    .0
+                    .iter()
+                    .map(|tag| {
+                        SelectChoice::new(
+                            tag.name.clone(),
+                            tag.name.clone(),
+                            None,
+                        )
+                    })
+                    .collect()
             })
-            .collect()
+            .map_err(FetchState::Errored)
     }
 }
 

@@ -3,6 +3,7 @@ use leptos::ev::MouseEvent;
 pub enum ButtonAction {
     Callback(Box<dyn FnMut(MouseEvent)>),
     Popover(String),
+    None,
 }
 
 impl<TCallback> From<TCallback> for ButtonAction
