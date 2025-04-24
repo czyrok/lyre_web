@@ -106,14 +106,13 @@ impl Project {
             .clone()
             .into_iter()
             .find(|current_project| {
+                let current_project_slug =
+                    current_project.context.slug.clone().unwrap_or_default();
+
                 let has_previous_project =
                     projects.clone().iter().any(|project| {
                         project.context.next.clone().unwrap_or_default().slug
-                            == current_project
-                                .context
-                                .slug
-                                .clone()
-                                .unwrap_or_default()
+                            == current_project_slug
                     });
 
                 !has_previous_project
