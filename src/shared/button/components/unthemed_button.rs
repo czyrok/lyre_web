@@ -37,12 +37,12 @@ pub fn UnthemedButton(
     let has_left_icon = icon.is_some() && icon_side == IconSide::Left;
     let has_right_icon = icon.is_some() && icon_side == IconSide::Right;
 
-    let mut on_click_callback: Box<dyn FnMut(MouseEvent)> = Box::new(|_| {});
+    let mut on_click_callback: Option<Box<dyn FnMut(MouseEvent)>> = None;
     let mut popover_target_id: String = "".into();
 
     match on_click {
         ButtonAction::Callback(callback) => {
-            on_click_callback = callback;
+            on_click_callback = Some(callback);
         }
         ButtonAction::Popover(target_id) => {
             popover_target_id = target_id;
@@ -55,6 +55,52 @@ pub fn UnthemedButton(
     let shows_ping = shows_ping.unwrap_or(signal(false).0.into());
 
     let is_errored = is_errored.unwrap_or(signal(false).0.into());
+
+    if let Some(on_click_callback) = on_click_callback {
+        return view! {
+            <button
+                class=(["tw-accentuation-button"], move || is_accentuation_theme)
+                class=(["tw-primary-button"], move || is_primary_theme)
+                class=(["tw-secondary-button"], move || is_secondary_theme)
+
+                class=(["tw-button-size-xl"], move || is_xl_size)
+                class=(["tw-button-size-lg"], move || is_lg_size)
+                class=(["tw-button-size-md"], move || is_md_size)
+                class=(["tw-button-size-sm"], move || is_sm_size)
+
+                class=(["tw-button-ping"], move || shows_ping.get())
+
+                class=(["tw-button-errored"], move || is_errored.get())
+                disabled=is_errored.get()
+
+                on:click=on_click_callback
+                popovertarget=popover_target_id
+                style=format!("anchor-name: --{}", anchor_name)
+            >
+                {move || has_left_icon.then(|| {
+                    view! {
+                        <span class="tw-button-icon">
+                            <Icon icon=left_icon.clone().unwrap() />
+                        </span>
+                    }
+                })}
+
+                {move || has_text.then(|| {
+                    view! {
+                        <span class="tw-button-text">{ text.clone() }</span>
+                    }
+                })}
+
+                {move || has_right_icon.then(|| {
+                    view! {
+                        <span class="tw-button-icon">
+                            <Icon icon=right_icon.clone().unwrap() />
+                        </span>
+                    }
+                })}
+            </button>
+        }.into_any();
+    }
 
     view! {
         <button
@@ -72,8 +118,6 @@ pub fn UnthemedButton(
             class=(["tw-button-errored"], move || is_errored.get())
             disabled=is_errored.get()
 
-            // FIXME:
-            // on:click=on_click_callback
             popovertarget=popover_target_id
             style=format!("anchor-name: --{}", anchor_name)
         >
@@ -100,22 +144,5 @@ pub fn UnthemedButton(
             })}
         </button>
     }
+    .into_any()
 }
-
-// FIXME: a suppr
-// #[component]
-// pub fn UnthemedButton2(
-//     #[prop(optional)] on_click: Option<Box<dyn FnMut(MouseEvent)>>,
-// ) -> impl IntoView {
-//     let on_click = on_click.unwrap_or(Box::new(move |_| {
-//         leptos::logging::log!("no callback");
-//     }));
-
-//     view! {
-//         <button
-//             on:click=on_click
-//         >
-//             "click"
-//         </button>
-//     }
-// }
