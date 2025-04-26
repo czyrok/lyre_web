@@ -89,18 +89,44 @@
     "version": "0.2.0",
     "configurations": [
       {
+        "name": "Watch App",
+        "request": "launch",
+        "runtimeExecutable": "cargo",
+        "runtimeArgs": ["make", "start"],
+        "cwd": "${workspaceFolder:root}",
+        "type": "node",
+        "console": "integratedTerminal",
+      },
+      {
         "type": "lldb",
         "request": "launch",
-        "name": "Start & Debug",
+        "name": "Debug App",
         "preLaunchTask": "build",
-        "program": "${workspaceFolder}/target/debug/lyre_web",
+        "program": "${workspaceFolder:root}/target/debug/lyre_web",
         "args": [],
-        "cwd": "${workspaceFolder}",
+        "cwd": "${workspaceFolder:root}",
         "sourceLanguages": ["rust"],
-        //// TODO: tester
-        "stopOnEntry": true,
+      },
+      {
+        "name": "Watch Tailwind",
+        "request": "launch",
+        "runtimeExecutable": "bun",
+        "runtimeArgs": ["run", "build:tailwind-css:watch"],
+        "cwd": "${workspaceFolder:root}",
+        "type": "node",
+        "console": "integratedTerminal",
       },
     ],
     "inputs": [],
+    "compounds": [
+      {
+        "name": "Watch App & Tailwind",
+        "configurations": ["Watch App", "Watch Tailwind"],
+        "presentation": {
+          "hidden": false,
+          "group": "0",
+        },
+      },
+    ],
   },
 }
