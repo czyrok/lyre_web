@@ -72,7 +72,9 @@ pub fn App() -> impl IntoView {
                     <Route
                         path=path!("/projects")
                         view=ProjectSearchPage
-                        ssr=SsrMode::Static(StaticRoute::new())
+                        ssr=SsrMode::Static(
+                            StaticRoute::new().regenerate(|_| watch_path(Path::new("./project_data"))),
+                        )
                     />
 
                     <Route
