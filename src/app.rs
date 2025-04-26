@@ -3,19 +3,29 @@ use std::path::Path;
 use leptos::prelude::*;
 use leptos_meta::*;
 use leptos_router::{
-    components::{FlatRoutes, Redirect, Route, Router},
+    components::{FlatRoutes, Route, Router},
     path,
     static_routes::StaticRoute,
     SsrMode,
 };
 
 use crate::{
-    home::view::HomePage,
+    core::data::app_settings::UsesDarkTheme,
+    landing_page::view::LandingPage,
     project::{
-        api::project_slug::get_project_slugs,
-        views::project_details::ProjectDetails,
+        api::project_slug_api::get_project_slugs,
+        views::{
+            project_details::ProjectDetails,
+            project_search_page::ProjectSearchPage,
+        },
     },
-    system::watch_path::watch_path,
+    shared::{
+        components::nav_bar::nav_bar_container::NavBarContainer,
+        layouts::not_found_error_page_layout::NotFoundErrorPageLayout,
+    },
+    system::{
+        state::frontend_contexts::use_app_settings, watch_path::watch_path,
+    },
 };
 
 #[component]
@@ -23,33 +33,48 @@ pub fn App() -> impl IntoView {
     // Provides context that manages stylesheets, titles, meta tags, etc.
     provide_meta_context();
 
-    let fallback = || {
-        (view! {
-          "Page not found."
-        })
-        .into_view()
-    };
+    let (app_settings, _) = use_app_settings();
+
+    let (uses_dark_theme, set_uses_dark_theme) =
+        signal(UsesDarkTheme::default().0);
+
+    //// This is useful to force rerender due to an hydration bug with static files
+    Effect::new(move || {
+        let current = app_settings.get().uses_dark_theme;
+
+        set_uses_dark_theme.set(current.0);
+    });
 
     view! {
         <Title text="Welcome to Leptos"/>
-        <Router>
-            <nav>
-                <a href="/">"Home"</a>
-            </nav>
-            <main>
-                <FlatRoutes fallback>
+
+        <div
+            id="style-settings"
+            class=(["tw-dark"], uses_dark_theme)
+        >
+            <Router>
+                <NavBarContainer />
+
+                <FlatRoutes fallback=|| {
+                    view! {
+                        <NotFoundErrorPageLayout />
+                    }
+                    .into_view()
+                }>
                     <Route
                         path=path!("/")
-                        view=HomePage
+                        view=LandingPage
                         ssr=SsrMode::Static(
                             StaticRoute::new().regenerate(|_| watch_path(Path::new("./project_data"))),
                         )
                     />
 
                     <Route
-                        path=path!("/about")
-                        view=move || view! { <Redirect path="/"/> }
-                        ssr=SsrMode::Static(StaticRoute::new())
+                        path=path!("/projects")
+                        view=ProjectSearchPage
+                        ssr=SsrMode::Static(
+                            StaticRoute::new().regenerate(|_| watch_path(Path::new("./project_data"))),
+                        )
                     />
 
                     <Route
@@ -69,9 +94,8 @@ pub fn App() -> impl IntoView {
                                 }),
                         )
                     />
-
                 </FlatRoutes>
-            </main>
-        </Router>
+            </Router>
+        </div>
     }
 }

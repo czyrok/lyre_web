@@ -1,20 +1,40 @@
 import { Config } from 'tailwindcss';
 import plugin from 'tailwindcss/plugin';
-import { addAccentuationButtonComponent } from './components/accentuation_button';
-import { addAccentuationInputComponent } from './components/accentuation_input';
-import { addBrandComponent } from './components/brand';
-import { addDropdownComponent } from './components/dropdown';
-import { addNavBarComponent } from './components/nav_bar';
-import { addPaginationComponent } from './components/pagination';
-import { addPrimaryButtonComponent } from './components/primary_button';
-import { addProjectCardComponent } from './components/project_card';
-import { addProjectCardSkeletonComponent } from './components/project_card_skeleton';
-import { addProjectThumbnailComponent } from './components/project_thumbnail';
-import { addSecondaryButtonComponent } from './components/secondary_button';
-import { addSecondaryCheckboxComponent } from './components/secondary_checkbox';
-import { addSecondaryLinkComponent } from './components/secondary_link';
-import { addSecondarySelectComponent } from './components/secondary_select';
-import { addTagComponent } from './components/tag';
+import { addABase } from './bases/a';
+import { addBBase } from './bases/b';
+import { addBodyBase } from './bases/body';
+import { addH1Base } from './bases/h1';
+import { addHtmlBase } from './bases/html';
+import { addPBase } from './bases/p';
+import { addContactSectionComponent } from './components/landing_page/contact_section';
+import { addHighlightedSectionComponent } from './components/landing_page/highlighted_section';
+import { addProjectSectionComponent } from './components/landing_page/project_section';
+import { addSectionContainerComponent } from './components/landing_page/section_container';
+import { addProjectCardComponent } from './components/project/project_card';
+import { addProjectTagComponent } from './components/project/project_tag';
+import { addProjectThumbnailComponent } from './components/project/project_thumbnail';
+import { addSearchedProjectTitleInputTextComponent } from './components/project_search_page/searched_project_title_input_text';
+import { addAccentuationButtonComponent } from './components/shared/accentuation_button';
+import { addAccentuationInputTextComponent } from './components/shared/accentuation_input_text';
+import { addAdditionalInfoComponent } from './components/shared/additional_info';
+import { addAnchorComponent } from './components/shared/anchor';
+import { addBrandComponent } from './components/shared/brand';
+import { addDropdownMenuComponent } from './components/shared/dropdown_menu';
+import { addErrorInfoComponent } from './components/shared/error_info';
+import { addFooterComponent } from './components/shared/footer';
+import { addNavBarComponent } from './components/shared/nav_bar';
+import { addPaginationComponent } from './components/shared/pagination';
+import { addPrimaryButtonComponent } from './components/shared/primary_button';
+import { addSecondaryButtonComponent } from './components/shared/secondary_button';
+import { addSecondaryCheckboxComponent } from './components/shared/secondary_checkbox';
+import { addSecondaryLinkComponent } from './components/shared/secondary_link';
+import { addSecondarySelectComponent } from './components/shared/secondary_select';
+import { addInfoErrorPageLayout } from './layouts/info_error_page_layout';
+import { addNotFoundErrorPageLayout } from './layouts/not_found_error_page_layout';
+import { addSecondaryPageLayout } from './layouts/secondary_page_layout';
+import { addLandingPage } from './pages/landing_page';
+import { addProjectDetailsPage } from './pages/project_details_page';
+import { addProjectSearchPage } from './pages/project_search_page';
 import { THEME_BACKGROUND } from './theme/background';
 import { THEME_BLUR } from './theme/blur';
 import { THEME_BORDER_RADIUS } from './theme/border_radius';
@@ -22,6 +42,7 @@ import { THEME_BORDER_WIDTH } from './theme/border_width';
 import { THEME_BOX_SHADOW } from './theme/box_shadow';
 import { THEME_COLORS } from './theme/colors';
 import { THEME_CONTENT } from './theme/content';
+import { EXTENDED_THEME_CONTAINER } from './theme/extend/container';
 import { EXTENDED_THEME_GAP } from './theme/extend/gap';
 import { EXTENDED_THEME_SIZE } from './theme/extend/size';
 import { THEME_FONT_FAMILY } from './theme/font_family';
@@ -36,8 +57,9 @@ import { THEME_SCREENS } from './theme/screens';
 import { THEME_SPACING } from './theme/spacing';
 import { THEME_STROKE_WIDTH } from './theme/stroke_width';
 import { THEME_TRANSITION } from './theme/transition';
+import { THEME_Z_INDEX } from './theme/z_index';
 
-const DARK_MODE_CLASS = '.dark';
+const DARK_MODE_CLASS = 'dark';
 const TAILWIND_CLASS_PREFIX = 'tw-';
 
 export const TAILWIND_CONFIGURATION: Config = {
@@ -63,107 +85,126 @@ export const TAILWIND_CONFIGURATION: Config = {
     strokeWidth: THEME_STROKE_WIDTH,
     fontWeight: THEME_FONT_WEIGHT,
     boxShadow: THEME_BOX_SHADOW,
+    zIndex: THEME_Z_INDEX,
     ...THEME_TRANSITION,
     ...THEME_BACKGROUND,
     extend: {
       // Gap is here to avoid to override the spacing values defined above
-      // TODO: Container
       gap: EXTENDED_THEME_GAP,
+      container: EXTENDED_THEME_CONTAINER,
       ...EXTENDED_THEME_SIZE,
     },
   },
   plugins: [
     plugin(function (pluginApi) {
-      const darkModeConfig: string = pluginApi.config('darkMode', 'selector');
+      addH1Base(pluginApi, {
+        classPrefix: TAILWIND_CLASS_PREFIX,
+      });
+      addPBase(pluginApi, {
+        classPrefix: TAILWIND_CLASS_PREFIX,
+      });
+      addABase(pluginApi, {
+        classPrefix: TAILWIND_CLASS_PREFIX,
+      });
+      addHtmlBase(pluginApi, {
+        classPrefix: TAILWIND_CLASS_PREFIX,
+      });
+      addBodyBase(pluginApi, {
+        classPrefix: TAILWIND_CLASS_PREFIX,
+      });
+      addBBase(pluginApi, {
+        classPrefix: TAILWIND_CLASS_PREFIX,
+      });
 
-      let darkModeContext = `${DARK_MODE_CLASS} &`;
-
-      if (darkModeConfig === 'media') {
-        darkModeContext = '@media (prefers-color-scheme: dark)';
-      }
-
-      addTagComponent(pluginApi, {
-        darkModeContext,
+      addProjectTagComponent(pluginApi, {
         classPrefix: TAILWIND_CLASS_PREFIX,
       });
       addPrimaryButtonComponent(pluginApi, {
-        darkModeContext,
         classPrefix: TAILWIND_CLASS_PREFIX,
       });
       addAccentuationButtonComponent(pluginApi, {
-        darkModeContext,
         classPrefix: TAILWIND_CLASS_PREFIX,
       });
       addSecondaryButtonComponent(pluginApi, {
-        darkModeContext,
-        classPrefix: TAILWIND_CLASS_PREFIX,
-      });
-      addProjectCardSkeletonComponent(pluginApi, {
-        darkModeContext,
         classPrefix: TAILWIND_CLASS_PREFIX,
       });
       addProjectThumbnailComponent(pluginApi, {
-        darkModeContext,
         classPrefix: TAILWIND_CLASS_PREFIX,
       });
       addProjectCardComponent(pluginApi, {
-        darkModeContext,
         classPrefix: TAILWIND_CLASS_PREFIX,
       });
       addNavBarComponent(pluginApi, {
-        darkModeContext,
         classPrefix: TAILWIND_CLASS_PREFIX,
       });
       addSecondarySelectComponent(pluginApi, {
-        darkModeContext,
         classPrefix: TAILWIND_CLASS_PREFIX,
       });
-      addAccentuationInputComponent(pluginApi, {
-        darkModeContext,
+      addAccentuationInputTextComponent(pluginApi, {
         classPrefix: TAILWIND_CLASS_PREFIX,
       });
       addSecondaryLinkComponent(pluginApi, {
-        darkModeContext,
         classPrefix: TAILWIND_CLASS_PREFIX,
       });
       addPaginationComponent(pluginApi, {
-        darkModeContext,
         classPrefix: TAILWIND_CLASS_PREFIX,
       });
       addBrandComponent(pluginApi, {
-        darkModeContext,
         classPrefix: TAILWIND_CLASS_PREFIX,
       });
       addSecondaryCheckboxComponent(pluginApi, {
-        darkModeContext,
         classPrefix: TAILWIND_CLASS_PREFIX,
       });
-      addDropdownComponent(pluginApi, {
-        darkModeContext,
+      addDropdownMenuComponent(pluginApi, {
+        classPrefix: TAILWIND_CLASS_PREFIX,
+      });
+      addProjectSectionComponent(pluginApi, {
+        classPrefix: TAILWIND_CLASS_PREFIX,
+      });
+      addSectionContainerComponent(pluginApi, {
+        classPrefix: TAILWIND_CLASS_PREFIX,
+      });
+      addHighlightedSectionComponent(pluginApi, {
+        classPrefix: TAILWIND_CLASS_PREFIX,
+      });
+      addContactSectionComponent(pluginApi, {
+        classPrefix: TAILWIND_CLASS_PREFIX,
+      });
+      addAnchorComponent(pluginApi, {
+        classPrefix: TAILWIND_CLASS_PREFIX,
+      });
+      addFooterComponent(pluginApi, {
+        classPrefix: TAILWIND_CLASS_PREFIX,
+      });
+      addSearchedProjectTitleInputTextComponent(pluginApi, {
+        classPrefix: TAILWIND_CLASS_PREFIX,
+      });
+      addAdditionalInfoComponent(pluginApi, {
+        classPrefix: TAILWIND_CLASS_PREFIX,
+      });
+      addErrorInfoComponent(pluginApi, {
         classPrefix: TAILWIND_CLASS_PREFIX,
       });
 
-      /*
-      TODO: ajouter les styles par défaut des h1 ?
+      addLandingPage(pluginApi, {
+        classPrefix: TAILWIND_CLASS_PREFIX,
+      });
+      addProjectSearchPage(pluginApi, {
+        classPrefix: TAILWIND_CLASS_PREFIX,
+      });
+      addProjectDetailsPage(pluginApi, {
+        classPrefix: TAILWIND_CLASS_PREFIX,
+      });
 
-      addVariant({
-      })
-
-      // title text etc...
-      addBase({
-        h1: {
-          fontSize: theme("fontSize.2xl"),
-        },
-        h2: {
-          fontSize: theme("fontSize.xl"),
-        },
-      }); */
-
-      /* addUtilities({
-        ".content-auto": {
-          contentVisibility: "auto",
-        },
-      }); */
+      addSecondaryPageLayout(pluginApi, {
+        classPrefix: TAILWIND_CLASS_PREFIX,
+      });
+      addInfoErrorPageLayout(pluginApi, {
+        classPrefix: TAILWIND_CLASS_PREFIX,
+      });
+      addNotFoundErrorPageLayout(pluginApi, {
+        classPrefix: TAILWIND_CLASS_PREFIX,
+      });
     }),
   ],
 } as const;

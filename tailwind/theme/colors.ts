@@ -56,4 +56,17 @@ export const THEME_COLORS: ThemeConfig['colors'] = {
     300: '#BDBDBD',
     400: '#989898',
   },
+  red: {
+    50: '#FFF1F1',
+    100: '#FFE1E1',
+    200: '#FFC7C7',
+    300: '#FFA0A0',
+    400: '#FF5C5C',
+    500: '#F83B3B',
+    600: '#E51D1D',
+    700: '#C11414',
+    800: '#A01414',
+    900: '#841818',
+    950: '#480707',
+  },
 } as const;

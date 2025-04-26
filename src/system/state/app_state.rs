@@ -4,12 +4,17 @@ use leptos::config::LeptosOptions;
 use super::environment_context::EnvironmentContext;
 use crate::project::{
     repositories::{
-        project::ProjectRepository, project_context::ProjectContextRepository,
-        project_slug::ProjectSlugRepository, project_tag::ProjectTagRepository,
+        project_context_repository::ProjectContextRepository,
+        project_link_repository::ProjectLinkRepository,
+        project_repository::ProjectRepository,
+        project_slug_repository::ProjectSlugRepository,
+        project_tag_repository::ProjectTagRepository,
     },
     services::{
-        project::ProjectService, project_context::ProjectContextService,
-        project_slug::ProjectSlugService,
+        project_context_service::ProjectContextService,
+        project_service::ProjectService,
+        project_slug_service::ProjectSlugService,
+        project_tag_service::ProjectTagService,
     },
 };
 
@@ -21,6 +26,7 @@ pub struct AppState {
     pub project_service: ProjectService,
     pub project_context_service: ProjectContextService,
     pub project_slug_service: ProjectSlugService,
+    pub project_tag_service: ProjectTagService,
 }
 
 impl AppState {
@@ -29,18 +35,26 @@ impl AppState {
         options: LeptosOptions,
     ) -> Self {
         let project_repository = ProjectRepository::new(environment.clone());
-        let project_tag_repository = ProjectTagRepository::default();
+        let project_tag_repository =
+            ProjectTagRepository::new(environment.clone());
         let project_context_repository =
             ProjectContextRepository::new(environment.clone());
         let project_slug_repository =
             ProjectSlugRepository::new(environment.clone());
+        let project_link_repository = ProjectLinkRepository::default();
 
-        let project_service =
-            ProjectService::new(project_repository, project_tag_repository);
+        let project_service = ProjectService::new(
+            project_repository,
+            project_tag_repository.clone(),
+            project_link_repository,
+        );
         let project_context_service =
             ProjectContextService::new(project_context_repository);
         let project_slug_service =
             ProjectSlugService::new(project_slug_repository);
+
+        let project_tag_service =
+            ProjectTagService::new(project_tag_repository);
 
         Self {
             environment,
@@ -48,6 +62,7 @@ impl AppState {
             project_service,
             project_context_service,
             project_slug_service,
+            project_tag_service,
         }
     }
 }

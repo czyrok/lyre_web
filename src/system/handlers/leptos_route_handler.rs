@@ -18,6 +18,7 @@ pub async fn leptos_routes_handler(
             provide_context(app_state.project_service.clone());
             provide_context(app_state.project_context_service.clone());
             provide_context(app_state.project_slug_service.clone());
+            provide_context(app_state.project_tag_service.clone());
         },
         move || shell(app_state.options.clone()),
     );

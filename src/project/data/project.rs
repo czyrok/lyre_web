@@ -7,14 +7,20 @@ use std::{
 #[cfg(feature = "ssr")]
 use regex::Regex;
 use serde::{Deserialize, Serialize};
+#[cfg(feature = "ssr")]
+use sqlx::{sqlite::SqliteRow, FromRow, Row};
 
-use super::{project_content::ProjectContent, project_context::ProjectContext};
+use super::{
+    project_content::ProjectContent, project_context::ProjectContext,
+    project_links::ProjectLinks,
+};
 
-#[derive(Serialize, Deserialize, Clone, Debug)]
+#[derive(Default, Serialize, Deserialize, Clone, Debug)]
 pub struct Project {
     pub position: Option<u32>,
     pub context: ProjectContext,
     pub content: ProjectContent,
+    pub links: ProjectLinks,
 }
 
 impl Project {
@@ -26,7 +32,7 @@ impl Project {
 
         let splited_values: Vec<_> = separator_regex.split(document).collect();
 
-        let mut raw_project_context = "";
+        let mut raw_project_metadata = "";
         let mut raw_project_content = "";
 
         for splited_value in splited_values {
@@ -34,8 +40,8 @@ impl Project {
                 continue;
             }
 
-            if raw_project_context.is_empty() {
-                raw_project_context = splited_value.trim();
+            if raw_project_metadata.is_empty() {
+                raw_project_metadata = splited_value.trim();
                 continue;
             }
 
@@ -47,7 +53,7 @@ impl Project {
             panic!("Invalid Markdown content, more than two parts")
         }
 
-        Ok((raw_project_context, raw_project_content))
+        Ok((raw_project_metadata, raw_project_content))
     }
 
     #[cfg(feature = "ssr")]
@@ -55,20 +61,24 @@ impl Project {
         slug: String,
         data: &str,
     ) -> Result<Self, Box<dyn Error>> {
-        let (raw_project_context, raw_project_content) =
+        let (raw_project_metadata, raw_project_content) =
             Project::split_markdown_document(data)?;
 
         let project_context =
-            ProjectContext::parse_from_yaml_data(slug, raw_project_context)
+            ProjectContext::parse_from_yaml_data(slug, raw_project_metadata)
                 .await?;
 
         let project_content =
             ProjectContent::parse_from_markdown_data(raw_project_content)?;
 
+        let project_links =
+            ProjectLinks::parse_from_yaml_data(raw_project_metadata)?;
+
         Ok(Self {
             position: None,
             context: project_context,
             content: project_content,
+            links: project_links,
         })
     }
 
@@ -96,15 +106,18 @@ impl Project {
             .clone()
             .into_iter()
             .find(|current_project| {
+                let current_project_slug =
+                    current_project.context.slug.clone().unwrap_or_default();
+
                 let has_previous_project =
                     projects.clone().iter().any(|project| {
-                        project.context.next_slug.clone().unwrap_or_default()
-                            == current_project.context.slug
+                        project.context.next.clone().unwrap_or_default().slug
+                            == current_project_slug
                     });
 
                 !has_previous_project
             })
-            .expect("A previous project should be existed")
+            .expect("A previous project should exist")
     }
 
     fn get_next_project(
@@ -114,14 +127,15 @@ impl Project {
         projects
             .into_iter()
             .find(|project| {
-                project.context.slug
+                project.context.slug.clone().expect("`slug` should exist")
                     == previous_project
                         .context
-                        .next_slug
+                        .next
                         .clone()
-                        .unwrap_or_default()
+                        .expect("A next project should exist")
+                        .slug
             })
-            .expect("A next project should be existed")
+            .expect("A next project should exist")
     }
 
     // TODO: ajouter test sur l'ordre des projets
@@ -151,5 +165,17 @@ impl Project {
         }
 
         sorted_projects
+    }
+}
+
+#[cfg(feature = "ssr")]
+impl<'row> FromRow<'row, SqliteRow> for Project {
+    fn from_row(row: &'row SqliteRow) -> Result<Self, sqlx::Error> {
+        Ok(Project {
+            position: None,
+            context: ProjectContext::from_row(row)?,
+            content: ProjectContent::from_row(row)?,
+            links: row.try_get("links").expect("`row.links` should exist"),
+        })
     }
 }

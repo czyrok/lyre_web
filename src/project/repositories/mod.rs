@@ -1,4 +1,5 @@
-pub mod project;
-pub mod project_context;
-pub mod project_slug;
-pub mod project_tag;
+pub mod project_context_repository;
+pub mod project_link_repository;
+pub mod project_repository;
+pub mod project_slug_repository;
+pub mod project_tag_repository;

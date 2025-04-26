@@ -1,3 +1,7 @@
+#[cfg(feature = "ssr")]
 pub mod app_state;
-pub mod contexts;
+#[cfg(feature = "ssr")]
+pub mod backend_contexts;
+#[cfg(feature = "ssr")]
 pub mod environment_context;
+pub mod frontend_contexts;

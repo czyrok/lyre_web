@@ -1,7 +1,8 @@
 pub mod app;
-pub mod common;
-pub mod home;
+pub mod core;
+pub mod landing_page;
 pub mod project;
+pub mod shared;
 pub mod system;
 
 #[cfg(feature = "hydrate")]
