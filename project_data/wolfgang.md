@@ -1,13 +1,17 @@
 ---
 next:
-  slug: wolfgang2
+  slug: kepler
 title: Wolfgang
-image_url: # TODO:
-date: 2025-10-21 # TODO:
+image_url: wolfgang.png
+date: 2022-11-06
 tags:
-  - name: TS
-  - name: Angular
   - name: Socket.io
+  - name: Angular
+  - name: TS
+links:
+  - url: https://github.com/czyrok/wolfgang
+    title: GitHub
+    icon: GITHUB
 ---
 
 Le sujet de ce projet était la transformation du jeu de société Les loups-garous de Thiercelieux en un jeu en ligne multijoueur. C'est lors de celui-ci que j'ai compris l'importance de la phase de conception dans un projet de développement informatique. Le moteur du jeu fut le résultat de plusieurs jours de travail. Mais cette phase était nécessaire vu la complexité non pas du jeu en lui-même mais des interactions possibles en son sein. De plus, à cause du fait que le jeu soit multijoueur, l'architecture a dû être conçue en conséquence.
