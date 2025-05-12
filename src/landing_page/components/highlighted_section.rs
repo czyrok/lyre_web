@@ -40,7 +40,7 @@ pub fn HighlightedSection() -> impl IntoView {
                         <span class="tw-item-date">2024</span>
 
                         <p>
-                            "À la suite de mon BUT j'ai décidé d'arrêter mes études pour me consacrer à temps plein au métier de freelance. Ce métier me permet une grande "
+                            "À la suite de mon BUT, j'ai décidé d'arrêter mes études pour me consacrer à temps plein au métier de freelance. Ce métier me permet une grande "
                             <b>"flexibilité"</b>
                             " mais aussi l'occasion de voir toutes sortes de projets différents grâce à mes clients. Par ailleurs, ça me permet de mon côté d'avancer sur des projets perso. qui pourront sortir sous le pavillon de mon entreprise. Aujourd'hui, je travaille pour "
                             <b>"Ubikap"</b>

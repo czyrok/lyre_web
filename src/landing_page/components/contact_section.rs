@@ -32,7 +32,7 @@ pub fn ContactSection() -> impl IntoView {
                 <div class="tw-section-text">
                     <h1 class="tw-title-size-xl">"Contact"</h1>
 
-                    <p>"Même si dans l'instant je suis occupé, ma porte est toujours ouverte pour discuter. Alors n'hésite pas !"</p>
+                    <p>"Toujours dans l'attente de nouveaux challenges, ma porte est toujours ouverte pour discuter. Alors n'hésite pas !"</p>
                 </div>
 
                 <div class="tw-section-actions">
