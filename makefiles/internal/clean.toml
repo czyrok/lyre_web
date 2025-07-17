@@ -1,4 +1,3 @@
-# TODO: utiliser cargo clean à la place ?
 [tasks.clean-cargo]
 private = true
 script = '''

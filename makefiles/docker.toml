@@ -1,0 +1,10 @@
+extend = [{ path = "./internal/docker.toml" }]
+
+[tasks.build-docker-image]
+run_task = { name = ["build-app-docker-image"] }
+
+[tasks.build-image]
+alias = "build-docker-image"
+
+[tasks.image]
+alias = "build-docker-image"

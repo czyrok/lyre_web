@@ -3,6 +3,7 @@ extend = [
   { path = "./makefiles/check.toml" },
   { path = "./makefiles/clean.toml" },
   { path = "./makefiles/development.toml" },
+  { path = "./makefiles/docker.toml" },
   { path = "./makefiles/lint.toml" },
   { path = "./makefiles/start.toml" },
 ]

@@ -1,4 +1,4 @@
-use std::path::Path;
+use std::{env, path::Path};
 
 use serde::Deserialize;
 
@@ -17,11 +17,19 @@ pub struct EnvironmentContext {
 
 impl EnvironmentContext {
     pub fn load_environment() -> Result<Self, envy::Error> {
+        let current_profile =
+            env::var("CARGO_MAKE_PROFILE").unwrap_or("development".into());
+
         // Loads the environment variables from the dotenv files
-        dotenvy::from_path_override(Path::new(".env"))
-            .expect("A `.env` should exist");
-        dotenvy::from_path_override(Path::new(".env.development"))
-            .expect("A `.env.development` should exist");
+        dotenvy::from_path_override(Path::new(".env")).unwrap_or_default();
+        dotenvy::from_path_override(Path::new(&format!(
+            ".env.{current_profile}",
+        )))
+        .unwrap_or_default();
+        dotenvy::from_path_override(Path::new(&format!(
+            ".env.{current_profile}.local",
+        )))
+        .unwrap_or_default();
 
         let mut environment = envy::from_env::<EnvironmentContext>()?;
 
