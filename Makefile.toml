@@ -1,4 +1,10 @@
-extend = [{ path = "./makefiles/main.toml" }, { path = "./makefiles/cargo-leptos.toml" }]
+extend = [
+  { path = "./makefiles/build.toml" },
+  { path = "./makefiles/check.toml" },
+  { path = "./makefiles/clean.toml" },
+  { path = "./makefiles/development.toml" },
+  { path = "./makefiles/lint.toml" },
+  { path = "./makefiles/start.toml" },
+]
 
-[env]
-CLIENT_PROCESS_NAME = "lyre_web"
+env_files = [{ path = ".env" }, { path = ".env.development", profile = "development" }]

@@ -1,0 +1,6 @@
+# TODO:
+extend = [{ path = "./internal/install.toml" }]
+
+[tasks.check]
+clear = true
+run_task = { name = ["install-node-modules", "check-app"] }

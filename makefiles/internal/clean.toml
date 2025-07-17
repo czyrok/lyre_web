@@ -1,0 +1,12 @@
+# TODO: utiliser cargo clean à la place ?
+[tasks.clean-cargo]
+private = true
+script = '''
+find . -type d -name target | xargs rm -rf
+'''
+
+[tasks.clean-node_modules]
+private = true
+script = '''
+find . -type d -name node_modules | xargs rm -rf
+'''
