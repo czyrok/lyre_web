@@ -68,8 +68,13 @@ ssr = [
   "dep:icu",
 ]
 
-# Optimize `cargo build`
-[profile.dev.package.sqlx-macros]
+[profile.dev]
+## For faster incremental debug builds on MacOS
+## https://corrode.dev/blog/tips-for-faster-rust-compile-times/
+split-debuginfo = "unpacked"
+
+## Optimize `cargo build` for macros
+[profile.dev.build-override]
 opt-level = 3
 
 [profile.release]

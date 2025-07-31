@@ -3,17 +3,17 @@ extend = [{ path = "./install.toml" }]
 [tasks.build-app-development]
 private = true
 command = "cargo"
-args = ["leptos", "build"]
+args = ["leptos", "build", "--wasm-debug"]
 
 [tasks.build-app-release]
 private = true
 command = "cargo"
-args = ["leptos", "build", "--release"]
+args = ["leptos", "build", "--release", "--precompress"]
 
 [tasks.build-app-release-ci]
 private = true
 command = "cargo"
-args = ["leptos", "build", "--release", "-vv"]
+args = ["leptos", "build", "--release", "--precompress", "-vv"]
 
 [tasks.build-app]
 private = true

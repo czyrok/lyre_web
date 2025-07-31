@@ -4,4 +4,4 @@ extend = [{ path = "./install.toml" }]
 private = true
 dependencies = ["install-cargo-leptos"]
 command = "cargo"
-args = ["leptos", "watch"]
+args = ["leptos", "watch", "--wasm-debug"]
