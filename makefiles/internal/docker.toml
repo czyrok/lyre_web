@@ -28,6 +28,8 @@ command = "docker"
 args = [
   "buildx",
   "build",
+  "--file",
+  ".devops/lyre_web.Dockerfile",
   "--platform",
   "${DOCKER_IMAGE_PLATFORM_LONG}",
   "--tag",
