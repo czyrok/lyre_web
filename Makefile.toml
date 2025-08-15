@@ -9,3 +9,7 @@ extend = [
 ]
 
 env_files = [{ path = ".env" }, { path = ".env.development", profile = "development" }]
+
+[env]
+ORGANIZATION_NAME="lyre"
+LOCAL_DOCKER_REGISTRY_AS_PROXY="localhost:60471"

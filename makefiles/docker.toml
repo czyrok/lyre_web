@@ -1,10 +1,13 @@
 extend = [{ path = "./internal/docker.toml" }]
 
-[tasks.build-docker-image]
+[tasks.local-docker-image]
 run_task = { name = ["build-app-docker-image"] }
 
-[tasks.build-image]
-alias = "build-docker-image"
+[tasks.local-image]
+alias = "local-docker-image"
 
-[tasks.image]
-alias = "build-docker-image"
+[tasks.registry-docker-image]
+run_task = { name = ["upload-app-docker-image-to-registry"] }
+
+[tasks.registry-image]
+alias = "registry-docker-image"

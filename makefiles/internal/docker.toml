@@ -11,19 +11,9 @@ DOCKER_IMAGE_PLATFORM_LONG = { script = ["""
     fi
     """], condition = { env_set = ["DOCKER_IMAGE_PLATFORM"] } }
 
-DOCKER_IMAGE_OUTPUT_ARG_VALUE = { script = [
-  """
-    if [[ -n "${DOCKER_IMAGE_OUTPUT_PATH}" ]]; then
-        echo "type=oci,dest=${DOCKER_IMAGE_OUTPUT_PATH}/${CARGO_MAKE_PROJECT_NAME}:${CARGO_MAKE_GIT_HEAD_LAST_COMMIT_HASH_PREFIX}-${CARGO_MAKE_PROJECT_VERSION}-${DOCKER_IMAGE_PLATFORM}"
-    else
-        echo "type=docker"
-    fi
-    """,
-] }
-
 [tasks.build-app-docker-image]
 private = true
-condition = { env_set = ["DOCKER_IMAGE_PLATFORM_LONG", "DOCKER_IMAGE_OUTPUT_ARG_VALUE"] }
+condition = { env_set = ["DOCKER_IMAGE_PLATFORM_LONG"] }
 command = "docker"
 args = [
   "buildx",
@@ -34,7 +24,29 @@ args = [
   "${DOCKER_IMAGE_PLATFORM_LONG}",
   "--tag",
   "${CARGO_MAKE_PROJECT_NAME}:${CARGO_MAKE_GIT_HEAD_LAST_COMMIT_HASH_PREFIX}-${CARGO_MAKE_PROJECT_VERSION}-${DOCKER_IMAGE_PLATFORM}",
+  "--tag",
+  "${CARGO_MAKE_PROJECT_NAME}:latest-${DOCKER_IMAGE_PLATFORM}",
   "--output",
-  "${DOCKER_IMAGE_OUTPUT_ARG_VALUE}",
+  "type=docker",
+  ".",
+]
+
+[tasks.upload-app-docker-image-to-registry]
+private = true
+condition = { env_set = ["DOCKER_IMAGE_PLATFORM_LONG", "ORGANIZATION_NAME", "LOCAL_DOCKER_REGISTRY_AS_PROXY"] }
+command = "docker"
+args = [
+  "buildx",
+  "build",
+  "--file",
+  ".devops/lyre_web.Dockerfile",
+  "--platform",
+  "${DOCKER_IMAGE_PLATFORM_LONG}",
+  "--tag",
+  "${LOCAL_DOCKER_REGISTRY_AS_PROXY}/${ORGANIZATION_NAME}/${CARGO_MAKE_PROJECT_NAME}:${CARGO_MAKE_GIT_HEAD_LAST_COMMIT_HASH_PREFIX}-${CARGO_MAKE_PROJECT_VERSION}-${DOCKER_IMAGE_PLATFORM}",
+  "--tag",
+  "${LOCAL_DOCKER_REGISTRY_AS_PROXY}/${ORGANIZATION_NAME}/${CARGO_MAKE_PROJECT_NAME}:latest-${DOCKER_IMAGE_PLATFORM}",
+  "--output",
+  "type=registry",
   ".",
 ]
