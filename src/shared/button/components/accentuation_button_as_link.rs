@@ -19,8 +19,9 @@ pub fn AccentuationButtonAsLink(
     #[prop(optional, into)] icon: Option<IconSet>,
     #[prop(optional, into)] icon_side: Option<IconSide>,
     #[prop(optional, into)] target: Option<String>,
+    #[prop(optional, into)] aria_label: Option<String>,
 ) -> impl IntoView {
     view! {
-        <UnthemedButtonAsLink theme=ButtonTheme::Accentuation size text href icon icon_side target />
+        <UnthemedButtonAsLink theme=ButtonTheme::Accentuation size text href icon icon_side target aria_label />
     }
 }

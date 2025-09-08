@@ -74,7 +74,7 @@ pub fn OrderedProjectContextFilter(
 
             <TagSelector set_selected_project_tags reset_event=reset_event.into() />
 
-            <SecondaryButton size=ComponentSize::MD icon=IconSet::Undo on_click=reset_filters />
+            <SecondaryButton size=ComponentSize::MD icon=IconSet::Undo on_click=reset_filters aria_label="Réinitialiser les filtres" />
         </div>
     }
 }
