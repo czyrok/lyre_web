@@ -1,0 +1,130 @@
+[env]
+DOCKER_IMAGE_PLATFORM = { value = "arm64", condition = { env_not_set = ["DOCKER_IMAGE_PLATFORM"] } }
+DOCKER_IMAGE_PLATFORM_LONG = { script = ["""
+    if [ "${DOCKER_IMAGE_PLATFORM}" = "arm64" ]; then
+        echo "linux/arm64"
+    elif [ "${DOCKER_IMAGE_PLATFORM}" = "amd64" ]; then
+        echo "linux/amd64"
+    else
+        echo >&2 "Unknown platform, the platform value should be 'arm64' or 'amd64'."
+        exit 1
+    fi
+    """], condition = { env_set = ["DOCKER_IMAGE_PLATFORM"] } }
+
+[tasks.build-app-docker-image]
+private = true
+condition = { env_set = ["DOCKER_IMAGE_PLATFORM_LONG"] }
+command = "docker"
+args = [
+  "buildx",
+  "build",
+  "--file",
+  ".devops/lyre_web.Dockerfile",
+  "--platform",
+  "${DOCKER_IMAGE_PLATFORM_LONG}",
+  "--tag",
+  "${CARGO_MAKE_PROJECT_NAME}:${CARGO_MAKE_GIT_HEAD_LAST_COMMIT_HASH_PREFIX}-${CARGO_MAKE_PROJECT_VERSION}-${DOCKER_IMAGE_PLATFORM}",
+  "--tag",
+  "${CARGO_MAKE_PROJECT_NAME}:latest-${DOCKER_IMAGE_PLATFORM}",
+  "--output",
+  "type=docker",
+  "${DOCKER_BUILDX_CACHE_ARGS}",
+  ".",
+]
+
+[tasks.upload-app-docker-image-to-registry-with-from-to-cache]
+private = true
+condition = { env_set = ["DOCKER_IMAGE_PLATFORM_LONG", "ORGANIZATION_NAME", "LOCAL_DOCKER_REGISTRY_AS_PROXY", "DOCKER_BUILDX_CACHE_FROM_PATH", "DOCKER_BUILDX_CACHE_TO_PATH"] }
+command = "docker"
+args = [
+  "buildx",
+  "build",
+  "--file",
+  ".devops/lyre_web.Dockerfile",
+  "--platform",
+  "${DOCKER_IMAGE_PLATFORM_LONG}",
+  "--tag",
+  "${LOCAL_DOCKER_REGISTRY_AS_PROXY}/${ORGANIZATION_NAME}/${CARGO_MAKE_PROJECT_NAME}:${CARGO_MAKE_GIT_HEAD_LAST_COMMIT_HASH_PREFIX}-${CARGO_MAKE_PROJECT_VERSION}-${DOCKER_IMAGE_PLATFORM}",
+  "--tag",
+  "${LOCAL_DOCKER_REGISTRY_AS_PROXY}/${ORGANIZATION_NAME}/${CARGO_MAKE_PROJECT_NAME}:latest-${DOCKER_IMAGE_PLATFORM}",
+  "--output",
+  "type=registry",
+  "--cache-from",
+  "type=local,src=${DOCKER_BUILDX_CACHE_FROM_PATH}",
+  "--cache-to",
+  "type=local,dest=${DOCKER_BUILDX_CACHE_TO_PATH}",
+  ".",
+]
+
+[tasks.upload-app-docker-image-to-registry-with-from-cache]
+private = true
+condition = { env_set = ["DOCKER_IMAGE_PLATFORM_LONG", "ORGANIZATION_NAME", "LOCAL_DOCKER_REGISTRY_AS_PROXY", "DOCKER_BUILDX_CACHE_FROM_PATH"] }
+command = "docker"
+args = [
+  "buildx",
+  "build",
+  "--file",
+  ".devops/lyre_web.Dockerfile",
+  "--platform",
+  "${DOCKER_IMAGE_PLATFORM_LONG}",
+  "--tag",
+  "${LOCAL_DOCKER_REGISTRY_AS_PROXY}/${ORGANIZATION_NAME}/${CARGO_MAKE_PROJECT_NAME}:${CARGO_MAKE_GIT_HEAD_LAST_COMMIT_HASH_PREFIX}-${CARGO_MAKE_PROJECT_VERSION}-${DOCKER_IMAGE_PLATFORM}",
+  "--tag",
+  "${LOCAL_DOCKER_REGISTRY_AS_PROXY}/${ORGANIZATION_NAME}/${CARGO_MAKE_PROJECT_NAME}:latest-${DOCKER_IMAGE_PLATFORM}",
+  "--output",
+  "type=registry",
+  "--cache-from",
+  "type=local,src=${DOCKER_BUILDX_CACHE_FROM_PATH}",
+  ".",
+]
+
+[tasks.upload-app-docker-image-to-registry-with-to-cache]
+private = true
+condition = { env_set = ["DOCKER_IMAGE_PLATFORM_LONG", "ORGANIZATION_NAME", "LOCAL_DOCKER_REGISTRY_AS_PROXY", "DOCKER_BUILDX_CACHE_TO_PATH"] }
+command = "docker"
+args = [
+  "buildx",
+  "build",
+  "--file",
+  ".devops/lyre_web.Dockerfile",
+  "--platform",
+  "${DOCKER_IMAGE_PLATFORM_LONG}",
+  "--tag",
+  "${LOCAL_DOCKER_REGISTRY_AS_PROXY}/${ORGANIZATION_NAME}/${CARGO_MAKE_PROJECT_NAME}:${CARGO_MAKE_GIT_HEAD_LAST_COMMIT_HASH_PREFIX}-${CARGO_MAKE_PROJECT_VERSION}-${DOCKER_IMAGE_PLATFORM}",
+  "--tag",
+  "${LOCAL_DOCKER_REGISTRY_AS_PROXY}/${ORGANIZATION_NAME}/${CARGO_MAKE_PROJECT_NAME}:latest-${DOCKER_IMAGE_PLATFORM}",
+  "--output",
+  "type=registry",
+  "--cache-to",
+  "type=local,dest=${DOCKER_BUILDX_CACHE_TO_PATH}",
+  ".",
+]
+
+[tasks.upload-app-docker-image-to-registry-without-cache]
+private = true
+condition = { env_set = ["DOCKER_IMAGE_PLATFORM_LONG", "ORGANIZATION_NAME", "LOCAL_DOCKER_REGISTRY_AS_PROXY"] }
+command = "docker"
+args = [
+  "buildx",
+  "build",
+  "--file",
+  ".devops/lyre_web.Dockerfile",
+  "--platform",
+  "${DOCKER_IMAGE_PLATFORM_LONG}",
+  "--tag",
+  "${LOCAL_DOCKER_REGISTRY_AS_PROXY}/${ORGANIZATION_NAME}/${CARGO_MAKE_PROJECT_NAME}:${CARGO_MAKE_GIT_HEAD_LAST_COMMIT_HASH_PREFIX}-${CARGO_MAKE_PROJECT_VERSION}-${DOCKER_IMAGE_PLATFORM}",
+  "--tag",
+  "${LOCAL_DOCKER_REGISTRY_AS_PROXY}/${ORGANIZATION_NAME}/${CARGO_MAKE_PROJECT_NAME}:latest-${DOCKER_IMAGE_PLATFORM}",
+  "--output",
+  "type=registry",
+  ".",
+]
+
+[tasks.upload-app-docker-image-to-registry]
+private = true
+run_task = [
+  { name = "upload-app-docker-image-to-registry-without-cache", condition = { env_not_set = [ "DOCKER_BUILDX_CACHE_FROM_PATH", "DOCKER_BUILDX_CACHE_TO_PATH" ] } },
+  { name = "upload-app-docker-image-to-registry-with-from-cache", condition = { env_set = ["DOCKER_BUILDX_CACHE_FROM_PATH"], env_not_set = ["DOCKER_BUILDX_CACHE_TO_PATH"] } },
+  { name = "upload-app-docker-image-to-registry-with-to-cache", condition = { env_set = ["DOCKER_BUILDX_CACHE_TO_PATH"], env_not_set = ["DOCKER_BUILDX_CACHE_FROM_PATH"] } },
+  { name = "upload-app-docker-image-to-registry-with-from-to-cache", condition = { env_set = ["DOCKER_BUILDX_CACHE_FROM_PATH", "DOCKER_BUILDX_CACHE_TO_PATH"] } },
+]

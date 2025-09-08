@@ -1,13 +1,13 @@
 {
   "name": "lyre_web",
+  "engines": {
+    "bun": "1"
+  },
   "scripts": {
     "build:tailwind-css": "tailwindcss --config ./tailwind/configuration.ts --input ./tailwind/root.css --output ./assets/tailwind_output.css --minify",
     "build:tailwind-css:watch": "npm run build:tailwind-css -- --watch"
   },
-  "engines": {
-    "bun": "1"
-  },
-  "devDependencies": {
+  "dependencies": {
     "tailwindcss": "3.4.17"
   }
 }

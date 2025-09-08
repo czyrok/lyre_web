@@ -1,0 +1,30 @@
+extend = [{ path = "./build.toml" }]
+
+[tasks.check-app-development]
+private = true
+toolchain = "stable"
+command = "cargo"
+args = ["check-all-features"]
+install_crate = "cargo-all-features"
+
+[tasks.check-app-release]
+private = true
+toolchain = "stable"
+command = "cargo"
+args = ["check-all-features", "--release"]
+install_crate = "cargo-all-features"
+
+[tasks.check-app]
+private = true
+run_task = [
+  { name = "check-app-development", condition = { profiles = [
+    "development",
+  ] } },
+  { name = "check-app-release", condition = { profiles = [
+    "release",
+  ] } },
+]
+
+[tasks.check-tailwind]
+private = true
+run_task = { name = ["build-tailwind"] }

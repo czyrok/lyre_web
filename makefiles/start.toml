@@ -1,0 +1,5 @@
+extend = [{ path = "./internal/build.toml" }, { path = "./internal/start.toml" }]
+
+[tasks.start]
+condition = { profiles = ["development"] }
+run_task = { name = ["build-tailwind-watch", "start-app-watch"], parallel = true }

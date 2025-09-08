@@ -1,0 +1,39 @@
+name: lyre_web
+
+secrets:
+  access_token:
+    file: access_token
+
+services:
+  proxy:
+    image: traefik:v3.4.4
+    container_name: lyre_web_traefik
+    command:
+      - --providers.file=true
+    ports:
+      - 80:80
+      - 443:443
+      - 8080:8080 # Dashboard
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - ./traefik/development.traefik.yaml:/etc/traefik/traefik.yml:ro
+      # TODO: remettre en prod
+      # - ./acme.json:/acme.json
+
+  app:
+    image: lyre_web:latest-arm64
+    container_name: lyre_web_app
+    environment:
+      ## TODO: XD
+      - CONTENT_TOTP_URI=1234
+    labels:
+      - traefik.enable=true
+      - traefik.http.services.lyre_web_app.loadbalancer.server.port=8507
+      - traefik.http.routers.lyre_web.service=lyre_web_app
+      - traefik.http.routers.lyre_web.entryPoints=https
+      - traefik.http.routers.lyre_web.rule=Host(`localhost`)
+      # TODO: remettre en prod
+      # - traefik.http.routers.https.rule=Host(`dylan-valentin.tech`)
+      # - traefik.http.routers.lyre_web.tls.certResolver=letsencrypt
+      - traefik.http.routers.lyre_web.middlewares=compress # This will automatically reach asset .gz files
+      - traefik.http.middlewares.compress.compress=true

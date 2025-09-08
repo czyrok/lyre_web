@@ -1,0 +1,42 @@
+extend = [{ path = "./install.toml" }]
+
+[tasks.build-app-development]
+private = true
+command = "cargo"
+args = ["leptos", "build", "--wasm-debug"]
+
+[tasks.build-app-release]
+private = true
+command = "cargo"
+args = ["leptos", "build", "--release", "--precompress"]
+
+[tasks.build-app-release-ci]
+private = true
+command = "cargo"
+args = ["leptos", "build", "--release", "--precompress", "-vv"]
+
+[tasks.build-app]
+private = true
+run_task = [
+  { name = "build-app-development", condition = { profiles = [
+    "development",
+  ] } },
+  { name = "build-app-release", condition = { profiles = [
+    "release",
+  ] } },
+  { name = "build-app-release-ci", condition = { profiles = [
+    "release-ci",
+  ] } },
+]
+
+[tasks.build-tailwind]
+private = true
+dependencies = ["install-node-modules"]
+command = "bun"
+args = ["run", "build:tailwind-css"]
+
+[tasks.build-tailwind-watch]
+private = true
+dependencies = ["install-node-modules"]
+command = "bun"
+args = ["run", "build:tailwind-css:watch"]

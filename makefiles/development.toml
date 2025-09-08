@@ -1,3 +1,8 @@
+# TODO: format all using treefmt... with flake
+
+[tasks.format]
+alias = "format-all"
+
 [tasks.format-all]
 command = "cargo"
 args = ["fmt", "--all"]
