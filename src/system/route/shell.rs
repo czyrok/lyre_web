@@ -30,10 +30,10 @@ pub fn shell(options: LeptosOptions) -> impl IntoView {
                 //<Link rel="shortcut icon" type_="image/ico" href="/favicon.ico"/>
 
                 // Preloading
-                <Link id="theme" rel="stylesheet" href="/tailwind_output.css" />
-                <Link rel="preload" href="/fonts/GeistMono-1.3.0/variable-woff/GeistMonoVF.woff" as_="font" type_="font/woff2" />
-                <Link rel="preload" href="/fonts/Geist-1.3.0/variable-woff/GeistVF.woff" as_="font" type_="font/woff2" />
-                <Link rel="preload" href="/backgrounds/button_rectangle_background.svg" as_="image" type_="image/svg+xml" />
+                <Link id="theme" rel="stylesheet" href="/tailwind_output.css" crossorigin="" />
+                <Link rel="preload" href="/fonts/GeistMono-1.3.0/variable-woff/GeistMonoVF.woff" as_="font" type_="font/woff2" crossorigin="" />
+                <Link rel="preload" href="/fonts/Geist-1.3.0/variable-woff/GeistVF.woff" as_="font" type_="font/woff2" crossorigin="" />
+                <Link rel="preload" href="/backgrounds/button_rectangle_background.svg" as_="image" type_="image/svg+xml" crossorigin="" />
 
                 // Polyfills
                 <script type="module" nonce=nonce>
