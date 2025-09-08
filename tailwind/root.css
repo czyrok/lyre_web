@@ -28,4 +28,7 @@
 
 :root {
   @apply tw-text-[14px] sm:tw-text-[15px] md:tw-text-[16px];
+
+  /* It fixes the Geist-Sans font on Safari (issue: https://github.com/vercel/geist-font/issues/65) */
+  font-synthesis-weight: none;
 }
