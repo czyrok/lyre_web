@@ -8,17 +8,18 @@ resource "kubernetes_pod" "app" {
             app = "app"
         }
 
-        # TODO: remettre
-        # annotations = {
-        #     # "keel.sh/policy" = "minor", #TODO: pas bon
-        #     # "keel.sh/trigger" = "poll"
-        #     # "keel.sh/pollSchedule" = "@every 1m"
-        # }
+        annotations = {
+            "keel.sh/policy" = "force",
+            "keel.sh/trigger" = "poll"
+            "keel.sh/match-tag" = "true"
+            "keel.sh/pollSchedule" = "@every 1m"
+        }
     }
 
     spec {
         container {
             image = "${var.local_docker_registry_host}/lyre/lyre_web:latest-arm64"
+            image_pull_policy = "Always"
             name  = "app"
 
             env {

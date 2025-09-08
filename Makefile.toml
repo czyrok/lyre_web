@@ -12,4 +12,4 @@ env_files = [{ path = ".env" }, { path = ".env.development", profile = "developm
 
 [env]
 ORGANIZATION_NAME="lyre"
-LOCAL_DOCKER_REGISTRY_AS_PROXY="localhost:60471"
+LOCAL_DOCKER_REGISTRY_AS_PROXY = { value = "localhost:60471", condition = { env_not_set = ["LOCAL_DOCKER_REGISTRY_AS_PROXY"] } }

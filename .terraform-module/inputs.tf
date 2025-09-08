@@ -9,6 +9,12 @@ variable "local_docker_registry_host" {
   description = "Host of the local Docker registry"
 }
 
+variable "is_development_environment" {
+  type        = bool
+  default     = true
+  description = "Tells to the module if It should load production things like domain certificates"
+}
+
 variable "wait_for" {
   type = list(string)
   default = []
