@@ -7,16 +7,13 @@ resource "kubernetes_ingress_v1" "ingress" {
         annotations = {
             "traefik.ingress.kubernetes.io/router.entrypoints" = "https"
             "traefik.ingress.kubernetes.io/router.middlewares" = "${var.namespace_name}-${kubectl_manifest.compress_middleware.name}@kubernetescrd"
-            #   TODO: remettre en prod
-            #   "traefik.ingress.kubernetes.io/router.tls.certresolver" = "letsencrypt"
+            "traefik.ingress.kubernetes.io/router.tls.certresolver" = var.is_development_environment ? null : "letsencrypt"
         }
     }
 
     spec {
         rule {
-            # TODO: remettre en eprod
-            # host: dylan-valentin.tech
-            host = "localhost"
+            host = var.is_development_environment ? "localhost" : "dylan-valentin.tech"
             http {
                 path {
                     path = "/"
