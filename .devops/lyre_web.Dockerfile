@@ -32,7 +32,6 @@ RUN \
   --mount=type=bind,readonly,source=./Cargo.toml,target=/project/Cargo.toml \
   --mount=type=bind,readonly,source=./Cargo.lock,target=/project/Cargo.lock \
   --mount=type=bind,readonly,source=./rust-toolchain.toml,target=/project/rust-toolchain.toml \
-  --mount=type=bind,readonly,source=./.cargo,target=/project/.cargo \
   --mount=type=bind,readonly,source=./package.json,target=/project/package.json \
   --mount=type=bind,readonly,source=./bun.lock,target=/project/bun.lock \
   --mount=type=bind,readonly,source=./Makefile.toml,target=/project/Makefile.toml \
