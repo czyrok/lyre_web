@@ -73,3 +73,14 @@ summarize summarize lyre_web-0017964.mm_profdata
 # le plus utile selon moi
 cargo build --timings
 ```
+
+# Optimizations
+
+`.cargo/config.toml` can reduce the compile time. But on my Macbook Air 2020, it increases the compile time.
+
+**Content:**
+```toml
+[build]
+## I don't this change anything on Macbook Air 2020
+rustflags = ["-Z", "threads=3"]
+```

@@ -1,3 +1,0 @@
-[build]
-## I don't this change anything on Macbook Air 2020
-rustflags = ["-Z", "threads=3"]
