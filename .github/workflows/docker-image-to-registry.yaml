@@ -56,7 +56,6 @@ jobs:
             ${{ runner.os }}-buildx-
       
       - name: Build Docker image
-        working-directory: ./packages/lyre_web
         uses: actions-rs/cargo@v1
         env:
           DOCKER_BUILDX_CACHE_FROM_PATH: ${{ runner.temp }}/.buildx-cache
