@@ -20,7 +20,7 @@ jobs:
         image: registry:2
         ports:
           - "127.0.0.1:60471:5000"
-        environment:
+        env:
           - REGISTRY_STORAGE=s3
           - REGISTRY_STORAGE_S3_REGION=${{ secrets.DOCKER_IMAGE_REGISTRY_BUCKET_REGION }}
           - REGISTRY_STORAGE_S3_BUCKET=${{ secrets.DOCKER_IMAGE_REGISTRY_BUCKET_NAME }}
