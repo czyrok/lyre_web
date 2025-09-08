@@ -7,10 +7,10 @@ use crate::app::App;
 
 pub fn shell(options: LeptosOptions) -> impl IntoView {
     // TODO: add nonce field when it will available on `Link` components
-    // #[cfg(feature = "ssr")]
-    // let nonce: Option<String> = use_nonce().map(|nonce| nonce.to_string());
-    // #[cfg(not(feature = "ssr"))]
-    // let nonce = None::<String>;
+    #[cfg(feature = "ssr")]
+    let nonce: Option<String> = use_nonce().map(|nonce| nonce.to_string());
+    #[cfg(not(feature = "ssr"))]
+    let nonce = None::<String>;
 
     view! {
         <!DOCTYPE html>
@@ -36,11 +36,11 @@ pub fn shell(options: LeptosOptions) -> impl IntoView {
                 <Link rel="preload" href="/backgrounds/button_rectangle_background.svg" as_="image" type_="image/svg+xml" />
 
                 // Polyfills
-                <script type="module">
+                <script type="module" nonce=nonce>
                     "
                     //// Used only by Firefox and Safari to fix dropdown menu positioning
                     if (!('anchorName' in document.documentElement.style)) {
-                        const { default: polyfill } = await import('/polyfills/@oddbird/css-anchor-positioning@0.5.1.min.js');
+                        const { default: polyfill } = await import('/polyfills/@oddbird/css-anchor-positioning-fn@0.6.1.js');
 
                         polyfill({
                             elements: undefined,
