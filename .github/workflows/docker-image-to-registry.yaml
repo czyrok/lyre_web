@@ -60,6 +60,7 @@ jobs:
         env:
           DOCKER_BUILDX_CACHE_FROM_PATH: ${{ runner.temp }}/.buildx-cache
           DOCKER_BUILDX_CACHE_TO_PATH: ${{ runner.temp }}/.buildx-cache
+          LOCAL_DOCKER_REGISTRY_AS_PROXY: registry:60471
         with:
           command: make
           args: registry-docker-image
