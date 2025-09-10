@@ -6,10 +6,11 @@ use leptos_meta::*;
 use crate::app::App;
 
 pub fn shell(options: LeptosOptions) -> impl IntoView {
-    #[cfg(feature = "ssr")]
-    let nonce: Option<String> = use_nonce().map(|nonce| nonce.to_string());
-    #[cfg(not(feature = "ssr"))]
-    let nonce = None::<String>;
+    // TODO: add nonce field when it will available on `Link` components
+    // #[cfg(feature = "ssr")]
+    // let nonce: Option<String> = use_nonce().map(|nonce| nonce.to_string());
+    // #[cfg(not(feature = "ssr"))]
+    // let nonce = None::<String>;
 
     view! {
         <!DOCTYPE html>
@@ -29,9 +30,9 @@ pub fn shell(options: LeptosOptions) -> impl IntoView {
                 //<Link rel="shortcut icon" type_="image/ico" href="/favicon.ico"/>
 
                 // Preloading
-                <Link id="theme" rel="stylesheet" href="/tailwind_output.css" crossorigin=nonce.clone().unwrap_or_default() />
-                <Link rel="preload" href="/fonts/GeistMono-1.3.0/variable-woff/GeistMonoVF.woff" as_="font" type_="font/woff2" crossorigin=nonce.clone().unwrap_or_default() />
-                <Link rel="preload" href="/fonts/Geist-1.3.0/variable-woff/GeistVF.woff" as_="font" type_="font/woff2" crossorigin=nonce.clone().unwrap_or_default() />
+                <Link id="theme" rel="stylesheet" href="/tailwind_output.css" />
+                <Link rel="preload" href="/fonts/GeistMono-1.3.0/variable-woff/GeistMonoVF.woff" as_="font" type_="font/woff2" />
+                <Link rel="preload" href="/fonts/Geist-1.3.0/variable-woff/GeistVF.woff" as_="font" type_="font/woff2" />
                 <Link rel="preload" href="/backgrounds/button_rectangle_background.svg" as_="image" type_="image/svg+xml" />
 
                 // Polyfills

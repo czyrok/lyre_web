@@ -58,11 +58,11 @@ pub fn Checkbox(
                 prop:checked=is_checked
             />
 
-            <div class="tw-checkbox-box">
+            <span class="tw-checkbox-box">
                 <span class="tw-box-icon">
                     <Icon icon=IconSet::Check />
                 </span>
-            </div>
+            </span>
 
             <span class="tw-checkbox-text">{ text }</span>
         </label>
@@ -84,11 +84,11 @@ pub fn Checkbox(
                 prop:checked=is_checked
             />
 
-            <div class="tw-checkbox-box">
+            <span class="tw-checkbox-box">
                 <span class="tw-box-icon">
                     <Icon icon=IconSet::Check />
                 </span>
-            </div>
+            </span>
 
             <span class="tw-checkbox-text">{ text }</span>
         </label>

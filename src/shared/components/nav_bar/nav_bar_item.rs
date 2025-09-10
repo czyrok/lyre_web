@@ -11,6 +11,7 @@ pub fn NavBarItem(
     #[prop(default = true)] uses_active_behavior: bool,
 ) -> impl IntoView {
     view! {
+        // TODO: add aria-label when it will be possible
         <A href exact=true>
             <span
                 class="tw-nav-bar-item"
