@@ -1,3 +1,4 @@
+
 entryPoints:
   http:
     address: :80
@@ -13,7 +14,7 @@ entryPoints:
     http:
       tls: true
 
-# TODO: remettre en prod
+# TODO: déplacer au niveau du ingress (donc reste de la config = poubelle)
 # certificatesResolvers:
 #   letsencrypt:
 #     acme:
@@ -29,8 +30,11 @@ providers:
 
 accesslog: {}
 
-# TODO: à retirer
-# API and Dashboard configuration (optional)
-api:
-  dashboard: true
-  insecure: true # Only for testing, secure it in production
+## Debug mode
+# log:
+#   level: DEBUG
+
+## Dashboard for debugging
+# api:
+#   dashboard: true
+#   insecure: true

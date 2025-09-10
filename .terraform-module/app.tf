@@ -1,40 +1,66 @@
 
-resource "kubernetes_pod" "app" {
-    metadata {
-        name = "lyre-web-app"
-        namespace = var.namespace_name
+resource "kubernetes_deployment" "app" {
+  metadata {
+    name = "lyre-web-app"
+    namespace = var.namespace_name
 
+    labels = {
+      app = "app"
+    }
+
+    annotations = {
+      "keel.sh/policy" = "force",
+      "keel.sh/trigger" = "poll"
+      "keel.sh/match-tag" = "true"
+      "keel.sh/pollSchedule" = "@every 1m"
+    }
+  }
+
+  spec {
+    replicas = 1
+
+    selector {
+      match_labels = {
+        app = "app"
+      }
+    }
+
+    strategy {
+      type = "RollingUpdate"
+      rolling_update {
+        max_surge = "0"
+        max_unavailable = "1"
+      }
+    }
+
+    template {
+      metadata {
         labels = {
-            app = "app"
+          app = "app"
         }
+      }
 
-        annotations = {
-            "keel.sh/policy" = "force",
-            "keel.sh/trigger" = "poll"
-            "keel.sh/match-tag" = "true"
-            "keel.sh/pollSchedule" = "@every 1m"
-        }
-    }
-
-    spec {
+      spec {
         container {
-            image = "${var.local_docker_registry_host}/lyre/lyre_web:latest-arm64"
-            image_pull_policy = "Always"
-            name  = "app"
+          image = "${var.local_docker_registry_host}/lyre/lyre_web:latest-arm64"
+          image_pull_policy = "Always"
+          name  = "app"
 
-            env {
-                # TODO:
-                name = "CONTENT_TOTP_URI"
-                value = "1234"
-            }
+          env {
+            # TODO:
+            name = "CONTENT_TOTP_URI"
+            value = "1234"
+          }
 
-            port {
-                container_port = 8507
-            }
+          port {
+            container_port = 8507
+          }
         }
+      }
     }
+  }
 
-    depends_on = [ var.wait_for ]
+  depends_on = [ var.wait_for ]
 }
 
 resource "kubernetes_service" "app" {
@@ -45,7 +71,7 @@ resource "kubernetes_service" "app" {
 
   spec {
     selector = {
-      app = kubernetes_pod.app.metadata[0].labels.app
+      app = kubernetes_deployment.app.metadata[0].labels.app
     }
 
     port {
@@ -57,4 +83,21 @@ resource "kubernetes_service" "app" {
   }
 
   depends_on = [ var.wait_for ]
+}
+
+resource "kubernetes_pod_disruption_budget_v1" "app" {
+  metadata {
+    name      = "app"
+    namespace = var.namespace_name
+  }
+
+  spec {
+    min_available = 1
+    
+    selector {
+      match_labels = {
+        app = kubernetes_deployment.app.metadata[0].labels.app
+      }
+    }
+  }
 }
