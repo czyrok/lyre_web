@@ -30,10 +30,7 @@ services:
       - traefik.enable=true
       - traefik.http.services.lyre_web_app.loadbalancer.server.port=8507
       - traefik.http.routers.lyre_web.service=lyre_web_app
-      - traefik.http.routers.lyre_web.entryPoints=https
+      - traefik.http.routers.lyre_web.entryPoints=websecure
       - traefik.http.routers.lyre_web.rule=Host(`localhost`)
-      # TODO: remettre en prod
-      # - traefik.http.routers.https.rule=Host(`dylan-valentin.tech`)
-      # - traefik.http.routers.lyre_web.tls.certResolver=letsencrypt
       - traefik.http.routers.lyre_web.middlewares=compress # This will automatically reach asset .gz files
       - traefik.http.middlewares.compress.compress=true

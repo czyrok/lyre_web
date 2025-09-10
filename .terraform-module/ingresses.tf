@@ -1,11 +1,11 @@
 
-resource "kubernetes_ingress_v1" "ingress" {
+resource "kubernetes_ingress_v1" "lyre_web_ingress" {
     metadata {
         name = "lyre-web-ingress"
         namespace = var.namespace_name
 
         annotations = {
-            "traefik.ingress.kubernetes.io/router.entrypoints" = "https"
+            "traefik.ingress.kubernetes.io/router.entrypoints" = "websecure"
             "traefik.ingress.kubernetes.io/router.middlewares" = "${var.namespace_name}-${kubectl_manifest.compress_middleware.name}@kubernetescrd"
             "traefik.ingress.kubernetes.io/router.tls.certresolver" = var.is_development_environment ? null : "letsencrypt"
         }
@@ -35,7 +35,6 @@ resource "kubernetes_ingress_v1" "ingress" {
         var.wait_for,
         kubectl_manifest.compress_middleware,
         kubernetes_service.app,
-        kubernetes_service.traefik-ingress-controller
     ]
 }
 
@@ -54,6 +53,5 @@ resource "kubectl_manifest" "compress_middleware" {
 
     depends_on = [
         var.wait_for,
-        kubectl_manifest.traefik_crd_definition
     ]
 }

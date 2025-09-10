@@ -1,26 +1,17 @@
 entryPoints:
-  http:
+  web:
     address: :80
     http:
       redirections:
         entryPoint:
-          to: https
+          to: websecure
           scheme: https
 
-  https:
+  websecure:
     asDefault: true
     address: :443
     http:
       tls: true
-
-# TODO: remettre en prod
-# certificatesResolvers:
-#   letsencrypt:
-#     acme:
-#       email: me@dylan.valentin.tech
-#       storage: acme.json
-#       httpChallenge:
-#         entryPoint: https
 
 providers:
   docker:
@@ -29,8 +20,6 @@ providers:
 
 accesslog:
 
-# TODO: à retirer
-# API and Dashboard configuration (optional)
 api:
   dashboard: true
-  insecure: true # Only for testing, secure it in production
+  insecure: true
