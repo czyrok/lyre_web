@@ -7,6 +7,7 @@ export const THEME_OPACITY: ThemeConfig['opacity'] = {
   '50': '0.5',
   '66': '0.66',
   '70': '0.7',
+  '80': '0.8',
   '90': '0.9',
   '100': '1',
 } as const;

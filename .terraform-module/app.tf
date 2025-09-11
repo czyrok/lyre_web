@@ -47,7 +47,7 @@ resource "kubernetes_deployment" "app" {
           name  = "app"
 
           env {
-            # TODO:
+            # TODO: ajouter secret plus tard
             name = "CONTENT_TOTP_URI"
             value = "1234"
           }

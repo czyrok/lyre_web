@@ -14,7 +14,7 @@ use crate::{
     system::state::frontend_contexts::use_app_settings,
 };
 
-#[derive(PartialEq, Eq, Clone, Debug)]
+#[derive(Hash, PartialEq, Eq, Clone, Debug)]
 enum Theme {
     Light,
     Dark,

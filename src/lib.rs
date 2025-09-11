@@ -1,3 +1,6 @@
+// Issue: https://github.com/leptos-rs/leptos/issues/3433
+#![recursion_limit = "512"]
+
 pub mod app;
 pub mod core;
 pub mod landing_page;
