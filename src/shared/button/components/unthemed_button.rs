@@ -19,6 +19,7 @@ pub fn UnthemedButton(
     #[prop(into, default = "".into())] anchor_name: String,
     #[prop(into)] shows_ping: Option<Signal<bool>>,
     #[prop(into)] is_errored: Option<Signal<bool>>,
+    #[prop(into)] aria_label: Option<String>,
 ) -> impl IntoView {
     let is_accentuation_theme = theme == ButtonTheme::Accentuation;
     let is_primary_theme = theme == ButtonTheme::Primary;
@@ -38,14 +39,14 @@ pub fn UnthemedButton(
     let has_right_icon = icon.is_some() && icon_side == IconSide::Right;
 
     let mut on_click_callback: Option<Box<dyn FnMut(MouseEvent)>> = None;
-    let mut popover_target_id: String = "".into();
+    let mut popover_target_id: Option<String> = None;
 
     match on_click {
         ButtonAction::Callback(callback) => {
             on_click_callback = Some(callback);
         }
         ButtonAction::Popover(target_id) => {
-            popover_target_id = target_id;
+            popover_target_id = Some(target_id);
         }
         _ => (),
     };
@@ -76,6 +77,8 @@ pub fn UnthemedButton(
                 on:click=on_click_callback
                 popovertarget=popover_target_id
                 style=format!("anchor-name: --{}", anchor_name)
+
+                aria-label=aria_label
             >
                 {move || has_left_icon.then(|| {
                     view! {

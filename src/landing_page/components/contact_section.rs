@@ -25,7 +25,7 @@ pub fn ContactSection() -> impl IntoView {
             <div id="contact" class="tw-anchor"></div>
 
             <div class="tw-section-photo">
-                <img width="100%" height="100%" src="/images/ma_photo.png" alt="Photo of the owner of the website" />
+                <img src="/images/ma_photo.png" alt="Photo of the owner of the website" />
             </div>
 
             <div class="tw-section-right">

@@ -1,0 +1,5 @@
+extend = [{ path = "./internal/check.toml" }]
+
+[tasks.check]
+clear = true
+run_task = { name = ["check-tailwind", "check-app"] }

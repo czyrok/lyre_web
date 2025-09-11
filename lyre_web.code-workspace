@@ -15,9 +15,32 @@
     },
   ],
   "extensions": {
-    "recommendations": [],
+    "recommendations": [
+      "LiShengmao.hotreload-debugger",
+      "vadimcn.vscode-lldb",
+      "ms-vscode.wasm-dwarf-debugging",
+      "biati.vscode-show-hide-excluded-files",
+    ],
   },
   "settings": {
+    "files.exclude": {
+      "**/.git": false,
+      "**/.svn": false,
+      "**/.hg": false,
+      "project_data": false,
+      "src": false,
+      "tailwind": false,
+      ".env*": false,
+      ".git*": false,
+      ".github": false,
+      ".devops": false,
+      "Cargo.lock": false,
+      "bun.lock": false,
+      "rust-toolchain.toml": false,
+      "**/.code-workspace": false,
+      "**/target": false,
+      "**/node_modules": false,
+    },
     "[rust]": {
       "editor.formatOnSave": true,
       "editor.defaultFormatter": "rust-lang.rust-analyzer",
@@ -52,14 +75,20 @@
     },
     "typescript.preferences.importModuleSpecifier": "non-relative",
     "javascript.preferences.importModuleSpecifier": "non-relative",
-    // Get from the makefiles
+    "hotreload-debugger.suffix-array": ["rs"],
+    "hotreload-debugger.restart-always": false,
+
+    //// Fixes issues with slow check/lint times from Rust Analyzer
+    "rust-analyzer.cargo.targetDir": true,
+
     "rust-analyzer.check.command": "clippy",
     "rust-analyzer.check.extraArgs": ["--no-deps"],
     "rust-analyzer.checkOnSave": true,
-    // https://book.leptos.dev/getting_started/leptos_dx.html
+
+    //// https://book.leptos.dev/getting_started/leptos_dx.html
     "rust-analyzer.cargo.allTargets": true,
     "rust-analyzer.cargo.features": "all",
-    // Local Database
+
     "dbcode.connections": [
       {
         "connectionId": "RbjHj9yUknx8I797_FUoU",
@@ -77,54 +106,138 @@
     "version": "2.0.0",
     "tasks": [
       {
-        "type": "shell",
         "label": "build",
+        "type": "shell",
         "command": "cargo",
         "args": ["make", "build"],
+        "options": {
+          "cwd": "${workspaceFolder:root}",
+        },
+        "runOptions": {
+          "instanceLimit": 1,
+        },
+        "problemMatcher": [],
+      },
+      {
+        "label": "lint",
+        "type": "shell",
+        "command": "cargo",
+        "args": ["make", "lint"],
+        "options": {
+          "cwd": "${workspaceFolder:root}",
+        },
+        "runOptions": {
+          "instanceLimit": 1,
+        },
+        "problemMatcher": [],
+      },
+      {
+        "label": "start",
+        "type": "shell",
+        "command": "cargo",
+        "args": ["make", "start"],
+        "isBackground": true,
+        "options": {
+          "cwd": "${workspaceFolder:root}",
+        },
+        "runOptions": {
+          "instanceLimit": 1,
+        },
+        "problemMatcher": [],
+      },
+      {
+        "label": "clean",
+        "type": "shell",
+        "command": "cargo",
+        "args": ["make", "clean"],
+        "options": {
+          "cwd": "${workspaceFolder:root}",
+        },
+        "runOptions": {
+          "instanceLimit": 1,
+        },
+        "problemMatcher": [],
+      },
+      {
+        "label": "build-for-debugging",
+        "type": "shell",
+        "dependsOn": "start-debugger-hotreload",
+        "command": "cargo",
+        "args": ["make", "build"],
+        "options": {
+          "cwd": "${workspaceFolder:root}",
+        },
+        "runOptions": {
+          "instanceLimit": 1,
+        },
+        "hide": true,
+      },
+      {
+        "label": "start-debugger-hotreload",
+        "type": "shell",
+        "command": "echo '${input:start-debugger-hotreload}'",
+        "hide": true,
+      },
+      {
+        "label": "stop-debugger-hotreload",
+        "type": "shell",
+        "command": "echo '${input:stop-debugger-hotreload}'",
+        "hide": true,
       },
     ],
-    "inputs": [],
+    "inputs": [
+      {
+        "id": "start-debugger-hotreload",
+        "type": "command",
+        "command": "hotreload-debugger.stopRunAlways",
+      },
+      {
+        "id": "stop-debugger-hotreload",
+        "type": "command",
+        "command": "hotreload-debugger.startRunAlways",
+      },
+    ],
   },
   "launch": {
     "version": "0.2.0",
     "configurations": [
       {
-        "name": "Watch App",
-        "request": "launch",
-        "runtimeExecutable": "cargo",
-        "runtimeArgs": ["make", "start"],
-        "cwd": "${workspaceFolder:root}",
-        "type": "node",
-        "console": "integratedTerminal",
-      },
-      {
+        "name": "Debug App (SS)",
         "type": "lldb",
         "request": "launch",
-        "name": "Debug App",
-        "preLaunchTask": "build",
+        "preLaunchTask": "build-for-debugging",
+        "postDebugTask": "stop-debugger-hotreload",
         "program": "${workspaceFolder:root}/target/debug/lyre_web",
         "args": [],
+        "initCommands": [],
         "cwd": "${workspaceFolder:root}",
         "sourceLanguages": ["rust"],
+        "env": {
+          "RUST_LOG": "debug",
+          "RUST_BACKTRACE": "1",
+          "LEPTOS_SITE_ADDR": "0.0.0.0:8507",
+        },
       },
       {
-        "name": "Watch Tailwind",
+        "name": "Debug App (CS)",
+        "type": "chrome",
         "request": "launch",
-        "runtimeExecutable": "bun",
-        "runtimeArgs": ["run", "build:tailwind-css:watch"],
-        "cwd": "${workspaceFolder:root}",
-        "type": "node",
-        "console": "integratedTerminal",
+        "url": "http://localhost:8507",
+        "webRoot": "${workspaceFolder}/target/site",
+        "osx": {
+          "runtimeExecutable": "/Applications/Brave Browser.app/Contents/MacOS/Brave Browser",
+        },
       },
     ],
     "inputs": [],
     "compounds": [
       {
-        "name": "Watch App & Tailwind",
-        "configurations": ["Watch App", "Watch Tailwind"],
+        "name": "Debug App",
+        "configurations": ["Debug App (SS)", "Debug App (CS)"],
         "presentation": {
           "hidden": false,
           "group": "0",
+          "order": 1,
         },
       },
     ],

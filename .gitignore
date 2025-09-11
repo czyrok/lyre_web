@@ -9,6 +9,3 @@ node_modules/
 
 # System Files
 .DS_Store
-
-# Others
-local.db*

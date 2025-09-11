@@ -1,0 +1,33 @@
+# TODO: install-wasm-bindgen aussi ?
+
+[tasks.install-cargo-leptos]
+private = true
+install_crate = { crate_name = "cargo-leptos", binary = "cargo-leptos", test_arg = "--help" }
+
+[tasks.install-node-modules-development]
+private = true
+command = "bun"
+args = ["install"]
+
+[tasks.install-node-modules-release]
+private = true
+command = "bun"
+args = ["install", "--ignore-scripts", "--frozen-lockfile", "--production"]
+
+[tasks.install-node-modules]
+private = true
+condition_script = ["""
+if [ -d 'node_modules' ]; then
+    exit 1
+fi
+"""]
+condition = { fail_message = "Folder node_modules already exists" }
+run_task = [
+  { name = "install-node-modules-development", condition = { profiles = [
+    "development",
+  ] } },
+  { name = "install-node-modules-release", condition = { profiles = [
+    "release",
+    "release-ci",
+  ] } },
+]

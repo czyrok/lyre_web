@@ -6,6 +6,7 @@ use leptos_meta::*;
 use crate::app::App;
 
 pub fn shell(options: LeptosOptions) -> impl IntoView {
+    // TODO: add nonce field when it will available on `Link` components
     #[cfg(feature = "ssr")]
     let nonce: Option<String> = use_nonce().map(|nonce| nonce.to_string());
     #[cfg(not(feature = "ssr"))]
@@ -29,17 +30,17 @@ pub fn shell(options: LeptosOptions) -> impl IntoView {
                 //<Link rel="shortcut icon" type_="image/ico" href="/favicon.ico"/>
 
                 // Preloading
-                <Link id="theme" rel="stylesheet" href="/tailwind_output.css" crossorigin=nonce.clone().unwrap_or_default() />
-                <Link rel="preload" href="/fonts/GeistMono-1.3.0/variable-woff/GeistMonoVF.woff" as_="font" type_="font/woff2" crossorigin=nonce.clone().unwrap_or_default() />
-                <Link rel="preload" href="/fonts/Geist-1.3.0/variable-woff/GeistVF.woff" as_="font" type_="font/woff2" crossorigin=nonce.clone().unwrap_or_default() />
-                <Link rel="preload" href="/backgrounds/button_rectangle_background.svg" as_="image" type_="image/svg+xml" />
+                <Link id="theme" rel="stylesheet" href="/tailwind_output.css" crossorigin="" />
+                <Link rel="preload" href="/fonts/GeistMono-1.3.0/variable-woff/GeistMonoVF.woff" as_="font" type_="font/woff2" crossorigin="" />
+                <Link rel="preload" href="/fonts/Geist-1.3.0/variable-woff/GeistVF.woff" as_="font" type_="font/woff2" crossorigin="" />
+                <Link rel="preload" href="/backgrounds/button_rectangle_background.svg" as_="image" type_="image/svg+xml" crossorigin="" />
 
                 // Polyfills
-                <script type="module">
+                <script type="module" nonce=nonce>
                     "
                     //// Used only by Firefox and Safari to fix dropdown menu positioning
                     if (!('anchorName' in document.documentElement.style)) {
-                        const { default: polyfill } = await import('/polyfills/@oddbird/css-anchor-positioning@0.5.1.min.js');
+                        const { default: polyfill } = await import('/polyfills/@oddbird/css-anchor-positioning-fn@0.6.1.js');
 
                         polyfill({
                             elements: undefined,

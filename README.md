@@ -1,10 +1,16 @@
 # Prerequis
 
+## Rust
+
 ```shell
 rustup toolchain install nightly
 rustup override set nightly
 rustup target add wasm32-unknown-unknown
 ```
+
+## Bun
+
+v1.2.18
 
 # Issues
 
@@ -53,3 +59,28 @@ error[E0599]: no method named `push_async_out_of_order_with_nonce` found for mut
 ```
 
 => It was a field where I didn't set the `Option` as the type and where I sed `#[serde(skip_serializing)]`. So, the error was from the deserializer that telled me that the field is missing. It can be useful to check the error from the Leptos `Resource`.
+
+# Profiling
+
+```bash
+cargo install --git https://github.com/rust-lang/measureme --branch stable crox
+cargo rustc -- -Z self-profile
+crox lyre_web-0017964.mm_profdata
+
+cargo install --git https://github.com/rust-lang/measureme --branch stable summarize
+summarize summarize lyre_web-0017964.mm_profdata
+
+# le plus utile selon moi
+cargo build --timings
+```
+
+# Optimizations
+
+`.cargo/config.toml` can reduce the compile time. But on my Macbook Air 2020, it increases the compile time.
+
+**Content:**
+```toml
+[build]
+## I don't this change anything on Macbook Air 2020
+rustflags = ["-Z", "threads=3"]
+```

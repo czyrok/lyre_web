@@ -1,0 +1,40 @@
+
+entryPoints:
+  http:
+    address: :80
+    http:
+      redirections:
+        entryPoint:
+          to: https
+          scheme: https
+
+  https:
+    asDefault: true
+    address: :443
+    http:
+      tls: true
+
+# TODO: déplacer au niveau du ingress (donc reste de la config = poubelle)
+# certificatesResolvers:
+#   letsencrypt:
+#     acme:
+#       email: me@dylan.valentin.tech
+#       storage: acme.json
+#       httpChallenge:
+#         entryPoint: https
+
+providers:
+  kubernetesIngress: {}
+  ## This useful for middleware declared using a Kubernetes manifest
+  kubernetesCRD: {}
+
+accesslog: {}
+
+## Debug mode
+# log:
+#   level: DEBUG
+
+## Dashboard for debugging
+# api:
+#   dashboard: true
+#   insecure: true

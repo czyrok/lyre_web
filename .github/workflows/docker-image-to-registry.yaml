@@ -1,0 +1,74 @@
+name: docker-image-to-registry
+run-name: Build the Docker image and push it to the registry (${{ github.ref_name }})
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  docker-image-to-registry:
+    environment: release
+
+    # TODO: gérer platform matrix...
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+
+    services:
+      registry:
+        image: registry:2
+        ports:
+          - "127.0.0.1:60471:5000"
+        env:
+          REGISTRY_STORAGE: s3
+          REGISTRY_STORAGE_S3_REGION: ${{ secrets.DOCKER_IMAGE_REGISTRY_BUCKET_REGION }}
+          REGISTRY_STORAGE_S3_BUCKET: ${{ secrets.DOCKER_IMAGE_REGISTRY_BUCKET_NAME }}
+          REGISTRY_STORAGE_S3_ACCESSKEY: ${{ secrets.DOCKER_IMAGE_REGISTRY_BUCKET_ACCESS_KEY_ID }}
+          REGISTRY_STORAGE_S3_SECRETKEY: ${{ secrets.DOCKER_IMAGE_REGISTRY_BUCKET_ACCESS_KEY_SECRET }}
+          REGISTRY_STORAGE_S3_REGIONENDPOINT: https://s3.${{ secrets.DOCKER_IMAGE_REGISTRY_BUCKET_REGION }}.io.cloud.ovh.net/
+          # Optional: S3 path prefix inside bucket
+          # REGISTRY_STORAGE_S3_ROOTDIRECTORY=/registry
+          REGISTRY_STORAGE_S3_FORCEPATHSTYLE: true
+          # Optional: Disable redirects (some S3-compatible APIs need this)
+          # REGISTRY_STORAGE_S3_ENABLEROOTDIRECTORY=false
+
+    steps:
+      - name: Install cargo-make
+        uses: actions-rs/cargo@v1
+        with:
+          command: install
+          args: --no-default-features --debug cargo-make
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Clone the repository
+        uses: actions/checkout@v4
+
+      - name: Restore Docker layer cache
+        id: docker-layer-cache-restore
+        uses: actions/cache/restore@v4
+        with:
+          key: ${{ runner.os }}-buildx-${{ github.sha }}
+          path: ${{ runner.temp }}/.buildx-cache
+          restore-keys: |
+            ${{ runner.os }}-buildx-
+      
+      - name: Build Docker image
+        uses: actions-rs/cargo@v1
+        env:
+          DOCKER_BUILDX_CACHE_FROM_PATH: ${{ runner.temp }}/.buildx-cache
+          DOCKER_BUILDX_CACHE_TO_PATH: ${{ runner.temp }}/.buildx-cache
+          LOCAL_DOCKER_REGISTRY_AS_PROXY: registry:60471
+        with:
+          command: make
+          args: registry-docker-image
+
+      - name: Save Docker layer cache
+        id: docker-layer-cache-save
+        if: steps.docker-layer-cache-restore.outputs.cache-hit != 'true'
+        uses: actions/cache/save@v4
+        with:
+          key: ${{ steps.docker-layer-cache-restore.outputs.cache-primary-key }}
+          path: ${{ runner.temp }}/.buildx-cache

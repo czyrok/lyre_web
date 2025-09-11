@@ -1,0 +1,7 @@
+extend = [{ path = "./install.toml" }]
+
+[tasks.start-app-watch]
+private = true
+dependencies = ["install-cargo-leptos"]
+command = "cargo"
+args = ["leptos", "watch", "--wasm-debug"]

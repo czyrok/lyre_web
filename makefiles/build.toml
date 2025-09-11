@@ -1,0 +1,5 @@
+extend = [{ path = "./internal/build.toml" }]
+
+[tasks.build]
+clear = true
+run_task = { name = ["build-tailwind", "build-app"] }

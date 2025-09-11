@@ -24,8 +24,9 @@ pub fn SecondaryButton(
     #[prop(into, default = "".into())] anchor_name: String,
     #[prop(optional, into)] shows_ping: Option<Signal<bool>>,
     #[prop(optional, into)] is_errored: Option<Signal<bool>>,
+    #[prop(optional, into)] aria_label: Option<String>,
 ) -> impl IntoView {
     view! {
-        <UnthemedButton theme=ButtonTheme::Secondary size text on_click icon icon_side anchor_name shows_ping is_errored />
+        <UnthemedButton theme=ButtonTheme::Secondary size text on_click icon icon_side anchor_name shows_ping is_errored aria_label />
     }
 }
