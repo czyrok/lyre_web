@@ -1,4 +1,4 @@
-use std::fmt::Debug;
+use std::{fmt::Debug, hash::Hash};
 
 use leptos::prelude::*;
 
@@ -9,12 +9,12 @@ use super::{
 
 #[derive(Clone)]
 pub struct SingleOptionalSelectChoices<
-    TKey: Eq + Clone + Send + Sync + Debug + 'static,
+    TKey: Hash + Eq + Clone + Send + Sync + Debug + 'static,
 >(SelectChoices<TKey>);
 
 impl<TKey> SingleOptionalSelectChoices<TKey>
 where
-    TKey: Eq + Clone + Send + Sync + Debug + 'static,
+    TKey: Hash + Eq + Clone + Send + Sync + Debug + 'static,
 {
     pub fn new(choices: Vec<SelectChoice<TKey>>) -> Self {
         let select_choices = SelectChoices::new(choices, None);
@@ -25,7 +25,7 @@ where
 
 impl<TKey> SelectChoicesBehavior for SingleOptionalSelectChoices<TKey>
 where
-    TKey: Eq + Clone + Send + Sync + Debug + 'static,
+    TKey: Hash + Eq + Clone + Send + Sync + Debug + 'static,
 {
     type Key = TKey;
 

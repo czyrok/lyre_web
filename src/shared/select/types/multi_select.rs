@@ -1,4 +1,4 @@
-use std::fmt::Debug;
+use std::{fmt::Debug, hash::Hash};
 
 use leptos::prelude::{RwSignal, Signal};
 
@@ -8,13 +8,13 @@ use super::{
 };
 
 #[derive(Clone)]
-pub struct MultiSelectChoices<TKey: Eq + Clone + Send + Sync + Debug + 'static>(
-    SelectChoices<TKey>,
-);
+pub struct MultiSelectChoices<
+    TKey: Hash + Eq + Clone + Send + Sync + Debug + 'static,
+>(SelectChoices<TKey>);
 
 impl<TKey> MultiSelectChoices<TKey>
 where
-    TKey: Eq + Clone + Send + Sync + Debug + 'static,
+    TKey: Hash + Eq + Clone + Send + Sync + Debug + 'static,
 {
     pub fn new(
         choices: Vec<SelectChoice<TKey>>,
@@ -33,7 +33,7 @@ where
 
 impl<TKey> SelectChoicesBehavior for MultiSelectChoices<TKey>
 where
-    TKey: Eq + Clone + Send + Sync + Debug + 'static,
+    TKey: Hash + Eq + Clone + Send + Sync + Debug + 'static,
 {
     type Key = TKey;
 

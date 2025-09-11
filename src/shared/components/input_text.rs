@@ -38,7 +38,7 @@ pub fn InputText(
     let has_right_icon = icon.is_some() && icon_side == IconSide::Right;
 
     let style_classes = format!(
-        "tw-accentuation-input-text tw-input-size-lg {}",
+        "tw-accentuation-input-text {}",
         additional_style_classes.unwrap_or_default()
     );
 

@@ -1,7 +1,7 @@
 use leptos::prelude::*;
 
 use crate::{
-    core::data::fetch_state::FetchState,
+    core::data::{fetch_state::FetchState, icon_set::IconSet},
     project::resources::all_project_tags_resource::AllProjectTagsResource,
     shared::{
         button::{
@@ -86,6 +86,9 @@ pub fn TagSelector(
                                 identifier="tag-selector"
                                 select_choices=select_choices
                                 shows_ping_when_least_one_selected=true
+                                shows_search_bar=true
+                                search_placeholder="Nom de tag"
+                                search_icon=IconSet::Search
                             />
                         }
                     })

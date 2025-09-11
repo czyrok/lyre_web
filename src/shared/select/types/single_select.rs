@@ -1,4 +1,4 @@
-use std::fmt::Debug;
+use std::{fmt::Debug, hash::Hash};
 
 use leptos::prelude::Signal;
 
@@ -9,13 +9,13 @@ use super::{
 };
 
 #[derive(Clone)]
-pub struct SingleSelectChoices<TKey: Eq + Clone + Send + Sync + Debug + 'static>(
-    SingleOptionalSelectChoices<TKey>,
-);
+pub struct SingleSelectChoices<
+    TKey: Hash + Eq + Clone + Send + Sync + Debug + 'static,
+>(SingleOptionalSelectChoices<TKey>);
 
 impl<TKey> SingleSelectChoices<TKey>
 where
-    TKey: Eq + Clone + Send + Sync + Debug + 'static,
+    TKey: Hash + Eq + Clone + Send + Sync + Debug + 'static,
 {
     pub fn new(mut choices: Vec<SelectChoice<TKey>>) -> Self {
         for choice in choices.iter_mut() {
@@ -30,7 +30,7 @@ where
 
 impl<TKey> SelectChoicesBehavior for SingleSelectChoices<TKey>
 where
-    TKey: Eq + Clone + Send + Sync + Debug + 'static,
+    TKey: Hash + Eq + Clone + Send + Sync + Debug + 'static,
 {
     type Key = TKey;
 
