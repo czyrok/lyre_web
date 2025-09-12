@@ -33,8 +33,21 @@ impl ProjectContextRepository {
         if let Some(searched_project_title) =
             filter.searched_project_title.clone()
         {
-            query_builder.push(" AND (`projects`.`title` LIKE ");
-            query_builder.push_bind(format!("%{}%", searched_project_title));
+            let searched_project_title_parts =
+                searched_project_title.split(" ");
+
+            query_builder.push(" AND ( true = false ");
+
+            for title_part in searched_project_title_parts {
+                if title_part.is_empty() {
+                    continue;
+                }
+
+                query_builder.push(" OR (`projects`.`title` LIKE ");
+                query_builder.push_bind(format!("%{title_part}%"));
+                query_builder.push(" ) ");
+            }
+
             query_builder.push(" ) ");
         }
 
