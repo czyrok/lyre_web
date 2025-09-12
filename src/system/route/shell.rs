@@ -39,6 +39,7 @@ pub fn shell(options: LeptosOptions) -> impl IntoView {
                 <script type="module" nonce=nonce>
                     "
                     //// Used only by Firefox and Safari to fix dropdown menu positioning
+                    //// Source: https://github.com/oddbird/css-anchor-positioning
                     if (!('anchorName' in document.documentElement.style)) {
                         const { default: polyfill } = await import('/polyfills/@oddbird/css-anchor-positioning-fn@0.6.1.js');
 
@@ -48,6 +49,10 @@ pub fn shell(options: LeptosOptions) -> impl IntoView {
                             useAnimationFrame: false,
                         });
                     }
+
+                    //// Used only Safari to fix focus on buttons, links, checkboxes etc...
+                    //// Source: https://itnext.io/fixing-focus-for-safari-b5916fef1064
+                    import('/polyfills/@NickGuard/safari-focus@2.0.js');
                     "
                 </script>
             </head>
