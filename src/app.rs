@@ -24,7 +24,6 @@ use crate::{
         layouts::not_found_error_page_layout::NotFoundErrorPageLayout,
     },
     system::{
-        polyfills::component::PolyfillHandler,
         state::frontend_contexts::use_app_settings, watch_path::watch_path,
     },
 };
@@ -96,8 +95,6 @@ pub fn App() -> impl IntoView {
                         )
                     />
                 </FlatRoutes>
-
-                <PolyfillHandler />
             </Router>
         </div>
     }

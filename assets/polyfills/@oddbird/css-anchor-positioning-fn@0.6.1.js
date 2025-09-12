@@ -5984,7 +5984,12 @@ function vr(t, e, n = !1) {
             const h = s.getAttribute(c);
             h !== null && i.setAttribute(c, h);
           }
-        s.hasAttribute("href") && i.setAttribute("data-original-href", s.getAttribute("href")), l ? (i.setAttribute("data-generated-by-polyfill", "true"), document.head.insertAdjacentElement("beforeend", i)) : (s.insertAdjacentElement("beforebegin", i), s.remove()), u.el = i;
+        s.hasAttribute("href") && i.setAttribute("data-original-href", s.getAttribute("href"));
+        
+        i.setAttribute("data-generated-by-polyfill", "true");
+        document.head.insertAdjacentElement("beforeend", i);
+        
+        u.el = i;
       } else if (s.hasAttribute("data-has-inline-styles")) {
         const i = s.getAttribute("data-has-inline-styles");
         if (i) {
@@ -6164,7 +6169,7 @@ function Bp(t, e = !1) {
                 anchorSide: c
               });
             });
-            en(
+            const clean = en(
               a,
               u,
               () => R(null, null, function* () {
@@ -6216,8 +6221,15 @@ function Bp(t, e = !1) {
               }),
               { animationFrame: e }
             );
-          } else
-            en(
+            window.addEventListener(
+              'css-anchor-positioning-clean',
+              () => {
+                clean();
+              },
+              { once: true }
+            );
+          } else {
+            const clean = en(
               a,
               l,
               () => R(null, null, function* () {
@@ -6237,6 +6249,14 @@ function Bp(t, e = !1) {
               }),
               { animationFrame: e }
             );
+            window.addEventListener(
+              'css-anchor-positioning-clean',
+              () => {
+                clean();
+              },
+              { once: true }
+            );
+          }
         else if (jp(o)) {
           const u = yield Je({
             targetProperty: r,
@@ -6282,7 +6302,7 @@ function Up(t, e, n = !1) {
     for (const s of r) {
       let o = !1;
       const a = yield Tn(s);
-      en(
+      const clean = en(
         // We're just checking whether the target element overflows, so we don't
         // care about the position of the anchor element in this case. Passing in
         // an empty object instead of a reference element avoids unnecessarily
@@ -6315,6 +6335,13 @@ function Up(t, e, n = !1) {
           }
         }),
         { animationFrame: n, layoutShift: !1 }
+      );
+      window.addEventListener(
+        'css-anchor-positioning-clean',
+        () => {
+          clean();
+        },
+        { once: true }
       );
     }
   });

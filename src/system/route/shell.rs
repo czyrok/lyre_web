@@ -41,7 +41,7 @@ pub fn shell(options: LeptosOptions) -> impl IntoView {
                     //// Used only by Firefox and Safari to fix dropdown menu positioning
                     //// Source: https://github.com/oddbird/css-anchor-positioning
                     if (!('anchorName' in document.documentElement.style)) {
-                        const { default: polyfill } = await import('/polyfills/@oddbird/debug-css-anchor-positioning-fn@0.6.1.js');
+                        const { default: polyfill } = await import('/polyfills/@oddbird/css-anchor-positioning-fn@0.6.1.js');
 
                         polyfill({
                             elements: undefined,
@@ -49,85 +49,56 @@ pub fn shell(options: LeptosOptions) -> impl IntoView {
                             useAnimationFrame: false,
                         });
 
-                        const observeUrlChange = () => {
-                            let oldHref = document.location.href;
-                            const body = document.querySelector('body');
-                            const observer = new MutationObserver(mutations => {
-                                if (oldHref !== document.location.href) {
-                                    oldHref = document.location.href;
-                                    /* Changed ! your code here */
+                        console.info(\"Polyfill applied - 'css-anchor-positioning'\");
 
-                                    // setTimeout(() => {
-                                        const els = document.querySelectorAll('[data-generated-by-polyfill=\"true\"]');
+                        // Now, we need to check changes in the URL
+                        // to reload the polyfill in case the view have been
+                        // changed by Leptos and there are new dropdown menus.
 
-                                        console.error(els.length);
+                        const reloadPolyfill = () => {
+                            const generatedPolyfillElements = document.querySelectorAll('[data-generated-by-polyfill=\"true\"]');
 
-                                        for (const el of els) {
-                                            el.remove()
-                                        }
+                            for (const element of generatedPolyfillElements) {
+                                element.remove()
+                            }
 
-                                        const cleanEvent = new Event('css-anchor-positioning-clean');
-                                        window.dispatchEvent(cleanEvent);
+                            const cleanEvent = new Event('css-anchor-positioning-clean');
+                            window.dispatchEvent(cleanEvent);
 
-                                        console.error('slt');
-                                        setTimeout(() => {
-                                            polyfill({
-                                                elements: undefined,
-                                                excludeInlineStyles: false,
-                                                useAnimationFrame: false,
-                                            });
-                                        }, 100)
+                            console.info(\"Polyfill cleaned - 'css-anchor-positioning'\");
+                            
+                            //// `setTimeout` needed, otherwise it didn't work
+                            setTimeout(() => {
+                                polyfill({
+                                    elements: undefined,
+                                    excludeInlineStyles: false,
+                                    useAnimationFrame: false,
+                                });
 
-    //                                     const currentThemeStyle = document.getElementById('theme');
+                                console.info(\"Polyfill applied - 'css-anchor-positioning'\");
+                            }, 100)
+                        }
 
-    //                                     if (currentThemeStyle) {
-    //                                         const newThemeStyle = document.createElement('style');
+                        const observeUrlChange = (callbackWhenUrlChange) => {
+                            return () => {
+                                let oldHref = document.location.href;
+                                
+                                const observer = new MutationObserver(mutations => {
+                                    const newUrl = document.location.href;
 
-    //                                         const themeStyleHref = currentThemeStyle.getAttribute('data-original-href')
-
-    //                                         if (themeStyleHref) {
-    //                                             console.error('href: data-original-href', themeStyleHref)
-
-    //                                             fetch(themeStyleHref).then((res) => res.text()).then((themeStyle) => {
-    //                                                 newThemeStyle.id = 'theme'
-    //                                                 // newThemeStyle.rel = 'stylesheet'
-    //                                                 newThemeStyle.setAttribute('rel', 'stylesheet')
-    //                                                 // newThemeStyle.setAttribute('href', themeStyleHref)
-    //                                                 newThemeStyle.textContent = themeStyle
-    //                                                 newThemeStyle.setAttribute('data-original-href', themeStyleHref)
-
-    //                                                 document.head.insertAdjacentElement('beforeend', newThemeStyle);
-
-    //                                                 currentThemeStyle.remove();
-    // =
-    //                                                 for (const el of els) {
-    //                                                     el.remove()
-    //                                                 }
-
-    //                                                 console.error('slt');
-    //                                                 polyfill({
-    //                                                     elements: undefined,
-    //                                                     excludeInlineStyles: false,
-    //                                                     useAnimationFrame: false,
-    //                                                 });
-    //                                             })
-
-                                            
-    //                                         } else {
-    //                                             console.error('flute')
-    //                                         }
-    //                                     }
-
+                                    if (oldHref !== newUrl) {
+                                        oldHref = newUrl;
                                         
-                                    // }, 3e3)
+                                        callbackWhenUrlChange();
+                                    }
+                                });
 
-                                    
-                                }
-                            });
-                            observer.observe(body, { childList: true, subtree: true });
+                                const body = document.querySelector('body');
+                                observer.observe(body, { childList: true, subtree: true });
+                            }
                         };
 
-                        window.onload = observeUrlChange;
+                        window.onload = observeUrlChange(reloadPolyfill);
                     }
 
                     //// Used only Safari to fix focus on buttons, links, checkboxes etc...
