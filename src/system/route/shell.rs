@@ -41,13 +41,93 @@ pub fn shell(options: LeptosOptions) -> impl IntoView {
                     //// Used only by Firefox and Safari to fix dropdown menu positioning
                     //// Source: https://github.com/oddbird/css-anchor-positioning
                     if (!('anchorName' in document.documentElement.style)) {
-                        const { default: polyfill } = await import('/polyfills/@oddbird/css-anchor-positioning-fn@0.6.1.js');
+                        const { default: polyfill } = await import('/polyfills/@oddbird/debug-css-anchor-positioning-fn@0.6.1.js');
 
                         polyfill({
                             elements: undefined,
                             excludeInlineStyles: false,
                             useAnimationFrame: false,
                         });
+
+                        const observeUrlChange = () => {
+                            let oldHref = document.location.href;
+                            const body = document.querySelector('body');
+                            const observer = new MutationObserver(mutations => {
+                                if (oldHref !== document.location.href) {
+                                    oldHref = document.location.href;
+                                    /* Changed ! your code here */
+
+                                    // setTimeout(() => {
+                                        const els = document.querySelectorAll('[data-generated-by-polyfill=\"true\"]');
+
+                                        console.error(els.length);
+
+                                        for (const el of els) {
+                                            el.remove()
+                                        }
+
+                                        const cleanEvent = new Event('css-anchor-positioning-clean');
+                                        window.dispatchEvent(cleanEvent);
+
+                                        console.error('slt');
+                                        setTimeout(() => {
+                                            polyfill({
+                                                elements: undefined,
+                                                excludeInlineStyles: false,
+                                                useAnimationFrame: false,
+                                            });
+                                        }, 100)
+
+    //                                     const currentThemeStyle = document.getElementById('theme');
+
+    //                                     if (currentThemeStyle) {
+    //                                         const newThemeStyle = document.createElement('style');
+
+    //                                         const themeStyleHref = currentThemeStyle.getAttribute('data-original-href')
+
+    //                                         if (themeStyleHref) {
+    //                                             console.error('href: data-original-href', themeStyleHref)
+
+    //                                             fetch(themeStyleHref).then((res) => res.text()).then((themeStyle) => {
+    //                                                 newThemeStyle.id = 'theme'
+    //                                                 // newThemeStyle.rel = 'stylesheet'
+    //                                                 newThemeStyle.setAttribute('rel', 'stylesheet')
+    //                                                 // newThemeStyle.setAttribute('href', themeStyleHref)
+    //                                                 newThemeStyle.textContent = themeStyle
+    //                                                 newThemeStyle.setAttribute('data-original-href', themeStyleHref)
+
+    //                                                 document.head.insertAdjacentElement('beforeend', newThemeStyle);
+
+    //                                                 currentThemeStyle.remove();
+    // =
+    //                                                 for (const el of els) {
+    //                                                     el.remove()
+    //                                                 }
+
+    //                                                 console.error('slt');
+    //                                                 polyfill({
+    //                                                     elements: undefined,
+    //                                                     excludeInlineStyles: false,
+    //                                                     useAnimationFrame: false,
+    //                                                 });
+    //                                             })
+
+                                            
+    //                                         } else {
+    //                                             console.error('flute')
+    //                                         }
+    //                                     }
+
+                                        
+                                    // }, 3e3)
+
+                                    
+                                }
+                            });
+                            observer.observe(body, { childList: true, subtree: true });
+                        };
+
+                        window.onload = observeUrlChange;
                     }
 
                     //// Used only Safari to fix focus on buttons, links, checkboxes etc...

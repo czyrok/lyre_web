@@ -42,6 +42,7 @@ futures = "0.3"
 notify = { version = "6", optional = true }
 http = { version = "1.2.0", optional = true }
 wasm-bindgen = "=0.2.100"
+serde-wasm-bindgen = "0.6.5"
 envy = { version = "0.4.2", optional = true }
 
 [features]
