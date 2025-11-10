@@ -5,7 +5,7 @@ export const addABase: ComponentBuilderFunction = ({ addBase }, { classPrefix })
     a: {
       '&:focus': {
         //// Removes the default outline (not removed by Tailwind)
-        [`@apply ${classPrefix}outline-0`]: {},
+        [`@apply ${classPrefix}outline-none`]: {},
       },
     },
   });

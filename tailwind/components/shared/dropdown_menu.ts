@@ -17,6 +17,7 @@ export const addDropdownMenuComponent: ComponentBuilderFunction = (
       // Sizing
       [`@apply ${classPrefix}py-1`]: {},
       [`@apply ${classPrefix}rounded-5`]: {},
+      [`@apply ${classPrefix}gap-0,5`]: {},
 
       // Others
       [`@apply ${classPrefix}backdrop-blur-9`]: {},
@@ -30,9 +31,16 @@ export const addDropdownMenuComponent: ComponentBuilderFunction = (
       },
 
       // Children
-      '.dropdown-menu-item': {
+      '.dropdown-menu-search-bar': {
         // Sizing
-        [`@apply ${classPrefix}px-2 ${classPrefix}py-1`]: {},
+        [`@apply ${classPrefix}mx-1,5 ${classPrefix}my-1`]: {},
+      },
+
+      '.dropdown-menu-items': {
+        '.dropdown-menu-item': {
+          // Sizing
+          [`@apply ${classPrefix}px-2 ${classPrefix}py-1`]: {},
+        },
       },
 
       // Variants

@@ -17,7 +17,7 @@ pub fn SearchedProjectTitleInput(
         signal("".into());
 
     let delayed_searched_project_title: Signal<String> =
-        signal_debounced(self_searched_project_title, 1500.0);
+        signal_debounced(self_searched_project_title, 100.0);
 
     Effect::new(move |previous_value: Option<String>| {
         let new_search_project_title = delayed_searched_project_title.get();

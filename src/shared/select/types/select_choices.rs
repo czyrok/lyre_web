@@ -1,4 +1,4 @@
-use std::fmt::Debug;
+use std::{fmt::Debug, hash::Hash};
 
 use leptos::prelude::*;
 
@@ -10,7 +10,7 @@ pub type SelectChoiceFilterCallback<TKey> =
 #[derive(Clone)]
 pub struct SelectChoices<TKey>
 where
-    TKey: Eq + Clone + Send + Sync + Debug + 'static,
+    TKey: Hash + Eq + Clone + Send + Sync + Debug + 'static,
 {
     pub choices: Vec<SelectChoice<TKey>>,
     pub selected_choice_keys: Option<RwSignal<Vec<TKey>>>,
@@ -18,7 +18,7 @@ where
 
 impl<TKey> SelectChoices<TKey>
 where
-    TKey: Eq + Clone + Send + Sync + Debug + 'static,
+    TKey: Hash + Eq + Clone + Send + Sync + Debug + 'static,
 {
     pub fn new(
         choices: Vec<SelectChoice<TKey>>,

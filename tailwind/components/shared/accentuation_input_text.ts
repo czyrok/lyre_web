@@ -93,16 +93,12 @@ export const addAccentuationInputTextComponent: ComponentBuilderFunction = (
         [`@apply ${classPrefix}text-6`]: {},
 
         // Children
-        '.input-icon svg path': {
+        '.input-text-icon svg path': {
           [`@apply ${classPrefix}stroke-4`]: {},
         },
 
-        '&:has(.input-text-input, .input-icon)': {
+        '&:has(.input-text-input, .input-text-icon)': {
           [`@apply ${classPrefix}gap-1,5`]: {},
-        },
-
-        '&:has(.input-icon):not(:has(.input-text-input))': {
-          [`@apply ${classPrefix}p-2`]: {},
         },
       },
 
@@ -112,16 +108,12 @@ export const addAccentuationInputTextComponent: ComponentBuilderFunction = (
         [`@apply ${classPrefix}text-5`]: {},
 
         // Children
-        '.input-icon svg path': {
+        '.input-text-icon svg path': {
           [`@apply ${classPrefix}stroke-4`]: {},
         },
 
-        '&:has(.input-text-input, .input-icon)': {
+        '&:has(.input-text-input, .input-text-icon)': {
           [`@apply ${classPrefix}gap-1`]: {},
-        },
-
-        '&:has(.input-icon):not(:has(.input-text-input))': {
-          [`@apply ${classPrefix}p-2`]: {},
         },
       },
 
@@ -131,16 +123,12 @@ export const addAccentuationInputTextComponent: ComponentBuilderFunction = (
         [`@apply ${classPrefix}text-4`]: {},
 
         // Children
-        '.input-icon svg path': {
+        '.input-text-icon svg path': {
           [`@apply ${classPrefix}stroke-5`]: {},
         },
 
-        '&:has(.input-text-input, .input-icon)': {
+        '&:has(.input-text-input, .input-text-icon)': {
           [`@apply ${classPrefix}gap-1`]: {},
-        },
-
-        '&:has(.input-icon):not(:has(.input-text-input))': {
-          [`@apply ${classPrefix}p-2`]: {},
         },
       },
 
@@ -150,16 +138,12 @@ export const addAccentuationInputTextComponent: ComponentBuilderFunction = (
         [`@apply ${classPrefix}text-3`]: {},
 
         // Children
-        '.input-icon svg path': {
+        '.input-text-icon svg path': {
           [`@apply ${classPrefix}stroke-5`]: {},
         },
 
-        '&:has(.input-text-input, .input-icon)': {
+        '&:has(.input-text-input, .input-text-icon)': {
           [`@apply ${classPrefix}gap-0,5`]: {},
-        },
-
-        '&:has(.input-icon):not(:has(.input-text-input))': {
-          [`@apply ${classPrefix}p-1,5`]: {},
         },
       },
     },

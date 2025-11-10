@@ -39,6 +39,7 @@ pub fn shell(options: LeptosOptions) -> impl IntoView {
                 <script type="module" nonce=nonce>
                     "
                     //// Used only by Firefox and Safari to fix dropdown menu positioning
+                    //// Source: https://github.com/oddbird/css-anchor-positioning
                     if (!('anchorName' in document.documentElement.style)) {
                         const { default: polyfill } = await import('/polyfills/@oddbird/css-anchor-positioning-fn@0.6.1.js');
 
@@ -47,7 +48,65 @@ pub fn shell(options: LeptosOptions) -> impl IntoView {
                             excludeInlineStyles: false,
                             useAnimationFrame: false,
                         });
+
+                        console.info(\"Polyfill applied - 'css-anchor-positioning'\");
+
+                        // Now, we need to check changes in the URL
+                        // to reload the polyfill in case the view have been
+                        // changed by Leptos and there are new dropdown menus.
+
+                        const reloadPolyfill = () => {
+                            const generatedPolyfillElements = document.querySelectorAll('[data-generated-by-polyfill=\"true\"]');
+
+                            for (const element of generatedPolyfillElements) {
+                                element.remove()
+                            }
+
+                            const cleanEvent = new Event('css-anchor-positioning-clean');
+                            window.dispatchEvent(cleanEvent);
+
+                            console.info(\"Polyfill cleaned - 'css-anchor-positioning'\");
+                            
+                            //// `setTimeout` needed, otherwise it didn't work
+                            setTimeout(() => {
+                                polyfill({
+                                    elements: undefined,
+                                    excludeInlineStyles: false,
+                                    useAnimationFrame: false,
+                                });
+
+                                console.info(\"Polyfill applied - 'css-anchor-positioning'\");
+                            }, 100)
+                        }
+
+                        const observeUrlChange = (callbackWhenUrlChange) => {
+                            return () => {
+                                let oldHref = document.location.href;
+
+                                const callback = (mutations) => {
+                                    const newUrl = document.location.href;
+
+                                    if (oldHref !== newUrl) {
+                                        oldHref = newUrl;
+                                        
+                                        callbackWhenUrlChange();
+                                    }
+                                }
+                                
+                                const observer = new MutationObserver(callback);
+
+                                const body = document.querySelector('body');
+                                observer.observe(body, { childList: true, subtree: true });
+                            }
+                        };
+
+                        //// We use this instead of `window.onload` for Safari
+                        document.body.onload = observeUrlChange(reloadPolyfill);
                     }
+
+                    //// Used only Safari to fix focus on buttons, links, checkboxes etc...
+                    //// Source: https://itnext.io/fixing-focus-for-safari-b5916fef1064
+                    import('/polyfills/@NickGuard/safari-focus@2.0.js');
                     "
                 </script>
             </head>

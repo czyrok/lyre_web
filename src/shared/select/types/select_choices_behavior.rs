@@ -1,4 +1,4 @@
-use std::fmt::Debug;
+use std::{fmt::Debug, hash::Hash};
 
 use leptos::prelude::Signal;
 
@@ -7,7 +7,7 @@ use super::{
 };
 
 pub trait SelectChoicesBehavior {
-    type Key: Eq + Clone + Send + Sync + Debug + 'static;
+    type Key: Hash + Eq + Clone + Send + Sync + Debug + 'static;
 
     fn list(&self) -> Vec<SelectChoice<Self::Key>>;
     fn change_all_status(

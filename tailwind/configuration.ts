@@ -58,6 +58,7 @@ import { THEME_SPACING } from './theme/spacing';
 import { THEME_STROKE_WIDTH } from './theme/stroke_width';
 import { THEME_TRANSITION } from './theme/transition';
 import { THEME_Z_INDEX } from './theme/z_index';
+import { addDropdownMenuSearchBarComponent } from './components/shared/dropdown_menu_search_bar';
 
 const DARK_MODE_CLASS = 'dark';
 const TAILWIND_CLASS_PREFIX = 'tw-';
@@ -156,6 +157,9 @@ export const TAILWIND_CONFIGURATION: Config = {
         classPrefix: TAILWIND_CLASS_PREFIX,
       });
       addDropdownMenuComponent(pluginApi, {
+        classPrefix: TAILWIND_CLASS_PREFIX,
+      });
+      addDropdownMenuSearchBarComponent(pluginApi, {
         classPrefix: TAILWIND_CLASS_PREFIX,
       });
       addProjectSectionComponent(pluginApi, {
