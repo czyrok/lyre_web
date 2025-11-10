@@ -26,8 +26,7 @@ pub fn shell(options: LeptosOptions) -> impl IntoView {
                 //// It's only useful when `@media (prefers-color-scheme: dark)` is used
                 // <Meta name="color-scheme" content="dark light"/>
 
-                // TODO: favicon
-                //<Link rel="shortcut icon" type_="image/ico" href="/favicon.ico"/>
+                <Link rel="shortcut icon" type_="image/svg+xml" href="/images/favicon.svg"/>
 
                 // Preloading
                 <Link id="theme" rel="stylesheet" href="/tailwind_output.css" crossorigin="" />
