@@ -82,8 +82,8 @@ pub fn shell(options: LeptosOptions) -> impl IntoView {
                         const observeUrlChange = (callbackWhenUrlChange) => {
                             return () => {
                                 let oldHref = document.location.href;
-                                
-                                const observer = new MutationObserver(mutations => {
+
+                                const callback = (mutations) => {
                                     const newUrl = document.location.href;
 
                                     if (oldHref !== newUrl) {
@@ -91,14 +91,17 @@ pub fn shell(options: LeptosOptions) -> impl IntoView {
                                         
                                         callbackWhenUrlChange();
                                     }
-                                });
+                                }
+                                
+                                const observer = new MutationObserver(callback);
 
                                 const body = document.querySelector('body');
                                 observer.observe(body, { childList: true, subtree: true });
                             }
                         };
 
-                        window.onload = observeUrlChange(reloadPolyfill);
+                        //// We use this instead of `window.onload` for Safari
+                        document.body.onload = observeUrlChange(reloadPolyfill);
                     }
 
                     //// Used only Safari to fix focus on buttons, links, checkboxes etc...
