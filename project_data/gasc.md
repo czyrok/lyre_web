@@ -2,7 +2,7 @@
 next:
   slug: rio_v3
 title: G.A.S.C.
-image_url: gasc.png
+image_url: gasc.webp
 date: 2023-11-01
 tags:
   - name: Scrum

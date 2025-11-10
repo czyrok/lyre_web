@@ -2,7 +2,7 @@
 next:
   slug: kepler
 title: Wolfgang
-image_url: wolfgang.png
+image_url: wolfgang.webp
 date: 2022-11-06
 tags:
   - name: Socket.io

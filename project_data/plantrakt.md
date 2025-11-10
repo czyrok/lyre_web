@@ -2,12 +2,16 @@
 next:
   slug: wolfgang
 title: Plantrakt
-image_url: plantrakt.png
+image_url: plantrakt.webp
 date: 2024-03-26
 tags:
   - name: Rust
   - name: NestJS
   - name: Figma
+links:
+  - url: https://github.com/czyrok/plantrakt
+    title: GitHub
+    icon: GITHUB
 ---
 
 Pour clôturer ma dernière année d'études, j'ai réalisé un projet d'IOT complet, du web au microcontrôleur. Lors de celui-ci j'ai pu mettre à profit tout ce que j'ai appris, du design à la conception en passant par le développement (web et microcontrôleur).

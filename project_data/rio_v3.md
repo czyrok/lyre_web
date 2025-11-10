@@ -1,11 +1,15 @@
 ---
 title: Rio
-image_url: rio_v3.png
+image_url: rio_v3.webp
 date: 2024-07-23
 tags:
   - name: Socket.io
   - name: Express.js
   - name: TS
+links:
+  - url: https://github.com/czyrok/rio
+    title: GitHub
+    icon: GITHUB
 ---
 
 Rio était un mini framework composé d'outils et d'éléments abstraits permettant l'encapsulation de librairies de communication client-serveur comme Express.js ou Socket.io. Le but était de pouvoir utiliser des décorateurs TypeScript afin de faciliter le développement d'applications utilisant ces technologies tout en rajoutant des fonctionnalités adjacentes comme de l'injection de dépendance à l'instar de NestJS. La différence était que Rio devait permettre une bien meilleure intégration des librairies en ayant une base de code totalement indépendante des intégrations.

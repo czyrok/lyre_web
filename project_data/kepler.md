@@ -2,7 +2,7 @@
 next:
   slug: ubikap
 title: Kepler
-image_url: kepler.png
+image_url: kepler.webp
 date: 2020-04-01
 tags:
   - name: ElectronJS

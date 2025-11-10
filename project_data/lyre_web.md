@@ -2,12 +2,16 @@
 next:
   slug: lrt_manager
 title: Ce site web
-image_url: lyre_web.png
+image_url: lyre_web.webp
 date: 2024-09-23
 tags:
   - name: Rust
   - name: Tailwind
   - name: Figma
+links:
+  - url: https://github.com/czyrok/lyre_web
+    title: GitHub
+    icon: GITHUB
 ---
 
 Ce site a plusieurs objectifs, non seulement un objectif professionnel mais aussi un objectif technique.

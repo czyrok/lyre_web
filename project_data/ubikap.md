@@ -2,12 +2,16 @@
 next:
   slug: lyre_web
 title: Ubikap
-image_url: ubikap.png
+image_url: ubikap.webp
 date: 2024-09-01
 tags:
   - name: Docker
   - name: DevOps
   - name: TS
+links:
+  - url: https://ubikap.com
+    title: Ubikap
+    icon: EXTERNAL
 ---
 
 Depuis septembre 2023, je travaille pour l'entreprise qui édite Ubikap (un logiciel SaaS). Mon travail au sein de cette entreprise est très varié, du développement frontend au backend en passant par le DevOps jusqu'à de l'administration système.

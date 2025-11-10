@@ -2,12 +2,16 @@
 next:
   slug: gasc
 title: LRT Manager
-image_url: lrt_manager.png
+image_url: lrt_manager.webp
 date: 2023-05-10
 tags:
   - name: RxJS
   - name: Socket.io
   - name: Angular
+links:
+  - url: https://github.com/czyrok/lrt-manager
+    title: GitHub
+    icon: GITHUB
 ---
 
 LRT Manager est un petit projet de stage qui consistait en la réalisation d'une application permettant la gestion de fichiers spéciaux (fichiers LRT) et leur sauvegarde. Ces fichiers étaient contenus dans des boitiers SBC (Session Border Controller) au sein des centres de données de l'entreprise. Ce boitier est utilisé pour assurer la sécurité des infrastructures de téléphonie SIP.
