@@ -14,8 +14,8 @@ links:
     icon: GITHUB
 ---
 
-Ce projet a débuté lors du 1er confinement (je suis sûr que vous vous en souvenez encore). Je m'ennuyais et j'avais commencé une application utilisant ElectronJS pour accéder à un jeu en ligne (un site web). J'ai donc poursuivi ce projet pour le transformer en navigateur.
+Ce projet a débuté lors du 1er confinement (je suis sûr que vous vous en souvenez encore). Je m'ennuyais et j'avais commencé une application utilisant **ElectronJS** pour accéder à un jeu en ligne (un site web). J'ai donc poursuivi ce projet pour le transformer en **navigateur**. 
 
-Cette histoire a duré 1 an, une année au cours de laquelle je l'ai maintenu et mis à jour. Cela s'est traduit par l'ajout de beaucoup de fonctionnalités dont les navigateurs disposent nativement. Que ce soit la mise en place de la gestion des onglets, des favoris, des téléchargements ou l'ajout d'un ad-bloqueur et d'un système de mise à jour maison utilisant un simple Dropbox (stockage des exécutables). Pour autant, je ne vous recommande pas de l'utiliser 😆.
+Cette histoire a duré 1 an, une année au cours de laquelle je l'ai maintenu et mis à jour. Cela s'est traduit par l'ajout de beaucoup de **fonctionnalités** dont les navigateurs disposent nativement. Que ce soit la mise en place de la gestion des onglets, des favoris, des téléchargements ou l'ajout d'un ad-bloqueur et d'un système de mise à jour maison utilisant un simple Dropbox (stockage des exécutables). Pour autant, je ne vous recommande pas de l'utiliser 😆.
 
-Cette belle expérience fût enrichissante et m'a conduit à faire un BUT Informatique après mon Bac.
+Cette belle **expérience** fût enrichissante et m'a conduit à faire un BUT Informatique après mon Bac.
