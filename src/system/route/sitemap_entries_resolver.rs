@@ -6,6 +6,7 @@ use super::{
     super::state::app_state::AppState, static_route_generator::get_static_paths,
 };
 
+// TODO: test sur le résultat
 pub async fn resolve_sitemap_entries(
     app_state: AppState,
     patched_entries: Vec<UrlEntry>,
