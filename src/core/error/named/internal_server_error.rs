@@ -1,7 +1,8 @@
+use leptos::prelude::ServerFnErrorErr;
+
 use super::super::{
-    frontend_error_type::FrontedErrorType,
-    server_error_dto::ServerErrorDto,
-    server_function_error::{ServerFunctionError, ServerFunctionException},
+    frontend_error_type::FrontedErrorType, server_error_dto::ServerErrorDto,
+    server_function_error::ServerFunctionError,
 };
 
 pub struct InternalServerError {
@@ -14,6 +15,15 @@ impl InternalServerError {
         Self {
             error_type: None,
             detailed_message,
+        }
+    }
+
+    pub fn new_context_not_found(context_name: String) -> Self {
+        Self {
+            error_type: Some(FrontedErrorType::ContextNotFound),
+            detailed_message: Some(format!(
+                "Context '{context_name}' not found"
+            )),
         }
     }
 
@@ -55,6 +65,14 @@ impl InternalServerError {
     }
 }
 
+impl From<ServerFnErrorErr> for InternalServerError {
+    fn from(server_error: ServerFnErrorErr) -> Self {
+        let server_error_message = server_error.to_string();
+
+        Self::new(Some(server_error_message))
+    }
+}
+
 impl From<InternalServerError> for ServerErrorDto {
     fn from(server_error: InternalServerError) -> ServerErrorDto {
         let error_type = server_error.error_type.unwrap_or_default();
@@ -70,12 +88,6 @@ impl From<InternalServerError> for ServerErrorDto {
 
 impl From<InternalServerError> for ServerFunctionError {
     fn from(server_error: InternalServerError) -> ServerFunctionError {
-        ServerFunctionError::WrappedServerError(server_error.into())
-    }
-}
-
-impl From<InternalServerError> for ServerFunctionException {
-    fn from(server_error: InternalServerError) -> ServerFunctionException {
-        ServerFunctionException::WrappedServerError(server_error.into())
+        ServerFunctionError(server_error.into())
     }
 }

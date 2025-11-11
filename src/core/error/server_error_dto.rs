@@ -32,7 +32,7 @@ impl std::fmt::Display for ServerErrorDto {
     ) -> Result<(), std::fmt::Error> {
         let serialized_dto = serde_json::to_string(&self).unwrap();
 
-        write!(fmt, "{}", serialized_dto)
+        write!(fmt, "{serialized_dto}")
     }
 }
 

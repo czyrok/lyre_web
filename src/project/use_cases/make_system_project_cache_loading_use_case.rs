@@ -36,8 +36,7 @@ impl MakeSystemProjectCacheLoadingUseCase {
     ) -> ServerFunctionError {
         let internal_server_error =
             InternalServerError::new_refresh_project_cache_failed(format!(
-                "The project cache's loading failed: `{}`",
-                error
+                "The project cache's loading failed: '{error}'",
             ));
 
         internal_server_error.into()

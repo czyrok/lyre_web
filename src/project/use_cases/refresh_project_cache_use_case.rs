@@ -40,8 +40,7 @@ impl RefreshProjectCacheUseCase {
     ) -> ServerFunctionError {
         let internal_server_error =
             InternalServerError::new_refresh_project_cache_failed(format!(
-                "The refresh of the project cache failed: `{}`",
-                error
+                "The refresh of the project cache failed: '{error}'",
             ));
 
         internal_server_error.into()
@@ -58,8 +57,7 @@ impl RefreshProjectCacheUseCase {
         if !is_token_valid {
             let bad_request_error =
                 BadRequestServerError::new_invalid_totp_token(format!(
-                    "Your provided totp token `{}` is incorrect",
-                    token
+                    "Your provided totp token '{token}' is incorrect",
                 ));
 
             return Err(bad_request_error.into());

@@ -34,7 +34,7 @@ impl UseCase<(), ProjectSlugsDto> for GetProjectSlugsUseCase {
             Err(error) => {
                 let internal_server_error =
                     InternalServerError::new_unable_to_get_project_slugs(
-                        format!("Unable to get the project slugs: `{}`", error),
+                        format!("Unable to get the project slugs: '{error}'"),
                     );
 
                 Err(internal_server_error.into())

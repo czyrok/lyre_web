@@ -24,8 +24,7 @@ impl GetAllProjectTagsUseCase {
     ) -> ServerFunctionError {
         let internal_server_error =
             InternalServerError::new_unable_to_get_project_tags(format!(
-                "Unable to get the project tags: `{}`",
-                error
+                "Unable to get the project tags: '{error}'",
             ));
 
         internal_server_error.into()

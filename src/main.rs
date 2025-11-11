@@ -50,7 +50,7 @@ if #[cfg(feature = "ssr")] {
 
         let app = Router::new()
             .route(
-                "/api/*fn_name",
+                "/api/{*fn_name}",
                 get(server_function_handler).post(server_function_handler),
             )
             .leptos_routes_with_handler(routes, get(leptos_routes_handler))
