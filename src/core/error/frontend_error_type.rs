@@ -5,6 +5,7 @@ use serde::{Deserialize, Serialize};
 pub enum FrontedErrorType {
     #[default]
     Unknown,
+    ContextNotFound,
     UnknownProject,
     ProjectNotFound,
     RefreshProjectCacheFailed,
