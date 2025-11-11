@@ -8,6 +8,10 @@ tags:
   - name: RxJS
   - name: Socket.io
   - name: Angular
+meta_keywords: |
+  gestion de fichiers, sauvegarde, SBC, Session Border Controller, téléphonie SIP, séquences programmées, RxJS, parallélisme
+description: |
+  LRT Manager est une application de gestion et sauvegarde de fichiers LRT pour les SBC (Session Border Controller). Développée avec RxJS, elle permet des traitements parallèles et des rollbacks, illustrant mes compétences en programmation réactive et gestion de systèmes critiques.
 links:
   - url: https://github.com/czyrok/lrt-manager
     title: GitHub

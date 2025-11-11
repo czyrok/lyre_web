@@ -8,6 +8,10 @@ tags:
   - name: Rust
   - name: NestJS
   - name: Figma
+meta_keywords: |
+  IOT, microcontrôleur, design, conception, développement web, développement microcontrôleur, capteurs, web assembly, Rust
+description: |
+  Découvrez Plantrakt, un projet IoT complet alliant microcontrôleurs, capteurs et développement web. Conçu en Rust, NestJS et en C++, ce système permet de surveiller et contrôler des plantes à distance. Une démonstration de mes compétences en conception, développement full-stack et innovation technique.
 links:
   - url: https://github.com/czyrok/plantrakt
     title: GitHub

@@ -1,4 +1,5 @@
 use leptos::{prelude::*, Params};
+use leptos_meta::*;
 use leptos_router::{hooks::use_params, params::Params};
 
 use crate::{
@@ -53,6 +54,15 @@ pub fn ProjectDetails() -> impl IntoView {
                         let next_project = project.context.next.clone();
 
                         view! {
+                            <Title text=format!("Projet {} | Dylan Valentin", project.context.title.clone()) />
+
+                            <Meta name="author" content="Dylan Valentin" />
+                            <Meta name="description" content=project_context.description.clone() />
+                            <Meta name="keywords" content=project_context.meta_keywords.clone() />
+
+                            <Meta property="og:title" content=format!("Projet {} | Dylan Valentin", project.context.title.clone()) />
+                            <Meta property="og:description" content=project_context.description.clone() />
+
                             <SecondaryPageLayout
                                 intro_renderer=Box::new(move || view! {
                                     <ProjectThumbnail project_context=project_context.clone() enables_hover=false displays_brand=true />

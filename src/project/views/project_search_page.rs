@@ -1,4 +1,5 @@
 use leptos::prelude::*;
+use leptos_meta::*;
 
 use crate::{
     core::{
@@ -102,6 +103,25 @@ pub fn ProjectSearchPage() -> impl IntoView {
     });
 
     view! {
+        <Title text="Mes Projets | Dylan Valentin" />
+
+        <Meta name="author" content="Dylan Valentin" />
+        <Meta name="description" content="Développeur Fullstack en freelance, je transforme les idées en solutions techniques. Mon parcours, de Kepler à Ubikap, allie passion pour la tech et flexibilité du freelance. Découvrez mes projets !" />
+        <Meta name="keywords" content="
+        design, conception, développement web, web assembly, Rust, ElectronJS, navigateur web, fonctionnalités, système de mise à jour,
+        jeu en ligne multijoueur, Les loups-garous de Thiercelieux, architecture, backend, workers NodeJS, instances Cloud, JWT, authentification, méthode agile, travail en équipe, communication,
+        logiciel SaaS, Ubikap, développement frontend, développement backend, DevOps, administration système, infrastructure, sécurité, automatisation, déploiements, maintenance, polyvalence,
+        stack technique, Leptos, framework web assembly, challenge design, harmonie des couleurs, veille technique, optimisation, sécurité des applications,
+        gestion de fichiers, sauvegarde, RxJS, parallélisme,
+        formation, réécriture de projet, qualité de code, maintenance, contact client, retours utilisateurs,
+        framework, abstraction, encapsulation, Express.js, Socket.io, décorateurs TypeScript, injection de dépendance, typage, NestJS, choix techniques,
+        microcontrôleur, développement microcontrôleur, capteurs,
+        IOT, SBC, Session Border Controller, téléphonie SIP, séquences programmées
+        " />
+
+        <Meta property="og:title" content="Mes Projets | Dylan Valentin" />
+        <Meta property="og:description" content="Développeur Fullstack en freelance, je transforme les idées en solutions techniques. Mon parcours, de Kepler à Ubikap, allie passion pour la tech et flexibilité du freelance. Découvrez mes projets !" />
+
         <SecondaryPageLayout
             content_renderer=move || view! {
                 <div class="tw-project-search-page-top-part">

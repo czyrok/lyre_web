@@ -23,13 +23,13 @@ The key correspondence here is between the version of `cargo-leptos` you have in
 1. Update cargo-leptos
 
 ```shell
-cargo install cargo-leptos --version '=0.2.27' --locked
+cargo install cargo-leptos --version '=0.2.47' --locked
 ```
 
 2. Pin the wasm-bindgen dependency in your crate to the one being used by the cargo-leptos version you have installed
 
 ```toml
-wasm-bindgen = "=0.2.100"
+wasm-bindgen = "=0.2.105"
 ```
 
 ## Trait bounds not satisfied

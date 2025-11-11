@@ -6,6 +6,10 @@ tags:
   - name: Socket.io
   - name: Express.js
   - name: TS
+meta_keywords: |
+  framework, abstraction, encapsulation, Express.js, Socket.io, décorateurs TypeScript, injection de dépendance, typage, NestJS, choix techniques
+description: |
+  Rio v3 est un framework expérimental inspiré de NestJS, utilisant des décorateurs TypeScript pour encapsuler Express.js et Socket.io. Ce projet explore l'injection de dépendance et l'abstraction, tout en révélant les défis du typage et en préparant ma transition vers Rust pour des solutions plus robustes.
 links:
   - url: https://github.com/czyrok/rio
     title: GitHub

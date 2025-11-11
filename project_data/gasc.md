@@ -7,6 +7,10 @@ date: 2023-11-01
 tags:
   - name: Scrum
   - name: Symfony
+meta_keywords: |
+  formation, réécriture de projet, qualité de code, maintenance, contact client, retours utilisateurs
+description: |
+  Gasc est la refonte complète d'une application de gestion d'activités culturelles et sportives pour l'IUT Lyon 1. Ce projet m'a appris l'importance de la qualité de code, de la maintenance proactive et de la communication client, en appliquant la méthode agile pour un résultat professionnel.
 ---
 
 Ce projet, qui s'inscrivait dans le cadre de ma **formation**, était la reprise d'une application **existante** de l'IUT. Son utilité résidait simplement dans la gestion des activités (culturelles et sportives) de l'IUT. Par conséquent, c'était une expérience professionnalisante et intéressante.

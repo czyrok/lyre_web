@@ -99,8 +99,8 @@ impl ProjectRepository {
         sqlx::query!(
             "
                 INSERT INTO `projects` (`slug`, `next_slug`, `position`, \
-             `title`, `image_url`, `date`, `content`) VALUES (?, ?, ?, ?, ?, \
-             ?, ?);
+             `title`, `image_url`, `date`, `content`, `description`, \
+             `meta_keywords`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);
                 ",
             project.context.slug,
             next_slug,
@@ -108,7 +108,9 @@ impl ProjectRepository {
             project.context.title,
             project.context.image_url,
             project.context.date,
-            project.content.0
+            project.content.0,
+            project.context.description,
+            project.context.meta_keywords,
         )
         .fetch_optional(&mut *local_database_transaction.value)
         .await?;
@@ -160,6 +162,8 @@ impl ProjectRepository {
                     `projects`.`image_url`,
                     `projects`.`date`,
                     `projects`.`content`,
+                    `projects`.`description`,
+                    `projects`.`meta_keywords`,
                     (
                     ---- https://www.sqlitetutorial.net/sqlite-json-functions/sqlite-json_group_array-function/
                     SELECT    JSON_GROUP_ARRAY (`project_tags`.`name`)

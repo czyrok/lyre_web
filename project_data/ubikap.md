@@ -8,6 +8,10 @@ tags:
   - name: Docker
   - name: DevOps
   - name: TS
+meta_keywords: |
+  logiciel SaaS, Ubikap, développement frontend, développement backend, DevOps, administration système, infrastructure, sécurité, automatisation, déploiements, maintenance, polyvalence
+description: |
+  En tant que développeur freelance pour Ubikap, un logiciel SaaS complexe, je contribue au frontend, backend, DevOps et à l'administration système. Mon travail inclut l'optimisation de l'infrastructure, la sécurité et l'automatisation des déploiements, démontrant ma polyvalence et mon adaptabilité technique.
 links:
   - url: https://ubikap.com
     title: Ubikap

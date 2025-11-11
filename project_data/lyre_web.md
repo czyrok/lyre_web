@@ -8,6 +8,10 @@ tags:
   - name: Rust
   - name: Tailwind
   - name: Figma
+meta_keywords: |
+  stack technique, Leptos, framework web assembly, challenge design, harmonie des couleurs, veille technique, optimisation, sécurité des applications
+description: |
+  Ce portfolio est bien plus qu'une vitrine : c'est un terrain d'expérimentation technique. Développé avec Leptos (Rust/WebAssembly), il allie design harmonieux et stack moderne. Un projet reflétant ma veille technologique, mon engagement pour l'écologie numérique et mon expertise en développement innovant.
 links:
   - url: https://github.com/czyrok/lyre_web
     title: GitHub

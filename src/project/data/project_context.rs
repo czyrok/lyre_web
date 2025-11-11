@@ -16,6 +16,8 @@ pub struct ProjectContext {
     pub date: NaiveDate,
     pub formatted_date: Option<String>,
     pub tags: ProjectTags,
+    pub meta_keywords: String,
+    pub description: String,
 }
 
 impl ProjectContext {
@@ -86,6 +88,8 @@ impl<'row> FromRow<'row, SqliteRow> for ProjectContext {
             date: row.try_get("date").expect("`row.date` should exist"),
             formatted_date: None,
             tags: row.try_get("tags").expect("`row.tags` should exist"),
+            meta_keywords: row.try_get("meta_keywords").unwrap_or_default(),
+            description: row.try_get("description").unwrap_or_default(),
         })
     }
 }

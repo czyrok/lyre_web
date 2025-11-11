@@ -8,6 +8,10 @@ tags:
   - name: Socket.io
   - name: Angular
   - name: TS
+meta_keywords: |
+  jeu en ligne multijoueur, Les loups-garous de Thiercelieux, architecture, backend, workers NodeJS, instances Cloud, JWT, authentification, méthode agile, travail en équipe, communication
+description: |
+  Wolfgang transforme le jeu de société 'Les Loups-Garous' en une expérience multijoueur en ligne. Ce projet met en lumière mon expertise en architecture backend (NodeJS, workers, Cloud), conception complexe et travail d'équipe en méthode agile. Un défi technique et organisationnel relevé avec succès.
 links:
   - url: https://github.com/czyrok/wolfgang
     title: GitHub

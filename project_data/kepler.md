@@ -8,6 +8,10 @@ tags:
   - name: ElectronJS
   - name: CSS
   - name: HTML
+meta_keywords: |
+  ElectronJS, navigateur web, fonctionnalités, gestion des onglets, favoris, téléchargements, ad-bloqueur, système de mise à jour
+description: |
+  Kepler, un navigateur web personnalisé développé avec ElectronJS pendant le confinement. Ce projet d'un an m'a permis d'ajouter des fonctionnalités avancées (onglets, favoris, ad-blocker) et de renforcer mes compétences en développement logiciel et maintenance de projets long terme.
 links:
   - url: https://github.com/czyrok/kepler
     title: GitHub
