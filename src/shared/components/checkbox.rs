@@ -41,34 +41,6 @@ pub fn Checkbox(
         }
     };
 
-    #[cfg(not(feature = "ssr"))]
-    return view! {
-        <label
-            class="tw-secondary-checkbox"
-            class=(["tw-checkbox-size-xl"], move || is_xl_size)
-            class=(["tw-checkbox-size-lg"], move || is_lg_size)
-            class=(["tw-checkbox-size-md"], move || is_md_size)
-            class=(["tw-checkbox-size-sm"], move || is_sm_size)
-        >
-            <input
-                class="tw-checkbox-input"
-                type="checkbox"
-
-                on:input:target=on_input_update
-                prop:checked=is_checked
-            />
-
-            <span class="tw-checkbox-box">
-                <span class="tw-box-icon">
-                    <Icon icon=IconSet::Check />
-                </span>
-            </span>
-
-            <span class="tw-checkbox-text">{ text }</span>
-        </label>
-    };
-
-    #[cfg(feature = "ssr")]
     view! {
         <label
             class="tw-secondary-checkbox"
@@ -81,6 +53,7 @@ pub fn Checkbox(
                 class="tw-checkbox-input"
                 type="checkbox"
 
+                on:input:target=on_input_update
                 prop:checked=is_checked
             />
 
