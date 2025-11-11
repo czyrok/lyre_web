@@ -83,7 +83,7 @@ impl ProjectContextRepository {
             for implementation_year in filter.implementation_years.iter() {
                 let year_query = match implementation_year {
                     ImplementationYear::CurrentYear => {
-                        format!(" `projects`.`date` LIKE '{}-%' ", current_year)
+                        format!(" `projects`.`date` LIKE '{current_year}-%' ")
                     }
                     ImplementationYear::LastYear => format!(
                         " `projects`.`date` LIKE '{}-%' ",

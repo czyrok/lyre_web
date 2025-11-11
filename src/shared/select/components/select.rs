@@ -1,4 +1,4 @@
-use std::{fmt::Debug, hash::Hash, sync::Arc};
+use std::{fmt::Debug, hash::Hash};
 
 use leptos::prelude::*;
 
@@ -20,6 +20,11 @@ use crate::{
         },
     },
 };
+
+type FilteredChoicesSignals<TChoiceKey> = (
+    ReadSignal<Vec<SelectItem<TChoiceKey>>>,
+    WriteSignal<Vec<SelectItem<TChoiceKey>>>,
+);
 
 #[component]
 pub fn Select<TChoiceKey>(
@@ -68,10 +73,9 @@ where
     let searched_text: (ReadSignal<String>, WriteSignal<String>) =
         signal("".into());
 
-    let (filtered_choices, set_filtered_choices): (
-        ReadSignal<Vec<SelectItem<TChoiceKey>>>,
-        WriteSignal<Vec<SelectItem<TChoiceKey>>>,
-    ) = signal(vec![]);
+    let (filtered_choices, set_filtered_choices): FilteredChoicesSignals<
+        TChoiceKey,
+    > = signal(vec![]);
 
     Effect::new(move |previous_value: Option<String>| {
         let searched_text = searched_text.0.get();
@@ -140,7 +144,7 @@ where
             search_placeholder
             search_icon
             search_icon_side
-            items=filtered_choices.into()
+            items=filtered_choices
         >
         </DropdownMenu>
     }

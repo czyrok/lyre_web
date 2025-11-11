@@ -35,8 +35,7 @@ impl GetOrderedProjectContextsUseCase {
     ) -> ServerFunctionError {
         let internal_server_error =
             InternalServerError::new_unable_to_get_project_contexts(format!(
-                "Unable to get the project contexts: `{}`",
-                error
+                "Unable to get the project contexts: {error}",
             ));
 
         internal_server_error.into()
