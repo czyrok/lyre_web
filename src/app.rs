@@ -56,6 +56,7 @@ pub fn App() -> impl IntoView {
         <Meta property="og:width" content="1747" />
         <Meta property="og:height" content="914" />
         <Meta property="og:image:type" content="image/png" />
+        <Meta property="og:image:alt" content="Image of the homepage" />
 
         <Link rel="canonical" href="https://dylan-valentin.tech" />
         <Link rel="publisher" href="https://www.linkedin.com/in/dylan-valentin" />
