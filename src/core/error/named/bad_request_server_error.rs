@@ -1,8 +1,7 @@
 use super::super::{
-    frontend_error_type::FrontedErrorType,
-    server_error_dto::ServerErrorDto,
-    server_function_error::{ServerFunctionError, ServerFunctionException},
+    frontend_error_type::FrontedErrorType, server_error_dto::ServerErrorDto,
 };
+use crate::core::error::server_function_error::ServerFunctionError;
 
 pub struct BadRequestServerError {
     error_type: Option<FrontedErrorType>,
@@ -47,12 +46,6 @@ impl From<BadRequestServerError> for ServerErrorDto {
 
 impl From<BadRequestServerError> for ServerFunctionError {
     fn from(server_error: BadRequestServerError) -> ServerFunctionError {
-        ServerFunctionError::WrappedServerError(server_error.into())
-    }
-}
-
-impl From<BadRequestServerError> for ServerFunctionException {
-    fn from(server_error: BadRequestServerError) -> ServerFunctionException {
-        ServerFunctionException::WrappedServerError(server_error.into())
+        ServerFunctionError(server_error.into())
     }
 }

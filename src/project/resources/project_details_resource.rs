@@ -1,7 +1,10 @@
 use leptos::prelude::{Get, Resource, Signal};
 
 use crate::{
-    core::data::fetch_state::FetchState,
+    core::{
+        data::fetch_state::FetchState,
+        error::server_function_error::ServerFunctionError,
+    },
     project::{
         api::project_api::get_project, data::project::Project,
         dto::project_dto::ProjectDto,
@@ -10,14 +13,7 @@ use crate::{
 
 #[derive(Clone, Copy)]
 pub struct ProjectDetailsResource(
-    Resource<
-        Result<
-            ProjectDto,
-            leptos::prelude::ServerFnError<
-                crate::core::error::server_error_dto::ServerErrorDto,
-            >,
-        >,
-    >,
+    Resource<Result<ProjectDto, ServerFunctionError>>,
 );
 
 impl ProjectDetailsResource {

@@ -1,7 +1,10 @@
 use leptos::prelude::*;
 
 use crate::{
-    core::data::fetch_state::FetchState,
+    core::{
+        data::fetch_state::FetchState,
+        error::server_function_error::ServerFunctionError,
+    },
     project::{
         api::project_context_api::get_relevant_project_contexts,
         data::project_context::ProjectContext,
@@ -11,14 +14,7 @@ use crate::{
 
 #[derive(Clone, Copy)]
 pub struct RelevantProjectContextsResource(
-    OnceResource<
-        Result<
-            RelevantProjectContextsDto,
-            leptos::prelude::ServerFnError<
-                crate::core::error::server_error_dto::ServerErrorDto,
-            >,
-        >,
-    >,
+    OnceResource<Result<RelevantProjectContextsDto, ServerFunctionError>>,
 );
 
 impl RelevantProjectContextsResource {

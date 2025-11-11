@@ -1,7 +1,10 @@
 use leptos::prelude::OnceResource;
 
 use crate::{
-    core::data::fetch_state::FetchState,
+    core::{
+        data::fetch_state::FetchState,
+        error::server_function_error::ServerFunctionError,
+    },
     project::{
         api::project_tag_api::get_all_project_tags,
         dto::project_tags_dto::ProjectTagsDto,
@@ -11,14 +14,7 @@ use crate::{
 
 #[derive(Clone, Copy)]
 pub struct AllProjectTagsResource(
-    OnceResource<
-        Result<
-            ProjectTagsDto,
-            leptos::prelude::ServerFnError<
-                crate::core::error::server_error_dto::ServerErrorDto,
-            >,
-        >,
-    >,
+    OnceResource<Result<ProjectTagsDto, ServerFunctionError>>,
 );
 
 impl AllProjectTagsResource {

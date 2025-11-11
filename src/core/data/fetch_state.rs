@@ -1,13 +1,13 @@
 use core::fmt;
 use std::fmt::{Display, Formatter};
 
-use leptos::prelude::{Error, ServerFnError};
+use leptos::prelude::Error;
 use serde::{Deserialize, Serialize};
 use thiserror::Error;
 
 use crate::core::error::{
     server_error_dto::ServerErrorDto,
-    server_function_error::ServerFunctionException,
+    server_function_error::ServerFunctionError,
 };
 
 #[derive(Default, Serialize, Deserialize, Error, Clone, Debug)]
@@ -15,7 +15,7 @@ pub enum FetchState {
     #[default]
     Pending,
     Resolved,
-    Errored(ServerFunctionException),
+    Errored(ServerFunctionError),
 }
 
 impl FetchState {
@@ -31,7 +31,7 @@ impl FetchState {
         false
     }
 
-    pub fn unwrap_error(self) -> ServerFunctionException {
+    pub fn unwrap_error(self) -> ServerFunctionError {
         if let FetchState::Errored(error) = self {
             return error;
         }
@@ -42,7 +42,7 @@ impl FetchState {
     pub fn get_error_dto_from(error: Error) -> Option<ServerErrorDto> {
         let error = error.into_inner();
 
-        if let Some(FetchState::Errored(ServerFnError::WrappedServerError(
+        if let Some(FetchState::Errored(ServerFunctionError(
             server_error_dto,
         ))) = error.downcast_ref::<FetchState>()
         {
@@ -55,6 +55,6 @@ impl FetchState {
 
 impl Display for FetchState {
     fn fmt(&self, formatter: &mut Formatter) -> fmt::Result {
-        write!(formatter, "{:?}", self)
+        write!(formatter, "{self:?}")
     }
 }

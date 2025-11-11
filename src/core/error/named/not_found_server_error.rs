@@ -1,8 +1,7 @@
 use super::super::{
-    frontend_error_type::FrontedErrorType,
-    server_error_dto::ServerErrorDto,
-    server_function_error::{ServerFunctionError, ServerFunctionException},
+    frontend_error_type::FrontedErrorType, server_error_dto::ServerErrorDto,
 };
+use crate::core::error::server_function_error::ServerFunctionError;
 
 pub struct NotFoundServerError {
     error_type: Option<FrontedErrorType>,
@@ -40,12 +39,6 @@ impl From<NotFoundServerError> for ServerErrorDto {
 
 impl From<NotFoundServerError> for ServerFunctionError {
     fn from(server_error: NotFoundServerError) -> ServerFunctionError {
-        ServerFunctionError::WrappedServerError(server_error.into())
-    }
-}
-
-impl From<NotFoundServerError> for ServerFunctionException {
-    fn from(server_error: NotFoundServerError) -> ServerFunctionException {
-        ServerFunctionException::WrappedServerError(server_error.into())
+        ServerFunctionError(server_error.into())
     }
 }
