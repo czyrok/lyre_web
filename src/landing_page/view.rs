@@ -1,4 +1,5 @@
 use leptos::prelude::*;
+use leptos_meta::*;
 
 use crate::{
     core::data::icon_set::IconSet,
@@ -20,6 +21,19 @@ use crate::{
 #[component]
 pub fn LandingPage() -> impl IntoView {
     view! {
+        <Title text="Dylan Valentin | Développeur Fullstack" />
+
+        <Meta name="author" content="Dylan Valentin" />
+        <Meta name="description" content="Développeur Fullstack en freelance, je transforme les idées en solutions techniques. Mon parcours, de Kepler à Ubikap, allie passion pour la tech et flexibilité du freelance. Découvrez mes projets !" />
+        <Meta name="keywords" content="programmation, développement web, développement logiciel, application PC, navigateur web,
+        informatique, BUT Informatique, IUT Lyon 1, études informatiques,
+        compétences techniques, freelance, développeur freelance,
+        flexibilité, gestion de projets, clients, entrepreneuriat, entreprise, Ubikap, alternance,
+        développement full-stack, design web, innovation, projets digitaux, auto-entrepreneur" />
+
+        <Meta property="og:title" content="Dylan Valentin | Développeur Fullstack" />
+        <Meta property="og:description" content="Développeur Fullstack en freelance, je transforme les idées en solutions techniques. Mon parcours, de Kepler à Ubikap, allie passion pour la tech et flexibilité du freelance. Découvrez mes projets !" />
+
         <div class="tw-landing-page">
             <div id="top" class="tw-anchor"></div>
 

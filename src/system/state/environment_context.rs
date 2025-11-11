@@ -6,6 +6,7 @@ use serde::Deserialize;
 pub struct EnvironmentContext {
     pub project_data_dir_path: String,
     pub content_totp_uri: String,
+    pub full_website_url: String,
 
     // This variable is used by SQLx (for macros)
     // And we can't change the name
