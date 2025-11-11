@@ -1,13 +1,13 @@
-use leptos::{prelude::ServerFnError, server, server_fn::codec::GetUrl};
+use leptos::{server, server_fn::codec::GetUrl};
 
 use crate::{
-    core::error::server_error_dto::ServerErrorDto,
+    core::error::server_function_error::ServerFunctionError,
     project::dto::project_tags_dto::ProjectTagsDto,
 };
 
 #[server(prefix = "/api", endpoint = "project_tags", input = GetUrl)]
 pub async fn get_all_project_tags(
-) -> Result<ProjectTagsDto, ServerFnError<ServerErrorDto>> {
+) -> Result<ProjectTagsDto, ServerFunctionError> {
     use crate::{
         project::use_cases::get_all_project_tags_use_case::GetAllProjectTagsUseCase,
         system::{

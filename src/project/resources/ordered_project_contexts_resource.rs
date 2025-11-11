@@ -4,6 +4,7 @@ use crate::{
     core::{
         data::fetch_state::FetchState,
         dto::cursor_pagination_dto::CursorPaginationDto,
+        error::server_function_error::ServerFunctionError,
     },
     project::{
         api::project_context_api::get_ordered_project_contexts,
@@ -17,14 +18,7 @@ use crate::{
 
 #[derive(Clone, Copy)]
 pub struct OrderedProjectContextsResource(
-    Resource<
-        Result<
-            ProjectContextsDto,
-            leptos::prelude::ServerFnError<
-                crate::core::error::server_error_dto::ServerErrorDto,
-            >,
-        >,
-    >,
+    Resource<Result<ProjectContextsDto, ServerFunctionError>>,
 );
 
 impl OrderedProjectContextsResource {

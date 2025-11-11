@@ -4,10 +4,7 @@ use leptos_axum::ResponseOptions;
 
 use crate::core::{
     behaviors::use_case::UseCase,
-    error::{
-        named::internal_server_error::InternalServerError,
-        server_function_error::{ServerFunctionError, ServerFunctionException},
-    },
+    error::server_function_error::ServerFunctionError,
 };
 
 pub async fn run_use_case<
@@ -17,27 +14,19 @@ pub async fn run_use_case<
 >(
     mut use_case: TUseCase,
     options: TInput,
-) -> Result<TOutput, ServerFunctionException> {
-    let response = expect_context::<ResponseOptions>();
-
+) -> Result<TOutput, ServerFunctionError> {
     let ok_result = match use_case.run(options).await {
         Ok(ok_result) => ok_result,
-        Err(error) => match error {
-            ServerFunctionError::WrappedServerError(value) => {
-                response.set_status(
-                    StatusCode::from_u16(value.status_code)
-                        .unwrap_or(StatusCode::INTERNAL_SERVER_ERROR),
-                );
+        Err(error) => {
+            let response = expect_context::<ResponseOptions>();
 
-                return Err(ServerFunctionException::WrappedServerError(value));
-            }
-            _ => {
-                return Err(InternalServerError::new(Some(
-                    "Very unknown error".into(),
-                ))
-                .into())
-            }
-        },
+            response.set_status(
+                StatusCode::from_u16(error.0.status_code)
+                    .unwrap_or(StatusCode::INTERNAL_SERVER_ERROR),
+            );
+
+            return Err(error);
+        }
     };
 
     Ok(ok_result)

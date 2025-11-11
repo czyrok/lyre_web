@@ -1,7 +1,5 @@
 use leptos::prelude::*;
 
-use crate::core::data::fetch_state::FetchState;
-
 #[component]
 pub fn ErrorsDisplay(errors: ArcRwSignal<Errors>) -> impl IntoView {
     view! {

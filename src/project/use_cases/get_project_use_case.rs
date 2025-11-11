@@ -34,8 +34,7 @@ impl UseCase<String, ProjectDto> for GetProjectUseCase {
             Err(error) => {
                 let internal_server_error =
                     InternalServerError::new_unable_to_get_project(format!(
-                        "Unable to get the project: `{}`",
-                        error
+                        "Unable to get the project: `{error}`",
                     ));
 
                 return Err(internal_server_error.into());
@@ -47,7 +46,7 @@ impl UseCase<String, ProjectDto> for GetProjectUseCase {
         }
 
         let not_found_error = NotFoundServerError::new_project_not_found(
-            format!("This project `{}` doesn't exist", slug),
+            format!("This project `{slug}` doesn't exist"),
         );
 
         Err(not_found_error.into())

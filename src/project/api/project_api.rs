@@ -1,18 +1,17 @@
 use leptos::{
-    prelude::ServerFnError,
     server,
     server_fn::codec::{GetUrl, PostUrl},
 };
 
 use crate::{
-    core::error::server_error_dto::ServerErrorDto,
+    core::error::server_function_error::ServerFunctionError,
     project::dto::project_dto::ProjectDto,
 };
 
 #[server(prefix = "/api", endpoint = "projects", input = GetUrl)]
 pub async fn get_project(
     slug: String,
-) -> Result<ProjectDto, ServerFnError<ServerErrorDto>> {
+) -> Result<ProjectDto, ServerFunctionError> {
     use crate::{
         project::use_cases::get_project_use_case::GetProjectUseCase,
         system::{
@@ -31,7 +30,7 @@ pub async fn get_project(
 #[server(prefix = "/api", endpoint = "projects", input = PostUrl)]
 pub async fn refresh_project_cache(
     totp_token: String,
-) -> Result<(), ServerFnError<ServerErrorDto>> {
+) -> Result<(), ServerFunctionError> {
     use http::StatusCode;
     use leptos::prelude::expect_context;
     use leptos_axum::ResponseOptions;
