@@ -46,7 +46,30 @@ pub fn App() -> impl IntoView {
     });
 
     view! {
-        <Title text="Welcome to Leptos"/>
+        <Meta charset="utf-8"/>
+        <Meta name="viewport" content="width=device-width, initial-scale=1" />
+        <Meta name="robots" content="index, follow" />
+
+        <Meta property="og:url" content="https://dylan-valentin.tech" />
+        <Meta property="og:type" content="website" />
+        <Meta property="og:image" content="https://dylan-valentin.tech/images/social.png" />
+        <Meta property="og:width" content="1747" />
+        <Meta property="og:height" content="914" />
+        <Meta property="og:image:type" content="image/png" />
+
+        <Link rel="canonical" href="https://dylan-valentin.tech" />
+        <Link rel="publisher" href="https://www.linkedin.com/in/dylan-valentin" />
+
+        //// It's only useful when `@media (prefers-color-scheme: dark)` is used
+        // <Meta name="color-scheme" content="dark light"/>
+
+        <Link rel="shortcut icon" type_="image/svg+xml" href="/images/favicon.svg" />
+
+        // Preloading
+        <Link id="theme" rel="stylesheet" href="/tailwind_output.css" crossorigin="" />
+        <Link rel="preload" href="/fonts/GeistMono-1.3.0/variable-woff/GeistMonoVF.woff" as_="font" type_="font/woff2" crossorigin="" />
+        <Link rel="preload" href="/fonts/Geist-1.3.0/variable-woff/GeistVF.woff" as_="font" type_="font/woff2" crossorigin="" />
+        <Link rel="preload" href="/backgrounds/button_rectangle_background.svg" as_="image" type_="image/svg+xml" crossorigin="" />
 
         <div
             id="style-settings"

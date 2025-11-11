@@ -12,28 +12,31 @@ pub fn shell(options: LeptosOptions) -> impl IntoView {
     #[cfg(not(feature = "ssr"))]
     let nonce = None::<String>;
 
+    let schema_markup_content = "{
+        \"@context\": \"https://schema.org\",\
+        \"@type\": \"Person\",\
+        \"name\": \"Dylan Valentin\",\
+        \"url\": \"https://dylan-valentin.tech\",\
+        \"sameAs\": [\
+            \"https://www.linkedin.com/in/dylan-valentin\",\
+            \"https://github.com/czyrok\"\
+        ],\
+        \"jobTitle\": \"Développeur Fullstack\",\
+        \"worksFor\": {\
+            \"@type\": \"Organization\",\
+            \"name\": \"Freelance\"\
+        }\
+    }";
+
     view! {
         <!DOCTYPE html>
-        <html lang="fr">
+        <html lang="fr-FR">
             <head>
-                <meta charset="utf-8"/>
-                <meta name="viewport" content="width=device-width, initial-scale=1"/>
-
                 <AutoReload options=options.clone()/>
                 <HydrationScripts options/>
                 <MetaTags/>
 
-                //// It's only useful when `@media (prefers-color-scheme: dark)` is used
-                // <Meta name="color-scheme" content="dark light"/>
-
-                // TODO: favicon
-                //<Link rel="shortcut icon" type_="image/ico" href="/favicon.ico"/>
-
-                // Preloading
-                <Link id="theme" rel="stylesheet" href="/tailwind_output.css" crossorigin="" />
-                <Link rel="preload" href="/fonts/GeistMono-1.3.0/variable-woff/GeistMonoVF.woff" as_="font" type_="font/woff2" crossorigin="" />
-                <Link rel="preload" href="/fonts/Geist-1.3.0/variable-woff/GeistVF.woff" as_="font" type_="font/woff2" crossorigin="" />
-                <Link rel="preload" href="/backgrounds/button_rectangle_background.svg" as_="image" type_="image/svg+xml" crossorigin="" />
+                <script type="application/ld+json" inner_html=schema_markup_content nonce=nonce.clone()/>
 
                 // Polyfills
                 <script type="module" nonce=nonce>

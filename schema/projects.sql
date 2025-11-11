@@ -6,5 +6,7 @@ CREATE    TABLE `projects` (
           `image_url` VARCHAR(255) NOT NULL,
           `date` DATE NOT NULL,
           `content` TEXT NOT NULL,
+          `description` TEXT NOT NULL,
+          `meta_keywords` TEXT NOT NULL,
           FOREIGN KEY (`next_slug`) REFERENCES `projects` (`slug`)
           );
