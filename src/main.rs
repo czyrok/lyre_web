@@ -21,11 +21,13 @@ if #[cfg(feature = "ssr")] {
     use system::state::app_state::AppState;
     use leptos_axum::{LeptosRoutes};
     use system::handlers::file_and_error_handler::file_and_error_handler;
-    use system::route::static_route_generator::get_static_route_generator;
-    use system::handlers::{server_function_handler::server_function_handler, leptos_route_handler::leptos_routes_handler};
+    use system::route::{static_route_generator::get_static_route_generator, sitemap_entries_resolver::resolve_sitemap_entries};
+    use system::handlers::{server_function_handler::server_function_handler, leptos_route_handler::leptos_routes_handler, sitemap_handler::sitemap_handler};
     use project::use_cases::make_system_project_cache_loading_use_case::MakeSystemProjectCacheLoadingUseCase;
     use core::behaviors::use_case::UseCase;
     use system::state::environment_context::EnvironmentContext;
+    use sitemap_generator::{SitemapBuilder, UrlEntry, ChangeFreq};
+    use chrono::Utc;
 
     fn get_app_state() -> Result<AppState, Box<dyn Error>> {
         let environment = EnvironmentContext::load_environment()?;
@@ -48,7 +50,19 @@ if #[cfg(feature = "ssr")] {
 
         static_routes.generate(&app_state.options).await;
 
+        let sitemap_entries = resolve_sitemap_entries(app_state.clone(), vec![
+            UrlEntry::new("").changefreq(ChangeFreq::Monthly).priority(1.0).lastmod(Utc::now().format("%Y-%m-%d").to_string()),
+            UrlEntry::new("/projects").changefreq(ChangeFreq::Monthly).priority(0.8).lastmod(Utc::now().format("%Y-%m-%d").to_string())
+        ]).await;
+
         let app = Router::new()
+            .route("/sitemap.xml", get(|| {
+                let mut builder = SitemapBuilder::new();
+
+                builder.add_urls(sitemap_entries);
+
+                sitemap_handler(builder)
+            }))
             .route(
                 "/api/{*fn_name}",
                 get(server_function_handler).post(server_function_handler),
