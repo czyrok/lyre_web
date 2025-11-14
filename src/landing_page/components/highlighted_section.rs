@@ -19,7 +19,7 @@ pub fn HighlightedSection() -> impl IntoView {
 
                         <p>
                             "Tout a commencé lors du 1er confinement, par ennui j'ai commencé la "
-                            <b>"programmation"</b>
+                            <strong>"programmation"</strong>
                             " (j'avais déjà un pas dans ce domaine grâce à mon père). Cela s'est traduit par la création d'une application PC pour accéder à un jeu en ligne (un serveur privé Habbo). Cette application a fini par se transformer en navigateur web, "
                             <Link size=ComponentSize::MD text="Kepler" href="/project/kepler/" />
                             " qui a connu de nombreuses mises à jour pendant 1 an. Après mon Bac, j'ai décidé de continuer mes études dans l'informatique."
@@ -31,7 +31,7 @@ pub fn HighlightedSection() -> impl IntoView {
 
                         <p>
                             "J'ai donc intégré l'"
-                            <b>"IUT Lyon 1"</b>
+                            <strong>"IUT Lyon 1"</strong>
                             " en BUT Informatique où j'ai pu me spécialiser davantage dans ce domaine. Au fil de mes années en BUT, j'ai réalisé plusieurs projets perso. mais aussi des projets tuteurés (dans le cadre de ma formation) qui m'ont permis d'acquérir de nouvelles compétences. En 2023, une occasion de job d'été en tant qu'indépendant s'est présentée, c'est à ce moment-là que j'ai pu découvrir le freelance (j'étais alors en 2e année)."
                         </p>
                     </div>
@@ -40,10 +40,10 @@ pub fn HighlightedSection() -> impl IntoView {
                         <span class="tw-item-date">2024</span>
 
                         <p>
-                            "À la suite de mon BUT j'ai décidé d'arrêter mes études pour me consacrer à temps plein au métier de freelance. Ce métier me permet une grande "
-                            <b>"flexibilité"</b>
+                            "À la suite de mon BUT, j'ai décidé d'arrêter mes études pour me consacrer à temps plein au métier de freelance. Ce métier me permet une grande "
+                            <strong>"flexibilité"</strong>
                             " mais aussi l'occasion de voir toutes sortes de projets différents grâce à mes clients. Par ailleurs, ça me permet de mon côté d'avancer sur des projets perso. qui pourront sortir sous le pavillon de mon entreprise. Aujourd'hui, je travaille pour "
-                            <b>"Ubikap"</b>
+                            <strong>"Ubikap"</strong>
                             " en freelance qui était mon entreprise d'alternance en 3e année."
                         </p>
                     </div>

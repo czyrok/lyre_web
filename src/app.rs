@@ -70,7 +70,6 @@ pub fn App() -> impl IntoView {
         <Link id="theme" rel="stylesheet" href="/tailwind_output.css" crossorigin="" />
         <Link rel="preload" href="/fonts/GeistMono-1.3.0/variable-woff/GeistMonoVF.woff" as_="font" type_="font/woff2" crossorigin="" />
         <Link rel="preload" href="/fonts/Geist-1.3.0/variable-woff/GeistVF.woff" as_="font" type_="font/woff2" crossorigin="" />
-        <Link rel="preload" href="/backgrounds/button_rectangle_background.svg" as_="image" type_="image/svg+xml" crossorigin="" />
 
         <div
             id="style-settings"

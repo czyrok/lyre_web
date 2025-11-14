@@ -1,4 +1,5 @@
 use leptos::prelude::*;
+use leptos_meta::*;
 
 use crate::{
     core::data::icon_set::IconSet,
@@ -17,22 +18,20 @@ use crate::{
 #[component]
 pub fn ContactSection() -> impl IntoView {
     view! {
-        //// Causes issue in static mode when I go to '/projects' from '/'
-        //// The head of the document will be impacted, and, Tailwind output will not be loaded
-        // <Link rel="preload" href="/images/ma_photo.png" as_="image" type_="image/png" />
+        <Link rel="preload" href="/images/ma_photo.webp" as_="image" type_="image/webp" />
 
         <div class="tw-landing-page-section-container tw-landing-page-contact-section">
             <div id="contact" class="tw-anchor"></div>
 
             <div class="tw-section-photo">
-                <img src="/images/ma_photo.png" alt="Photo of the owner of the website" />
+                <img src="/images/ma_photo.webp" alt="Photo of the owner of the website" />
             </div>
 
             <div class="tw-section-right">
                 <div class="tw-section-text">
                     <h1 class="tw-title-size-xl">"Contact"</h1>
 
-                    <p>"Même si dans l'instant je suis occupé, ma porte est toujours ouverte pour discuter. Alors n'hésite pas !"</p>
+                    <p>"Toujours dans l'attente de nouveaux challenges, ma porte est toujours ouverte pour discuter. Alors n'hésite pas !"</p>
                 </div>
 
                 <div class="tw-section-actions">

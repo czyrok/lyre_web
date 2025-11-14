@@ -51,7 +51,7 @@ pub fn Brand(
             {move || has_name.then(|| {
                 view! {
                     <span class="tw-brand-name">
-                        "D. Valentin"
+                        "Dylan V."
                     </span>
                 }
             })}
