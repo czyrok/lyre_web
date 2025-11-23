@@ -4,4 +4,4 @@ Allow: /projects
 Allow: /project/
 Disallow:
 
-Sitemap: https://dylan-valentin.tech/sitemap.xml
+Sitemap: https://dylan-valentin.dev/sitemap.xml

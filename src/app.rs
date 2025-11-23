@@ -50,15 +50,15 @@ pub fn App() -> impl IntoView {
         <Meta name="viewport" content="width=device-width, initial-scale=1" />
         <Meta name="robots" content="index, follow" />
 
-        <Meta property="og:url" content="https://dylan-valentin.tech" />
+        <Meta property="og:url" content="https://dylan-valentin.dev" />
         <Meta property="og:type" content="website" />
-        <Meta property="og:image" content="https://dylan-valentin.tech/images/social.png" />
+        <Meta property="og:image" content="https://dylan-valentin.dev/images/social.png" />
         <Meta property="og:width" content="1747" />
         <Meta property="og:height" content="914" />
         <Meta property="og:image:type" content="image/png" />
         <Meta property="og:image:alt" content="Image of the homepage" />
 
-        <Link rel="canonical" href="https://dylan-valentin.tech" />
+        <Link rel="canonical" href="https://dylan-valentin.dev" />
         <Link rel="publisher" href="https://www.linkedin.com/in/dylan-valentin" />
 
         //// It's only useful when `@media (prefers-color-scheme: dark)` is used

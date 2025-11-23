@@ -64,10 +64,10 @@ COPY --from=builder /project/dist/lyre_web /app/
 COPY --from=builder /project/dist/site /app/site
 
 ENV RUST_LOG=info
-ENV LEPTOS_SITE_ADDR=dylan.valentin.tech
+ENV LEPTOS_SITE_ADDR=dylan-valentin.dev
 ENV LEPTOS_SITE_ROOT=./site
 ENV CARGO_MAKE_PROFILE=release
-ENV FULL_WEBSITE_URL="https://dylan.valentin.tech"
+ENV FULL_WEBSITE_URL="https://dylan-valentin.dev"
 
 EXPOSE 8507
 ENTRYPOINT ["/app/lyre_web"]

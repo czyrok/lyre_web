@@ -16,7 +16,7 @@ pub fn shell(options: LeptosOptions) -> impl IntoView {
         \"@context\": \"https://schema.org\",\
         \"@type\": \"Person\",\
         \"name\": \"Dylan Valentin\",\
-        \"url\": \"https://dylan-valentin.tech\",\
+        \"url\": \"https://dylan-valentin.dev\",\
         \"sameAs\": [\
             \"https://www.linkedin.com/in/dylan-valentin\",\
             \"https://github.com/czyrok\"\

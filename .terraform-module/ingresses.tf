@@ -13,7 +13,7 @@ resource "kubernetes_ingress_v1" "lyre_web_ingress" {
 
     spec {
         rule {
-            host = var.is_development_environment ? "localhost" : "dylan-valentin.tech"
+            host = var.is_development_environment ? "localhost" : "dylan-valentin.dev"
             http {
                 path {
                     path = "/"

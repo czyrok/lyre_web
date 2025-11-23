@@ -18,7 +18,7 @@ entryPoints:
 # certificatesResolvers:
 #   letsencrypt:
 #     acme:
-#       email: me@dylan.valentin.tech
+#       email: me@dylan-valentin.dev
 #       storage: acme.json
 #       httpChallenge:
 #         entryPoint: https
