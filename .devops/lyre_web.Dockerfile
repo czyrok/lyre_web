@@ -36,7 +36,7 @@ RUN \
   --mount=type=bind,readonly,source=./bun.lock,target=/project/bun.lock \
   --mount=type=bind,readonly,source=./Makefile.toml,target=/project/Makefile.toml \
   --mount=type=bind,readonly,source=./makefiles,target=/project/makefiles \
-  --mount=type=bind,source=./assets,target=/project/assets \
+  --mount=type=bind,readonly,source=./assets,target=/project/assets \
   --mount=type=bind,readonly,source=./project_data,target=/project/project_data \
   --mount=type=bind,readonly,source=./tailwind,target=/project/tailwind \
   --mount=type=bind,readonly,source=./local.db,target=/project/local.db \
