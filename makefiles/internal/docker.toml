@@ -1,5 +1,5 @@
 [env]
-DOCKER_IMAGE_PLATFORM = { value = "arm64", condition = { env_not_set = ["DOCKER_IMAGE_PLATFORM"] } }
+DOCKER_IMAGE_PLATFORM = { value = "amd64", condition = { env_not_set = ["DOCKER_IMAGE_PLATFORM"] } }
 DOCKER_IMAGE_PLATFORM_LONG = { script = ["""
     if [ "${DOCKER_IMAGE_PLATFORM}" = "arm64" ]; then
         echo "linux/arm64"
