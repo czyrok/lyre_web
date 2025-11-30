@@ -5,7 +5,7 @@ FROM rustlang/rust:nightly-alpine as installer
 RUN \
   apk update \
   && apk add --no-cache curl bash libc-dev binaryen \
-  && curl --proto '=https' --tlsv1.2 -LsSf https://github.com/leptos-rs/cargo-leptos/releases/download/v0.2.37/cargo-leptos-installer.sh | sh \
+  && curl --proto '=https' --tlsv1.2 -LsSf https://github.com/leptos-rs/cargo-leptos/releases/download/v0.2.47/cargo-leptos-installer.sh | sh \
   && curl --proto '=https' --tlsv1.3 -LsSf https://bun.com/install | bash -s "bun-v1.2.18" \
   && cargo install --no-default-features --debug cargo-make
 
