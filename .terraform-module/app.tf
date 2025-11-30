@@ -42,7 +42,7 @@ resource "kubernetes_deployment" "app" {
 
       spec {
         container {
-          image = "${var.local_docker_registry_host}/lyre/lyre_web:latest-arm64"
+          image = "${var.local_docker_registry_host}/lyre/lyre_web:latest-amd64"
           image_pull_policy = "Always"
           name  = "app"
 
