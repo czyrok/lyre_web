@@ -35,7 +35,7 @@ pub fn ContactSection() -> impl IntoView {
                 </div>
 
                 <div class="tw-section-actions">
-                    <PrimaryButtonAsLink size=ComponentSize::LG text="Par Mail" href="mailto:dylanvalentin2003@gmail.com" icon=IconSet::External icon_side=IconSide::Right/>
+                    <PrimaryButtonAsLink size=ComponentSize::LG text="Par Mail" href="mailto:pro@dylan-valentin.dev" icon=IconSet::External icon_side=IconSide::Right/>
                     <SecondaryButtonAsLink size=ComponentSize::LG text="LinkedIn" href="https://www.linkedin.com/in/dylan-valentin/" icon=IconSet::LinkedIn icon_side=IconSide::Right target="_blank"/>
                 </div>
             </div>
