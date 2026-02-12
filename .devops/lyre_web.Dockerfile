@@ -64,7 +64,7 @@ COPY --from=builder /project/dist/lyre_web /app/
 COPY --from=builder /project/dist/site /app/site
 
 ENV RUST_LOG=info
-ENV LEPTOS_SITE_ADDR=dylan-valentin.dev
+ENV LEPTOS_SITE_ADDR=0.0.0.0:8507
 ENV LEPTOS_SITE_ROOT=./site
 ENV CARGO_MAKE_PROFILE=release
 ENV FULL_WEBSITE_URL="https://dylan-valentin.dev"
