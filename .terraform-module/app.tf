@@ -82,7 +82,10 @@ resource "kubernetes_service" "app" {
     type = "ClusterIP"
   }
 
-  depends_on = [ var.wait_for ]
+  depends_on = [
+    var.wait_for,
+    kubernetes_deployment.app
+  ]
 }
 
 resource "kubernetes_pod_disruption_budget_v1" "app" {
