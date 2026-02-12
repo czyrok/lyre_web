@@ -10,7 +10,7 @@ jobs:
   docker-image-to-registry:
     environment: release
 
-    # TODO: gérer platform matrix...
+    # TODO: gérer platform matrix....
     runs-on: ubuntu-latest
     permissions:
       contents: read
