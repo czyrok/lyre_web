@@ -18,6 +18,8 @@ jobs:
     services:
       registry:
         image: registry:2
+        ports:
+          - "5000:5000"
         env:
           REGISTRY_STORAGE: s3
           REGISTRY_STORAGE_S3_REGION: ${{ secrets.DOCKER_IMAGE_REGISTRY_BUCKET_REGION }}
