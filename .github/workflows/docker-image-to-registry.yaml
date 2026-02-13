@@ -62,10 +62,10 @@ jobs:
         id: docker-layer-cache-restore
         uses: actions/cache/restore@v4
         with:
-          key: ${{ runner.os }}-buildx-${{ github.sha }}
+          key: ${{ matrix.target-arch }}-build-${{ github.sha }}
           path: ${{ runner.temp }}/.buildx-cache
           restore-keys: |
-            ${{ runner.os }}-buildx-
+            ${{ matrix.target-arch }}-build-
       
       - name: Build Docker image
         uses: actions-rs/cargo@v1
