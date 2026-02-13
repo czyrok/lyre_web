@@ -10,7 +10,13 @@ jobs:
   docker-image-to-registry:
     environment: release
 
-    # TODO: gérer platform matrix....
+    strategy:
+      fail-fast: false
+      matrix:
+        target-arch:
+          - amd64
+          - arm64
+
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -40,6 +46,9 @@ jobs:
           command: install
           args: --no-default-features --debug cargo-make
 
+      - name: Set up QEMU (for multi-platform builds)
+        uses: docker/setup-qemu-action@v3
+
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
         with:
@@ -64,6 +73,7 @@ jobs:
           DOCKER_BUILDX_CACHE_FROM_PATH: ${{ runner.temp }}/.buildx-cache
           DOCKER_BUILDX_CACHE_TO_PATH: ${{ runner.temp }}/.buildx-cache
           LOCAL_DOCKER_REGISTRY_AS_PROXY: localhost:5000
+          DOCKER_IMAGE_PLATFORM: ${{ matrix.target-arch }}
         with:
           command: make
           args: registry-docker-image
