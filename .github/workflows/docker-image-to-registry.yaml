@@ -18,8 +18,6 @@ jobs:
     services:
       registry:
         image: registry:2
-        ports:
-          - "0.0.0.0:60471:5000"
         env:
           REGISTRY_STORAGE: s3
           REGISTRY_STORAGE_S3_REGION: ${{ secrets.DOCKER_IMAGE_REGISTRY_BUCKET_REGION }}
@@ -60,7 +58,7 @@ jobs:
         env:
           DOCKER_BUILDX_CACHE_FROM_PATH: ${{ runner.temp }}/.buildx-cache
           DOCKER_BUILDX_CACHE_TO_PATH: ${{ runner.temp }}/.buildx-cache
-          LOCAL_DOCKER_REGISTRY_AS_PROXY: registry:60471
+          LOCAL_DOCKER_REGISTRY_AS_PROXY: registry:5000
         with:
           command: make
           args: registry-docker-image
