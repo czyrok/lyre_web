@@ -5,9 +5,16 @@ resource "kubernetes_ingress_v1" "lyre_web_ingress" {
         namespace = var.namespace_name
 
         annotations = {
-            "traefik.ingress.kubernetes.io/router.entrypoints" = "websecure"
+            "kubernetes.io/ingress.class" = "traefik"
+            "traefik.ingress.kubernetes.io/router.entrypoints" = "web,websecure" # j'ai l'impression que ça marche avec web, le issuing du certificat
             "traefik.ingress.kubernetes.io/router.middlewares" = "${var.namespace_name}-${kubectl_manifest.compress_middleware.name}@kubernetescrd"
-            "traefik.ingress.kubernetes.io/router.tls.certresolver" = var.is_development_environment ? null : "letsencrypt"
+            "traefik.ingress.kubernetes.io/router.tls" = "true"
+            "cert-manager.io/issuer" = "lyre-web-letsencrypt"
+            # "traefik.ingress.kubernetes.io/router.tls.certresolver" = var.is_development_environment ? null : "letsencrypt"
+            # "traefik.ingress.kubernetes.io/router.tls.certificateRefs.name" = var.is_development_environment ? null : "lyre-web-letsencrypt"
+            # "traefik.ingress.kubernetes.io/certificatesresolvers.le.acme.email" = "pro@dylan-valentin.dev"
+            # "traefik.ingress.kubernetes.io/certificatesresolvers.le.acme.storage" = "/data/acme.json"
+            # "traefik.ingress.kubernetes.io/certificatesresolvers.le.acme.httpchallenge.entrypoint" = "web"
         }
     }
 
@@ -29,11 +36,18 @@ resource "kubernetes_ingress_v1" "lyre_web_ingress" {
                 }
             }
         }
+
+        # tls {
+        #     secret_name = "lyre-web-letsencrypt"
+        # }
+   
     }
 
     depends_on = [
         var.wait_for,
         kubectl_manifest.compress_middleware,
+        kubectl_manifest.certificate_issuer,
+        kubectl_manifest.certificate,
         kubernetes_service.app,
     ]
 }
@@ -55,3 +69,75 @@ resource "kubectl_manifest" "compress_middleware" {
         var.wait_for,
     ]
 }
+
+# replace to use https://acme-v02.api.letsencrypt.org/directory
+resource "kubectl_manifest" "certificate_issuer" {
+    yaml_body = <<-EOF
+        apiVersion: cert-manager.io/v1
+        kind: Issuer
+        metadata:
+            name: certificate-issuer
+            namespace: ${var.namespace_name}
+        spec:
+            acme:
+                email: pro@dylan-valentin.dev
+                server: https://acme-staging-v02.api.letsencrypt.org/directory
+                privateKeySecretRef:
+                    name: lyre-web-letsencrypt
+                solvers:
+                    - http01:
+                        ingress:
+                            class: traefik
+    EOF
+
+    depends_on = [
+        var.wait_for,
+    ]
+}
+# TODO: use var for lyre-web-ingress
+
+resource "kubectl_manifest" "certificate" {
+    # TODO: use var for "lyre-web-letsencrypt"
+    yaml_body = <<-EOF
+        apiVersion: cert-manager.io/v1
+        kind: Certificate
+        metadata:
+            name: certificate
+            namespace: ${var.namespace_name}
+        spec:
+            secretName: lyre-web-letsencrypt
+            dnsNames:
+                - "dylan-valentin.dev"
+            issuerRef:
+                name: certificate-issuer
+                kind: Issuer
+    EOF
+
+    depends_on = [
+        var.wait_for,
+    ]
+}
+
+
+
+# resource "kubectl_manifest" "certificate_resolver" {
+#   yaml_body = <<-EOF
+#     apiVersion: traefik.io/v1alpha1
+#     kind: Ingeress
+#     metadata:
+#         name: certificate-resolver
+#         namespace: ${var.namespace_name}
+#     spec:
+#         certificatesResolvers:
+#             letsencrypt:
+#             acme:
+#                 email: pro@dylan-valentin.dev
+#                 storage: acme.json
+#                 httpChallenge:
+#                     entryPoint: web
+#     EOF
+
+#     depends_on = [
+#         var.wait_for,
+#     ]
+# }
