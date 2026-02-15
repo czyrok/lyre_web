@@ -20,6 +20,16 @@ variable "is_development_environment" {
   description = "Tells to the module if It should load production things like domain certificates"
 }
 
+variable "traefik_host" {
+  type        = string
+  description = "Tells to the module the host to use for Traefik"
+}
+
+variable "traefik_tls_cert_resolver" {
+  type        = string
+  description = "Tells to the module the certificate resolver to use for Traefik for the provided host"
+}
+
 variable "wait_for" {
   type = list(string)
   default = []

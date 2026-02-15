@@ -1,5 +1,4 @@
 
-# TODO: passer en input le letsencrypt et le host dylan-valentin.dev
 resource "kubernetes_ingress_v1" "lyre_web_ingress" {
     metadata {
         name = "lyre-web-ingress"
@@ -8,14 +7,14 @@ resource "kubernetes_ingress_v1" "lyre_web_ingress" {
         annotations = {
             "traefik.ingress.kubernetes.io/router.entrypoints" = "web,websecure"
             "traefik.ingress.kubernetes.io/router.middlewares" = "${var.namespace_name}-${kubectl_manifest.compress_middleware.name}@kubernetescrd"
-            "traefik.ingress.kubernetes.io/router.tls" = "true"
-            "traefik.ingress.kubernetes.io/router.tls.certresolver" = var.is_development_environment ? null : "letsencrypt"
+            "traefik.ingress.kubernetes.io/router.tls" = var.is_development_environment ? null : "true"
+            "traefik.ingress.kubernetes.io/router.tls.certresolver" = var.is_development_environment ? null : var.traefik_tls_cert_resolver
         }
     }
 
     spec {
         rule {
-            host = var.is_development_environment ? "localhost" : "dylan-valentin.dev"
+            host = var.is_development_environment ? "localhost" : var.traefik_host
             http {
                 path {
                     path = "/"
