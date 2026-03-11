@@ -35,4 +35,9 @@ export const THEME_SPACING: ThemeConfig['spacing'] = {
   103: '51.5em',
   119: '59.5em',
   210: '105em',
+  // Gap values to use them in margin
+  level1: '1em',
+  level2: '2em',
+  level3: '4.5em',
+  level4: '7em',
 } as const;
