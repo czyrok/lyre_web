@@ -42,29 +42,40 @@ impl ProjectContext {
     #[cfg(feature = "ssr")]
     pub fn get_formatted_date(&self) -> String {
         use icu::{
-            calendar::Date,
-            datetime::{options::length, DateFormatter},
+            calendar::DateTime,
+            datetime::{options::components, DateTimeFormatter},
             locid::Locale,
         };
 
-        let date = Date::try_new_iso_date(
+        use crate::core::helpers::string::capitalize;
+
+        let date = DateTime::try_new_iso_datetime(
             self.date.year(),
             self.date.month() as u8,
             self.date.day() as u8,
+            0,
+            0,
+            0,
         )
         .expect("Failed to construct DateTime")
         .to_any();
 
-        let locale = Locale::from_str("fr-FR").unwrap();
-        let formatter = DateFormatter::try_new_with_length(
-            &locale.into(),
-            length::Date::Long,
-        )
-        .expect("Failed to create DateTimeFormatter instance");
+        let mut bag = components::Bag::default();
+        bag.month = Some(components::Month::Long);
+        bag.year = Some(components::Year::Numeric);
 
-        formatter
+        let options = icu::datetime::DateTimeFormatterOptions::Components(bag);
+
+        let locale = Locale::from_str("fr-FR").unwrap();
+        let formatter =
+            DateTimeFormatter::try_new_experimental(&locale.into(), options)
+                .expect("Failed to create DateTimeFormatter instance");
+
+        let formated_date = formatter
             .format_to_string(&date)
-            .expect("Calendars should match")
+            .expect("Calendars should match");
+
+        capitalize(&formated_date)
     }
 }
 
