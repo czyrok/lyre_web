@@ -21,7 +21,7 @@ pub fn HighlightedSection() -> impl IntoView {
                             "Tout a commencé lors du 1er confinement, par ennui j'ai commencé la "
                             <strong>"programmation"</strong>
                             " (j'avais déjà un pas dans ce domaine grâce à mon père). Cela s'est traduit par la création d'une application PC pour accéder à un jeu en ligne (un serveur privé Habbo). Cette application a fini par se transformer en navigateur web, "
-                            <Link size=ComponentSize::MD text="Kepler" href="/project/kepler/" />
+                            <Link size=ComponentSize::MD text="Kepler" href="/projects/kepler/" />
                             " qui a connu de nombreuses mises à jour pendant 1 an. Après mon Bac, j'ai décidé de continuer mes études dans l'informatique."
                         </p>
                     </div>
