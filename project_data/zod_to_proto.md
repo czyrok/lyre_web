@@ -21,7 +21,7 @@ links:
     icon: NPM
 ---
 
-Parmi mes hobbies, il n'y a pas seulement mon homelab, mais aussi le développement de libs open source. Mon but est d'adresser certains besoins dans de noubelles technos.
+Parmi mes hobbies, il n'y a pas seulement mon homelab, mais aussi le développement de libs **open source**. Mon but est d'adresser certains besoins dans de noubelles technos.
 
 L'un des principaux murs auquel on se confronte lorsqu'on commence à utiliser **gRPC**, c'est la rédaction des fichiers **`.proto`**. Ces fichiers reposent sur une **syntaxe** assez différente de ce qu'on trouve en TypeScript. De plus, cette syntaxe est bien plus **stricte** que celle de TS en matière de typage.
 

@@ -1,7 +1,7 @@
 ---
 next:
   slug: unified_sso_login
-title: Présence en Temps Réel
+title: Présence en direct
 image_url: XX
 start_date: 2025-03-05
 end_date: 2025-07-31
@@ -33,6 +33,6 @@ Les principales contraintes étaient les suivantes :
 
 Toute la partie **stateless** a été résolue grâce à l'utilisation de **Redis** pour mettre en cache les informations et à la **propagation** des messages via **Socket.io**.
 
-Pour la suppression du cache en cas de crash serveur, j'ai mis en place un système de *garbage collector*. Tu pourrais te demander pourquoi ne pas simplement utiliser une expiration sur le cache et laisser Redis gérer cette suppression. Bonne question ! J'ai effectivement configuré une expiration, mais avec une durée de quelques heures, correspondant à la durée de l'AG. Si j'avais opté pour une expiration plus courte (en minutes, par exemple), j'aurais dû ajouter un mécanisme pour mettre à jour en continu l'expiration des données dans le cache, ce qui aurait complexifié la gestion avec un grand volume de données. J'ai donc choisi une approche inverse : un *garbage collector* qui nettoie le cache des serveurs en cas de crash (ne t'inquiète pas, cela n'arrive jamais 😉).
+Pour la suppression du **cache** en cas de crash serveur, j'ai mis en place un système de *garbage collector*. Tu pourrais te demander pourquoi ne pas simplement utiliser une **expiration** sur le cache et laisser Redis gérer cette suppression. Bonne question ! J'ai effectivement configuré une expiration, mais avec une durée de quelques heures, correspondant à la durée de l'AG. Si j'avais opté pour une expiration plus courte (en minutes, par exemple), j'aurais dû ajouter un mécanisme pour mettre à jour en **continu** l'expiration des données dans le cache, ce qui aurait complexifié la gestion avec un grand volume de données. J'ai donc choisi une approche inverse : un *garbage collector* qui **nettoie** le cache des serveurs en cas de crash (ne t'inquiète pas, cela n'arrive jamais 😉).
 
-Pour terminer, la dernière contrainte a été rapidement résolue en stockant les identifiants des connexions actives pour chaque utilisateur dans le cache. Dès qu'un utilisateur n'a plus de connexions actives, l'interface indique qu'il est déconnecté. Cela garantit une gestion fluide des sessions multi-onglets et multi-appareils.
+Pour terminer, la dernière contrainte a été rapidement résolue en stockant les identifiants des **sessions actives** pour chaque utilisateur dans le cache. Dès qu'un utilisateur n'a plus de connexions actives, l'interface indique qu'il est déconnecté. Cela garantit une gestion **fluide** des sessions multi-onglets et multi-appareils.

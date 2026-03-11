@@ -35,4 +35,4 @@ Ces mesures réduisent les **risques** liés aux accès non autorisés et renfor
 
 Redis joue un rôle clé dans ce mécanisme : il permet de stocker les **états** d'authentification de manière **éphémère**, tout en assurant des performances optimales et une **scalabilité** horizontale. L'externalisation de ces informations dans Redis, simplifie la montée en charge et améliore la **résilience** des services.
 
-Enfin, pour offrir une **expérience utilisateur** optimale, j'ai intégré une gestion des erreurs **unifiée**. En cas de problème (authentification échouée, session expirée, etc.), l'utilisateur reçoit un message **clair** et **précis** sur la nature de l'erreur, ce qui améliore l'**expérience utilisateur**.
+Enfin, pour offrir une **expérience utilisateur** optimale, j'ai intégré une gestion des erreurs **unifiée**. En cas de problème (authentification échouée, session expirée, etc.), l'utilisateur reçoit un message **clair** et **précis** sur la nature de l'erreur, ce qui améliore l'expérience utilisateur.
