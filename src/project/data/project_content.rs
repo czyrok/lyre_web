@@ -13,21 +13,21 @@ pub struct ProjectContent(pub String);
 impl ProjectContent {
     #[cfg(feature = "ssr")]
     pub fn parse_from_markdown_data(data: &str) -> Result<Self, FromUtf8Error> {
+        use crate::core::data::html_formatter::HtmlFormatter;
+
         let arena = Arena::new();
 
         let deserialized_markdown =
             comrak::parse_document(&arena, data, &Options::default());
 
-        let mut raw_content: Vec<u8> = vec![];
+        let mut content = String::new();
 
-        comrak::format_html(
+        HtmlFormatter::format_document(
             deserialized_markdown,
             &Options::default(),
-            &mut raw_content,
+            &mut content,
         )
         .unwrap();
-
-        let content = String::from_utf8(raw_content)?;
 
         Ok(Self(content))
     }

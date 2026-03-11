@@ -9,7 +9,7 @@ crate-type = ["cdylib", "rlib"]
 
 [dependencies]
 codee = { version = "0.3.3", default-features = false, features = ["json_serde"] }
-comrak = { version = "0.35.0", default-features = false, optional = true }
+comrak = { version = "0.51.0", default-features = false, optional = true }
 console_error_panic_hook = { version = "0.1.7", default-features = false }
 console_log = { version = "1.0", default-features = false }
 cfg-if = { version = "1.0.0", default-features = false }
