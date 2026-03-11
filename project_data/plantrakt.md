@@ -3,7 +3,7 @@ next:
   slug: wolfgang
 title: Plantrakt
 image_url: plantrakt.webp
-date: 2024-03-26
+start_date: 2024-03-26
 tags:
   - name: Rust
   - name: NestJS

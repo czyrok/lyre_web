@@ -3,7 +3,7 @@ next:
   slug: gasc
 title: LRT Manager
 image_url: lrt_manager.webp
-date: 2023-05-10
+start_date: 2023-05-10
 tags:
   - name: RxJS
   - name: Socket.io

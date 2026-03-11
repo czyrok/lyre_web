@@ -99,7 +99,7 @@ impl ProjectRepository {
         sqlx::query!(
             "
                 INSERT INTO `projects` (`slug`, `next_slug`, `position`, \
-             `title`, `image_url`, `date`, `content`, `description`, \
+             `title`, `image_url`, `start_date`, `content`, `description`, \
              `meta_keywords`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);
                 ",
             project.context.slug,
@@ -107,7 +107,7 @@ impl ProjectRepository {
             project.position,
             project.context.title,
             project.context.image_url,
-            project.context.date,
+            project.context.start_date,
             project.content.0,
             project.context.description,
             project.context.meta_keywords,
@@ -160,7 +160,7 @@ impl ProjectRepository {
                     ) AS `next_title`,
                     `projects`.`title`,
                     `projects`.`image_url`,
-                    `projects`.`date`,
+                    `projects`.`start_date`,
                     `projects`.`content`,
                     `projects`.`description`,
                     `projects`.`meta_keywords`,

@@ -160,7 +160,7 @@ impl ProjectContextRepository {
                     ) AS `next_title`,
                     `projects`.`title`,
                     `projects`.`image_url`,
-                    `projects`.`date`,
+                    `projects`.`start_date`,
                     ---- https://www.sqlitetutorial.net/sqlite-json-functions/sqlite-json_group_array-function/
                     JSON_GROUP_ARRAY (`project_tags`.`name`) AS `tags`
             FROM      `projects`

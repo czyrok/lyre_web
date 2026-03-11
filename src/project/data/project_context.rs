@@ -13,7 +13,7 @@ pub struct ProjectContext {
     pub next: Option<NextProject>,
     pub title: String,
     pub image_url: String,
-    pub date: NaiveDate,
+    pub start_date: NaiveDate,
     pub formatted_date: Option<String>,
     pub tags: ProjectTags,
     pub meta_keywords: String,
@@ -50,9 +50,9 @@ impl ProjectContext {
         use crate::core::helpers::string::capitalize;
 
         let date = DateTime::try_new_iso_datetime(
-            self.date.year(),
-            self.date.month() as u8,
-            self.date.day() as u8,
+            self.start_date.year(),
+            self.start_date.month() as u8,
+            self.start_date.day() as u8,
             0,
             0,
             0,
@@ -96,7 +96,9 @@ impl<'row> FromRow<'row, SqliteRow> for ProjectContext {
             image_url: row
                 .try_get("image_url")
                 .expect("`row.image_url` should exist"),
-            date: row.try_get("date").expect("`row.date` should exist"),
+            start_date: row
+                .try_get("start_date")
+                .expect("`row.date` should exist"),
             formatted_date: None,
             tags: row.try_get("tags").expect("`row.tags` should exist"),
             meta_keywords: row.try_get("meta_keywords").unwrap_or_default(),

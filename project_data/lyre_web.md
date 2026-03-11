@@ -3,7 +3,7 @@ next:
   slug: lrt_manager
 title: Ce site web
 image_url: lyre_web.webp
-date: 2024-09-23
+start_date: 2024-09-23
 tags:
   - name: Rust
   - name: Tailwind
