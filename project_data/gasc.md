@@ -1,6 +1,4 @@
 ---
-next:
-  slug: rio_v3
 title: G.A.S.C.
 image_url: gasc.webp
 start_date: 2023-11-01

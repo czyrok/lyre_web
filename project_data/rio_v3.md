@@ -1,4 +1,6 @@
 ---
+next:
+  slug: gasc
 title: Rio
 image_url: rio_v3.webp
 start_date: 2023-07-23

@@ -1,6 +1,6 @@
 ---
 next:
-  slug: gasc
+  slug: zod_to_proto
 title: LRT Manager
 image_url: lrt_manager.webp
 start_date: 2023-05-10
