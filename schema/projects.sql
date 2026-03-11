@@ -5,6 +5,7 @@ CREATE    TABLE `projects` (
           `title` VARCHAR(255) NOT NULL,
           `image_url` VARCHAR(255) NOT NULL,
           `start_date` DATE NOT NULL,
+          `end_date` DATE,
           `content` TEXT NOT NULL,
           `description` TEXT NOT NULL,
           `meta_keywords` TEXT NOT NULL,

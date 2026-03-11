@@ -1,7 +1,8 @@
 ---
 title: Rio
 image_url: rio_v3.webp
-start_date: 2024-07-23
+start_date: 2023-07-23
+end_date: 2024-07-16
 tags:
   - name: Socket.io
   - name: Express.js

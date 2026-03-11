@@ -96,24 +96,48 @@ impl ProjectRepository {
     ) -> Result<(), sqlx::Error> {
         let next_slug = project.context.next.map(|next| next.slug);
 
-        sqlx::query!(
-            "
+        if let Some(project_end_date) = project.context.end_date {
+            sqlx::query!(
+                "
                 INSERT INTO `projects` (`slug`, `next_slug`, `position`, \
-             `title`, `image_url`, `start_date`, `content`, `description`, \
-             `meta_keywords`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);
+                 `title`, `image_url`, `start_date`, `end_date`, `content`, \
+                 `description`, `meta_keywords`) VALUES (?, ?, ?, ?, ?, ?, ?, \
+                 ?, ?, ?);
                 ",
-            project.context.slug,
-            next_slug,
-            project.position,
-            project.context.title,
-            project.context.image_url,
-            project.context.start_date,
-            project.content.0,
-            project.context.description,
-            project.context.meta_keywords,
-        )
-        .fetch_optional(&mut *local_database_transaction.value)
-        .await?;
+                project.context.slug,
+                next_slug,
+                project.position,
+                project.context.title,
+                project.context.image_url,
+                project.context.start_date,
+                project_end_date,
+                project.content.0,
+                project.context.description,
+                project.context.meta_keywords,
+            )
+            .fetch_optional(&mut *local_database_transaction.value)
+            .await?;
+        } else {
+            sqlx::query!(
+                "
+                INSERT INTO `projects` (`slug`, `next_slug`, `position`, \
+                 `title`, `image_url`, `start_date`, `content`, \
+                 `description`, `meta_keywords`) VALUES (?, ?, ?, ?, ?, ?, ?, \
+                 ?, ?);
+                ",
+                project.context.slug,
+                next_slug,
+                project.position,
+                project.context.title,
+                project.context.image_url,
+                project.context.start_date,
+                project.content.0,
+                project.context.description,
+                project.context.meta_keywords,
+            )
+            .fetch_optional(&mut *local_database_transaction.value)
+            .await?;
+        }
 
         Ok(())
     }
@@ -161,6 +185,7 @@ impl ProjectRepository {
                     `projects`.`title`,
                     `projects`.`image_url`,
                     `projects`.`start_date`,
+                    `projects`.`end_date`,
                     `projects`.`content`,
                     `projects`.`description`,
                     `projects`.`meta_keywords`,

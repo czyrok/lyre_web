@@ -14,6 +14,7 @@ pub struct ProjectContext {
     pub title: String,
     pub image_url: String,
     pub start_date: NaiveDate,
+    pub end_date: Option<NaiveDate>,
     pub formatted_date: Option<String>,
     pub tags: ProjectTags,
     pub meta_keywords: String,
@@ -98,7 +99,10 @@ impl<'row> FromRow<'row, SqliteRow> for ProjectContext {
                 .expect("`row.image_url` should exist"),
             start_date: row
                 .try_get("start_date")
-                .expect("`row.date` should exist"),
+                .expect("`row.start_date` should exist"),
+            end_date: row
+                .try_get("end_date")
+                .expect("`row.end_date` should exist"),
             formatted_date: None,
             tags: row.try_get("tags").expect("`row.tags` should exist"),
             meta_keywords: row.try_get("meta_keywords").unwrap_or_default(),

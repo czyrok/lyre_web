@@ -4,6 +4,7 @@ next:
 title: LRT Manager
 image_url: lrt_manager.webp
 start_date: 2023-05-10
+end_date: 2023-06-10
 tags:
   - name: RxJS
   - name: Socket.io

@@ -75,6 +75,8 @@ impl ProjectContextRepository {
         if has_filter_implementation_years {
             let current_date = chrono::Utc::now();
             let current_year = current_date.year();
+            let previous_year_1 = current_year - 1;
+            let previous_year_2 = current_year - 2;
 
             let mut separated_query_builder = query_builder.separated(" OR ");
 
@@ -83,23 +85,40 @@ impl ProjectContextRepository {
             for implementation_year in filter.implementation_years.iter() {
                 let year_query = match implementation_year {
                     ImplementationYear::CurrentYear => {
-                        format!(" `projects`.`date` LIKE '{current_year}-%' ")
+                        format!(
+                            " (`projects`.`start_date` >= \
+                             '{current_year}-01-01' AND \
+                             `projects`.`start_date` <= \
+                             '{current_year}-12-31')
+OR (`projects`.`end_date` >= '{current_year}-01-01' AND `projects`.`end_date` \
+                             <= '{current_year}-12-31') OR \
+                             (`projects`.`start_date` < \
+                             '{current_year}-12-31' AND `projects`.`end_date` \
+                             IS NULL) "
+                        )
                     }
                     ImplementationYear::LastYear => format!(
-                        " `projects`.`date` LIKE '{}-%' ",
-                        current_year - 1
+                        " (`projects`.`start_date` >= \
+                         '{previous_year_1}-01-01' AND \
+                         `projects`.`start_date` <= '{previous_year_1}-12-31')
+OR (`projects`.`end_date` >= '{previous_year_1}-01-01' AND \
+                         `projects`.`end_date` <= '{previous_year_1}-12-31') \
+                         OR (`projects`.`start_date` < \
+                         '{previous_year_1}-12-31' AND `projects`.`end_date` \
+                         IS NULL) "
                     ),
                     ImplementationYear::TwoYearsAgo => format!(
-                        " `projects`.`date` LIKE '{}-%' ",
-                        current_year - 2
+                        " (`projects`.`start_date` >= \
+                         '{previous_year_2}-01-01' AND \
+                         `projects`.`start_date` <= '{previous_year_2}-12-31')
+OR (`projects`.`end_date` >= '{previous_year_2}-01-01' AND \
+                         `projects`.`end_date` <= '{previous_year_2}-12-31') \
+                         OR (`projects`.`start_date` < \
+                         '{previous_year_2}-12-31' AND `projects`.`end_date` \
+                         IS NULL) "
                     ),
                     ImplementationYear::MoreThanTwoYears => format!(
-                        " (`projects`.`date` NOT LIKE '{}-%' AND \
-                         `projects`.`date` NOT LIKE '{}-%' AND \
-                         `projects`.`date` NOT LIKE '{}-%' )",
-                        current_year,
-                        current_year - 1,
-                        current_year - 2
+                        " `projects`.`start_date` < '{previous_year_2}-01-01' "
                     ),
                 };
 
@@ -161,6 +180,7 @@ impl ProjectContextRepository {
                     `projects`.`title`,
                     `projects`.`image_url`,
                     `projects`.`start_date`,
+                    `projects`.`end_date`,
                     ---- https://www.sqlitetutorial.net/sqlite-json-functions/sqlite-json_group_array-function/
                     JSON_GROUP_ARRAY (`project_tags`.`name`) AS `tags`
             FROM      `projects`
