@@ -2,7 +2,7 @@
 next:
   slug: lyre_web
 title: Système de Synchro
-image_url: XX
+image_url: synchro_system.webp
 start_date: 2026-02-02
 end_date: 2026-02-24
 tags:

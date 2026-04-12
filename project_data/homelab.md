@@ -2,7 +2,7 @@
 next:
   slug: lrt_manager
 title: HomeLab
-image_url: XX
+image_url: homelab.webp
 start_date: 2025-01-24
 tags:
   - name: K8s

@@ -2,7 +2,7 @@
 next:
   slug: synchro_system
 title: Login Multi-SSO
-image_url: XX
+image_url: unified_sso_login.webp
 start_date: 2025-07-03
 end_date: 2025-12-01
 tags:

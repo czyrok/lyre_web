@@ -2,7 +2,7 @@
 next:
   slug: unified_sso_login
 title: Présence en direct
-image_url: XX
+image_url: attendance_in_live.webp
 start_date: 2025-03-05
 end_date: 2025-07-31
 tags:

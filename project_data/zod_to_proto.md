@@ -2,7 +2,7 @@
 next:
   slug: rio_v3
 title: Zod vers Proto
-image_url: XX
+image_url: zod_to_proto.webp
 start_date: 2025-12-14
 tags:
   - name: gRPC
@@ -25,7 +25,7 @@ Parmi mes hobbies, il n'y a pas seulement mon homelab, mais aussi le développem
 
 L'un des principaux murs auquel on se confronte lorsqu'on commence à utiliser **gRPC**, c'est la rédaction des fichiers **`.proto`**. Ces fichiers reposent sur une **syntaxe** assez différente de ce qu'on trouve en TypeScript. De plus, cette syntaxe est bien plus **stricte** que celle de TS en matière de typage.
 
-Cette lib vise donc à faciliter l'**adoption** de gRPC dans l'**écosystème JavaScript**, en permettant la génération automatique des fichiers `.proto` à partir d'objets JavaScript. Plus précisément, à partir de **schémas [Zod](https://github.com/colinhacks/zod)**.
+Cette lib vise donc à faciliter l'**adoption** de gRPC dans l'**écosystème JavaScript**, en permettant la génération automatique des fichiers `.proto` à partir d'objets JavaScript. Plus précisément, à partir de **schémas [Zod](https://www.npmjs.com/package/zod)**.
 
 Pour rappel, **Zod** est une lib qui permet de déclarer des objets JavaScript pour effectuer de la validation, tout en permettant l'inférence de types. **Concrètement**, tu peux utiliser Zod en entrée de ton controller et générer les fichiers `.proto` correspondant au schéma Zod de ton endpoint. Le même principe s'applique si tu veux typer la sortie de ton controller.
 
