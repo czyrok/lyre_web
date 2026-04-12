@@ -60,6 +60,12 @@ resource "kubernetes_deployment_v1" "app" {
     }
   }
 
+  lifecycle {
+    ignore_changes = [
+      spec[0].template[0].metadata[0].annotations["keel.sh/update-time"],
+    ]
+  }
+
   depends_on = [ var.wait_for ]
 }
 
