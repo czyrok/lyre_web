@@ -1,5 +1,5 @@
 
-resource "kubernetes_deployment" "app" {
+resource "kubernetes_deployment_v1" "app" {
   metadata {
     name = "lyre-web-app"
     namespace = var.namespace_name
@@ -63,7 +63,7 @@ resource "kubernetes_deployment" "app" {
   depends_on = [ var.wait_for ]
 }
 
-resource "kubernetes_service" "app" {
+resource "kubernetes_service_v1" "app" {
   metadata {
     name = "app"
     namespace = var.namespace_name
@@ -71,7 +71,7 @@ resource "kubernetes_service" "app" {
 
   spec {
     selector = {
-      app = kubernetes_deployment.app.metadata[0].labels.app
+      app = kubernetes_deployment_v1.app.metadata[0].labels.app
     }
 
     port {
@@ -84,7 +84,7 @@ resource "kubernetes_service" "app" {
 
   depends_on = [
     var.wait_for,
-    kubernetes_deployment.app
+    kubernetes_deployment_v1.app
   ]
 }
 
@@ -99,7 +99,7 @@ resource "kubernetes_pod_disruption_budget_v1" "app" {
     
     selector {
       match_labels = {
-        app = kubernetes_deployment.app.metadata[0].labels.app
+        app = kubernetes_deployment_v1.app.metadata[0].labels.app
       }
     }
   }

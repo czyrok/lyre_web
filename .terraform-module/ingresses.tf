@@ -21,7 +21,7 @@ resource "kubernetes_ingress_v1" "lyre_web_ingress" {
                     path_type = "Prefix"
                     backend {
                         service {
-                            name = kubernetes_service.app.metadata[0].name
+                            name = kubernetes_service_v1.app.metadata[0].name
                             port {
                                 number = 8507
                             }
@@ -35,7 +35,7 @@ resource "kubernetes_ingress_v1" "lyre_web_ingress" {
     depends_on = [
         var.wait_for,
         kubectl_manifest.compress_middleware,
-        kubernetes_service.app,
+        kubernetes_service_v1.app,
     ]
 }
 
