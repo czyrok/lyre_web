@@ -1,6 +1,6 @@
 ---
 next:
-  slug: lrt_manager
+  slug: homelab
 title: Ce site web
 image_url: lyre_web.webp
 start_date: 2024-09-23

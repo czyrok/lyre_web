@@ -6,6 +6,7 @@ import { addBodyBase } from './bases/body';
 import { addH1Base } from './bases/h1';
 import { addHtmlBase } from './bases/html';
 import { addPBase } from './bases/p';
+import { addLiBase } from './bases/li';
 import { addStrongBase } from './bases/strong';
 import { addContactSectionComponent } from './components/landing_page/contact_section';
 import { addHighlightedSectionComponent } from './components/landing_page/highlighted_section';
@@ -103,6 +104,9 @@ export const TAILWIND_CONFIGURATION: Config = {
         classPrefix: TAILWIND_CLASS_PREFIX,
       });
       addPBase(pluginApi, {
+        classPrefix: TAILWIND_CLASS_PREFIX,
+      });
+      addLiBase(pluginApi, {
         classPrefix: TAILWIND_CLASS_PREFIX,
       });
       addABase(pluginApi, {

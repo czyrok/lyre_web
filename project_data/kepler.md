@@ -1,6 +1,6 @@
 ---
 next:
-  slug: ubikap
+  slug: attendance_in_live
 title: Kepler
 image_url: kepler.webp
 start_date: 2020-04-01

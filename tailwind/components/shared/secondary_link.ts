@@ -26,7 +26,7 @@ export const addSecondaryLinkComponent: ComponentBuilderFunction = (
         [`@apply dark:${classPrefix}text-purple-blue-500`]: {},
 
         // Sizing
-        [`@apply ${classPrefix}w-button-icon ${classPrefix}h-button-icon`]: {},
+        [`@apply ${classPrefix}w-link-icon ${classPrefix}h-link-icon`]: {},
 
         // Others
         [`@apply ${classPrefix}transition-link-text-and-icon ${classPrefix}duration-link-text-and-icon ${classPrefix}ease-link-text-and-icon`]:

@@ -10,6 +10,7 @@ export const EXTENDED_THEME_SIZE: {
 } = {
   width: {
     'button-icon': '1.5em',
+    'link-icon': '1em',
     'brand-badge-logo': '58%',
   },
   minWidth: {},
@@ -18,6 +19,7 @@ export const EXTENDED_THEME_SIZE: {
   },
   height: {
     'button-icon': '1.5em',
+    'link-icon': '1em',
   },
   minHeight: {},
   maxHeight: {},

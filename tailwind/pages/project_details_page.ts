@@ -59,7 +59,7 @@ export const addProjectDetailsPage: ComponentBuilderFunction = (
 
             // Sizing
             [`@apply ${classPrefix}max-w-119`]: {},
-            [`@apply ${classPrefix}gap-level2`]: {},
+            [`@apply [&>:not(*+ul)]:${classPrefix}mt-level2`]: {},
             //// Used for skeleton
             [`@apply ${classPrefix}w-full`]: {},
           },

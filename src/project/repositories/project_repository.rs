@@ -36,8 +36,14 @@ impl ProjectRepository {
 
         let mut project_data_files = vec![];
 
-        for project_data_file in project_data_dir {
-            project_data_files.push(project_data_file?);
+        for entry_result in project_data_dir {
+            let entry = entry_result?;
+
+            let is_file = entry.metadata()?.is_file();
+
+            if is_file {
+                project_data_files.push(entry);
+            }
         }
 
         Ok(project_data_files)

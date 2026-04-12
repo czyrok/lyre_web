@@ -18,6 +18,7 @@ pub enum IconSet {
     Undo,
     Calendar,
     Github,
+    Npm,
 }
 
 #[cfg(feature = "ssr")]
