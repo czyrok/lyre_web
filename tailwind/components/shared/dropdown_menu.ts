@@ -6,7 +6,7 @@ export const addDropdownMenuComponent: ComponentBuilderFunction = (
 ) => {
   addComponents({
     '.dropdown-menu': {
-      [`@apply ${classPrefix}absolute ${classPrefix}flex-col`]: {},
+      [`@apply ${classPrefix}absolute ${classPrefix}flex-col ${classPrefix}overflow-hidden`]: {},
       //// Positioning
       [`@apply ${classPrefix}inset-auto`]: {},
 
@@ -15,6 +15,7 @@ export const addDropdownMenuComponent: ComponentBuilderFunction = (
       [`@apply dark:${classPrefix}bg-black-600/50`]: {},
 
       // Sizing
+      [`@apply ${classPrefix}max-h-41`]: {},
       [`@apply ${classPrefix}py-1`]: {},
       [`@apply ${classPrefix}rounded-5`]: {},
       [`@apply ${classPrefix}gap-0,5`]: {},
@@ -37,6 +38,11 @@ export const addDropdownMenuComponent: ComponentBuilderFunction = (
       },
 
       '.dropdown-menu-items': {
+        [`@apply ${classPrefix}overflow-y-auto`]: {},
+        '&::-webkit-scrollbar-thumb': {
+          [`@apply ${classPrefix}bg-black-600`]: {},
+        },
+
         '.dropdown-menu-item': {
           // Sizing
           [`@apply ${classPrefix}px-2 ${classPrefix}py-1`]: {},
