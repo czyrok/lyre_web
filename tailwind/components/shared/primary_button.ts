@@ -107,7 +107,7 @@ export const addPrimaryButtonComponent: ComponentBuilderFunction = (
       // Variants
       '&.button-size-xl': {
         // Sizing
-        [`@apply ${classPrefix}px-5 ${classPrefix}py-2`]: {},
+        [`@apply ${classPrefix}px-4 ${classPrefix}py-2`]: {},
         [`@apply ${classPrefix}text-6`]: {},
 
         // Children
@@ -126,7 +126,7 @@ export const addPrimaryButtonComponent: ComponentBuilderFunction = (
 
       '&.button-size-lg': {
         // Sizing
-        [`@apply ${classPrefix}px-4 ${classPrefix}py-2`]: {},
+        [`@apply ${classPrefix}px-3,5 ${classPrefix}py-2`]: {},
         [`@apply ${classPrefix}text-5`]: {},
 
         // Children
@@ -145,7 +145,7 @@ export const addPrimaryButtonComponent: ComponentBuilderFunction = (
 
       '&.button-size-md': {
         // Sizing
-        [`@apply ${classPrefix}px-4 ${classPrefix}py-2`]: {},
+        [`@apply ${classPrefix}px-3 ${classPrefix}py-2`]: {},
         [`@apply ${classPrefix}text-4`]: {},
 
         // Children
@@ -164,7 +164,7 @@ export const addPrimaryButtonComponent: ComponentBuilderFunction = (
 
       '&.button-size-sm': {
         // Sizing
-        [`@apply ${classPrefix}px-3 ${classPrefix}py-1,5`]: {},
+        [`@apply ${classPrefix}px-2,5 ${classPrefix}py-1,5`]: {},
         [`@apply ${classPrefix}text-3`]: {},
 
         // Children
