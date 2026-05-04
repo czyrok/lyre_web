@@ -30,7 +30,7 @@ import { addPrimaryButtonComponent } from './components/shared/primary_button';
 import { addSecondaryButtonComponent } from './components/shared/secondary_button';
 import { addSecondaryCheckboxComponent } from './components/shared/secondary_checkbox';
 import { addSecondaryLinkComponent } from './components/shared/secondary_link';
-import { addSecondarySelectComponent } from './components/shared/secondary_select';
+import { addSecondarySelectButtonComponent } from './components/shared/secondary_select_button';
 import { addInfoErrorPageLayout } from './layouts/info_error_page_layout';
 import { addNotFoundErrorPageLayout } from './layouts/not_found_error_page_layout';
 import { addSecondaryPageLayout } from './layouts/secondary_page_layout';
@@ -61,6 +61,7 @@ import { THEME_STROKE_WIDTH } from './theme/stroke_width';
 import { THEME_TRANSITION } from './theme/transition';
 import { THEME_Z_INDEX } from './theme/z_index';
 import { addDropdownMenuSearchBarComponent } from './components/shared/dropdown_menu_search_bar';
+import { addPrimarySelectButtonComponent } from './components/shared/primary_select_button';
 
 const DARK_MODE_CLASS = 'dark';
 const TAILWIND_CLASS_PREFIX = 'tw-';
@@ -146,7 +147,10 @@ export const TAILWIND_CONFIGURATION: Config = {
       addNavBarComponent(pluginApi, {
         classPrefix: TAILWIND_CLASS_PREFIX,
       });
-      addSecondarySelectComponent(pluginApi, {
+      addSecondarySelectButtonComponent(pluginApi, {
+        classPrefix: TAILWIND_CLASS_PREFIX,
+      });
+      addPrimarySelectButtonComponent(pluginApi, {
         classPrefix: TAILWIND_CLASS_PREFIX,
       });
       addAccentuationInputTextComponent(pluginApi, {

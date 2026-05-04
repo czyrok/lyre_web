@@ -5,18 +5,16 @@ use leptos::prelude::*;
 use crate::{
     core::data::icon_set::IconSet,
     shared::{
-        button::{
-            components::secondary_button::SecondaryButton,
-            types::icon_side::IconSide,
-        },
         components::{
             dropdown_menu::{DropdownMenu, Position},
             dropdown_menu_search_bar::IconSide as SearchBarIconSide,
         },
-        enums::component_size::ComponentSize,
-        select::types::{
-            select_choices_behavior::SelectChoicesBehavior,
-            select_item::SelectItem,
+        select::{
+            helpers::anchor::SelectAnchorNames,
+            types::{
+                select_choices_behavior::SelectChoicesBehavior,
+                select_item::SelectItem,
+            },
         },
     },
 };
@@ -27,20 +25,14 @@ type FilteredChoicesSignals<TChoiceKey> = (
 );
 
 #[component]
-pub fn Select<TChoiceKey>(
-    size: ComponentSize,
-    #[prop(optional, into)] icon: Option<IconSet>,
-    #[prop(optional, into)] icon_side: Option<IconSide>,
+pub fn SelectDropdownMenu<TChoiceKey>(
+    anchor_names: SelectAnchorNames,
     dropdown_menu_position: Position,
-    #[prop(into)] text: String,
-    // TODO: faire une macro pour générer un uuid à la compile
-    #[prop(into)] identifier: String,
     select_choices: impl SelectChoicesBehavior<Key = TChoiceKey>,
-    #[prop(default = false)] shows_ping_when_least_one_selected: bool,
-    #[prop(default = false)] shows_search_bar: bool,
-    #[prop(optional, into)] search_placeholder: Option<String>,
-    #[prop(optional, into)] search_icon: Option<IconSet>,
-    #[prop(optional, into)] search_icon_side: Option<SearchBarIconSide>,
+    shows_search_bar: bool,
+    search_placeholder: Option<String>,
+    search_icon: Option<IconSet>,
+    search_icon_side: Option<SearchBarIconSide>,
 ) -> impl IntoView
 where
     TChoiceKey: Hash + Eq + Clone + Send + Sync + Debug + 'static,
@@ -48,27 +40,6 @@ where
     let choices = select_choices.list();
 
     select_choices.attach_consistency_behavior();
-
-    let drop_menu_anchor_name = format!("drop-menu-{identifier}");
-    let button_anchor_name = format!("button-{identifier}");
-
-    let icon = icon.unwrap_or(IconSet::SingleDownArrow);
-    let icon_side = icon_side.unwrap_or(IconSide::Right);
-
-    let shows_ping = select_choices
-        .get_selected_choice_keys()
-        .map(|selected_choice_keys| {
-            if !shows_ping_when_least_one_selected {
-                return signal(false).0.into();
-            }
-
-            Signal::derive(move || {
-                let selected_choice_keys = selected_choice_keys.get();
-
-                !selected_choice_keys.is_empty()
-            })
-        })
-        .unwrap_or(signal(false).0.into());
 
     let searched_text: (ReadSignal<String>, WriteSignal<String>) =
         signal("".into());
@@ -100,7 +71,13 @@ where
         }
 
         if searched_text.is_empty() {
-            set_filtered_choices.set(vec![]);
+            set_filtered_choices.set(
+                choices
+                    .clone()
+                    .into_iter()
+                    .map(|choice| choice.into())
+                    .collect::<Vec<_>>(),
+            );
 
             return searched_text;
         }
@@ -133,12 +110,10 @@ where
     });
 
     view! {
-        <SecondaryButton size text on_click=drop_menu_anchor_name.clone() icon icon_side anchor_name=button_anchor_name.clone() shows_ping />
-
         <DropdownMenu
             position=dropdown_menu_position
-            id=drop_menu_anchor_name
-            position_anchor_name=button_anchor_name
+            id=anchor_names.dropdown_menu
+            position_anchor_name=anchor_names.button
             shows_search_bar
             searched_text
             search_placeholder

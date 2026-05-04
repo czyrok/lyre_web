@@ -19,6 +19,8 @@ pub enum IconSet {
     Calendar,
     Github,
     Npm,
+    Cross,
+    Hashtag,
 }
 
 #[cfg(feature = "ssr")]

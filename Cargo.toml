@@ -8,6 +8,7 @@ repository = "https://github.com/czyrok/lyre_web"
 crate-type = ["cdylib", "rlib"]
 
 [dependencies]
+dyn-clone = "1.0.20"
 codee = { version = "0.3.3", default-features = false, features = ["json_serde"] }
 comrak = { version = "0.51.0", default-features = false, optional = true }
 console_error_panic_hook = { version = "0.1.7", default-features = false }
