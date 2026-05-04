@@ -62,6 +62,7 @@ import { THEME_TRANSITION } from './theme/transition';
 import { THEME_Z_INDEX } from './theme/z_index';
 import { addDropdownMenuSearchBarComponent } from './components/shared/dropdown_menu_search_bar';
 import { addPrimarySelectButtonComponent } from './components/shared/primary_select_button';
+import { addPrimaryInputTextComponent } from './components/shared/primary_input_text';
 
 const DARK_MODE_CLASS = 'dark';
 const TAILWIND_CLASS_PREFIX = 'tw-';
@@ -154,6 +155,9 @@ export const TAILWIND_CONFIGURATION: Config = {
         classPrefix: TAILWIND_CLASS_PREFIX,
       });
       addAccentuationInputTextComponent(pluginApi, {
+        classPrefix: TAILWIND_CLASS_PREFIX,
+      });
+      addPrimaryInputTextComponent(pluginApi, {
         classPrefix: TAILWIND_CLASS_PREFIX,
       });
       addSecondaryLinkComponent(pluginApi, {

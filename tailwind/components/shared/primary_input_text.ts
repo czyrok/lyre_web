@@ -1,11 +1,11 @@
 import { ComponentBuilderFunction } from '../../types/component_builder_function';
 
-export const addAccentuationInputTextComponent: ComponentBuilderFunction = (
+export const addPrimaryInputTextComponent: ComponentBuilderFunction = (
   { addComponents },
   { classPrefix }
 ) => {
   addComponents({
-    '.accentuation-input-text': {
+    '.primary-input-text': {
       [`@apply ${classPrefix}relative`]: {},
       // Ensure that content stays above the pseudo-element
       '& > *': {
@@ -28,8 +28,8 @@ export const addAccentuationInputTextComponent: ComponentBuilderFunction = (
       },
 
       // Colors
-      [`@apply ${classPrefix}bg-green-100`]: {},
-      [`@apply dark:${classPrefix}bg-green-700`]: {},
+      [`@apply ${classPrefix}bg-purple-blue-300/80`]: {},
+      [`@apply dark:${classPrefix}bg-purple-blue-700/80`]: {},
 
       // Sizing (required for the background gradient)
       [`@apply ${classPrefix}rounded-25`]: {},
@@ -43,10 +43,11 @@ export const addAccentuationInputTextComponent: ComponentBuilderFunction = (
 
         // Colors
         '&::placeholder': {
-          [`@apply ${classPrefix}text-green-950/50`]: {},
-          [`@apply dark:${classPrefix}text-green-950/50`]: {},
+          [`@apply ${classPrefix}text-purple-blue-950/50`]: {},
+          [`@apply dark:${classPrefix}text-purple-blue-100/50`]: {},
         },
-        [`@apply ${classPrefix}text-green-950`]: {},
+        [`@apply ${classPrefix}text-purple-blue-950`]: {},
+        [`@apply dark:${classPrefix}text-purple-blue-100`]: {},
 
         // Others
         [`@apply ${classPrefix}font-button-text ${classPrefix}font-geist-mono`]: {},
@@ -56,15 +57,11 @@ export const addAccentuationInputTextComponent: ComponentBuilderFunction = (
         [`@apply ${classPrefix}inline-block`]: {},
 
         // Colors
-        [`@apply ${classPrefix}text-green-950`]: {},
+        [`@apply ${classPrefix}text-purple-blue-950`]: {},
+        [`@apply dark:${classPrefix}text-purple-blue-100`]: {},
 
         // Sizing
         [`@apply ${classPrefix}w-button-icon ${classPrefix}h-button-icon`]: {},
-
-        // Children
-        '& svg path': {
-          [`@apply ${classPrefix}stroke-4`]: {},
-        },
       },
 
       '.input-text-left-group': {
