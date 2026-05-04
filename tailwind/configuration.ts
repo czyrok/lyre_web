@@ -15,7 +15,6 @@ import { addSectionContainerComponent } from './components/landing_page/section_
 import { addProjectCardComponent } from './components/project/project_card';
 import { addProjectTagComponent } from './components/project/project_tag';
 import { addProjectThumbnailComponent } from './components/project/project_thumbnail';
-import { addSearchedProjectTitleInputTextComponent } from './components/project_search_page/searched_project_title_input_text';
 import { addAccentuationButtonComponent } from './components/shared/accentuation_button';
 import { addAccentuationInputTextComponent } from './components/shared/accentuation_input_text';
 import { addAdditionalInfoComponent } from './components/shared/additional_info';
@@ -194,9 +193,6 @@ export const TAILWIND_CONFIGURATION: Config = {
         classPrefix: TAILWIND_CLASS_PREFIX,
       });
       addFooterComponent(pluginApi, {
-        classPrefix: TAILWIND_CLASS_PREFIX,
-      });
-      addSearchedProjectTitleInputTextComponent(pluginApi, {
         classPrefix: TAILWIND_CLASS_PREFIX,
       });
       addAdditionalInfoComponent(pluginApi, {

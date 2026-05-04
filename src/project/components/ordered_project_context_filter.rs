@@ -1,31 +1,23 @@
 use leptos::prelude::*;
 use leptos_use::signal_debounced;
 
-use crate::{
-    core::data::icon_set::IconSet,
-    project::{
-        components::{
-            implementation_year_selector::ImplementationYearSelector,
-            tag_selector::TagSelector,
-        },
-        dto::project_context_filter_dto::ProjectContextFilterDto,
+use crate::project::{
+    components::{
+        implementation_year_selector::ImplementationYearSelector,
+        searched_project_title_input::SearchedProjectTitleInput,
+        tag_selector::TagSelector,
     },
-    shared::{
-        button::components::secondary_button::SecondaryButton,
-        enums::component_size::ComponentSize,
-    },
+    dto::project_context_filter_dto::ProjectContextFilterDto,
 };
 
 #[component]
 pub fn OrderedProjectContextFilter(
     default_filter: ProjectContextFilterDto,
-    searched_project_title: Signal<String>,
-    #[prop(name = "reset_event")] (reset_event, set_reset_event): (
-        ReadSignal<()>,
-        WriteSignal<()>,
-    ),
     on_update: impl Fn(ProjectContextFilterDto) + 'static,
 ) -> impl IntoView {
+    let (searched_project_title, set_searched_project_title) =
+        signal("".into());
+
     let searched_project_title: Signal<String> =
         signal_debounced(searched_project_title, 1000.0);
     let (selected_implementation_years, set_selected_implementation_years) =
@@ -64,17 +56,15 @@ pub fn OrderedProjectContextFilter(
         project_context_filter
     });
 
-    let reset_filters = move |_| {
-        set_reset_event.set(());
-    };
-
     view! {
-        <div class="tw-top-part-filter">
-            <ImplementationYearSelector set_selected_implementation_years reset_event=reset_event.into() />
+        <div class="tw-flex tw-flex-wrap tw-justify-between tw-flex-row tw-gap-level2">
+            <SearchedProjectTitleInput set_searched_project_title />
 
-            <TagSelector set_selected_project_tags reset_event=reset_event.into() />
+            <div class="tw-flex tw-flex-wrap tw-flex-row tw-gap-level1">
+                <TagSelector set_selected_project_tags />
 
-            <SecondaryButton size=ComponentSize::MD icon=IconSet::Undo on_click=reset_filters aria_label="Réinitialiser les filtres" />
+                <ImplementationYearSelector set_selected_implementation_years />
+             </div>
         </div>
     }
 }

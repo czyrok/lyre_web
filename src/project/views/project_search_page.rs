@@ -13,7 +13,6 @@ use crate::{
             project_card::ProjectCard,
             project_card_skeleton::ProjectCardSkeleton,
             search_result_info::SearchResultInfo,
-            searched_project_title_input::SearchedProjectTitleInput,
         },
         data::project_context::ProjectContext,
         dto::project_context_filter_dto::ProjectContextFilterDto,
@@ -42,9 +41,6 @@ pub fn ProjectSearchPage() -> impl IntoView {
     let (pagination, set_pagination) = signal(CursorPaginationDto::default());
     let (project_context_filter, set_project_context_filter) =
         signal(ProjectContextFilterDto::default());
-    let (searched_project_title, set_searched_project_title) =
-        signal("".into());
-    let (filter_reset_event, set_filter_reset_event) = signal(());
 
     let (is_loading, set_is_loading) = signal(false);
     let (last_fetch_state, set_last_fetch_state) =
@@ -127,15 +123,13 @@ pub fn ProjectSearchPage() -> impl IntoView {
                 <div class="tw-project-search-page-top-part">
                     <h1 class="tw-title-size-lg">"Mes Projets"</h1>
 
-                    <OrderedProjectContextFilter default_filter=project_context_filter.get_untracked() searched_project_title=searched_project_title.into() reset_event=(filter_reset_event, set_filter_reset_event) on_update=move |project_context_filter| {
+                    <OrderedProjectContextFilter default_filter=project_context_filter.get_untracked() on_update=move |project_context_filter| {
                         set_project_context_filter.set(project_context_filter);
                         reset_view_when_filter_updated();
                     } />
                 </div>
 
                 <div class="tw-project-search-page-middle-part">
-                    <SearchedProjectTitleInput set_searched_project_title reset_event=filter_reset_event.into() />
-
                     <Show when=move || { !displays_list_block.get() }>
                         <SearchResultInfo last_fetch_state=last_fetch_state.into() project_contexts=project_contexts.into() />
                     </Show>

@@ -1,17 +1,20 @@
 use leptos::prelude::*;
 
 use crate::{
-    core::data::{fetch_state::FetchState, icon_set::IconSet},
+    core::{
+        data::{fetch_state::FetchState, icon_set::IconSet},
+        types::closure::OnClickCallback,
+    },
     project::resources::all_project_tags_resource::AllProjectTagsResource,
     shared::{
         button::{
-            components::secondary_button::SecondaryButton,
+            components::primary_button::PrimaryButton,
             types::button_action::ButtonAction,
         },
         components::dropdown_menu::Position,
         enums::component_size::ComponentSize,
         select::{
-            components::select::Select,
+            components::secondary_select::SecondarySelect,
             types::{
                 multi_select::MultiSelectChoices,
                 select_choices_behavior::SelectChoicesBehavior,
@@ -23,7 +26,6 @@ use crate::{
 #[component]
 pub fn TagSelector(
     set_selected_project_tags: WriteSignal<Vec<String>>,
-    reset_event: Signal<()>,
 ) -> impl IntoView {
     let project_tag_resource = AllProjectTagsResource::default();
 
@@ -59,36 +61,29 @@ pub fn TagSelector(
                 let (is_errored, _) = signal(true);
 
                 view! {
-                    <SecondaryButton size=ComponentSize::MD text="Erreur" on_click=ButtonAction::None is_errored />
+                    <PrimaryButton size=ComponentSize::LG text="Erreur" on_click=ButtonAction::None is_errored />
                 }
             }>
                 {move || Suspend::<Result<_, FetchState>>::new(async move {
                     get_tag_select_choices().await.map(|select_choices| {
                         let cloned_select_choices = select_choices.clone();
-
-                        Effect::new(move |last_event: Option<()>| {
-                            reset_event.track();
-
+                        let reset_callback: Box<dyn OnClickCallback> = Box::new(move |_| {
                             cloned_select_choices.change_all_status(false, None);
-
-                            let is_first_event = last_event.is_none();
-
-                            if !is_first_event {
-                                cloned_select_choices.change_all_status(false, None);
-                            }
                         });
 
                         view! {
-                            <Select
-                                size=ComponentSize::MD
+                            <SecondarySelect
+                                size=ComponentSize::LG
                                 dropdown_menu_position=Position::Bottom
-                                text="#Tags"
+                                icon=IconSet::Hashtag
+                                text="Tags"
                                 identifier="tag-selector"
                                 select_choices=select_choices
-                                shows_ping_when_least_one_selected=true
+                                shows_active_state_when_least_one_selected=true
                                 shows_search_bar=true
-                                search_placeholder="Nom de tag"
+                                search_placeholder="Nom d'une techno."
                                 search_icon=IconSet::Search
+                                reset_callback
                             />
                         }
                     })
