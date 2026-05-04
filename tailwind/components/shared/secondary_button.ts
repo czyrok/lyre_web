@@ -123,15 +123,6 @@ export const addSecondaryButtonComponent: ComponentBuilderFunction = (
         '&:has(.button-icon):not(:has(.button-text))': {
           [`@apply ${classPrefix}p-2`]: {},
         },
-
-        // Variants
-        '&.button-ping': {
-          '&::after': {
-            // Sizing
-            [`@apply ${classPrefix}w-1,5 ${classPrefix}h-1,5`]: {},
-            [`@apply ${classPrefix}top-0,5 ${classPrefix}right-0,5`]: {},
-          },
-        },
       },
 
       '&.button-size-sm': {
@@ -150,22 +141,6 @@ export const addSecondaryButtonComponent: ComponentBuilderFunction = (
 
         '&:has(.button-icon):not(:has(.button-text))': {
           [`@apply ${classPrefix}p-1,5`]: {},
-        },
-      },
-
-      '&.button-ping': {
-        [`@apply ${classPrefix}relative`]: {},
-
-        '&::after': {
-          [`@apply ${classPrefix}content-empty ${classPrefix}absolute ${classPrefix}animate-ping`]:
-            {},
-
-          // Colors
-          [`@apply ${classPrefix}bg-purple-blue-400`]: {},
-          [`@apply dark:${classPrefix}bg-purple-blue-500`]: {},
-
-          // Sizing
-          [`@apply ${classPrefix}rounded-full`]: {},
         },
       },
 
