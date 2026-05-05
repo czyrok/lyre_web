@@ -1,5 +1,6 @@
 use leptos::prelude::*;
 use leptos_meta::*;
+use leptos_use::signal_debounced;
 
 use crate::{
     core::{
@@ -32,17 +33,33 @@ pub fn ProjectSearchPage() -> impl IntoView {
         WriteSignal<Vec<ProjectContext>>,
     ) = signal(vec![]);
 
-    let first_project_context = Signal::derive(move || {
-        let project_contexts = project_contexts.get();
-
-        project_contexts.first().cloned()
-    });
-
     let (pagination, set_pagination) = signal(CursorPaginationDto::default());
     let (project_context_filter, set_project_context_filter) =
         signal(ProjectContextFilterDto::default());
 
-    let (is_loading, set_is_loading) = signal(false);
+    let (is_loading, set_is_loading) = signal(true);
+    let delayed_is_loading: Signal<bool> = signal_debounced(is_loading, 500.0);
+
+    let displayed_project_contexts =
+        Memo::new(move |previous_value: Option<&Vec<ProjectContext>>| {
+            let is_loading = is_loading.get();
+            let is_loading_deb = delayed_is_loading.get();
+
+            if is_loading != is_loading_deb {
+                if let Some(previous_value) = previous_value {
+                    return previous_value.clone();
+                }
+            }
+
+            project_contexts.get()
+        });
+
+    let first_project_context = Signal::derive(move || {
+        let project_contexts = displayed_project_contexts.get();
+
+        project_contexts.first().cloned()
+    });
+
     let (last_fetch_state, set_last_fetch_state) =
         signal(FetchState::default());
     let resource = OrderedProjectContextsResource::new(
@@ -86,16 +103,23 @@ pub fn ProjectSearchPage() -> impl IntoView {
         set_pagination.set(CursorPaginationDto::default());
     };
 
-    let displays_list_block = Signal::derive(move || {
-        let is_loading = is_loading.get();
+    let displays_info = Signal::derive(move || {
+        let delayed_is_loading = delayed_is_loading.get();
         let last_fetch_error = last_fetch_state.get();
-        let project_contexts = project_contexts.get();
+        let project_contexts = displayed_project_contexts.get();
 
-        if is_loading {
-            return true;
-        }
+        !delayed_is_loading
+            && (!last_fetch_error.is_ok() || project_contexts.is_empty())
+    });
 
-        last_fetch_error.is_ok() && !project_contexts.is_empty()
+    let displays_list_block = Signal::derive(move || {
+        let delayed_is_loading = delayed_is_loading.get();
+        let last_fetch_error = last_fetch_state.get();
+        let project_contexts = displayed_project_contexts.get();
+
+        !delayed_is_loading
+            && last_fetch_error.is_ok()
+            && !project_contexts.is_empty()
     });
 
     view! {
@@ -130,26 +154,28 @@ pub fn ProjectSearchPage() -> impl IntoView {
                         reset_view_when_filter_updated();
                     } />
 
-                    <Show when=move || { !displays_list_block.get() }>
-                        <SearchResultInfo last_fetch_state=last_fetch_state.into() project_contexts=project_contexts.into() />
+                    <Show when=move || { displays_info.get() }>
+                        <SearchResultInfo last_fetch_state=last_fetch_state.into() project_contexts=displayed_project_contexts.into() />
                     </Show>
 
                     <Show when=move || { displays_list_block.get() }>
                         <div class="tw-middle-part-list">
                             // TODO: recycler view...
-                            <For each=move || project_contexts.get() key=|project_context| project_context.slug.clone() let:project_context>
+                            <For each=move || displayed_project_contexts.get() key=|project_context| project_context.slug.clone() let:project_context>
                                 <ProjectCard project_context=project_context />
                             </For>
+                        </div>
+                    </Show>
 
-                            <Show when=move || { is_loading.get() }>
-                                <ProjectCardSkeleton />
-                            </Show>
+                    <Show when=move || { delayed_is_loading.get() }>
+                        <div class="tw-middle-part-list">
+                            <ProjectCardSkeleton />
                         </div>
                     </Show>
                 </div>
 
-                <Show when=move || { !is_loading.get() && displays_list_block.get() }>
-                    <OrderedProjectContextPaginator resource=resource project_contexts=project_contexts.into() set_pagination />
+                <Show when=move || { displays_list_block.get() }>
+                    <OrderedProjectContextPaginator resource=resource project_contexts=displayed_project_contexts.into() set_pagination />
                 </Show>
             }.into_any()
 
