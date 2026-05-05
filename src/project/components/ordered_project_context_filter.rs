@@ -57,7 +57,7 @@ pub fn OrderedProjectContextFilter(
     });
 
     view! {
-        <div class="tw-flex tw-flex-wrap tw-justify-between tw-flex-row tw-gap-level2">
+        <div class="tw-flex tw-flex-col tw-flex-row tw-items-center tw-gap-level2">
             <SearchedProjectTitleInput set_searched_project_title />
 
             <div class="tw-flex tw-flex-wrap tw-flex-row tw-gap-level1">

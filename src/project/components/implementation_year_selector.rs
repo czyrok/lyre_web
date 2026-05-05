@@ -75,7 +75,7 @@ pub fn ImplementationYearSelector(
             size=ComponentSize::LG
             icon=IconSet::Calendar
             dropdown_menu_position=Position::Bottom
-            text="Réalisation"
+            text="Date Réalisation"
             identifier="year-of-implementation-selector"
             select_choices=select_choices
             shows_active_state_when_least_one_selected=true

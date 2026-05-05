@@ -122,14 +122,14 @@ pub fn ProjectSearchPage() -> impl IntoView {
             content_renderer=move || view! {
                 <div class="tw-project-search-page-top-part">
                     <h1 class="tw-title-size-lg">"Mes Projets"</h1>
+                </div>
 
+                <div class="tw-project-search-page-middle-part">
                     <OrderedProjectContextFilter default_filter=project_context_filter.get_untracked() on_update=move |project_context_filter| {
                         set_project_context_filter.set(project_context_filter);
                         reset_view_when_filter_updated();
                     } />
-                </div>
 
-                <div class="tw-project-search-page-middle-part">
                     <Show when=move || { !displays_list_block.get() }>
                         <SearchResultInfo last_fetch_state=last_fetch_state.into() project_contexts=project_contexts.into() />
                     </Show>
