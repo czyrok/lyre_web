@@ -4,8 +4,8 @@ image_url: gasc.webp
 start_date: 2023-11-01
 end_date: 2024-03-10
 tags:
-  - name: Scrum
-  - name: Symfony
+  - short_name: Scrum
+  - short_name: Symfony
 meta_keywords: |
   formation, réécriture de projet, qualité de code, maintenance, contact client, retours utilisateurs
 description: |

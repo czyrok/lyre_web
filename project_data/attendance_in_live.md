@@ -6,9 +6,10 @@ image_url: attendance_in_live.webp
 start_date: 2025-03-05
 end_date: 2025-07-31
 tags:
-  - name: Redis
-  - name: Socket.io
-  - name: TS
+  - short_name: Redis
+  - short_name: Socket.io
+  - short_name: TS
+    long_name: TypeScript
 meta_keywords: |
   legaltech, saas, ubikap, redis, socket.io, architecture stateless, stateless, assemblée générale en ligne, ag en ligne, feuille de présence ag, gestion des connexions ag, gestion multi-appareils, gestion des sessions utilisateurs, logiciel ag, gestion des événements utilisateurs, user events, cache serveur, cache
 description: |

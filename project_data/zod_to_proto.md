@@ -5,9 +5,10 @@ title: Zod vers Proto
 image_url: zod_to_proto.webp
 start_date: 2025-12-14
 tags:
-  - name: gRPC
-  - name: NPM
-  - name: TS
+  - short_name: gRPC
+  - short_name: NPM
+  - short_name: TS
+    long_name: TypeScript
 meta_keywords: |
   gRPC, JavaScript, proto, .proto, génération automatique proto, Zod, schéma Zod, Zod schema, typage TypeScript, inférence de types, type inference, contrôleurs gRPC, @grpc/grpc-js, bibliothèque open source, open source, écosystème JavaScript, développement backend, technologies émergentes, validation de données, génération de code, intégration gRPC, Node.js gRPC, outils pour développeurs, protobuf JavaScript
 description: |

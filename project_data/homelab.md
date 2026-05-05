@@ -5,9 +5,10 @@ title: HomeLab
 image_url: homelab.webp
 start_date: 2025-01-24
 tags:
-  - name: K8s
-  - name: NixOS
-  - name: Terraform
+  - short_name: K8s
+    long_name: Kubernetes
+  - short_name: NixOS
+  - short_name: Terraform
 meta_keywords: |
   homelab, k8s, k3s, kubernetes, traefik, nixos, terraform, orchestration conteneurs, reverse proxy, infrastructure reproductible, configurations nixos, flakes nixos, déploiement, deployment, infrastructure as code, provisioning, provisionnement vm, vm, rotation certificats, certificates, cluster k3s, hyperviseur de type 1, hypervisor type 1, proxmox, devops, infrastructure, reproductibilité, reproducibility
 description: |

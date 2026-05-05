@@ -6,9 +6,10 @@ image_url: unified_sso_login.webp
 start_date: 2025-07-03
 end_date: 2025-12-01
 tags:
-  - name: OIDC
-  - name: Auth
-  - name: Redis
+  - short_name: OIDC
+    long_name: OpenID Connect
+  - short_name: Auth
+  - short_name: Redis
 meta_keywords: |
   sso, single sign-on, openid connect, oidc, authentification unique, authentication, sécurité des accès, intégration sso, stateless, architecture stateless, redis, gestion des sessions, expiration des tokens, token, authorization code flow, protection des données, scalabilité, résilience, resilience, resiliency, expérience utilisateur, user experience, gestion des erreurs, error handling, stockage éphémère, temporary storage
 description: |

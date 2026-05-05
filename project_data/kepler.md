@@ -6,9 +6,9 @@ image_url: kepler.webp
 start_date: 2020-04-01
 end_date: 2021-03-20
 tags:
-  - name: ElectronJS
-  - name: CSS
-  - name: HTML
+  - short_name: ElectronJS
+  - short_name: CSS
+  - short_name: HTML
 meta_keywords: |
   ElectronJS, navigateur web, fonctionnalités, gestion des onglets, favoris, téléchargements, ad-bloqueur, système de mise à jour
 description: |

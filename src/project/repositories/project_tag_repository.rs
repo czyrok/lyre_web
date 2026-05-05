@@ -19,19 +19,21 @@ impl ProjectTagRepository {
         Self { environment }
     }
 
-    pub async fn save_project_tag(
+    pub async fn upsert_project_tag(
         &self,
-        project_slug: String,
         tag: ProjectTag,
         local_database_transaction: &mut LocalDatabaseTransaction<'_>,
     ) -> Result<(), sqlx::Error> {
         sqlx::query!(
             "
-                INSERT INTO `project_tags` (`project_slug`, `name`) VALUES (?, \
-             ?);
-                ",
-            project_slug,
-            tag.name
+            INSERT INTO `project_tags` (`short_name`, `long_name`)
+            VALUES(?, ?)
+            ON CONFLICT (short_name) DO UPDATE SET
+                long_name = excluded.long_name
+            WHERE excluded.long_name IS NOT NULL;
+            ",
+            tag.short_name,
+            tag.long_name
         )
         .fetch_optional(&mut *local_database_transaction.value)
         .await?;
@@ -63,7 +65,7 @@ impl ProjectTagRepository {
         let project_tags = sqlx::query_as!(
             ProjectTag,
             "
-            SELECT    DISTINCT `name`
+            SELECT    `short_name`, `long_name`
             FROM      `project_tags`;
             ",
         )

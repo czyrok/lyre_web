@@ -77,7 +77,7 @@ pub fn ProjectDetails() -> impl IntoView {
                                                 <h1 class="tw-title-size-lg">{ project.context.title.clone() }</h1>
 
                                                 <div class="tw-details-tags">
-                                                    <ProjectTagItems project_tags=project.context.tags.clone() />
+                                                    <ProjectTagItems project_tags=project.context.tags.clone() uses_long_name=true />
                                                 </div>
                                             </div>
                                         </div>

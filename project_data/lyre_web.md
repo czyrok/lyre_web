@@ -5,9 +5,9 @@ title: Ce site web
 image_url: lyre_web.webp
 start_date: 2024-09-23
 tags:
-  - name: Rust
-  - name: Tailwind
-  - name: Figma
+  - short_name: Rust
+  - short_name: Tailwind
+  - short_name: Figma
 meta_keywords: |
   stack technique, Leptos, framework web assembly, challenge design, harmonie des couleurs, veille technique, optimisation, sécurité des applications
 description: |

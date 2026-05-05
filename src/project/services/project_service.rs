@@ -77,7 +77,11 @@ impl ProjectService {
 
         for tag in project.context.tags.0 {
             self.project_tag_repository
-                .save_project_tag(
+                .upsert_project_tag(tag.clone(), local_database_transaction)
+                .await?;
+
+            self.project_repository
+                .add_project_tag(
                     project_slug.clone(),
                     tag,
                     local_database_transaction,

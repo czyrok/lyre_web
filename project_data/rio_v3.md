@@ -6,9 +6,10 @@ image_url: rio_v3.webp
 start_date: 2023-07-23
 end_date: 2024-07-16
 tags:
-  - name: Socket.io
-  - name: Express.js
-  - name: TS
+  - short_name: Socket.io
+  - short_name: Express.js
+  - short_name: TS
+    long_name: TypeScript
 meta_keywords: |
   framework, abstraction, encapsulation, Express.js, Socket.io, décorateurs TypeScript, injection de dépendance, typage, NestJS, choix techniques
 description: |

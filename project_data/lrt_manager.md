@@ -6,9 +6,9 @@ image_url: lrt_manager.webp
 start_date: 2023-05-10
 end_date: 2023-06-10
 tags:
-  - name: RxJS
-  - name: Socket.io
-  - name: Angular
+  - short_name: RxJS
+  - short_name: Socket.io
+  - short_name: Angular
 meta_keywords: |
   gestion de fichiers, sauvegarde, SBC, Session Border Controller, téléphonie SIP, séquences programmées, RxJS, parallélisme
 description: |
