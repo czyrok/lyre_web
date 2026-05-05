@@ -39,13 +39,39 @@ impl ProjectContextRepository {
             query_builder.push(" AND ( true = false ");
 
             for title_part in searched_project_title_parts {
+                let title_part = title_part.to_lowercase();
+
                 if title_part.is_empty() {
                     continue;
                 }
 
-                query_builder.push(" OR (`projects`.`title` LIKE ");
+                query_builder.push(" OR (LOWER(`projects`.`title`) LIKE ");
                 query_builder.push_bind(format!("%{title_part}%"));
                 query_builder.push(" ) ");
+
+                query_builder.push(
+                    " OR ( (SELECT COUNT(*) FROM `project_tags` INNER JOIN \
+                     `project_tags_projects` ON \
+                     `project_tags_projects`.`tag_short_name` = \
+                     `project_tags`.`short_name` AND \
+                     `project_tags_projects`.`project_slug` = \
+                     `projects`.`slug` WHERE \
+                     LOWER(`project_tags`.`short_name`) LIKE ",
+                );
+                query_builder.push_bind(format!("%{title_part}%"));
+                query_builder.push(" ) > 0 ) ");
+
+                query_builder.push(
+                    " OR ( (SELECT COUNT(*) FROM `project_tags` INNER JOIN \
+                     `project_tags_projects` ON \
+                     `project_tags_projects`.`tag_short_name` = \
+                     `project_tags`.`short_name` AND \
+                     `project_tags_projects`.`project_slug` = \
+                     `projects`.`slug` WHERE \
+                     LOWER(`project_tags`.`long_name`) LIKE ",
+                );
+                query_builder.push_bind(format!("%{title_part}%"));
+                query_builder.push(" ) > 0 ) ");
             }
 
             query_builder.push(" ) ");
@@ -187,9 +213,9 @@ OR (`projects`.`end_date` >= '{previous_year_2}-01-01' AND \
                         JSON_OBJECT('short_name', `project_tags`.`short_name`, 'long_name', `project_tags`.`long_name`)
                     ) AS `tags`
             FROM      `projects`
-            INNER JOIN `project_tags_projects` ON `project_tags_projects`.`project_slug` = \
+            LEFT JOIN `project_tags_projects` ON `project_tags_projects`.`project_slug` = \
              `projects`.`slug`
-            INNER JOIN `project_tags` ON `project_tags`.`short_name` = \
+            LEFT JOIN `project_tags` ON `project_tags`.`short_name` = \
              `project_tags_projects`.`tag_short_name`
              ",
         );
