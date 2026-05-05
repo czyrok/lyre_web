@@ -78,7 +78,7 @@ pub fn UnthemedInputText(
                     dyn_clone::clone_box(&* reset_callback);
 
                 view! {
-                    <span class="tw-input-text-icon" on:click=move |event| {
+                    <span class="tw-input-text-icon tw-cursor-pointer" on:click=move |event| {
                         event.prevent_default();
                         reset_callback(event)
                     } >
