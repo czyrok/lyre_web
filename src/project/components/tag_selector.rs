@@ -8,7 +8,7 @@ use crate::{
     project::resources::all_project_tags_resource::AllProjectTagsResource,
     shared::{
         button::{
-            components::primary_button::PrimaryButton,
+            components::secondary_button::SecondaryButton,
             types::button_action::ButtonAction,
         },
         components::dropdown_menu::Position,
@@ -61,7 +61,7 @@ pub fn TagSelector(
                 let (is_errored, _) = signal(true);
 
                 view! {
-                    <PrimaryButton size=ComponentSize::LG text="Erreur" on_click=ButtonAction::None is_errored />
+                    <SecondaryButton size=ComponentSize::LG text="Erreur" on_click=ButtonAction::None is_errored />
                 }
             }>
                 {move || Suspend::<Result<_, FetchState>>::new(async move {

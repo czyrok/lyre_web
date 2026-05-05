@@ -20,11 +20,11 @@ pub fn ProjectLinkItems(project_links: ProjectLinks) -> impl IntoView {
 
                 if link.icon.is_some() {
                     view! {
-                        <SecondaryButtonAsLink size=ComponentSize::MD text=link.title href=link.url icon=link.icon.unwrap() icon_side=IconSide::Right target="_blank" />
+                        <SecondaryButtonAsLink size=ComponentSize::LG text=link.title href=link.url icon=link.icon.unwrap() icon_side=IconSide::Right target="_blank" />
                     }
                 } else {
                     view! {
-                        <SecondaryButtonAsLink size=ComponentSize::MD text=link.title href=link.url target="_blank" />
+                        <SecondaryButtonAsLink size=ComponentSize::LG text=link.title href=link.url target="_blank" />
                     }
                 }}
             }
