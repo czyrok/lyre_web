@@ -39,9 +39,10 @@ export const addDropdownMenuComponent: ComponentBuilderFunction = (
 
       '.dropdown-menu-items': {
         [`@apply ${classPrefix}overflow-y-auto`]: {},
-        '&::-webkit-scrollbar-thumb': {
-          [`@apply ${classPrefix}bg-black-600`]: {},
-        },
+
+        [`@apply [scrollbar-width:thin]`]: {},
+        [`@apply [scrollbar-color:theme(colors.white.300)_transparent]`]: {},
+        [`@apply dark:[scrollbar-color:theme(colors.white.300)_transparent]`]: {},
 
         '.dropdown-menu-item': {
           // Sizing
