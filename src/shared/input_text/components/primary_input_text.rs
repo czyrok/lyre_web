@@ -24,6 +24,7 @@ pub fn PrimaryInputText(
         WriteSignal<String>,
     ),
     #[prop(into, optional)] state: Option<RwSignal<InputTextState>>,
+    #[prop(optional, into)] on_click_callback: Option<Box<dyn OnClickCallback>>,
     #[prop(optional, into)] reset_callback: Option<Box<dyn OnClickCallback>>,
     #[prop(default = false)] shows_active_state_when_has_text: bool,
 ) -> impl IntoView {
@@ -34,6 +35,6 @@ pub fn PrimaryInputText(
     }
 
     view! {
-        <UnthemedInputText theme=InputTextTheme::Primary text=(text, set_text) size placeholder icon additional_style_classes reset_callback state=state.into() />
+        <UnthemedInputText theme=InputTextTheme::Primary text=(text, set_text) size placeholder icon additional_style_classes on_click_callback reset_callback state=state.into() />
     }
 }

@@ -26,6 +26,7 @@ use crate::{
 #[component]
 pub fn TagSelector(
     set_selected_project_tags: WriteSignal<Vec<String>>,
+    scroll_trigger: RwSignal<()>,
 ) -> impl IntoView {
     let project_tag_resource = AllProjectTagsResource::default();
 
@@ -71,6 +72,10 @@ pub fn TagSelector(
                             cloned_select_choices.change_all_status(false, None);
                         });
 
+                        let on_click_callback: Box<dyn OnClickCallback> = Box::new(move |_| {
+                            scroll_trigger.set(())
+                        });
+
                         view! {
                             <SecondarySelect
                                 size=ComponentSize::LG
@@ -83,6 +88,7 @@ pub fn TagSelector(
                                 shows_search_bar=true
                                 search_placeholder="Nom d'une techno."
                                 search_icon=IconSet::Search
+                                on_click_callback
                                 reset_callback
                             />
                         }

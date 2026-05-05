@@ -19,6 +19,7 @@ use crate::{
 #[component]
 pub fn ImplementationYearSelector(
     set_selected_implementation_years: WriteSignal<Vec<ImplementationYear>>,
+    scroll_trigger: RwSignal<()>,
 ) -> impl IntoView {
     let implementation_years = RwSignal::new(vec![]);
 
@@ -65,6 +66,8 @@ pub fn ImplementationYearSelector(
         implementation_years
     });
 
+    let on_click_callback: Box<dyn OnClickCallback> =
+        Box::new(move |_| scroll_trigger.set(()));
     let cloned_select_choices = select_choices.clone();
     let reset_callback: Box<dyn OnClickCallback> = Box::new(move |_| {
         cloned_select_choices.change_all_status(false, None);
@@ -79,6 +82,7 @@ pub fn ImplementationYearSelector(
             identifier="year-of-implementation-selector"
             select_choices=select_choices
             shows_active_state_when_least_one_selected=true
+            on_click_callback
             reset_callback
         />
     }

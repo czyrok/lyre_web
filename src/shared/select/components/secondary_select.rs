@@ -41,6 +41,7 @@ pub fn SecondarySelect<TChoiceKey>(
 
     #[prop(into, optional)] state: Option<RwSignal<SelectState>>,
     #[prop(default = false)] shows_active_state_when_least_one_selected: bool,
+    #[prop(into, optional)] on_click_callback: Option<Box<dyn OnClickCallback>>,
     #[prop(into, optional)] reset_callback: Option<Box<dyn OnClickCallback>>,
 
     dropdown_menu_position: Position,
@@ -60,8 +61,11 @@ where
         effect_active_state(&select_choices, state)
     }
 
-    let actions =
-        SelectActions::new(anchor_names.clone().dropdown_menu, reset_callback);
+    let actions = SelectActions::new(
+        anchor_names.clone().dropdown_menu,
+        on_click_callback,
+        reset_callback,
+    );
 
     view! {
         <UnthemedSelectButton theme=SelectTheme::Secondary size text icon actions anchor_name=anchor_names.clone().button state=state.into() />

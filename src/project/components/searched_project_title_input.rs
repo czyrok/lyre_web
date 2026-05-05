@@ -12,6 +12,7 @@ use crate::{
 #[component]
 pub fn SearchedProjectTitleInput(
     set_searched_project_title: WriteSignal<String>,
+    scroll_trigger: RwSignal<()>,
 ) -> impl IntoView {
     let (self_searched_project_title, set_self_searched_project_title) =
         signal("".into());
@@ -35,6 +36,9 @@ pub fn SearchedProjectTitleInput(
         new_search_project_title
     });
 
+    let on_click_callback: Box<dyn OnClickCallback> = Box::new(move |_| {
+        scroll_trigger.set(());
+    });
     let reset_callback: Box<dyn OnClickCallback> = Box::new(move |_| {
         set_searched_project_title.set("".into());
         set_self_searched_project_title.set("".into());
@@ -48,6 +52,7 @@ pub fn SearchedProjectTitleInput(
             icon=IconSet::Search
             additional_style_classes="tw-max-w-59 tw-w-full"
             shows_active_state_when_has_text=true
+            on_click_callback
             reset_callback
         />
     }

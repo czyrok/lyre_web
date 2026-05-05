@@ -1,4 +1,4 @@
-use leptos::prelude::*;
+use leptos::{prelude::*, web_sys::window};
 use leptos_use::signal_debounced;
 
 use crate::project::{
@@ -56,14 +56,29 @@ pub fn OrderedProjectContextFilter(
         project_context_filter
     });
 
+    let scroll_trigger = RwSignal::new(());
+
+    Effect::new(move || {
+        scroll_trigger.track();
+
+        if let Some(window) = window() {
+            let current_scroll = window.scroll_y().unwrap_or(0.0);
+            let scroll_wanted = 300.0;
+
+            if current_scroll < scroll_wanted {
+                window.scroll_to_with_x_and_y(0.0, scroll_wanted);
+            }
+        }
+    });
+
     view! {
         <div class="tw-flex tw-flex-col tw-flex-row tw-items-center tw-gap-level2">
-            <SearchedProjectTitleInput set_searched_project_title />
+            <SearchedProjectTitleInput set_searched_project_title scroll_trigger />
 
             <div class="tw-flex tw-flex-wrap tw-flex-row tw-gap-level1">
-                <TagSelector set_selected_project_tags />
+                <TagSelector set_selected_project_tags scroll_trigger />
 
-                <ImplementationYearSelector set_selected_implementation_years />
+                <ImplementationYearSelector set_selected_implementation_years scroll_trigger />
              </div>
         </div>
     }

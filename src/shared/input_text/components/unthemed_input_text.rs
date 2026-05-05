@@ -21,6 +21,7 @@ pub fn UnthemedInputText(
         ReadSignal<String>,
         WriteSignal<String>,
     ),
+    #[prop(into)] on_click_callback: Option<Box<dyn OnClickCallback>>,
     #[prop(into)] reset_callback: Option<Box<dyn OnClickCallback>>,
     state: Signal<InputTextState>,
 ) -> impl IntoView {
@@ -33,6 +34,8 @@ pub fn UnthemedInputText(
 
     let has_icon = icon.is_some();
 
+    let on_click_callback: Box<dyn OnClickCallback> =
+        on_click_callback.unwrap_or(Box::new(|_| {}));
     let reset_callback: Box<dyn OnClickCallback> =
         reset_callback.unwrap_or(Box::new(|_| {}));
 
@@ -51,6 +54,8 @@ pub fn UnthemedInputText(
             class=(["tw-input-size-lg"], move || is_lg_size)
             class=(["tw-input-size-md"], move || is_md_size)
             class=(["tw-input-size-sm"], move || is_sm_size)
+
+            on:click=on_click_callback
         >
             <span class="tw-input-text-left-group">
                 {move || has_icon.then(|| {

@@ -34,6 +34,8 @@ pub fn UnthemedSelectButton(
     let popover_target_id: String = actions.popover_target_id.clone();
     let reset_callback: Box<dyn OnClickCallback> =
         actions.reset_callback.unwrap_or(Box::new(|_| {}));
+    let on_click_callback: Box<dyn OnClickCallback> =
+        actions.on_click_callback.unwrap_or(Box::new(|_| {}));
 
     let is_default =
         Signal::derive(move || matches!(state.get(), SelectState::Default));
@@ -61,6 +63,7 @@ pub fn UnthemedSelectButton(
             class=(["tw-select-errored"], move || is_errored.get())
             disabled=is_errored.get()
 
+            on:click=on_click_callback
             popovertarget=popover_target_id
             style=format!("anchor-name: --{}", anchor_name)
         >
