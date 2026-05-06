@@ -67,6 +67,10 @@ export const addAccentuationInputTextComponent: ComponentBuilderFunction = (
         },
       },
 
+      '.input-text-left-group': {
+        [`@apply ${classPrefix}inline-flex ${classPrefix}w-full`]: {},
+      },
+
       '&:has(.input-text-input, .input-text-icon)': {
         [`@apply ${classPrefix}inline-flex ${classPrefix}items-center`]: {},
       },
@@ -89,7 +93,7 @@ export const addAccentuationInputTextComponent: ComponentBuilderFunction = (
       // Variants
       '&.input-size-xl': {
         // Sizing
-        [`@apply ${classPrefix}px-5 ${classPrefix}py-2`]: {},
+        [`@apply ${classPrefix}px-4 ${classPrefix}py-2`]: {},
         [`@apply ${classPrefix}text-6`]: {},
 
         // Children
@@ -98,13 +102,17 @@ export const addAccentuationInputTextComponent: ComponentBuilderFunction = (
         },
 
         '&:has(.input-text-input, .input-text-icon)': {
+          [`@apply ${classPrefix}gap-2,5`]: {},
+        },
+
+        '.input-text-left-group': {
           [`@apply ${classPrefix}gap-1,5`]: {},
         },
       },
 
       '&.input-size-lg': {
         // Sizing
-        [`@apply ${classPrefix}px-4 ${classPrefix}py-2`]: {},
+        [`@apply ${classPrefix}px-3,5 ${classPrefix}py-2`]: {},
         [`@apply ${classPrefix}text-5`]: {},
 
         // Children
@@ -113,13 +121,17 @@ export const addAccentuationInputTextComponent: ComponentBuilderFunction = (
         },
 
         '&:has(.input-text-input, .input-text-icon)': {
+          [`@apply ${classPrefix}gap-2`]: {},
+        },
+
+        '.input-text-left-group': {
           [`@apply ${classPrefix}gap-1`]: {},
         },
       },
 
       '&.input-size-md': {
         // Sizing
-        [`@apply ${classPrefix}px-4 ${classPrefix}py-2`]: {},
+        [`@apply ${classPrefix}px-3 ${classPrefix}py-2`]: {},
         [`@apply ${classPrefix}text-4`]: {},
 
         // Children
@@ -128,13 +140,17 @@ export const addAccentuationInputTextComponent: ComponentBuilderFunction = (
         },
 
         '&:has(.input-text-input, .input-text-icon)': {
+          [`@apply ${classPrefix}gap-2`]: {},
+        },
+
+        '.input-text-left-group': {
           [`@apply ${classPrefix}gap-1`]: {},
         },
       },
 
       '&.input-size-sm': {
         // Sizing
-        [`@apply ${classPrefix}px-3 ${classPrefix}py-1,5`]: {},
+        [`@apply ${classPrefix}px-2,5 ${classPrefix}py-1,5`]: {},
         [`@apply ${classPrefix}text-3`]: {},
 
         // Children
@@ -143,6 +159,10 @@ export const addAccentuationInputTextComponent: ComponentBuilderFunction = (
         },
 
         '&:has(.input-text-input, .input-text-icon)': {
+          [`@apply ${classPrefix}gap-1,5`]: {},
+        },
+
+        '.input-text-left-group': {
           [`@apply ${classPrefix}gap-0,5`]: {},
         },
       },

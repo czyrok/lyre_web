@@ -45,7 +45,7 @@ export const addNavBarComponent: ComponentBuilderFunction = (
         // Children
         '.nav-bar-item': {
           // Sizing
-          [`@apply ${classPrefix}px-4 ${classPrefix}py-2`]: {},
+          [`@apply ${classPrefix}px-3,5 ${classPrefix}py-2`]: {},
           [`@apply ${classPrefix}text-5`]: {},
           [`@apply ${classPrefix}rounded-25`]: {},
 

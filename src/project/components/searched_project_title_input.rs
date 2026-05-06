@@ -2,16 +2,17 @@ use leptos::prelude::*;
 use leptos_use::signal_debounced;
 
 use crate::{
-    core::data::icon_set::IconSet,
+    core::{data::icon_set::IconSet, types::closure::OnClickCallback},
     shared::{
-        components::input_text::InputText, enums::component_size::ComponentSize,
+        enums::component_size::ComponentSize,
+        input_text::components::primary_input_text::PrimaryInputText,
     },
 };
 
 #[component]
 pub fn SearchedProjectTitleInput(
     set_searched_project_title: WriteSignal<String>,
-    reset_event: Signal<()>,
+    scroll_trigger: RwSignal<()>,
 ) -> impl IntoView {
     let (self_searched_project_title, set_self_searched_project_title) =
         signal("".into());
@@ -35,24 +36,24 @@ pub fn SearchedProjectTitleInput(
         new_search_project_title
     });
 
-    Effect::new(move |last_event: Option<()>| {
-        reset_event.track();
-
-        let is_first_event = last_event.is_none();
-
-        if !is_first_event {
-            set_searched_project_title.set("".into());
-            set_self_searched_project_title.set("".into());
-        }
+    let on_click_callback: Box<dyn OnClickCallback> = Box::new(move |_| {
+        scroll_trigger.set(());
+    });
+    let reset_callback: Box<dyn OnClickCallback> = Box::new(move |_| {
+        set_searched_project_title.set("".into());
+        set_self_searched_project_title.set("".into());
     });
 
     view! {
-        <InputText
+        <PrimaryInputText
             size=ComponentSize::LG
             text=(self_searched_project_title, set_self_searched_project_title)
-            placeholder="Nom d'un projet"
+            placeholder="Nom d'un projet, d'une techno."
             icon=IconSet::Search
-            additional_style_classes="tw-searched-project-title-input-text"
+            additional_style_classes="tw-max-w-59 tw-w-full"
+            shows_active_state_when_has_text=true
+            on_click_callback
+            reset_callback
         />
     }
 }

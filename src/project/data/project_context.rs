@@ -7,7 +7,7 @@ use sqlx::{sqlite::SqliteRow, FromRow, Row};
 
 use super::{next_project::NextProject, project_tags::ProjectTags};
 
-#[derive(Default, Deserialize, Serialize, Clone, Debug)]
+#[derive(Default, Deserialize, Serialize, Clone, Debug, PartialEq)]
 pub struct ProjectContext {
     pub slug: Option<String>,
     pub next: Option<NextProject>,

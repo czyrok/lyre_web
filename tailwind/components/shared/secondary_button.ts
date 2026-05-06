@@ -70,7 +70,7 @@ export const addSecondaryButtonComponent: ComponentBuilderFunction = (
       // Variants
       '&.button-size-xl': {
         // Sizing
-        [`@apply ${classPrefix}px-5 ${classPrefix}py-2`]: {},
+        [`@apply ${classPrefix}px-4 ${classPrefix}py-2`]: {},
         [`@apply ${classPrefix}text-6`]: {},
 
         // Children
@@ -89,7 +89,7 @@ export const addSecondaryButtonComponent: ComponentBuilderFunction = (
 
       '&.button-size-lg': {
         // Sizing
-        [`@apply ${classPrefix}px-4 ${classPrefix}py-2`]: {},
+        [`@apply ${classPrefix}px-3,5 ${classPrefix}py-2`]: {},
         [`@apply ${classPrefix}text-5`]: {},
 
         // Children
@@ -108,7 +108,7 @@ export const addSecondaryButtonComponent: ComponentBuilderFunction = (
 
       '&.button-size-md': {
         // Sizing
-        [`@apply ${classPrefix}px-4 ${classPrefix}py-2`]: {},
+        [`@apply ${classPrefix}px-3 ${classPrefix}py-2`]: {},
         [`@apply ${classPrefix}text-4`]: {},
 
         // Children
@@ -123,20 +123,11 @@ export const addSecondaryButtonComponent: ComponentBuilderFunction = (
         '&:has(.button-icon):not(:has(.button-text))': {
           [`@apply ${classPrefix}p-2`]: {},
         },
-
-        // Variants
-        '&.button-ping': {
-          '&::after': {
-            // Sizing
-            [`@apply ${classPrefix}w-1,5 ${classPrefix}h-1,5`]: {},
-            [`@apply ${classPrefix}top-0,5 ${classPrefix}right-0,5`]: {},
-          },
-        },
       },
 
       '&.button-size-sm': {
         // Sizing
-        [`@apply ${classPrefix}px-3 ${classPrefix}py-1,5`]: {},
+        [`@apply ${classPrefix}px-2,5 ${classPrefix}py-1,5`]: {},
         [`@apply ${classPrefix}text-3`]: {},
 
         // Children
@@ -150,22 +141,6 @@ export const addSecondaryButtonComponent: ComponentBuilderFunction = (
 
         '&:has(.button-icon):not(:has(.button-text))': {
           [`@apply ${classPrefix}p-1,5`]: {},
-        },
-      },
-
-      '&.button-ping': {
-        [`@apply ${classPrefix}relative`]: {},
-
-        '&::after': {
-          [`@apply ${classPrefix}content-empty ${classPrefix}absolute ${classPrefix}animate-ping`]:
-            {},
-
-          // Colors
-          [`@apply ${classPrefix}bg-purple-blue-400`]: {},
-          [`@apply dark:${classPrefix}bg-purple-blue-500`]: {},
-
-          // Sizing
-          [`@apply ${classPrefix}rounded-full`]: {},
         },
       },
 

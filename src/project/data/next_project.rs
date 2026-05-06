@@ -2,7 +2,7 @@ use serde::{Deserialize, Serialize};
 #[cfg(feature = "ssr")]
 use sqlx::{sqlite::SqliteRow, FromRow, Row};
 
-#[derive(Default, Serialize, Deserialize, Clone, Debug)]
+#[derive(Default, Serialize, Deserialize, Clone, Debug, PartialEq)]
 pub struct NextProject {
     pub slug: String,
     pub title: Option<String>,

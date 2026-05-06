@@ -5,7 +5,7 @@ use crate::{
         components::dropdown_menu::Position,
         enums::component_size::ComponentSize,
         select::{
-            components::select::Select,
+            components::secondary_select::SecondarySelect,
             types::{
                 select_choice::SelectChoice, single_select::SingleSelectChoices,
             },
@@ -45,6 +45,6 @@ pub fn ThemeSelector() -> impl IntoView {
     let choices = SingleSelectChoices::new([dark_choice, light_choice].into());
 
     view! {
-        <Select size=ComponentSize::SM dropdown_menu_position=Position::Right text="Thème" identifier="theme-selector" select_choices=choices />
+        <SecondarySelect size=ComponentSize::SM identifier="theme-selector" text="Thème"  select_choices=choices dropdown_menu_position=Position::Right  />
     }
 }

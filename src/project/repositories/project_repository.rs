@@ -7,7 +7,7 @@ use std::{
 use leptos::logging::error;
 
 use crate::{
-    project::data::project::Project,
+    project::data::{project::Project, project_tag::ProjectTag},
     system::{
         database::{
             local_database::LocalDatabase,
@@ -86,6 +86,7 @@ impl ProjectRepository {
     ) -> Result<(), sqlx::Error> {
         sqlx::query!(
             "
+                DELETE FROM `project_tags_projects`;
                 DELETE FROM `projects`;
                 "
         )
@@ -197,9 +198,13 @@ impl ProjectRepository {
                     `projects`.`meta_keywords`,
                     (
                     ---- https://www.sqlitetutorial.net/sqlite-json-functions/sqlite-json_group_array-function/
-                    SELECT    JSON_GROUP_ARRAY (`project_tags`.`name`)
+                    ---- https://www.sqlitetutorial.net/sqlite-json-functions/sqlite-json_object-function/
+                    SELECT    JSON_GROUP_ARRAY (
+                                JSON_OBJECT('short_name', `project_tags`.`short_name`, 'long_name', `project_tags`.`long_name`)
+                                )
                     FROM      `project_tags`
-                    WHERE     `project_tags`.`project_slug` = `projects`.`slug`
+                    INNER JOIN `project_tags_projects` ON `project_tags_projects`.`tag_short_name` = `project_tags`.`short_name`
+                    AND     `project_tags_projects`.`project_slug` = `projects`.`slug`
                     ) AS `tags`,
                     (
                     ---- https://www.sqlitetutorial.net/sqlite-json-functions/sqlite-json_group_array-function/
@@ -219,5 +224,25 @@ impl ProjectRepository {
         .await?;
 
         Ok(project)
+    }
+
+    pub async fn add_project_tag(
+        &self,
+        project_slug: String,
+        tag: ProjectTag,
+        local_database_transaction: &mut LocalDatabaseTransaction<'_>,
+    ) -> Result<(), sqlx::Error> {
+        sqlx::query!(
+            "
+                INSERT INTO `project_tags_projects` (`project_slug`, \
+             `tag_short_name`) VALUES (?, ?);
+                ",
+            project_slug,
+            tag.short_name
+        )
+        .fetch_optional(&mut *local_database_transaction.value)
+        .await?;
+
+        Ok(())
     }
 }

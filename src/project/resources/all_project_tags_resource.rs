@@ -30,8 +30,11 @@ impl AllProjectTagsResource {
                     .iter()
                     .map(|tag| {
                         SelectChoice::new(
-                            tag.name.clone(),
-                            tag.name.clone(),
+                            tag.short_name.clone(),
+                            tag.long_name
+                                .clone()
+                                .unwrap_or(tag.short_name.clone())
+                                .clone(),
                             None,
                         )
                     })

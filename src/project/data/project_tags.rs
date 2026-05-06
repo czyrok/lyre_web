@@ -39,9 +39,8 @@ impl<'row> Decode<'row, Sqlite> for ProjectTags {
         let value_string: String =
             <&str as Decode<Sqlite>>::decode(value_ref)?.into();
 
-        let tag_values: Vec<String> =
-            serde_json::from_str(&value_string).unwrap();
+        let value = serde_json::from_str(&value_string).unwrap();
 
-        Ok(tag_values.into())
+        Ok(value)
     }
 }

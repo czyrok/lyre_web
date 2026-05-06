@@ -39,13 +39,39 @@ impl ProjectContextRepository {
             query_builder.push(" AND ( true = false ");
 
             for title_part in searched_project_title_parts {
+                let title_part = title_part.to_lowercase();
+
                 if title_part.is_empty() {
                     continue;
                 }
 
-                query_builder.push(" OR (`projects`.`title` LIKE ");
+                query_builder.push(" OR (LOWER(`projects`.`title`) LIKE ");
                 query_builder.push_bind(format!("%{title_part}%"));
                 query_builder.push(" ) ");
+
+                query_builder.push(
+                    " OR ( (SELECT COUNT(*) FROM `project_tags` INNER JOIN \
+                     `project_tags_projects` ON \
+                     `project_tags_projects`.`tag_short_name` = \
+                     `project_tags`.`short_name` AND \
+                     `project_tags_projects`.`project_slug` = \
+                     `projects`.`slug` WHERE \
+                     LOWER(`project_tags`.`short_name`) LIKE ",
+                );
+                query_builder.push_bind(format!("%{title_part}%"));
+                query_builder.push(" ) > 0 ) ");
+
+                query_builder.push(
+                    " OR ( (SELECT COUNT(*) FROM `project_tags` INNER JOIN \
+                     `project_tags_projects` ON \
+                     `project_tags_projects`.`tag_short_name` = \
+                     `project_tags`.`short_name` AND \
+                     `project_tags_projects`.`project_slug` = \
+                     `projects`.`slug` WHERE \
+                     LOWER(`project_tags`.`long_name`) LIKE ",
+                );
+                query_builder.push_bind(format!("%{title_part}%"));
+                query_builder.push(" ) > 0 ) ");
             }
 
             query_builder.push(" ) ");
@@ -57,9 +83,9 @@ impl ProjectContextRepository {
             let mut separated_query_builder = query_builder.separated(", ");
 
             separated_query_builder.push_unseparated(
-                " AND ( ( SELECT COUNT(*) FROM `project_tags` WHERE \
-                 `project_tags`.`project_slug` = `projects`.`slug` AND \
-                 `project_tags`.`name` IN ( ",
+                " AND ( ( SELECT COUNT(*) FROM `project_tags_projects` WHERE \
+                 `project_tags_projects`.`project_slug` = `projects`.`slug` \
+                 AND `project_tags_projects`.`tag_short_name` IN ( ",
             );
 
             for tag in filter.tags.iter() {
@@ -182,10 +208,15 @@ OR (`projects`.`end_date` >= '{previous_year_2}-01-01' AND \
                     `projects`.`start_date`,
                     `projects`.`end_date`,
                     ---- https://www.sqlitetutorial.net/sqlite-json-functions/sqlite-json_group_array-function/
-                    JSON_GROUP_ARRAY (`project_tags`.`name`) AS `tags`
+                    ---- https://www.sqlitetutorial.net/sqlite-json-functions/sqlite-json_object-function/
+                    JSON_GROUP_ARRAY (
+                        JSON_OBJECT('short_name', `project_tags`.`short_name`, 'long_name', `project_tags`.`long_name`)
+                    ) AS `tags`
             FROM      `projects`
-            INNER JOIN `project_tags` ON `project_tags`.`project_slug` = \
+            LEFT JOIN `project_tags_projects` ON `project_tags_projects`.`project_slug` = \
              `projects`.`slug`
+            LEFT JOIN `project_tags` ON `project_tags`.`short_name` = \
+             `project_tags_projects`.`tag_short_name`
              ",
         );
 
@@ -229,8 +260,6 @@ OR (`projects`.`end_date` >= '{previous_year_2}-01-01' AND \
             "
             SELECT    COUNT(DISTINCT `projects`.`slug`) AS count
             FROM      `projects`
-            LEFT JOIN `project_tags` ON `project_tags`.`project_slug` = \
-             `projects`.`slug`
             ",
         );
 

@@ -66,6 +66,8 @@ export const addSecondaryCheckboxComponent: ComponentBuilderFunction = (
         // Colors
         [`@apply ${classPrefix}bg-purple-blue-50/90`]: {},
         [`@apply dark:${classPrefix}bg-purple-blue-950/90`]: {},
+        [`@apply ${classPrefix}outline-purple-blue-500`]: {},
+        [`@apply dark:${classPrefix}outline-purple-blue-600`]: {},
 
         // Children
         '.box-icon': {

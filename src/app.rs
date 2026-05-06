@@ -52,9 +52,9 @@ pub fn App() -> impl IntoView {
 
         <Meta property="og:url" content="https://dylan-valentin.dev" />
         <Meta property="og:type" content="website" />
-        <Meta property="og:image" content="https://dylan-valentin.dev/images/social.png" />
-        <Meta property="og:width" content="1747" />
-        <Meta property="og:height" content="914" />
+        <Meta property="og:image" content="https://dylan-valentin.dev/images/social.webp" />
+        <Meta property="og:width" content="1200" />
+        <Meta property="og:height" content="630" />
         <Meta property="og:image:type" content="image/png" />
         <Meta property="og:image:alt" content="Image of the homepage" />
 

@@ -6,9 +6,10 @@ image_url: wolfgang.webp
 start_date: 2022-11-06
 end_date: 2023-05-06
 tags:
-  - name: Socket.io
-  - name: Angular
-  - name: TS
+  - short_name: Socket.io
+  - short_name: Angular
+  - short_name: TS
+    long_name: TypeScript
 meta_keywords: |
   jeu en ligne multijoueur, Les loups-garous de Thiercelieux, architecture, backend, workers NodeJS, instances Cloud, JWT, authentification, méthode agile, travail en équipe, communication
 description: |

@@ -12,14 +12,6 @@ export const addProjectSearchPage: ComponentBuilderFunction = (
 
         // Sizing
         [`@apply ${classPrefix}gap-level2`]: {},
-
-        // Children
-        '.top-part-filter': {
-          [`@apply ${classPrefix}flex ${classPrefix}flex-wrap ${classPrefix}flex-row`]: {},
-
-          // Sizing
-          [`@apply ${classPrefix}gap-level1`]: {},
-        },
       },
 
       '.project-search-page-middle-part': {

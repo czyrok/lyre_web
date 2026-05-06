@@ -1,6 +1,6 @@
 import { ComponentBuilderFunction } from '../../types/component_builder_function';
 
-export const addSecondarySelectComponent: ComponentBuilderFunction = (
+export const addSecondarySelectButtonComponent: ComponentBuilderFunction = (
   { addComponents },
   { classPrefix }
 ) => {
@@ -43,6 +43,10 @@ export const addSecondarySelectComponent: ComponentBuilderFunction = (
         [`@apply ${classPrefix}w-button-icon ${classPrefix}h-button-icon`]: {},
       },
 
+      '.select-left-group': {
+        [`@apply ${classPrefix}inline-flex`]: {},
+      },
+
       '&:has(.select-text, .select-icon)': {
         [`@apply ${classPrefix}inline-flex ${classPrefix}items-center`]: {},
       },
@@ -63,9 +67,17 @@ export const addSecondarySelectComponent: ComponentBuilderFunction = (
       },
 
       // Variants
+      '&.select-active:not(.select-errored)': {
+        // Colors
+        [`@apply ${classPrefix}outline-purple-blue-500`]: {},
+        [`@apply dark:${classPrefix}outline-purple-blue-600`]: {},
+        [`@apply ${classPrefix}bg-purple-blue-50/90`]: {},
+        [`@apply dark:${classPrefix}bg-purple-blue-950/90`]: {},
+      },
+
       '&.select-size-xl': {
         // Sizing
-        [`@apply ${classPrefix}px-5 ${classPrefix}py-2`]: {},
+        [`@apply ${classPrefix}px-4 ${classPrefix}py-2`]: {},
         [`@apply ${classPrefix}text-6`]: {},
 
         // Children
@@ -74,6 +86,10 @@ export const addSecondarySelectComponent: ComponentBuilderFunction = (
         },
 
         '&:has(.select-text, .select-icon)': {
+          [`@apply ${classPrefix}gap-2,5`]: {},
+        },
+
+        '.select-left-group': {
           [`@apply ${classPrefix}gap-1,5`]: {},
         },
 
@@ -84,7 +100,7 @@ export const addSecondarySelectComponent: ComponentBuilderFunction = (
 
       '&.select-size-lg': {
         // Sizing
-        [`@apply ${classPrefix}px-4 ${classPrefix}py-2`]: {},
+        [`@apply ${classPrefix}px-3,5 ${classPrefix}py-2`]: {},
         [`@apply ${classPrefix}text-5`]: {},
 
         // Children
@@ -93,6 +109,10 @@ export const addSecondarySelectComponent: ComponentBuilderFunction = (
         },
 
         '&:has(.select-text, .select-icon)': {
+          [`@apply ${classPrefix}gap-2`]: {},
+        },
+
+        '.select-left-group': {
           [`@apply ${classPrefix}gap-1`]: {},
         },
 
@@ -103,7 +123,7 @@ export const addSecondarySelectComponent: ComponentBuilderFunction = (
 
       '&.select-size-md': {
         // Sizing
-        [`@apply ${classPrefix}px-4 ${classPrefix}py-2`]: {},
+        [`@apply ${classPrefix}px-3 ${classPrefix}py-2`]: {},
         [`@apply ${classPrefix}text-4`]: {},
 
         // Children
@@ -112,6 +132,10 @@ export const addSecondarySelectComponent: ComponentBuilderFunction = (
         },
 
         '&:has(.select-text, .select-icon)': {
+          [`@apply ${classPrefix}gap-2`]: {},
+        },
+
+        '.select-left-group': {
           [`@apply ${classPrefix}gap-1`]: {},
         },
 
@@ -122,7 +146,7 @@ export const addSecondarySelectComponent: ComponentBuilderFunction = (
 
       '&.select-size-sm': {
         // Sizing
-        [`@apply ${classPrefix}px-3 ${classPrefix}py-1,5`]: {},
+        [`@apply ${classPrefix}px-2,5 ${classPrefix}py-1,5`]: {},
         [`@apply ${classPrefix}text-3`]: {},
 
         // Children
@@ -131,11 +155,28 @@ export const addSecondarySelectComponent: ComponentBuilderFunction = (
         },
 
         '&:has(.select-text, .select-icon)': {
+          [`@apply ${classPrefix}gap-1,5`]: {},
+        },
+
+        '.select-left-group': {
           [`@apply ${classPrefix}gap-0,5`]: {},
         },
 
         '&:has(.select-icon):not(:has(.select-text))': {
           [`@apply ${classPrefix}p-1,5`]: {},
+        },
+      },
+
+      '&.select-errored': {
+        // Colors
+        [`@apply ${classPrefix}outline-red-300`]: {},
+        [`@apply dark:${classPrefix}outline-red-400`]: {},
+
+        // Children
+        '.select-text': {
+          // Colors
+          [`@apply ${classPrefix}text-red-300`]: {},
+          [`@apply dark:${classPrefix}text-red-400`]: {},
         },
       },
     },

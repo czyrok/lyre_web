@@ -98,6 +98,16 @@ pub fn Icon(icon: IconSet) -> impl IntoView {
             <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" fill="none" viewBox="0 0 60 60">
                 <path fill="currentColor" d="M18.462 39.563h7.692v-3.846h7.692V20.332H18.462v19.23Zm7.692-15.385H30v7.692h-3.846v-7.692Zm10.77-3.846v15.385h7.691V24.178h3.846v11.539h3.847V24.178h3.846v11.539H60V20.332H36.923ZM0 35.717h7.692V24.178h3.847v11.539h3.846V20.332H0v15.385Z"/>
             </svg>
+        }.into_any(),
+        IconSet::Cross => view! {
+            <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" fill="none" viewBox="0 0 60 60">
+                <path stroke="currentColor" stroke-linecap="round" stroke-width="1.5" d="M50 50 10 10m40 0L10 50"/>
+            </svg>
+        }.into_any(),
+        IconSet::Hashtag => view! {
+            <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" fill="none" viewBox="0 0 60 60">
+                <path stroke="currentColor" stroke-linecap="round" stroke-width="1.5" d="m25 10-7.5 40m25-40L35 50M12.5 20H50M10 40h37.5"/>
+            </svg>
         }.into_any()
     }
 }

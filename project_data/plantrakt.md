@@ -6,9 +6,9 @@ image_url: plantrakt.webp
 start_date: 2024-03-26
 end_date: 2024-05-26
 tags:
-  - name: Rust
-  - name: NestJS
-  - name: Figma
+  - short_name: Rust
+  - short_name: NestJS
+  - short_name: Figma
 meta_keywords: |
   IOT, microcontrôleur, design, conception, développement web, développement microcontrôleur, capteurs, web assembly, Rust
 description: |

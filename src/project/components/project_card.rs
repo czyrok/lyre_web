@@ -18,7 +18,7 @@ pub fn ProjectCard(project_context: ProjectContext) -> impl IntoView {
             </span>
 
             <div class="tw-card-tag-container">
-                <ProjectTagItems project_tags=project_context.tags />
+                <ProjectTagItems project_tags=project_context.tags uses_long_name=false />
             </div>
         </div>
     }

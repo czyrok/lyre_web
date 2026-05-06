@@ -6,9 +6,10 @@ image_url: synchro_system.webp
 start_date: 2026-02-02
 end_date: 2026-02-24
 tags:
-  - name: gRPC
-  - name: Redis
-  - name: TS
+  - short_name: gRPC
+  - short_name: Redis
+  - short_name: TS
+    long_name: TypeScript
 meta_keywords: |
   partenariats logiciels, software partnerships, synchronisation logicielle, software synchronization, intégration logicielle, software integration, interopérabilité logicielle, software interoperability, architecture gRPC, gRPC architecture, gRPC-gateway, Redis, TypeScript, tâches de synchronisation, synchronization tasks, API gRPC, gRPC API, service Reflection, test API Postman, Postman API testing, génération de code client, client code generation, API JSON HTTP 1.1, JSON API over HTTP 1.1, développement logiciel, software development, optimisation des partenariats, partnership optimization, intégration technique, technical integration, solutions logicielles, software solutions, Ubikap, synchronisation automatisée, automated synchronization, architecture microservices, microservices architecture, optimisation des flux de données, data flow optimization
 description: |

@@ -1,13 +1,13 @@
 use leptos::prelude::*;
 
 use crate::{
-    core::data::icon_set::IconSet,
+    core::{data::icon_set::IconSet, types::closure::OnClickCallback},
     project::enums::implementation_year::ImplementationYear,
     shared::{
         components::dropdown_menu::Position,
         enums::component_size::ComponentSize,
         select::{
-            components::select::Select,
+            components::secondary_select::SecondarySelect,
             types::{
                 multi_select::MultiSelectChoices, select_choice::SelectChoice,
                 select_choices_behavior::SelectChoicesBehavior,
@@ -19,7 +19,7 @@ use crate::{
 #[component]
 pub fn ImplementationYearSelector(
     set_selected_implementation_years: WriteSignal<Vec<ImplementationYear>>,
-    reset_event: Signal<()>,
+    scroll_trigger: RwSignal<()>,
 ) -> impl IntoView {
     let implementation_years = RwSignal::new(vec![]);
 
@@ -66,27 +66,24 @@ pub fn ImplementationYearSelector(
         implementation_years
     });
 
+    let on_click_callback: Box<dyn OnClickCallback> =
+        Box::new(move |_| scroll_trigger.set(()));
     let cloned_select_choices = select_choices.clone();
-
-    Effect::new(move |last_event: Option<()>| {
-        reset_event.track();
-
-        let is_first_event = last_event.is_none();
-
-        if !is_first_event {
-            cloned_select_choices.change_all_status(false, None);
-        }
+    let reset_callback: Box<dyn OnClickCallback> = Box::new(move |_| {
+        cloned_select_choices.change_all_status(false, None);
     });
 
     view! {
-        <Select
-            size=ComponentSize::MD
+        <SecondarySelect
+            size=ComponentSize::LG
             icon=IconSet::Calendar
             dropdown_menu_position=Position::Bottom
-            text="Réalisation"
+            text="Date Réalisation"
             identifier="year-of-implementation-selector"
             select_choices=select_choices
-            shows_ping_when_least_one_selected=true
+            shows_active_state_when_least_one_selected=true
+            on_click_callback
+            reset_callback
         />
     }
 }
