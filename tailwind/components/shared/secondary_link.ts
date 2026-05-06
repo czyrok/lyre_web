@@ -72,7 +72,7 @@ export const addSecondaryLinkComponent: ComponentBuilderFunction = (
       // Variants
       '&.link-size-xl': {
         // Sizing
-        [`@apply ${classPrefix}text-6`]: {},
+        [`@apply ${classPrefix}text-8`]: {},
 
         // Children
         '.link-icon svg path': {
@@ -90,7 +90,7 @@ export const addSecondaryLinkComponent: ComponentBuilderFunction = (
 
       '&.link-size-lg': {
         // Sizing
-        [`@apply ${classPrefix}text-5`]: {},
+        [`@apply ${classPrefix}text-7`]: {},
 
         // Children
         '.link-icon svg path': {
@@ -108,7 +108,7 @@ export const addSecondaryLinkComponent: ComponentBuilderFunction = (
 
       '&.link-size-md': {
         // Sizing
-        [`@apply ${classPrefix}text-4`]: {},
+        [`@apply ${classPrefix}text-6`]: {},
 
         // Children
         '.link-icon svg path': {
@@ -126,7 +126,7 @@ export const addSecondaryLinkComponent: ComponentBuilderFunction = (
 
       '&.link-size-sm': {
         // Sizing
-        [`@apply ${classPrefix}text-3`]: {},
+        [`@apply ${classPrefix}text-5`]: {},
 
         // Children
         '.link-icon svg path': {
