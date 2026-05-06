@@ -71,7 +71,7 @@ pub fn ProjectDetails() -> impl IntoView {
                                 content_renderer=move || view! {
                                     <div class="tw-project-details-page-top-part">
                                         <div class="tw-top-part-intro">
-                                            <Link size=ComponentSize::MD text="Mes Projets/" href="/projects" />
+                                            <Link size=ComponentSize::SM text="Mes Projets/" href="/projects" />
 
                                             <div class="tw-intro-details">
                                                 <h1 class="tw-title-size-lg">{ project.context.title.clone() }</h1>
