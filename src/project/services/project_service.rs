@@ -75,7 +75,7 @@ impl ProjectService {
                 .await?;
         }
 
-        for tag in project.context.tags.0 {
+        for (index, tag) in project.context.tags.0.iter().enumerate() {
             self.project_tag_repository
                 .upsert_project_tag(tag.clone(), local_database_transaction)
                 .await?;
@@ -84,6 +84,7 @@ impl ProjectService {
                 .add_project_tag(
                     project_slug.clone(),
                     tag,
+                    index.try_into().unwrap(),
                     local_database_transaction,
                 )
                 .await?;
