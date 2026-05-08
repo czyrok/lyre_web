@@ -199,12 +199,19 @@ impl ProjectRepository {
                     (
                     ---- https://www.sqlitetutorial.net/sqlite-json-functions/sqlite-json_group_array-function/
                     ---- https://www.sqlitetutorial.net/sqlite-json-functions/sqlite-json_object-function/
-                    SELECT    JSON_GROUP_ARRAY (
+                    ---- We use `GROUP_CONCAT` instead of `JSON_GROUP_ARRAY` to keep the order of tags
+                    ---- https://stackoverflow.com/questions/60572309/how-to-order-by-a-json-object-in-mysql
+                    SELECT    CONCAT(
+                            '[',
+                            GROUP_CONCAT(
                                 JSON_OBJECT('short_name', `project_tags`.`short_name`, 'long_name', `project_tags`.`long_name`)
-                                )
-                    FROM      `project_tags`
-                    INNER JOIN `project_tags_projects` ON `project_tags_projects`.`tag_short_name` = `project_tags`.`short_name`
-                    AND     `project_tags_projects`.`project_slug` = `projects`.`slug`
+                                order by `project_tags_projects`.`position` ASC
+                            ),
+                            ']'
+                        )
+                    FROM      `project_tags_projects`
+                    INNER JOIN `project_tags` ON `project_tags`.`short_name` = `project_tags_projects`.`tag_short_name`
+                    WHERE `project_tags_projects`.`project_slug` = `projects`.`slug`
                     ) AS `tags`,
                     (
                     ---- https://www.sqlitetutorial.net/sqlite-json-functions/sqlite-json_group_array-function/
@@ -229,16 +236,18 @@ impl ProjectRepository {
     pub async fn add_project_tag(
         &self,
         project_slug: String,
-        tag: ProjectTag,
+        tag: &ProjectTag,
+        position: u32,
         local_database_transaction: &mut LocalDatabaseTransaction<'_>,
     ) -> Result<(), sqlx::Error> {
         sqlx::query!(
             "
                 INSERT INTO `project_tags_projects` (`project_slug`, \
-             `tag_short_name`) VALUES (?, ?);
+             `tag_short_name`, `position`) VALUES (?, ?, ?);
                 ",
             project_slug,
-            tag.short_name
+            tag.short_name,
+            position
         )
         .fetch_optional(&mut *local_database_transaction.value)
         .await?;

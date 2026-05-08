@@ -209,8 +209,15 @@ OR (`projects`.`end_date` >= '{previous_year_2}-01-01' AND \
                     `projects`.`end_date`,
                     ---- https://www.sqlitetutorial.net/sqlite-json-functions/sqlite-json_group_array-function/
                     ---- https://www.sqlitetutorial.net/sqlite-json-functions/sqlite-json_object-function/
-                    JSON_GROUP_ARRAY (
-                        JSON_OBJECT('short_name', `project_tags`.`short_name`, 'long_name', `project_tags`.`long_name`)
+                    ---- We use `GROUP_CONCAT` instead of `JSON_GROUP_ARRAY` to keep the order of tags
+                    ---- https://stackoverflow.com/questions/60572309/how-to-order-by-a-json-object-in-mysql
+                    CONCAT(
+                        '[',
+                        GROUP_CONCAT(
+                            JSON_OBJECT('short_name', `project_tags`.`short_name`, 'long_name', `project_tags`.`long_name`)
+                            order by `project_tags_projects`.`position` ASC
+                        ),
+                        ']'
                     ) AS `tags`
             FROM      `projects`
             LEFT JOIN `project_tags_projects` ON `project_tags_projects`.`project_slug` = \
@@ -233,7 +240,7 @@ OR (`projects`.`end_date` >= '{previous_year_2}-01-01' AND \
         query_builder.push(
             "
             GROUP BY  `projects`.`slug`
-            ORDER BY  `position` ASC
+            ORDER BY  `projects`.`position` ASC
             ",
         );
         ProjectContextRepository::apply_pagination_limit(

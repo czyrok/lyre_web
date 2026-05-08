@@ -9,3 +9,7 @@ node_modules/
 
 # System Files
 .DS_Store
+
+# VSCode extension
+*.db-shm
+*.db-wal
