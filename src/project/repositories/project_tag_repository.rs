@@ -66,7 +66,8 @@ impl ProjectTagRepository {
             ProjectTag,
             "
             SELECT    `short_name`, `long_name`
-            FROM      `project_tags`;
+            FROM      `project_tags`
+            ORDER BY  `short_name` ASC, `long_name` ASC;
             ",
         )
         .fetch_all(&mut local_database.connection)
