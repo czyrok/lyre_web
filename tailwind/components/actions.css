@@ -246,6 +246,7 @@
     &:hover:not(:disabled) {
       @apply bg-purple-blue-50/90;
       @apply dark:bg-purple-blue-950/90;
+      @apply backdrop-blur-2;
     }
     :is(&:focus, a:focus &):not(:disabled) {
       @apply ring-green-400;

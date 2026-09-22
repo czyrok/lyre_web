@@ -175,6 +175,7 @@
   --radius-full: 9999px;
   --shadow-button-inside: 0px 1px 4px 0px #000000 inset;
   --shadow-dropdown-menu-outside: 0px 2px 4px 0px #00000025;
+  --blur-2: 2px;
   --blur-4: 4px;
   --blur-9: 9px;
   --blur-12: 12px;
