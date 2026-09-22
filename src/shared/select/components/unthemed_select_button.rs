@@ -77,18 +77,20 @@ pub fn UnthemedSelectButton(
                     }
                 })}
 
-                <span class="select-text">{ text.get() }</span>
+                <span class="select-text-group">
+                    <span class="select-text">{ text.get() }</span>
+
+                    {move || selected_count.and_then(|selected_count| {
+                        let count = selected_count.get();
+
+                        (count > 0).then(|| {
+                            view! {
+                                <span class="select-count">{ count }</span>
+                            }
+                        })
+                    })}
+                </span>
             </span>
-
-            {move || selected_count.and_then(|selected_count| {
-                let count = selected_count.get();
-
-                (count > 0).then(|| {
-                    view! {
-                        <span class="select-count">{ count }</span>
-                    }
-                })
-            })}
 
             {move || is_default.get().then(|| {
                 view! {
