@@ -179,6 +179,7 @@
   --blur-4: 4px;
   --blur-9: 9px;
   --blur-12: 12px;
+  --blur-30: 30px;
 }
 
 @utility w-button-icon { width: 1.5em; }

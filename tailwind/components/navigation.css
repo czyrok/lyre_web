@@ -69,11 +69,15 @@
         @apply content-empty inset-0 absolute z-0;
         @apply bg-bubble-pattern;
         @apply rounded-25;
+        @apply opacity-[0.64];
       }
-      @apply bg-purple-blue-400/30;
-      @apply dark:bg-purple-blue-700/30;
+      @apply bg-purple-blue-400/12;
+      @apply dark:bg-purple-blue-700/12;
       @apply rounded-25;
-      @apply backdrop-blur-12;
+      @apply backdrop-blur-30 backdrop-saturate-185;
+      @apply outline outline-1 outline-offset-l1;
+      @apply outline-purple-blue-300/30;
+      @apply dark:outline-purple-blue-800/30;
       .nav-bar-item {
         @apply px-2 py-2;
         @apply text-5;
