@@ -76,8 +76,8 @@
       @apply rounded-25;
       @apply backdrop-blur-30;
       @apply outline outline-1 outline-offset-l1;
-      @apply outline-purple-blue-300/30;
-      @apply dark:outline-purple-blue-800/30;
+      @apply outline-purple-blue-300;
+      @apply dark:outline-purple-blue-800;
       .nav-bar-item {
         @apply px-2 py-2;
         @apply text-5;
