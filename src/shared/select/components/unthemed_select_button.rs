@@ -20,6 +20,7 @@ pub fn UnthemedSelectButton(
     #[prop(into)] actions: SelectActions,
     #[prop(into)] anchor_name: String,
     state: Signal<SelectState>,
+    #[prop(optional, into)] selected_count: Option<Signal<usize>>,
 ) -> impl IntoView {
     let is_primary_theme = theme == SelectTheme::Primary;
     let is_secondary_theme = theme == SelectTheme::Secondary;
@@ -78,6 +79,16 @@ pub fn UnthemedSelectButton(
 
                 <span class="select-text">{ text.get() }</span>
             </span>
+
+            {move || selected_count.and_then(|selected_count| {
+                let count = selected_count.get();
+
+                (count > 0).then(|| {
+                    view! {
+                        <span class="select-count">{ count }</span>
+                    }
+                })
+            })}
 
             {move || is_default.get().then(|| {
                 view! {
