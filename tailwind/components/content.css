@@ -9,8 +9,9 @@
     @apply w-fit flex flex-col items-center;
     .brand-badge {
       @apply flex justify-center items-center;
-      @apply bg-blue-200;
-      @apply dark:bg-blue-800;
+      @apply bg-brand-badge-gradient;
+      @apply from-blue-50 to-blue-400;
+      @apply dark:from-blue-600 dark:to-blue-950;
       @apply rounded-full;
       .badge-logo {
         @apply h-fit;
