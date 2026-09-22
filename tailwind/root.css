@@ -318,10 +318,6 @@
     @apply text-blue-800 content-bash;
   }
 
-  h1::before {
-    @apply dark:text-blue-400;
-  }
-
   h1.title-size-xl {
     @apply text-16 sm:text-18 md:text-20 font-title-xl;
   }
@@ -363,6 +359,10 @@
   strong {
     @apply dark:text-blue-400;
   }
+}
+
+:where(.dark, .dark *) h1::before {
+  @apply text-blue-400;
 }
 
 @layer components {

@@ -8,9 +8,12 @@
     @apply font-light font-geist;
     &::before {
       @apply text-red-800;
-      @apply dark:text-red-400;
       @apply content-bash;
     }
+  }
+
+  :where(.dark, .dark *) .error-info::before {
+    @apply text-red-400;
   }
 
 

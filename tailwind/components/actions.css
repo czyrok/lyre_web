@@ -18,7 +18,6 @@
     &::before {
       @apply content-empty inset-0 absolute z-0 opacity-0;
       @apply bg-green-500;
-      @apply dark:bg-green-600;
       @apply rounded-25;
       @apply transition-button-background duration-button-background ease-button-background;
     }
@@ -119,7 +118,6 @@
     &::before {
       @apply content-empty inset-0 absolute z-0 opacity-0;
       @apply bg-purple-blue-500;
-      @apply dark:bg-purple-blue-800;
       @apply rounded-25;
       @apply transition-button-background duration-button-background ease-button-background;
     }
@@ -203,6 +201,15 @@
       }
     }
   }
+
+  :where(.dark, .dark *) .accentuation-button::before {
+    @apply bg-green-600;
+  }
+
+  :where(.dark, .dark *) .primary-button::before {
+    @apply bg-purple-blue-800;
+  }
+
   .secondary-button {
     @apply inline-flex;
     @apply outline-purple-blue-400;

@@ -8,7 +8,6 @@
       &::after {
         @apply content-empty inset-0 absolute z-0;
         @apply border-white-300/70;
-        @apply dark:border-black-800/70;
         @apply border-6;
         @apply rounded-full;
       }
@@ -26,6 +25,11 @@
       @apply max-v-sm:anchor-top-target;
     }
   }
+
+  :where(.dark, .dark *) .landing-page-contact-section .section-photo::after {
+    @apply border-black-800/70;
+  }
+
   .landing-page-highlighted-section {
     @apply bg-blue-100;
     @apply dark:bg-blue-950;

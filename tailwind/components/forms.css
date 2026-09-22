@@ -217,7 +217,6 @@
     &::before {
       @apply content-empty inset-0 absolute z-0 opacity-0;
       @apply bg-purple-blue-500;
-      @apply dark:bg-purple-blue-800;
       @apply rounded-25;
       @apply transition-button-background duration-button-background ease-button-background;
     }
@@ -316,6 +315,11 @@
       }
     }
   }
+
+  :where(.dark, .dark *) .primary-select::before {
+    @apply bg-purple-blue-800;
+  }
+
   .secondary-checkbox {
     @apply inline-flex items-center;
     @apply select-none;
