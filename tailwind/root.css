@@ -174,15 +174,6 @@
   --blur-4: 4px;
   --blur-9: 9px;
   --blur-12: 12px;
-  --opacity-0: 0;
-  --opacity-30: 0.3;
-  --opacity-33: 0.33;
-  --opacity-50: 0.5;
-  --opacity-66: 0.66;
-  --opacity-70: 0.7;
-  --opacity-80: 0.8;
-  --opacity-90: 0.9;
-  --opacity-100: 1;
 }
 
 @utility w-button-icon { width: 1.5em; }
