@@ -470,9 +470,9 @@
     }
     .select-count {
       @apply inline-flex items-center justify-center;
-      @apply bg-purple-blue-100;
+      @apply bg-purple-blue-200;
       @apply dark:bg-purple-blue-900;
-      @apply text-purple-blue-700;
+      @apply text-purple-blue-600;
       @apply dark:text-purple-blue-500;
       @apply font-button-text font-geist-mono;
     }
