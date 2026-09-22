@@ -66,7 +66,7 @@
         @apply stroke-4;
       }
       &:has(.button-text, .button-icon) {
-        @apply gap-1;
+        @apply gap-1.5;
       }
       &:has(.button-icon):not(:has(.button-text)) {
         @apply p-2;
@@ -168,7 +168,7 @@
         @apply stroke-4;
       }
       &:has(.button-text, .button-icon) {
-        @apply gap-1;
+        @apply gap-1.5;
       }
       &:has(.button-icon):not(:has(.button-text)) {
         @apply p-2;
@@ -262,7 +262,7 @@
         @apply stroke-4;
       }
       &:has(.button-text, .button-icon) {
-        @apply gap-1;
+        @apply gap-1.5;
       }
       &:has(.button-icon):not(:has(.button-text)) {
         @apply p-2;
