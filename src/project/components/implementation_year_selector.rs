@@ -82,6 +82,7 @@ pub fn ImplementationYearSelector(
             identifier="year-of-implementation-selector"
             select_choices=select_choices
             shows_active_state_when_least_one_selected=true
+            shows_selected_count=true
             on_click_callback
             reset_callback
         />

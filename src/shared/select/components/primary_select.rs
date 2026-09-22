@@ -20,6 +20,7 @@ use crate::{
             },
             helpers::{
                 active_state::effect_active_state, anchor::get_anchor_names,
+                selected_count::selected_count_signal,
             },
             types::{
                 select_choices_behavior::SelectChoicesBehavior,
@@ -41,6 +42,7 @@ pub fn PrimarySelect<TChoiceKey>(
 
     #[prop(into, optional)] state: Option<RwSignal<SelectState>>,
     #[prop(default = false)] shows_active_state_when_least_one_selected: bool,
+    #[prop(default = false)] shows_selected_count: bool,
     #[prop(into, optional)] on_click_callback: Option<Box<dyn OnClickCallback>>,
     #[prop(into, optional)] reset_callback: Option<Box<dyn OnClickCallback>>,
 
@@ -61,6 +63,10 @@ where
         effect_active_state(&select_choices, state)
     }
 
+    let selected_count = shows_selected_count
+        .then(|| selected_count_signal(&select_choices))
+        .flatten();
+
     let actions = SelectActions::new(
         anchor_names.clone().dropdown_menu,
         on_click_callback,
@@ -68,7 +74,7 @@ where
     );
 
     view! {
-        <UnthemedSelectButton theme=SelectTheme::Primary size text icon actions anchor_name=anchor_names.clone().button state=state.into() />
+        <UnthemedSelectButton theme=SelectTheme::Primary size text icon actions anchor_name=anchor_names.clone().button state=state.into() selected_count />
 
         <SelectDropdownMenu
             anchor_names

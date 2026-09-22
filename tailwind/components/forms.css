@@ -240,6 +240,14 @@
     .select-left-group {
       @apply inline-flex;
     }
+    .select-count {
+      @apply inline-flex items-center justify-center;
+      @apply bg-purple-blue-700;
+      @apply dark:bg-purple-blue-950;
+      @apply text-purple-blue-50;
+      @apply dark:text-purple-blue-100;
+      @apply font-button-text font-geist-mono;
+    }
     &:has(.select-text):has(.select-icon) {
       @apply items-center;
     }
@@ -265,6 +273,9 @@
       .select-left-group {
         @apply gap-1.5;
       }
+      .select-count {
+        @apply px-1 py-0 rounded-1.5 text-5;
+      }
       &:has(.select-icon):not(:has(.select-text)) {
         @apply p-2;
       }
@@ -280,6 +291,9 @@
       }
       .select-left-group {
         @apply gap-1;
+      }
+      .select-count {
+        @apply px-1 py-0 rounded-1.5 text-4;
       }
       &:has(.select-icon):not(:has(.select-text)) {
         @apply p-2;
@@ -297,6 +311,9 @@
       .select-left-group {
         @apply gap-1;
       }
+      .select-count {
+        @apply px-0.75 py-0 rounded-1 text-3.5;
+      }
       &:has(.select-icon):not(:has(.select-text)) {
         @apply p-2;
       }
@@ -312,6 +329,9 @@
       }
       .select-left-group {
         @apply gap-0.5;
+      }
+      .select-count {
+        @apply px-0.75 py-0 rounded-1 text-3;
       }
       &:has(.select-icon):not(:has(.select-text)) {
         @apply p-1.5;
@@ -430,6 +450,14 @@
     .select-left-group {
       @apply inline-flex;
     }
+    .select-count {
+      @apply inline-flex items-center justify-center;
+      @apply bg-purple-blue-100;
+      @apply dark:bg-purple-blue-900;
+      @apply text-purple-blue-400;
+      @apply dark:text-purple-blue-500;
+      @apply font-button-text font-geist-mono;
+    }
     &:has(.select-text, .select-icon) {
       @apply inline-flex items-center;
     }
@@ -458,6 +486,9 @@
       .select-left-group {
         @apply gap-1.5;
       }
+      .select-count {
+        @apply px-1 py-0 rounded-1.5 text-5;
+      }
       &:has(.select-icon):not(:has(.select-text)) {
         @apply p-2;
       }
@@ -473,6 +504,9 @@
       }
       .select-left-group {
         @apply gap-1;
+      }
+      .select-count {
+        @apply px-1 py-0 rounded-1.5 text-4;
       }
       &:has(.select-icon):not(:has(.select-text)) {
         @apply p-2;
@@ -490,6 +524,9 @@
       .select-left-group {
         @apply gap-1;
       }
+      .select-count {
+        @apply px-0.75 py-0 rounded-1 text-3.5;
+      }
       &:has(.select-icon):not(:has(.select-text)) {
         @apply p-2;
       }
@@ -505,6 +542,9 @@
       }
       .select-left-group {
         @apply gap-0.5;
+      }
+      .select-count {
+        @apply px-0.75 py-0 rounded-1 text-3;
       }
       &:has(.select-icon):not(:has(.select-text)) {
         @apply p-1.5;

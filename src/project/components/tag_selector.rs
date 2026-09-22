@@ -85,6 +85,7 @@ pub fn TagSelector(
                                 identifier="tag-selector"
                                 select_choices=select_choices
                                 shows_active_state_when_least_one_selected=true
+                                shows_selected_count=true
                                 shows_search_bar=true
                                 search_placeholder="Nom d'une techno."
                                 search_icon=IconSet::Search
