@@ -63,9 +63,11 @@ where
         effect_active_state(&select_choices, state)
     }
 
-    let selected_count = shows_selected_count
-        .then(|| selected_count_signal(&select_choices))
-        .flatten();
+    let selected_count = if shows_selected_count {
+        selected_count_signal(&select_choices)
+    } else {
+        signal(0).0.into()
+    };
 
     let actions = SelectActions::new(
         anchor_names.clone().dropdown_menu,
