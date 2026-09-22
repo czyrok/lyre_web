@@ -4,6 +4,7 @@
 pub mod app;
 pub mod core;
 pub mod landing_page;
+pub mod legal_notice;
 pub mod project;
 pub mod shared;
 pub mod system;

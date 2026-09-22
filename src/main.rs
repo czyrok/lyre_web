@@ -4,6 +4,7 @@
 mod app;
 mod core;
 mod landing_page;
+mod legal_notice;
 mod project;
 mod shared;
 mod system;
