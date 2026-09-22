@@ -74,7 +74,7 @@
       @apply bg-purple-blue-400/12;
       @apply dark:bg-purple-blue-700/12;
       @apply rounded-25;
-      @apply backdrop-blur-30 backdrop-saturate-185;
+      @apply backdrop-blur-30;
       @apply outline outline-1 outline-offset-l1;
       @apply outline-purple-blue-300/30;
       @apply dark:outline-purple-blue-800/30;
