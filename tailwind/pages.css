@@ -105,4 +105,28 @@
       @apply flex justify-center;
     }
   }
+  .secondary-page-layout {
+    .legal-notice-page-top-part {
+      @apply flex flex-col;
+    }
+    .legal-notice-page-middle-part {
+      @apply flex flex-col items-center;
+      .middle-part-text {
+        @apply flex flex-col;
+        @apply max-w-119;
+        @apply gap-level2;
+        @apply w-full;
+        .text-section {
+          @apply flex flex-col;
+          @apply gap-level1;
+          h2 {
+            @apply text-black-950;
+            @apply dark:text-white-50;
+            @apply text-6;
+            @apply font-title-lg font-geist;
+          }
+        }
+      }
+    }
+  }
 }

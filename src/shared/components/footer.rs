@@ -5,7 +5,7 @@ use crate::shared::{
         accentuation_button_as_link::AccentuationButtonAsLink,
         secondary_button_as_link::SecondaryButtonAsLink,
     },
-    components::theme_selector::ThemeSelector,
+    components::{link::Link, theme_selector::ThemeSelector},
     enums::component_size::ComponentSize,
 };
 
@@ -64,8 +64,12 @@ pub fn Footer(
                     <ThemeSelector />
                 </div>
 
-                <div class="bottom-part-copyright-text">
-                    "Made with 🥐 in Lyon / © 2025 Dylan Valentin."
+                <div class="bottom-part-legal">
+                    <div class="bottom-part-copyright-text">
+                        "Made with 🥐 in Lyon / © 2025 Dylan Valentin."
+                    </div>
+
+                    <Link size=ComponentSize::SM text="Mentions Légales" href="/mentions-legales" />
                 </div>
             </div>
         </div>
