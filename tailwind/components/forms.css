@@ -472,7 +472,7 @@
       @apply inline-flex items-center justify-center;
       @apply bg-purple-blue-100;
       @apply dark:bg-purple-blue-900;
-      @apply text-purple-blue-400;
+      @apply text-purple-blue-700;
       @apply dark:text-purple-blue-500;
       @apply font-button-text font-geist-mono;
     }
