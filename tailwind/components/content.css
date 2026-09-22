@@ -29,6 +29,7 @@
       @apply gap-6;
       .brand-badge {
         @apply w-33 h-33;
+        @apply shadow-brand-badge-xl dark:shadow-brand-badge-xl-dark;
       }
       .brand-name {
         @apply text-12;
@@ -40,11 +41,13 @@
     &.brand-size-lg {
       .brand-badge {
         @apply w-25 h-25;
+        @apply shadow-brand-badge-lg dark:shadow-brand-badge-lg-dark;
       }
     }
     &.brand-size-sm {
       .brand-badge {
         @apply w-10 h-10;
+        @apply shadow-brand-badge-sm dark:shadow-brand-badge-sm-dark;
       }
     }
   }
