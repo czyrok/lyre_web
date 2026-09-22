@@ -1,4 +1,18 @@
 @layer components {
+  .landing-page-section-container {
+    @apply flex flex-col items-center;
+    @apply p-4 sm:p-6 md:p-8;
+    @apply gap-level3;
+    .section-text {
+      @apply flex flex-col;
+      @apply max-w-103;
+      @apply gap-level2;
+    }
+    .section-actions {
+      @apply w-full flex flex-wrap flex-row justify-center;
+      @apply gap-level1;
+    }
+  }
   .landing-page-contact-section {
     @apply flex flex-col lg:flex-row justify-center;
     .section-photo {
@@ -80,20 +94,4 @@
       @apply max-v-xl:anchor-top-target;
     }
   }
-  .landing-page-section-container {
-    @apply flex flex-col items-center;
-    @apply p-4 sm:p-6 md:p-8;
-    @apply gap-level3;
-    .section-text {
-      @apply flex flex-col;
-      @apply max-w-103;
-      @apply gap-level2;
-    }
-    .section-actions {
-      @apply w-full flex flex-wrap flex-row justify-center;
-      @apply gap-level1;
-    }
-  }
-
-
 }
