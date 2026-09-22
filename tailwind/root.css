@@ -337,7 +337,7 @@
   }
 
   a:focus {
-    @apply outline-none;
+    @apply outline-hidden;
   }
 
   b,

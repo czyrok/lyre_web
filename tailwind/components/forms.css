@@ -16,7 +16,7 @@
     .input-text-input {
       @apply bg-transparent w-full;
       &:focus {
-        @apply outline-none;
+        @apply outline-hidden;
       }
       &::placeholder {
         @apply text-green-950/50;
@@ -115,7 +115,7 @@
     .input-text-input {
       @apply bg-transparent w-full;
       &:focus {
-        @apply outline-none;
+        @apply outline-hidden;
       }
       &::placeholder {
         @apply text-purple-blue-950/50;
