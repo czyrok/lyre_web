@@ -47,14 +47,14 @@ pub fn UnthemedButtonAsLink(
             view! {
                 <A href=href.clone() target=target.clone().unwrap_or_default()>
                     <span
-                        class=(["tw-accentuation-button"], move || is_accentuation_theme)
-                        class=(["tw-primary-button"], move || is_primary_theme)
-                        class=(["tw-secondary-button"], move || is_secondary_theme)
+                        class=(["accentuation-button"], move || is_accentuation_theme)
+                        class=(["primary-button"], move || is_primary_theme)
+                        class=(["secondary-button"], move || is_secondary_theme)
 
-                        class=(["tw-button-size-xl"], move || is_xl_size)
-                        class=(["tw-button-size-lg"], move || is_lg_size)
-                        class=(["tw-button-size-md"], move || is_md_size)
-                        class=(["tw-button-size-sm"], move || is_sm_size)
+                        class=(["button-size-xl"], move || is_xl_size)
+                        class=(["button-size-lg"], move || is_lg_size)
+                        class=(["button-size-md"], move || is_md_size)
+                        class=(["button-size-sm"], move || is_sm_size)
 
                         aria-label=aria_label
                     >
@@ -62,19 +62,19 @@ pub fn UnthemedButtonAsLink(
                             let left_icon = left_icon.clone();
 
                             view! {
-                                <span class="tw-button-icon">
+                                <span class="button-icon">
                                     <Icon icon=left_icon.unwrap() />
                                 </span>
                             }
                         })}
 
-                        <span class="tw-button-text">{ text }</span>
+                        <span class="button-text">{ text }</span>
 
                         {move || has_right_icon.then(|| {
                             let right_icon = right_icon.clone();
 
                             view! {
-                                <span class="tw-button-icon">
+                                <span class="button-icon">
                                     <Icon icon=right_icon.unwrap() />
                                 </span>
                             }
@@ -91,14 +91,14 @@ pub fn UnthemedButtonAsLink(
             view! {
                 <A href=href.clone()>
                     <span
-                        class=(["tw-accentuation-button"], move || is_accentuation_theme)
-                        class=(["tw-primary-button"], move || is_primary_theme)
-                        class=(["tw-secondary-button"], move || is_secondary_theme)
+                        class=(["accentuation-button"], move || is_accentuation_theme)
+                        class=(["primary-button"], move || is_primary_theme)
+                        class=(["secondary-button"], move || is_secondary_theme)
 
-                        class=(["tw-button-size-xl"], move || is_xl_size)
-                        class=(["tw-button-size-lg"], move || is_lg_size)
-                        class=(["tw-button-size-md"], move || is_md_size)
-                        class=(["tw-button-size-sm"], move || is_sm_size)
+                        class=(["button-size-xl"], move || is_xl_size)
+                        class=(["button-size-lg"], move || is_lg_size)
+                        class=(["button-size-md"], move || is_md_size)
+                        class=(["button-size-sm"], move || is_sm_size)
 
                         aria-label=aria_label
                     >
@@ -106,19 +106,19 @@ pub fn UnthemedButtonAsLink(
                             let left_icon = left_icon.clone();
 
                             view! {
-                                <span class="tw-button-icon">
+                                <span class="button-icon">
                                     <Icon icon=left_icon.unwrap() />
                                 </span>
                             }
                         })}
 
-                        <span class="tw-button-text">{ text }</span>
+                        <span class="button-text">{ text }</span>
 
                         {move || has_right_icon.then(|| {
                             let right_icon = right_icon.clone();
 
                             view! {
-                                <span class="tw-button-icon">
+                                <span class="button-icon">
                                     <Icon icon=right_icon.unwrap() />
                                 </span>
                             }

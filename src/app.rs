@@ -73,7 +73,7 @@ pub fn App() -> impl IntoView {
 
         <div
             id="style-settings"
-            class=(["tw-dark"], uses_dark_theme)
+            class=(["dark"], uses_dark_theme)
         >
             <Router>
                 <NavBarContainer />

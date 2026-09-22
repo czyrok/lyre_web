@@ -10,12 +10,12 @@ pub fn ProjectThumbnailSkeleton(
     #[prop(default = false)] displays_brand: bool,
 ) -> impl IntoView {
     view! {
-        <div class="tw-project-thumbnail-skeleton">
-            <div class="tw-thumbnail-skeleton-image" />
+        <div class="project-thumbnail-skeleton">
+            <div class="thumbnail-skeleton-image" />
 
             {move || displays_brand.then(|| {
                 view! {
-                    <div class="tw-thumbnail-skeleton-brand">
+                    <div class="thumbnail-skeleton-brand">
                         <Brand size=ComponentSize::SM layout_mode=LayoutMode::BadgeOnly />
                     </div>
                 }

@@ -50,7 +50,7 @@ pub fn SearchedProjectTitleInput(
             text=(self_searched_project_title, set_self_searched_project_title)
             placeholder="Nom d'un projet, d'une techno."
             icon=IconSet::Search
-            additional_style_classes="tw-max-w-59 tw-w-full"
+            additional_style_classes="max-w-59 w-full"
             shows_active_state_when_has_text=true
             on_click_callback
             reset_callback

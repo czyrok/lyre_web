@@ -4,10 +4,11 @@
     "bun": "1"
   },
   "scripts": {
-    "build:tailwind-css": "tailwindcss --config ./tailwind/configuration.ts --input ./tailwind/root.css --output ./assets/tailwind_output.css --minify",
+    "build:tailwind-css": "tailwindcss --input ./tailwind/root.css --output ./assets/tailwind_output.css --minify",
     "build:tailwind-css:watch": "npm run build:tailwind-css -- --watch"
   },
   "dependencies": {
-    "tailwindcss": "3.4.17"
+    "@tailwindcss/cli": "4.1.13",
+    "tailwindcss": "4.1.13"
   }
 }

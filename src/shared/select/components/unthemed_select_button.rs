@@ -51,37 +51,37 @@ pub fn UnthemedSelectButton(
 
     view! {
         <button
-            class=(["tw-primary-select"], move || is_primary_theme)
-            class=(["tw-secondary-select"], move || is_secondary_theme)
+            class=(["primary-select"], move || is_primary_theme)
+            class=(["secondary-select"], move || is_secondary_theme)
 
-            class=(["tw-select-size-xl"], move || is_xl_size)
-            class=(["tw-select-size-lg"], move || is_lg_size)
-            class=(["tw-select-size-md"], move || is_md_size)
-            class=(["tw-select-size-sm"], move || is_sm_size)
+            class=(["select-size-xl"], move || is_xl_size)
+            class=(["select-size-lg"], move || is_lg_size)
+            class=(["select-size-md"], move || is_md_size)
+            class=(["select-size-sm"], move || is_sm_size)
 
-            class=(["tw-select-active"], move || is_active.get())
-            class=(["tw-select-errored"], move || is_errored.get())
+            class=(["select-active"], move || is_active.get())
+            class=(["select-errored"], move || is_errored.get())
             disabled=is_errored.get()
 
             on:click=on_click_callback
             popovertarget=popover_target_id
             style=format!("anchor-name: --{}", anchor_name)
         >
-            <span class="tw-select-left-group">
+            <span class="select-left-group">
                 {move || has_icon.then(|| {
                     view! {
-                        <span class="tw-select-icon">
+                        <span class="select-icon">
                             <Icon icon=icon.clone().unwrap() />
                         </span>
                     }
                 })}
 
-                <span class="tw-select-text">{ text.get() }</span>
+                <span class="select-text">{ text.get() }</span>
             </span>
 
             {move || is_default.get().then(|| {
                 view! {
-                    <span class="tw-select-icon">
+                    <span class="select-icon">
                         <Icon icon=IconSet::SingleDownArrow />
                     </span>
                 }
@@ -92,7 +92,7 @@ pub fn UnthemedSelectButton(
                     dyn_clone::clone_box(&* reset_callback);
 
                 view! {
-                    <span class="tw-select-icon" on:click=move |event| {
+                    <span class="select-icon" on:click=move |event| {
                         event.prevent_default();
                         reset_callback(event)
                     } >

@@ -14,14 +14,14 @@ pub fn NavBarItem(
         // TODO: add aria-label when it will be possible
         <A href exact=true>
             <span
-                class="tw-nav-bar-item"
-                class=("tw-nav-bar-item-active-behavior", uses_active_behavior)
+                class="nav-bar-item"
+                class=("nav-bar-item-active-behavior", uses_active_behavior)
             >
-                <span class="tw-item-icon">
+                <span class="item-icon">
                     <Icon icon=icon />
                 </span>
 
-                <span class="tw-item-text">{ text }</span>
+                <span class="item-text">{ text }</span>
              </span>
         </A>
     }
