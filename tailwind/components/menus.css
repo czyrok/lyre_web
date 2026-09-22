@@ -1,0 +1,90 @@
+@layer components {
+  .dropdown-menu {
+    @apply absolute flex-col overflow-hidden;
+    @apply inset-auto;
+    @apply bg-white-100/50;
+    @apply dark:bg-black-600/50;
+    @apply max-h-41;
+    @apply py-1;
+    @apply rounded-5;
+    @apply gap-0.5;
+    @apply backdrop-blur-9;
+    @apply shadow-dropdown-menu-outside;
+    &:popover-open {
+      @apply inline-flex;
+    }
+    .dropdown-menu-search-bar {
+      @apply mx-1.5 my-1;
+    }
+    .dropdown-menu-items {
+      @apply overflow-y-auto;
+      @apply [scrollbar-width:thin];
+      @apply [scrollbar-color:theme(colors.white.300)_transparent];
+      @apply dark:[scrollbar-color:theme(colors.white.300)_transparent];
+      .dropdown-menu-item {
+        @apply px-2 py-1;
+      }
+    }
+    &.dropdown-menu-right {
+      @apply top-[anchor(top)] left-[anchor(right)];
+      @apply ms-3;
+    }
+    &.dropdown-menu-bottom {
+      @apply top-[anchor(bottom)] left-[anchor(left)];
+      @apply mt-3;
+    }
+  }
+  .dropdown-menu-search-bar {
+    @apply relative;
+    & > * {
+      @apply relative z-10;
+    }
+    &::before {
+      @apply content-empty inset-0 absolute z-0;
+      @apply bg-bubble-pattern;
+      @apply rounded-3;
+      @apply shadow-button-inside;
+    }
+    @apply bg-purple-blue-300/80;
+    @apply dark:bg-purple-blue-700/80;
+    @apply px-2.5 py-2;
+    @apply text-4;
+    @apply rounded-3;
+    .search-bar-text-input {
+      @apply bg-transparent w-full;
+      &:focus {
+        @apply outline-none;
+      }
+      &::placeholder {
+        @apply text-purple-blue-950/50;
+        @apply dark:text-purple-blue-100/50;
+      }
+      @apply text-purple-blue-950;
+      @apply dark:text-purple-blue-100;
+      @apply font-button-text font-geist-mono;
+    }
+    .search-bar-text-icon {
+      @apply inline-block;
+      @apply text-purple-blue-950;
+      @apply dark:text-purple-blue-100;
+      @apply w-button-icon h-button-icon;
+      & svg path {
+        @apply stroke-4;
+      }
+    }
+    &:has(.search-bar-text-input, .search-bar-text-icon) {
+      @apply inline-flex items-center;
+      @apply gap-1;
+    }
+    &:has(.search-bar-text-input:focus) {
+      @apply ring-green-400;
+      @apply dark:ring-green-600;
+      @apply ring-offset-white-50;
+      @apply dark:ring-offset-black-950;
+      @apply ring-3 ring-offset-3;
+    }
+  }
+
+
+
+}

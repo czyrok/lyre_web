@@ -1,0 +1,18 @@
+@layer components {
+  .error-info {
+    @apply bg-clip-text text-transparent;
+    @apply bg-bash-gradient;
+    @apply from-red-800 to-red-500;
+    @apply dark:from-red-400 dark:to-red-200;
+    @apply text-5;
+    @apply font-light font-geist;
+    &::before {
+      @apply text-red-800;
+      @apply dark:text-red-400;
+      @apply content-bash;
+    }
+  }
+
+
+
+}

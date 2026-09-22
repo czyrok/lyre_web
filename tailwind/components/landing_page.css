@@ -1,0 +1,95 @@
+@layer components {
+  .landing-page-contact-section {
+    @apply flex flex-col lg:flex-row justify-center;
+    .section-photo {
+      @apply relative overflow-hidden select-none;
+      @apply w-41 min-w-41 h-41 min-h-41;
+      @apply rounded-full;
+      &::after {
+        @apply content-empty inset-0 absolute z-0;
+        @apply border-white-300/70;
+        @apply dark:border-black-800/70;
+        @apply border-6;
+        @apply rounded-full;
+      }
+    }
+    .section-right {
+      @apply flex flex-col;
+      @apply gap-level3;
+    }
+    .section-actions {
+      @apply lg:justify-start;
+    }
+    .anchor {
+      @apply v-sm:lg:anchor-middle-screen-target;
+      @apply max-lg:anchor-top-target;
+      @apply max-v-sm:anchor-top-target;
+    }
+  }
+  .landing-page-highlighted-section {
+    @apply bg-blue-100;
+    @apply dark:bg-blue-950;
+    @apply py-10;
+    .section-text-timeline {
+      @apply flex flex-col 2xl:flex-row;
+      @apply gap-level3;
+      .timeline-item {
+        @apply grid grid-flow-row lg:grid-flow-col 2xl:grid-flow-row;
+        @apply gap-level2;
+        .item-date {
+          @apply text-center;
+          @apply bg-blue-200;
+          @apply text-blue-950;
+          @apply dark:bg-blue-900;
+          @apply dark:text-blue-50;
+          @apply h-fit lg:min-w-33 2xl:w-full;
+          @apply p-2;
+          @apply text-6;
+          @apply rounded-25;
+          @apply font-light font-geist;
+        }
+        &:nth-child(even) {
+          .item-date {
+            @apply lg:order-2;
+          }
+        }
+      }
+    }
+    .section-text {
+      @apply max-w-210;
+      @apply gap-level3;
+    }
+    .anchor {
+      @apply v-sm:xl:anchor-middle-screen-target;
+      @apply max-xl:anchor-top-target;
+      @apply max-v-sm:anchor-top-target;
+    }
+  }
+  .landing-page-project-section {
+    .section-projects {
+      @apply flex flex-wrap justify-center;
+      @apply gap-level2;
+    }
+    .anchor {
+      @apply v-xl:xl:anchor-middle-screen-target;
+      @apply max-xl:anchor-top-target;
+      @apply max-v-xl:anchor-top-target;
+    }
+  }
+  .landing-page-section-container {
+    @apply flex flex-col items-center;
+    @apply p-4 sm:p-6 md:p-8;
+    @apply gap-level3;
+    .section-text {
+      @apply flex flex-col;
+      @apply max-w-103;
+      @apply gap-level2;
+    }
+    .section-actions {
+      @apply w-full flex flex-wrap flex-row justify-center;
+      @apply gap-level1;
+    }
+  }
+
+
+}

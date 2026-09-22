@@ -18,36 +18,36 @@ pub fn ProjectDetailsSkeleton() -> impl IntoView {
             }.into_any())
 
             content_renderer=move || view! {
-                <div class="tw-project-details-page-top-part">
-                    <div class="tw-top-part-intro">
+                <div class="project-details-page-top-part">
+                    <div class="top-part-intro">
                         <Link size=ComponentSize::MD text="Mes Projets/" href="/projects" />
 
-                        <div class="tw-intro-details">
-                            <div class="tw-h1-skeleton tw-title-size-lg"></div>
+                        <div class="intro-details">
+                            <div class="h1-skeleton title-size-lg"></div>
 
-                            <div class="tw-details-tags">
-                                <div class="tw-project-tag-skeleton"></div>
-                                <div class="tw-project-tag-skeleton"></div>
-                                <div class="tw-project-tag-skeleton"></div>
+                            <div class="details-tags">
+                                <div class="project-tag-skeleton"></div>
+                                <div class="project-tag-skeleton"></div>
+                                <div class="project-tag-skeleton"></div>
                             </div>
                         </div>
                     </div>
 
-                    <div class="tw-top-part-actions">
-                        <div class="tw-secondary-button-skeleton tw-button-size-md"></div>
-                        <div class="tw-secondary-button-skeleton tw-button-size-md"></div>
+                    <div class="top-part-actions">
+                        <div class="secondary-button-skeleton button-size-md"></div>
+                        <div class="secondary-button-skeleton button-size-md"></div>
                     </div>
                 </div>
 
-                <div class="tw-project-details-page-middle-part">
-                    <div class="tw-middle-part-text">
-                        <div class="tw-text-content">
-                            <div class="tw-p-skeleton"></div>
-                            <div class="tw-p-skeleton"></div>
-                            <div class="tw-p-skeleton"></div>
-                            <div class="tw-p-skeleton"></div>
-                            <div class="tw-p-skeleton"></div>
-                            <div class="tw-p-skeleton"></div>
+                <div class="project-details-page-middle-part">
+                    <div class="middle-part-text">
+                        <div class="text-content">
+                            <div class="p-skeleton"></div>
+                            <div class="p-skeleton"></div>
+                            <div class="p-skeleton"></div>
+                            <div class="p-skeleton"></div>
+                            <div class="p-skeleton"></div>
+                            <div class="p-skeleton"></div>
                         </div>
                     </div>
                 </div>

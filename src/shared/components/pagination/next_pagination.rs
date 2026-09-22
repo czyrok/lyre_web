@@ -20,10 +20,10 @@ pub fn NextPagination(
     let secondary_text = secondary_text.unwrap_or("Le suivant.".into());
 
     view! {
-        <div class="tw-pagination">
+        <div class="pagination">
             <PrimaryButtonAsLink size=ComponentSize::MD text=click_text href=href icon=IconSet::RightArrow icon_side=IconSide::Right />
 
-            <span class="tw-pagination-text">
+            <span class="pagination-text">
                 { secondary_text }
             </span>
         </div>

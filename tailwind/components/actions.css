@@ -1,0 +1,328 @@
+@layer components {
+  .accentuation-button {
+    @apply inline-flex;
+    @apply relative;
+    & > * {
+      @apply relative z-10;
+    }
+    &::after {
+      @apply content-empty inset-0 absolute z-0;
+      @apply bg-bubble-pattern;
+      @apply rounded-25;
+      @apply shadow-button-inside;
+    }
+    @apply bg-button-gradient;
+    @apply from-green-400 to-green-500;
+    @apply dark:from-green-500 dark:to-green-600;
+    @apply rounded-25;
+    &::before {
+      @apply content-empty inset-0 absolute z-0 opacity-0;
+      @apply bg-green-500;
+      @apply dark:bg-green-600;
+      @apply rounded-25;
+      @apply transition-button-background duration-button-background ease-button-background;
+    }
+    .button-text {
+      @apply text-green-950;
+      @apply font-button-text font-geist-mono;
+    }
+    .button-icon {
+      @apply inline-block;
+      @apply text-green-950;
+      @apply w-button-icon h-button-icon;
+      & svg path {
+        @apply stroke-4;
+      }
+    }
+    &:has(.button-text):has(.button-icon) {
+      @apply items-center;
+    }
+    &:hover::before {
+      @apply opacity-100;
+    }
+    :is(&:focus, a:focus &) {
+      @apply ring-green-400;
+      @apply dark:ring-green-600;
+      @apply ring-offset-white-50;
+      @apply dark:ring-offset-black-950;
+      @apply ring-3 ring-offset-3;
+    }
+    &.button-size-xl {
+      @apply px-4 py-2;
+      @apply text-6;
+      .button-icon svg path {
+        @apply stroke-4;
+      }
+      &:has(.button-text, .button-icon) {
+        @apply gap-1.5;
+      }
+      &:has(.button-icon):not(:has(.button-text)) {
+        @apply p-2;
+      }
+    }
+    &.button-size-lg {
+      @apply px-3.5 py-2;
+      @apply text-5;
+      .button-icon svg path {
+        @apply stroke-4;
+      }
+      &:has(.button-text, .button-icon) {
+        @apply gap-1;
+      }
+      &:has(.button-icon):not(:has(.button-text)) {
+        @apply p-2;
+      }
+    }
+    &.button-size-md {
+      @apply px-3 py-2;
+      @apply text-4;
+      .button-icon svg path {
+        @apply stroke-5;
+      }
+      &:has(.button-text, .button-icon) {
+        @apply gap-1;
+      }
+      &:has(.button-icon):not(:has(.button-text)) {
+        @apply p-2;
+      }
+    }
+    &.button-size-sm {
+      @apply px-2.5 py-1.5;
+      @apply text-3;
+      .button-icon svg path {
+        @apply stroke-5;
+      }
+      &:has(.button-text, .button-icon) {
+        @apply gap-0.5;
+      }
+      &:has(.button-icon):not(:has(.button-text)) {
+        @apply p-1.5;
+      }
+    }
+  }
+  .primary-button {
+    @apply inline-flex;
+    @apply relative;
+    & > * {
+      @apply relative z-10;
+    }
+    &::after {
+      @apply content-empty inset-0 absolute z-0;
+      @apply bg-bubble-pattern;
+      @apply rounded-25;
+      @apply shadow-button-inside;
+    }
+    @apply bg-button-gradient;
+    @apply from-purple-blue-400 to-purple-blue-500;
+    @apply dark:from-purple-blue-700 dark:to-purple-blue-800;
+    @apply rounded-25;
+    &::before {
+      @apply content-empty inset-0 absolute z-0 opacity-0;
+      @apply bg-purple-blue-500;
+      @apply dark:bg-purple-blue-800;
+      @apply rounded-25;
+      @apply transition-button-background duration-button-background ease-button-background;
+    }
+    .button-text {
+      @apply text-purple-blue-50;
+      @apply dark:text-purple-blue-100;
+      @apply font-button-text font-geist-mono;
+    }
+    .button-icon {
+      @apply inline-block;
+      @apply text-purple-blue-50;
+      @apply dark:text-purple-blue-100;
+      @apply w-button-icon h-button-icon;
+      & svg path {
+        @apply stroke-4;
+      }
+    }
+    &:has(.button-text):has(.button-icon) {
+      @apply items-center;
+    }
+    &:hover::before {
+      @apply opacity-100;
+    }
+    :is(&:focus, a:focus &) {
+      @apply ring-green-400;
+      @apply dark:ring-green-600;
+      @apply ring-offset-white-50;
+      @apply dark:ring-offset-black-950;
+      @apply ring-3 ring-offset-3;
+    }
+    &.button-size-xl {
+      @apply px-4 py-2;
+      @apply text-6;
+      .button-icon svg path {
+        @apply stroke-4;
+      }
+      &:has(.button-text, .button-icon) {
+        @apply gap-1.5;
+      }
+      &:has(.button-icon):not(:has(.button-text)) {
+        @apply p-2;
+      }
+    }
+    &.button-size-lg {
+      @apply px-3.5 py-2;
+      @apply text-5;
+      .button-icon svg path {
+        @apply stroke-4;
+      }
+      &:has(.button-text, .button-icon) {
+        @apply gap-1;
+      }
+      &:has(.button-icon):not(:has(.button-text)) {
+        @apply p-2;
+      }
+    }
+    &.button-size-md {
+      @apply px-3 py-2;
+      @apply text-4;
+      .button-icon svg path {
+        @apply stroke-5;
+      }
+      &:has(.button-text, .button-icon) {
+        @apply gap-1;
+      }
+      &:has(.button-icon):not(:has(.button-text)) {
+        @apply p-2;
+      }
+    }
+    &.button-size-sm {
+      @apply px-2.5 py-1.5;
+      @apply text-3;
+      .button-icon svg path {
+        @apply stroke-5;
+      }
+      &:has(.button-text, .button-icon) {
+        @apply gap-0.5;
+      }
+      &:has(.button-icon):not(:has(.button-text)) {
+        @apply p-1.5;
+      }
+    }
+  }
+  .secondary-button {
+    @apply inline-flex;
+    @apply outline-purple-blue-400;
+    @apply dark:outline-purple-blue-500;
+    @apply rounded-25;
+    @apply outline outline-offset-l2 outline-2;
+    @apply transition-button-background duration-button-background ease-button-background;
+    .button-text {
+      @apply text-purple-blue-400;
+      @apply dark:text-purple-blue-500;
+      @apply font-button-text font-geist-mono;
+    }
+    .button-icon {
+      @apply inline-block;
+      @apply text-purple-blue-400;
+      @apply dark:text-purple-blue-500;
+      @apply w-button-icon h-button-icon;
+    }
+    &:has(.button-text):has(.button-icon) {
+      @apply items-center;
+    }
+    &:hover:not(:disabled) {
+      @apply bg-purple-blue-50/90;
+      @apply dark:bg-purple-blue-950/90;
+    }
+    :is(&:focus, a:focus &):not(:disabled) {
+      @apply ring-green-400;
+      @apply dark:ring-green-600;
+      @apply ring-offset-white-50;
+      @apply dark:ring-offset-black-950;
+      @apply ring-3 ring-offset-3;
+    }
+    &.button-size-xl {
+      @apply px-4 py-2;
+      @apply text-6;
+      .button-icon svg path {
+        @apply stroke-4;
+      }
+      &:has(.button-text, .button-icon) {
+        @apply gap-1.5;
+      }
+      &:has(.button-icon):not(:has(.button-text)) {
+        @apply p-2;
+      }
+    }
+    &.button-size-lg {
+      @apply px-3.5 py-2;
+      @apply text-5;
+      .button-icon svg path {
+        @apply stroke-4;
+      }
+      &:has(.button-text, .button-icon) {
+        @apply gap-1;
+      }
+      &:has(.button-icon):not(:has(.button-text)) {
+        @apply p-2;
+      }
+    }
+    &.button-size-md {
+      @apply px-3 py-2;
+      @apply text-4;
+      .button-icon svg path {
+        @apply stroke-5;
+      }
+      &:has(.button-text, .button-icon) {
+        @apply gap-1;
+      }
+      &:has(.button-icon):not(:has(.button-text)) {
+        @apply p-2;
+      }
+    }
+    &.button-size-sm {
+      @apply px-2.5 py-1.5;
+      @apply text-3;
+      .button-icon svg path {
+        @apply stroke-5;
+      }
+      &:has(.button-text, .button-icon) {
+        @apply gap-0.5;
+      }
+      &:has(.button-icon):not(:has(.button-text)) {
+        @apply p-1.5;
+      }
+    }
+    &.button-errored {
+      @apply outline-red-300;
+      @apply dark:outline-red-400;
+      .button-text {
+        @apply text-red-300;
+        @apply dark:text-red-400;
+      }
+    }
+  }
+  .secondary-button-skeleton {
+    @apply animate-pulse box-content;
+    @apply bg-white-200;
+    @apply dark:bg-black-700;
+    @apply w-[5em] h-[1.5em];
+    &:last-child {
+      @apply w-[7em];
+    }
+    @apply rounded-25;
+    &.button-size-xl {
+      @apply px-5 py-2;
+      @apply text-6;
+    }
+    &.button-size-lg {
+      @apply px-4 py-2;
+      @apply text-5;
+    }
+    &.button-size-md {
+      @apply px-4 py-2;
+      @apply text-4;
+    }
+    &.button-size-sm {
+      @apply px-3 py-1.5;
+      @apply text-3;
+    }
+  }
+
+
+
+}

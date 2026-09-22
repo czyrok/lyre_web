@@ -7,15 +7,15 @@ use crate::shared::{
 #[component]
 pub fn HighlightedSection() -> impl IntoView {
     view! {
-        <div class="tw-landing-page-section-container tw-landing-page-highlighted-section">
-            <div id="about" class="tw-anchor"></div>
+        <div class="landing-page-section-container landing-page-highlighted-section">
+            <div id="about" class="anchor"></div>
 
-            <div class="tw-section-text">
-                <h1 class="tw-title-size-xl">"À Propos"</h1>
+            <div class="section-text">
+                <h1 class="title-size-xl">"À Propos"</h1>
 
-                <div class="tw-section-text-timeline">
-                    <div class="tw-timeline-item">
-                        <span class="tw-item-date">2020</span>
+                <div class="section-text-timeline">
+                    <div class="timeline-item">
+                        <span class="item-date">2020</span>
 
                         <p>
                             "Tout a commencé lors du 1er confinement, par ennui j'ai commencé la "
@@ -26,8 +26,8 @@ pub fn HighlightedSection() -> impl IntoView {
                         </p>
                     </div>
 
-                    <div class="tw-timeline-item">
-                        <span class="tw-item-date">2021-2024</span>
+                    <div class="timeline-item">
+                        <span class="item-date">2021-2024</span>
 
                         <p>
                             "J'ai donc intégré l'"
@@ -36,8 +36,8 @@ pub fn HighlightedSection() -> impl IntoView {
                         </p>
                     </div>
 
-                    <div class="tw-timeline-item">
-                        <span class="tw-item-date">2024</span>
+                    <div class="timeline-item">
+                        <span class="item-date">2024</span>
 
                         <p>
                             "À la suite de mon BUT, j'ai décidé d'arrêter mes études pour me consacrer à temps plein au métier de freelance. Ce métier me permet une grande "

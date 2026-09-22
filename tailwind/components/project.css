@@ -1,0 +1,122 @@
+@layer components {
+  .project-card {
+    @apply flex flex-col;
+    @apply p-2;
+    @apply gap-1;
+    .card-title {
+      @apply text-black-950;
+      @apply dark:text-white-50;
+      @apply text-7;
+      @apply font-regular font-geist-mono;
+    }
+    .card-tag-container {
+      @apply flex flex-row;
+      @apply gap-1;
+    }
+  }
+  .project-card-skeleton {
+    @apply flex flex-col animate-pulse;
+    @apply p-2;
+    @apply gap-1;
+    .card-skeleton-title {
+      @apply bg-white-200;
+      @apply dark:bg-black-700;
+      @apply w-[6em] h-[1.5em];
+      @apply rounded-18;
+      @apply text-7;
+    }
+    .card-skeleton-tag-container {
+      @apply flex flex-row;
+      @apply gap-1;
+    }
+  }
+  .project-tag {
+    @apply bg-blue-300;
+    @apply text-blue-700;
+    @apply dark:bg-blue-400;
+    @apply dark:text-blue-950;
+    @apply px-3 py-1;
+    @apply text-4;
+    @apply rounded-25;
+    @apply font-tag-text font-geist;
+  }
+  .project-tag-skeleton {
+    @apply animate-pulse box-content;
+    @apply bg-white-200;
+    @apply dark:bg-black-700;
+    @apply w-[2.5em] h-[1.5em];
+    &:last-child {
+      @apply w-[4em];
+    }
+    @apply px-3 py-1;
+    @apply text-4;
+    @apply rounded-25;
+  }
+  .project-thumbnail {
+    @apply inline-block relative overflow-visible select-none;
+    @apply outline-white-200;
+    @apply dark:outline-black-500;
+    @apply w-41 h-28;
+    @apply rounded-5;
+    @apply outline outline-offset-l3 outline-3;
+    @apply transition-project-thumbnail-background-and-border duration-project-thumbnail-background-and-border ease-project-thumbnail-background-and-border;
+    &:has(.thumbnail-hover):hover {
+      @apply outline-transparent;
+    }
+    &:hover .thumbnail-hover {
+      @apply opacity-100;
+    }
+    :is(&:has(.thumbnail-hover):focus, a:focus &:has(.thumbnail-hover)) {
+      @apply ring-green-400;
+      @apply dark:ring-green-600;
+      @apply ring-offset-white-50;
+      @apply dark:ring-offset-black-950;
+      @apply ring-3 ring-offset-3;
+    }
+    .thumbnail-image {
+      @apply overflow-hidden pointer-events-none;
+      @apply w-full h-full;
+      @apply rounded-5;
+    }
+    .thumbnail-hover {
+      @apply flex justify-center items-center inset-0 absolute z-0 opacity-0;
+      @apply bg-purple-blue-200/33;
+      @apply outline-purple-blue-400;
+      @apply dark:bg-purple-blue-500/33;
+      @apply dark:outline-purple-blue-500;
+      @apply rounded-5;
+      @apply backdrop-blur-4;
+      @apply outline outline-offset-l3 outline-3;
+      @apply transition-project-thumbnail-background-and-border duration-project-thumbnail-background-and-border ease-project-thumbnail-background-and-border;
+      .thumbnail-hover-icon {
+        @apply inline-block;
+        @apply text-purple-blue-400;
+        @apply dark:text-purple-blue-500;
+        @apply w-7 h-7;
+        & svg path {
+          @apply stroke-3;
+        }
+      }
+    }
+    .thumbnail-brand {
+      @apply absolute;
+      @apply right-[-7%] bottom-[-7%];
+    }
+  }
+  .project-thumbnail-skeleton {
+    @apply inline-block relative overflow-visible;
+    .thumbnail-skeleton-image {
+      @apply animate-pulse;
+      @apply bg-white-200;
+      @apply dark:bg-black-700;
+      @apply w-41 h-28;
+      @apply rounded-5;
+    }
+    .thumbnail-skeleton-brand {
+      @apply absolute animate-none;
+      @apply right-[-7%] bottom-[-7%];
+    }
+  }
+
+
+}

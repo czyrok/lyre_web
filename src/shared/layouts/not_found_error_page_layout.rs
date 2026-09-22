@@ -25,17 +25,17 @@ pub fn NotFoundErrorPageLayout(
     }
 
     view! {
-        <div class="tw-secondary-page-layout tw-not-found-error-page-layout">
-            <div id="top" class="tw-anchor"></div>
+        <div class="secondary-page-layout not-found-error-page-layout">
+            <div id="top" class="anchor"></div>
 
-            <div class="tw-secondary-page-layout-intro">
+            <div class="secondary-page-layout-intro">
                 <Brand size=ComponentSize::LG layout_mode=LayoutMode::BadgeOnly />
             </div>
 
-            <main class="tw-secondary-page-layout-content">
-                <h1 class="tw-title-size-lg">{title.clone()}</h1>
+            <main class="secondary-page-layout-content">
+                <h1 class="title-size-lg">{title.clone()}</h1>
 
-                <div class="tw-not-found-error-page-layout-home-back">
+                <div class="not-found-error-page-layout-home-back">
                     <p>"Tu t’es perdu ? Pas de problème."</p>
 
                     <AccentuationButtonAsLink size=ComponentSize::XL text="Retour à l'Accueil" href="/" />

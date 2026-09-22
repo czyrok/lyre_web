@@ -10,14 +10,14 @@ use crate::project::{
 #[component]
 pub fn ProjectCard(project_context: ProjectContext) -> impl IntoView {
     view! {
-        <div class="tw-project-card">
+        <div class="project-card">
             <ProjectThumbnail project_context=project_context.clone() />
 
-            <span class="tw-card-title">
+            <span class="card-title">
                 { project_context.title }
             </span>
 
-            <div class="tw-card-tag-container">
+            <div class="card-tag-container">
                 <ProjectTagItems project_tags=project_context.tags uses_long_name=false />
             </div>
         </div>

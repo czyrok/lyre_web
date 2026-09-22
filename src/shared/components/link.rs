@@ -22,17 +22,17 @@ pub fn Link(
     view! {
         <A href>
             <span
-                class="tw-secondary-link"
-                class=(["tw-link-size-xl"], move || is_xl_size)
-                class=(["tw-link-size-lg"], move || is_lg_size)
-                class=(["tw-link-size-md"], move || is_md_size)
-                class=(["tw-link-size-sm"], move || is_sm_size)
+                class="secondary-link"
+                class=(["link-size-xl"], move || is_xl_size)
+                class=(["link-size-lg"], move || is_lg_size)
+                class=(["link-size-md"], move || is_md_size)
+                class=(["link-size-sm"], move || is_sm_size)
             >
-                <span class="tw-link-text">{ text }</span>
+                <span class="link-text">{ text }</span>
 
                 {move || is_external.then(|| {
                     view! {
-                        <span class="tw-link-icon">
+                        <span class="link-icon">
                             <Icon icon=IconSet::External />
                         </span>
                     }

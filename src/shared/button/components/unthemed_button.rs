@@ -57,16 +57,16 @@ pub fn UnthemedButton(
     if let Some(on_click_callback) = on_click_callback {
         return view! {
             <button
-                class=(["tw-accentuation-button"], move || is_accentuation_theme)
-                class=(["tw-primary-button"], move || is_primary_theme)
-                class=(["tw-secondary-button"], move || is_secondary_theme)
+                class=(["accentuation-button"], move || is_accentuation_theme)
+                class=(["primary-button"], move || is_primary_theme)
+                class=(["secondary-button"], move || is_secondary_theme)
 
-                class=(["tw-button-size-xl"], move || is_xl_size)
-                class=(["tw-button-size-lg"], move || is_lg_size)
-                class=(["tw-button-size-md"], move || is_md_size)
-                class=(["tw-button-size-sm"], move || is_sm_size)
+                class=(["button-size-xl"], move || is_xl_size)
+                class=(["button-size-lg"], move || is_lg_size)
+                class=(["button-size-md"], move || is_md_size)
+                class=(["button-size-sm"], move || is_sm_size)
 
-                class=(["tw-button-errored"], move || is_errored.get())
+                class=(["button-errored"], move || is_errored.get())
                 disabled=is_errored.get()
 
                 on:click=on_click_callback
@@ -77,7 +77,7 @@ pub fn UnthemedButton(
             >
                 {move || has_left_icon.then(|| {
                     view! {
-                        <span class="tw-button-icon">
+                        <span class="button-icon">
                             <Icon icon=left_icon.clone().unwrap() />
                         </span>
                     }
@@ -85,13 +85,13 @@ pub fn UnthemedButton(
 
                 {move || has_text.then(|| {
                     view! {
-                        <span class="tw-button-text">{ text.clone() }</span>
+                        <span class="button-text">{ text.clone() }</span>
                     }
                 })}
 
                 {move || has_right_icon.then(|| {
                     view! {
-                        <span class="tw-button-icon">
+                        <span class="button-icon">
                             <Icon icon=right_icon.clone().unwrap() />
                         </span>
                     }
@@ -102,16 +102,16 @@ pub fn UnthemedButton(
 
     view! {
         <button
-            class=(["tw-accentuation-button"], move || is_accentuation_theme)
-            class=(["tw-primary-button"], move || is_primary_theme)
-            class=(["tw-secondary-button"], move || is_secondary_theme)
+            class=(["accentuation-button"], move || is_accentuation_theme)
+            class=(["primary-button"], move || is_primary_theme)
+            class=(["secondary-button"], move || is_secondary_theme)
 
-            class=(["tw-button-size-xl"], move || is_xl_size)
-            class=(["tw-button-size-lg"], move || is_lg_size)
-            class=(["tw-button-size-md"], move || is_md_size)
-            class=(["tw-button-size-sm"], move || is_sm_size)
+            class=(["button-size-xl"], move || is_xl_size)
+            class=(["button-size-lg"], move || is_lg_size)
+            class=(["button-size-md"], move || is_md_size)
+            class=(["button-size-sm"], move || is_sm_size)
 
-            class=(["tw-button-errored"], move || is_errored.get())
+            class=(["button-errored"], move || is_errored.get())
             disabled=is_errored.get()
 
             popovertarget=popover_target_id
@@ -119,7 +119,7 @@ pub fn UnthemedButton(
         >
             {move || has_left_icon.then(|| {
                 view! {
-                    <span class="tw-button-icon">
+                    <span class="button-icon">
                         <Icon icon=left_icon.clone().unwrap() />
                     </span>
                 }
@@ -127,13 +127,13 @@ pub fn UnthemedButton(
 
             {move || has_text.then(|| {
                 view! {
-                    <span class="tw-button-text">{ text.clone() }</span>
+                    <span class="button-text">{ text.clone() }</span>
                 }
             })}
 
             {move || has_right_icon.then(|| {
                 view! {
-                    <span class="tw-button-icon">
+                    <span class="button-icon">
                         <Icon icon=right_icon.clone().unwrap() />
                     </span>
                 }
