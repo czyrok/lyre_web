@@ -331,6 +331,15 @@
     @apply outline-hidden;
   }
 
+  button,
+  [role="button"] {
+    @apply cursor-pointer;
+  }
+
+  :disabled {
+    @apply cursor-default;
+  }
+
   b,
   strong {
     @apply text-blue-500;
@@ -374,12 +383,12 @@
 
 @font-face {
   font-family: 'Geist Mono';
-  src: url(/fonts/GeistMono-1.3.0/variable-woff/GeistMonoVF.woff), format('woff');
+  src: url(/fonts/GeistMono-1.3.0/variable-woff/GeistMonoVF.woff) format('woff');
 }
 
 @font-face {
   font-family: 'Geist';
-  src: url(/fonts/Geist-1.3.0/variable-woff/GeistVF.woff), format('woff');
+  src: url(/fonts/Geist-1.3.0/variable-woff/GeistVF.woff) format('woff');
 }
 
 :root {
