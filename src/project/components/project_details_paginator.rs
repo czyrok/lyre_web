@@ -13,7 +13,7 @@ pub fn ProjectDetailsPaginator(
         view! { "" }.into_any(),
         |next| {
             view! {
-                <div class="tw-project-details-page-bottom-part">
+                <div class="project-details-page-bottom-part">
                     <NextPagination click_text=next.title.clone().expect("`title` should exist") href=format!("/projects/{}/", next.slug) />
                 </div>
             }.into_any()

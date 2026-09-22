@@ -69,14 +69,14 @@ pub fn ProjectDetails() -> impl IntoView {
                                 }.into_any())
 
                                 content_renderer=move || view! {
-                                    <div class="tw-project-details-page-top-part">
-                                        <div class="tw-top-part-intro">
+                                    <div class="project-details-page-top-part">
+                                        <div class="top-part-intro">
                                             <Link size=ComponentSize::SM text="Mes Projets/" href="/projects" />
 
-                                            <div class="tw-intro-details">
-                                                <h1 class="tw-title-size-lg">{ project.context.title.clone() }</h1>
+                                            <div class="intro-details">
+                                                <h1 class="title-size-lg">{ project.context.title.clone() }</h1>
 
-                                                <div class="tw-details-tags">
+                                                <div class="details-tags">
                                                     <ProjectTagItems project_tags=project.context.tags.clone() uses_long_name=true />
                                                 </div>
                                             </div>
@@ -85,11 +85,11 @@ pub fn ProjectDetails() -> impl IntoView {
                                         <ProjectDetailsActions project_links=project.links.clone() />
                                     </div>
 
-                                    <div class="tw-project-details-page-middle-part">
-                                        <div class="tw-middle-part-text">
-                                            <div class="tw-text-content" inner_html=project.content.0.clone() />
+                                    <div class="project-details-page-middle-part">
+                                        <div class="middle-part-text">
+                                            <div class="text-content" inner_html=project.content.0.clone() />
 
-                                            <span class="tw-additional-info">{project.context.formatted_date.clone().expect("`formatted_date` should exist")}</span>
+                                            <span class="additional-info">{project.context.formatted_date.clone().expect("`formatted_date` should exist")}</span>
                                         </div>
                                     </div>
 

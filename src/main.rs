@@ -4,6 +4,7 @@
 mod app;
 mod core;
 mod landing_page;
+mod legal_notice;
 mod project;
 mod shared;
 mod system;
@@ -52,7 +53,8 @@ if #[cfg(feature = "ssr")] {
 
         let sitemap_entries = resolve_sitemap_entries(app_state.clone(), vec![
             UrlEntry::new("").changefreq(ChangeFreq::Monthly).priority(1.0).lastmod(Utc::now().format("%Y-%m-%d").to_string()),
-            UrlEntry::new("/projects").changefreq(ChangeFreq::Monthly).priority(0.8).lastmod(Utc::now().format("%Y-%m-%d").to_string())
+            UrlEntry::new("/projects").changefreq(ChangeFreq::Monthly).priority(0.8).lastmod(Utc::now().format("%Y-%m-%d").to_string()),
+            UrlEntry::new("/mentions-legales").changefreq(ChangeFreq::Yearly).priority(0.5).lastmod(Utc::now().format("%Y-%m-%d").to_string())
         ]).await;
 
         let app = Router::new()

@@ -8,8 +8,8 @@ use crate::{
 #[component]
 pub fn NavBarContainer() -> impl IntoView {
     view! {
-        <div class="tw-nav-bar-wrapper">
-            <nav class="tw-nav-bar">
+        <div class="nav-bar-wrapper">
+            <nav class="nav-bar">
                 <NavBarItem text="Accueil" href="/" icon=IconSet::Home />
                 <NavBarItem text="Mes Projets" href="/projects" icon=IconSet::Compass />
                 <NavBarItem text="À Propos" href="/#about" icon=IconSet::About uses_active_behavior=false />

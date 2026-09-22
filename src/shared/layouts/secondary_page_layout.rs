@@ -29,14 +29,14 @@ pub fn SecondaryPageLayout(
     }));
 
     view! {
-        <div class="tw-secondary-page-layout">
-            <div id="top" class="tw-anchor"></div>
+        <div class="secondary-page-layout">
+            <div id="top" class="anchor"></div>
 
-            <div class="tw-secondary-page-layout-intro">
+            <div class="secondary-page-layout-intro">
                 {intro_renderer()}
             </div>
 
-            <main class="tw-secondary-page-layout-content">
+            <main class="secondary-page-layout-content">
                 {content_renderer()}
             </main>
 

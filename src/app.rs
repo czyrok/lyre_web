@@ -12,6 +12,7 @@ use leptos_router::{
 use crate::{
     core::data::app_settings::UsesDarkTheme,
     landing_page::view::LandingPage,
+    legal_notice::view::LegalNotice,
     project::{
         api::project_slug_api::get_project_slugs,
         views::{
@@ -73,7 +74,7 @@ pub fn App() -> impl IntoView {
 
         <div
             id="style-settings"
-            class=(["tw-dark"], uses_dark_theme)
+            class=(["dark"], uses_dark_theme)
         >
             <Router>
                 <NavBarContainer />
@@ -98,6 +99,12 @@ pub fn App() -> impl IntoView {
                         ssr=SsrMode::Static(
                             StaticRoute::new().regenerate(|_| watch_path(Path::new("./project_data"))),
                         )
+                    />
+
+                    <Route
+                        path=path!("/mentions-legales")
+                        view=LegalNotice
+                        ssr=SsrMode::Static(StaticRoute::new())
                     />
 
                     <Route

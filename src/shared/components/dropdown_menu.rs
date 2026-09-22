@@ -62,9 +62,9 @@ where
 
     view! {
         <div
-            class="tw-dropdown-menu"
-            class=(["tw-dropdown-menu-right"], move || is_position_right)
-            class=(["tw-dropdown-menu-bottom"], move || is_position_bottom)
+            class="dropdown-menu"
+            class=(["dropdown-menu-right"], move || is_position_right)
+            class=(["dropdown-menu-bottom"], move || is_position_bottom)
 
             id=id
             style=format!("position-anchor: --{}", position_anchor_name)
@@ -91,11 +91,11 @@ where
                 }
             })}
 
-            <div class="tw-dropdown-menu-items">
+            <div class="dropdown-menu-items">
                 {move || is_initial_state().then(|| {
                     view! {
-                        <div class="tw-dropdown-menu-item">
-                            <span class="tw-additional-info">
+                        <div class="dropdown-menu-item">
+                            <span class="additional-info">
                                 "Commencer par rechercher."
                             </span>
                         </div>
@@ -104,8 +104,8 @@ where
 
                 {move || is_empty_search_state().then(|| {
                     view! {
-                        <div class="tw-dropdown-menu-item">
-                            <span class="tw-additional-info">
+                        <div class="dropdown-menu-item">
+                            <span class="additional-info">
                                 "Aucun résultat."
                             </span>
                         </div>
@@ -117,7 +117,7 @@ where
                     key=|item| item.id.clone()
                     let:item
                 >
-                    <div class="tw-dropdown-menu-item">
+                    <div class="dropdown-menu-item">
                         {(item.view_creator_callback)()}
                     </div>
                 </For>

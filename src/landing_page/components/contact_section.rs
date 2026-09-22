@@ -20,21 +20,21 @@ pub fn ContactSection() -> impl IntoView {
     view! {
         <Link rel="preload" href="/images/ma_photo.webp" as_="image" type_="image/webp" />
 
-        <div class="tw-landing-page-section-container tw-landing-page-contact-section">
-            <div id="contact" class="tw-anchor"></div>
+        <div class="landing-page-section-container landing-page-contact-section">
+            <div id="contact" class="anchor"></div>
 
-            <div class="tw-section-photo">
+            <div class="section-photo">
                 <img src="/images/ma_photo.webp" alt="Photo of the owner of the website" />
             </div>
 
-            <div class="tw-section-right">
-                <div class="tw-section-text">
-                    <h1 class="tw-title-size-xl">"Contact"</h1>
+            <div class="section-right">
+                <div class="section-text">
+                    <h1 class="title-size-xl">"Contact"</h1>
 
                     <p>"Toujours dans l'attente de nouveaux challenges, ma porte est toujours ouverte pour discuter. Alors n'hésite pas !"</p>
                 </div>
 
-                <div class="tw-section-actions">
+                <div class="section-actions">
                     <PrimaryButtonAsLink size=ComponentSize::LG text="Par Mail" href="mailto:pro@dylan-valentin.dev" icon=IconSet::External icon_side=IconSide::Right/>
                     <SecondaryButtonAsLink size=ComponentSize::LG text="LinkedIn" href="https://www.linkedin.com/in/dylan-valentin/" icon=IconSet::LinkedIn icon_side=IconSide::Right target="_blank"/>
                 </div>

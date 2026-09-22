@@ -1,0 +1,562 @@
+@layer components {
+  .accentuation-input-text {
+    @apply relative;
+    & > * {
+      @apply relative z-10;
+    }
+    &::before {
+      @apply content-empty inset-0 absolute z-0;
+      @apply bg-bubble-pattern;
+      @apply rounded-25;
+      @apply shadow-button-inside;
+    }
+    @apply bg-green-100;
+    @apply dark:bg-green-700;
+    @apply rounded-25;
+    .input-text-input {
+      @apply bg-transparent w-full;
+      &:focus {
+        @apply outline-hidden;
+      }
+      &::placeholder {
+        @apply text-green-950/50;
+      }
+      @apply text-green-950;
+      @apply font-button-text font-geist-mono;
+    }
+    .input-text-icon {
+      @apply inline-block;
+      @apply text-green-950;
+      @apply w-button-icon h-button-icon;
+      & svg path {
+        @apply stroke-4;
+      }
+    }
+    .input-text-left-group {
+      @apply inline-flex w-full;
+    }
+    &:has(.input-text-input, .input-text-icon) {
+      @apply inline-flex items-center;
+    }
+    &:has(.input-text-input:focus) {
+      @apply ring-green-400;
+      @apply dark:ring-green-600;
+      @apply ring-offset-white-50;
+      @apply dark:ring-offset-black-950;
+      @apply ring-3 ring-offset-3;
+    }
+    &.input-size-xl {
+      @apply px-4 py-2;
+      @apply text-6;
+      .input-text-icon svg path {
+        @apply stroke-4;
+      }
+      &:has(.input-text-input, .input-text-icon) {
+        @apply gap-2.5;
+      }
+      .input-text-left-group {
+        @apply gap-1.5;
+      }
+    }
+    &.input-size-lg {
+      @apply px-3.5 py-2;
+      @apply text-5;
+      .input-text-icon svg path {
+        @apply stroke-4;
+      }
+      &:has(.input-text-input, .input-text-icon) {
+        @apply gap-2;
+      }
+      .input-text-left-group {
+        @apply gap-1;
+      }
+    }
+    &.input-size-md {
+      @apply px-3 py-2;
+      @apply text-4;
+      .input-text-icon svg path {
+        @apply stroke-5;
+      }
+      &:has(.input-text-input, .input-text-icon) {
+        @apply gap-2;
+      }
+      .input-text-left-group {
+        @apply gap-1;
+      }
+    }
+    &.input-size-sm {
+      @apply px-2.5 py-1.5;
+      @apply text-3;
+      .input-text-icon svg path {
+        @apply stroke-5;
+      }
+      &:has(.input-text-input, .input-text-icon) {
+        @apply gap-1.5;
+      }
+      .input-text-left-group {
+        @apply gap-0.5;
+      }
+    }
+  }
+  .primary-input-text {
+    @apply relative;
+    & > * {
+      @apply relative z-10;
+    }
+    &::before {
+      @apply content-empty inset-0 absolute z-0;
+      @apply bg-bubble-pattern;
+      @apply rounded-25;
+      @apply shadow-button-inside;
+    }
+    @apply bg-purple-blue-300/80;
+    @apply dark:bg-purple-blue-700/80;
+    @apply rounded-25;
+    .input-text-input {
+      @apply bg-transparent w-full;
+      &:focus {
+        @apply outline-hidden;
+      }
+      &::placeholder {
+        @apply text-purple-blue-950/50;
+      }
+      @apply text-purple-blue-950;
+      @apply dark:text-purple-blue-100;
+      @apply font-button-text font-geist-mono;
+    }
+    .input-text-icon {
+      @apply inline-block;
+      @apply text-purple-blue-950;
+      @apply dark:text-purple-blue-100;
+      @apply w-button-icon h-button-icon;
+    }
+    .input-text-left-group {
+      @apply inline-flex w-full;
+    }
+    &:has(.input-text-input, .input-text-icon) {
+      @apply inline-flex items-center;
+    }
+    &:has(.input-text-input:focus) {
+      @apply ring-green-400;
+      @apply dark:ring-green-600;
+      @apply ring-offset-white-50;
+      @apply dark:ring-offset-black-950;
+      @apply ring-3 ring-offset-3;
+    }
+    &.input-size-xl {
+      @apply px-4 py-2;
+      @apply text-6;
+      .input-text-icon svg path {
+        @apply stroke-4;
+      }
+      &:has(.input-text-input, .input-text-icon) {
+        @apply gap-2.5;
+      }
+      .input-text-left-group {
+        @apply gap-1.5;
+      }
+    }
+    &.input-size-lg {
+      @apply px-3.5 py-2;
+      @apply text-5;
+      .input-text-icon svg path {
+        @apply stroke-4;
+      }
+      &:has(.input-text-input, .input-text-icon) {
+        @apply gap-2;
+      }
+      .input-text-left-group {
+        @apply gap-1;
+      }
+    }
+    &.input-size-md {
+      @apply px-3 py-2;
+      @apply text-4;
+      .input-text-icon svg path {
+        @apply stroke-5;
+      }
+      &:has(.input-text-input, .input-text-icon) {
+        @apply gap-2;
+      }
+      .input-text-left-group {
+        @apply gap-1;
+      }
+    }
+    &.input-size-sm {
+      @apply px-2.5 py-1.5;
+      @apply text-3;
+      .input-text-icon svg path {
+        @apply stroke-5;
+      }
+      &:has(.input-text-input, .input-text-icon) {
+        @apply gap-1.5;
+      }
+      .input-text-left-group {
+        @apply gap-0.5;
+      }
+    }
+  }
+
+  :where(.dark, .dark *) .primary-input-text .input-text-input::placeholder {
+    @apply text-purple-blue-100/50;
+  }
+
+  .primary-select {
+    @apply inline-flex;
+    @apply relative;
+    & > * {
+      @apply relative z-10;
+    }
+    &::after {
+      @apply content-empty inset-0 absolute z-0;
+      @apply bg-bubble-pattern;
+      @apply rounded-25;
+      @apply shadow-button-inside;
+    }
+    @apply bg-button-gradient;
+    @apply from-purple-blue-400 to-purple-blue-500;
+    @apply dark:from-purple-blue-700 dark:to-purple-blue-800;
+    @apply rounded-25;
+    &::before {
+      @apply content-empty inset-0 absolute z-0 opacity-0;
+      @apply bg-purple-blue-500;
+      @apply rounded-25;
+      @apply transition-button-background duration-button-background ease-button-background;
+    }
+    .select-text {
+      @apply text-purple-blue-50;
+      @apply dark:text-purple-blue-100;
+      @apply font-button-text font-geist-mono;
+    }
+    .select-icon {
+      @apply inline-block;
+      @apply text-purple-blue-50;
+      @apply dark:text-purple-blue-100;
+      @apply w-button-icon h-button-icon;
+      & svg path {
+        @apply stroke-4;
+      }
+    }
+    .select-left-group {
+      @apply inline-flex;
+    }
+    .select-count {
+      @apply inline-flex items-center justify-center;
+      @apply bg-purple-blue-700;
+      @apply dark:bg-purple-blue-950;
+      @apply text-purple-blue-50;
+      @apply dark:text-purple-blue-100;
+      @apply font-button-text font-geist-mono;
+    }
+    &:has(.select-text):has(.select-icon) {
+      @apply items-center;
+    }
+    &:hover::before {
+      @apply opacity-100;
+    }
+    :is(&:focus, a:focus &) {
+      @apply ring-green-400;
+      @apply dark:ring-green-600;
+      @apply ring-offset-white-50;
+      @apply dark:ring-offset-black-950;
+      @apply ring-3 ring-offset-3;
+    }
+    &.select-size-xl {
+      @apply px-4 py-2;
+      @apply text-6;
+      .select-icon svg path {
+        @apply stroke-4;
+      }
+      &:has(.select-text, .select-icon) {
+        @apply gap-2.5;
+      }
+      .select-left-group {
+        @apply gap-1.5;
+      }
+      .select-count {
+        @apply px-1 py-0 rounded-1.5 text-5;
+      }
+      &:has(.select-icon):not(:has(.select-text)) {
+        @apply p-2;
+      }
+    }
+    &.select-size-lg {
+      @apply px-3.5 py-2;
+      @apply text-5;
+      .select-icon svg path {
+        @apply stroke-4;
+      }
+      &:has(.select-text, .select-icon) {
+        @apply gap-2;
+      }
+      .select-left-group {
+        @apply gap-1;
+      }
+      .select-count {
+        @apply px-1 py-0 rounded-1.5 text-4;
+      }
+      &:has(.select-icon):not(:has(.select-text)) {
+        @apply p-2;
+      }
+    }
+    &.select-size-md {
+      @apply px-3 py-2;
+      @apply text-4;
+      .select-icon svg path {
+        @apply stroke-5;
+      }
+      &:has(.select-text, .select-icon) {
+        @apply gap-2;
+      }
+      .select-left-group {
+        @apply gap-1;
+      }
+      .select-count {
+        @apply px-0.75 py-0 rounded-1 text-3.5;
+      }
+      &:has(.select-icon):not(:has(.select-text)) {
+        @apply p-2;
+      }
+    }
+    &.select-size-sm {
+      @apply px-2.5 py-1.5;
+      @apply text-3;
+      .select-icon svg path {
+        @apply stroke-5;
+      }
+      &:has(.select-text, .select-icon) {
+        @apply gap-1.5;
+      }
+      .select-left-group {
+        @apply gap-0.5;
+      }
+      .select-count {
+        @apply px-0.75 py-0 rounded-1 text-3;
+      }
+      &:has(.select-icon):not(:has(.select-text)) {
+        @apply p-1.5;
+      }
+    }
+  }
+
+  :where(.dark, .dark *) .primary-select::before {
+    @apply bg-purple-blue-800;
+  }
+
+  .secondary-checkbox {
+    @apply inline-flex items-center;
+    @apply select-none;
+    .checkbox-input {
+      @apply opacity-0 z-l1 w-0 h-0 absolute;
+    }
+    .checkbox-box {
+      @apply inline-flex;
+      @apply outline-purple-blue-400;
+      @apply dark:outline-purple-blue-500;
+      @apply rounded-3;
+      @apply outline outline-offset-l2 outline-2;
+      @apply transition-button-background duration-button-background ease-button-background;
+      .box-icon {
+        @apply inline-block;
+        @apply text-purple-blue-400;
+        @apply dark:text-purple-blue-500;
+        @apply w-button-icon h-button-icon;
+        @apply transition-checkbox-icon duration-checkbox-icon ease-checkbox-icon;
+        @apply opacity-0;
+      }
+    }
+    .checkbox-text {
+      @apply text-black-700;
+      @apply dark:text-white-200;
+      @apply font-button-text font-geist-mono;
+    }
+    &:has(.checkbox-input:checked) .checkbox-box {
+      @apply bg-purple-blue-50/90;
+      @apply dark:bg-purple-blue-950/90;
+      @apply outline-purple-blue-500;
+      @apply dark:outline-purple-blue-600;
+      .box-icon {
+        @apply opacity-100;
+      }
+    }
+    &:has(.checkbox-input:focus) .checkbox-box {
+      @apply ring-green-400;
+      @apply dark:ring-green-600;
+      @apply ring-offset-white-50;
+      @apply dark:ring-offset-black-950;
+      @apply ring-3 ring-offset-3;
+    }
+    &.checkbox-size-xl {
+      @apply text-8;
+      @apply gap-2.5;
+      .checkbox-box {
+        @apply p-1;
+        svg path {
+          @apply stroke-3;
+        }
+      }
+    }
+    &.checkbox-size-lg {
+      @apply text-6;
+      @apply gap-2;
+      .checkbox-box {
+        @apply p-1;
+        svg path {
+          @apply stroke-3;
+        }
+      }
+    }
+    &.checkbox-size-md {
+      @apply text-5;
+      @apply gap-2;
+      .checkbox-box {
+        @apply p-1;
+        svg path {
+          @apply stroke-4;
+        }
+      }
+    }
+    &.checkbox-size-sm {
+      @apply text-4;
+      @apply gap-2;
+      .checkbox-box {
+        @apply p-1;
+        svg path {
+          @apply stroke-4;
+        }
+      }
+    }
+  }
+  .secondary-select {
+    @apply outline-purple-blue-400;
+    @apply dark:outline-purple-blue-500;
+    @apply rounded-25;
+    @apply outline outline-offset-l2 outline-2;
+    @apply transition-button-background duration-button-background ease-button-background;
+    & select {
+      @apply hidden;
+    }
+    .select-text {
+      @apply text-purple-blue-400;
+      @apply dark:text-purple-blue-500;
+      @apply font-button-text font-geist-mono;
+    }
+    .select-icon {
+      @apply inline-block;
+      @apply text-purple-blue-400;
+      @apply dark:text-purple-blue-500;
+      @apply w-button-icon h-button-icon;
+    }
+    .select-left-group {
+      @apply inline-flex;
+    }
+    .select-count {
+      @apply inline-flex items-center justify-center;
+      @apply bg-purple-blue-100;
+      @apply dark:bg-purple-blue-900;
+      @apply text-purple-blue-400;
+      @apply dark:text-purple-blue-500;
+      @apply font-button-text font-geist-mono;
+    }
+    &:has(.select-text, .select-icon) {
+      @apply inline-flex items-center;
+    }
+    &:focus {
+      @apply ring-green-400;
+      @apply dark:ring-green-600;
+      @apply ring-offset-white-50;
+      @apply dark:ring-offset-black-950;
+      @apply ring-3 ring-offset-3;
+    }
+    &.select-active:not(.select-errored) {
+      @apply outline-purple-blue-500;
+      @apply dark:outline-purple-blue-600;
+      @apply bg-purple-blue-50/90;
+      @apply dark:bg-purple-blue-950/90;
+    }
+    &.select-size-xl {
+      @apply px-4 py-2;
+      @apply text-6;
+      .select-icon svg path {
+        @apply stroke-4;
+      }
+      &:has(.select-text, .select-icon) {
+        @apply gap-2.5;
+      }
+      .select-left-group {
+        @apply gap-1.5;
+      }
+      .select-count {
+        @apply px-1 py-0 rounded-1.5 text-5;
+      }
+      &:has(.select-icon):not(:has(.select-text)) {
+        @apply p-2;
+      }
+    }
+    &.select-size-lg {
+      @apply px-3.5 py-2;
+      @apply text-5;
+      .select-icon svg path {
+        @apply stroke-4;
+      }
+      &:has(.select-text, .select-icon) {
+        @apply gap-2;
+      }
+      .select-left-group {
+        @apply gap-1;
+      }
+      .select-count {
+        @apply px-1 py-0 rounded-1.5 text-4;
+      }
+      &:has(.select-icon):not(:has(.select-text)) {
+        @apply p-2;
+      }
+    }
+    &.select-size-md {
+      @apply px-3 py-2;
+      @apply text-4;
+      .select-icon svg path {
+        @apply stroke-5;
+      }
+      &:has(.select-text, .select-icon) {
+        @apply gap-2;
+      }
+      .select-left-group {
+        @apply gap-1;
+      }
+      .select-count {
+        @apply px-0.75 py-0 rounded-1 text-3.5;
+      }
+      &:has(.select-icon):not(:has(.select-text)) {
+        @apply p-2;
+      }
+    }
+    &.select-size-sm {
+      @apply px-2.5 py-1.5;
+      @apply text-3;
+      .select-icon svg path {
+        @apply stroke-5;
+      }
+      &:has(.select-text, .select-icon) {
+        @apply gap-1.5;
+      }
+      .select-left-group {
+        @apply gap-0.5;
+      }
+      .select-count {
+        @apply px-0.75 py-0 rounded-1 text-3;
+      }
+      &:has(.select-icon):not(:has(.select-text)) {
+        @apply p-1.5;
+      }
+    }
+    &.select-errored {
+      @apply outline-red-300;
+      @apply dark:outline-red-400;
+      .select-text {
+        @apply text-red-300;
+        @apply dark:text-red-400;
+      }
+    }
+  }
+}
