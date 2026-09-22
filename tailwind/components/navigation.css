@@ -61,6 +61,7 @@
     @apply pt-3;
     .nav-bar {
       @apply w-fit mx-auto flex;
+      @apply p-0.5 gap-0.5;
       & > a * {
         @apply relative z-10;
       }
@@ -74,7 +75,7 @@
       @apply rounded-25;
       @apply backdrop-blur-12;
       .nav-bar-item {
-        @apply px-3.5 py-2;
+        @apply px-2 py-2;
         @apply text-5;
         @apply rounded-25;
         @apply transition-nav-bar-item-background duration-nav-bar-item-background ease-nav-bar-item-background;
@@ -98,7 +99,7 @@
           }
         }
         &:has(.item-text, .item-icon) {
-          @apply inline-flex items-center gap-1;
+          @apply inline-flex items-center gap-1.5;
         }
       }
       [aria-current="page"] .nav-bar-item.nav-bar-item-active-behavior {
