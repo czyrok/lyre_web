@@ -57,7 +57,6 @@
       }
       &::placeholder {
         @apply text-purple-blue-950/50;
-        @apply dark:text-purple-blue-100/50;
       }
       @apply text-purple-blue-950;
       @apply dark:text-purple-blue-100;
@@ -85,6 +84,9 @@
     }
   }
 
-
-
+  :where(.dark, .dark *)
+    .dropdown-menu-search-bar
+    .search-bar-text-input::placeholder {
+    @apply text-purple-blue-100/50;
+  }
 }

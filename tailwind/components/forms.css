@@ -20,7 +20,6 @@
       }
       &::placeholder {
         @apply text-green-950/50;
-        @apply dark:text-green-950/50;
       }
       @apply text-green-950;
       @apply font-button-text font-geist-mono;
@@ -120,7 +119,6 @@
       }
       &::placeholder {
         @apply text-purple-blue-950/50;
-        @apply dark:text-purple-blue-100/50;
       }
       @apply text-purple-blue-950;
       @apply dark:text-purple-blue-100;
@@ -198,6 +196,11 @@
       }
     }
   }
+
+  :where(.dark, .dark *) .primary-input-text .input-text-input::placeholder {
+    @apply text-purple-blue-100/50;
+  }
+
   .primary-select {
     @apply inline-flex;
     @apply relative;
