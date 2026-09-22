@@ -8,7 +8,7 @@ pub fn ErrorsDisplay(errors: ArcRwSignal<Errors>) -> impl IntoView {
                 .get()
                 .into_iter()
                 .map(|(_, error)| view! {
-                    <span class="tw-error-info">{error.to_string()}</span>
+                    <span class="error-info">{error.to_string()}</span>
                 })
                 .collect::<Vec<_>>()
         }}

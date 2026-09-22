@@ -38,17 +38,17 @@ pub fn DropdownMenuSearchBar(
     });
 
     view! {
-        <label class="tw-dropdown-menu-search-bar">
+        <label class="dropdown-menu-search-bar">
             {move || has_left_icon.then(|| {
                 view! {
-                    <span class="tw-search-bar-text-icon">
+                    <span class="search-bar-text-icon">
                         <Icon icon=left_icon.clone().unwrap() />
                     </span>
                 }
             })}
 
             <input
-                class="tw-search-bar-text-input"
+                class="search-bar-text-input"
                 type="text"
                 placeholder=placeholder.unwrap_or_default()
 
@@ -62,7 +62,7 @@ pub fn DropdownMenuSearchBar(
 
             {move || has_right_icon.then(|| {
                 view! {
-                    <span class="tw-search-bar-text-icon">
+                    <span class="search-bar-text-icon">
                         <Icon icon=right_icon.clone().unwrap() />
                     </span>
                 }

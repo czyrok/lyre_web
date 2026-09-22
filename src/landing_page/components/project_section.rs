@@ -21,16 +21,16 @@ pub fn ProjectSection() -> impl IntoView {
     let resource = RelevantProjectContextsResource::default();
 
     view! {
-        <div class="tw-landing-page-section-container tw-landing-page-project-section">
-            <div id="projects" class="tw-anchor"></div>
+        <div class="landing-page-section-container landing-page-project-section">
+            <div id="projects" class="anchor"></div>
 
-            <div class="tw-section-text">
-                <h1 class="tw-title-size-xl">"Mes projets"</h1>
+            <div class="section-text">
+                <h1 class="title-size-xl">"Mes projets"</h1>
 
                 <p>"Depuis mon début dans la programmation, j'ai réalisé plusieurs projets que ce soit dans le cadre de mes études ou personnel. Ces années de pratique tournent autour de plusieurs périodes de ma vie : le lycée, l'IUT et aujourd'hui le freelance. Cette sélection retrace ces différentes périodes de ma jeune carrière."</p>
             </div>
 
-            <div class="tw-section-projects">
+            <div class="section-projects">
                 <Suspense fallback=move || view! {
                     <ProjectCardSkeleton />
                     <ProjectCardSkeleton />
@@ -54,7 +54,7 @@ pub fn ProjectSection() -> impl IntoView {
                 </Suspense>
             </div>
 
-            <div class="tw-section-actions">
+            <div class="section-actions">
                 <PrimaryButtonAsLink size=ComponentSize::LG text="Explorer" href="/projects" icon=IconSet::Compass icon_side=IconSide::Left/>
             </div>
         </div>

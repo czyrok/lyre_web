@@ -144,11 +144,11 @@ pub fn ProjectSearchPage() -> impl IntoView {
 
         <SecondaryPageLayout
             content_renderer=move || view! {
-                <div class="tw-project-search-page-top-part">
-                    <h1 class="tw-title-size-lg">"Mes Projets"</h1>
+                <div class="project-search-page-top-part">
+                    <h1 class="title-size-lg">"Mes Projets"</h1>
                 </div>
 
-                <div class="tw-project-search-page-middle-part">
+                <div class="project-search-page-middle-part">
                     <OrderedProjectContextFilter default_filter=project_context_filter.get_untracked() on_update=move |project_context_filter| {
                         set_project_context_filter.set(project_context_filter);
                         reset_view_when_filter_updated();
@@ -159,7 +159,7 @@ pub fn ProjectSearchPage() -> impl IntoView {
                     </Show>
 
                     <Show when=move || { displays_list_block.get() }>
-                        <div class="tw-middle-part-list">
+                        <div class="middle-part-list">
                             // TODO: recycler view...
                             <For each=move || displayed_project_contexts.get() key=|project_context| project_context.slug.clone() let:project_context>
                                 <ProjectCard project_context=project_context />
@@ -168,7 +168,7 @@ pub fn ProjectSearchPage() -> impl IntoView {
                     </Show>
 
                     <Show when=move || { delayed_is_loading.get() }>
-                        <div class="tw-middle-part-list">
+                        <div class="middle-part-list">
                             <ProjectCardSkeleton />
                         </div>
                     </Show>

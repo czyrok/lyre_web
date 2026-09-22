@@ -48,15 +48,15 @@ pub fn ProjectDetailsErrorDisplay(
                 let errors = errors.clone();
 
                 view! {
-                    <h1 class="tw-title-size-lg">"Page d'erreur"</h1>
+                    <h1 class="title-size-lg">"Page d'erreur"</h1>
 
-                    <div class="tw-info-error-page-layout-errors">
+                    <div class="info-error-page-layout-errors">
                         {move || {
                             errors
                                 .get()
                                 .into_iter()
                                 .map(|(_, error)| view! {
-                                    <span class="tw-error-info">{error.to_string()}</span>
+                                    <span class="error-info">{error.to_string()}</span>
                                 })
                                 .collect::<Vec<_>>()
                         }}

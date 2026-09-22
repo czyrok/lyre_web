@@ -48,26 +48,26 @@ pub fn UnthemedInputText(
         <label
             class=style_classes
 
-            class=(["tw-primary-input-text"], move || is_primary_theme)
+            class=(["primary-input-text"], move || is_primary_theme)
 
-            class=(["tw-input-size-xl"], move || is_xl_size)
-            class=(["tw-input-size-lg"], move || is_lg_size)
-            class=(["tw-input-size-md"], move || is_md_size)
-            class=(["tw-input-size-sm"], move || is_sm_size)
+            class=(["input-size-xl"], move || is_xl_size)
+            class=(["input-size-lg"], move || is_lg_size)
+            class=(["input-size-md"], move || is_md_size)
+            class=(["input-size-sm"], move || is_sm_size)
 
             on:click=on_click_callback
         >
-            <span class="tw-input-text-left-group">
+            <span class="input-text-left-group">
                 {move || has_icon.then(|| {
                     view! {
-                        <span class="tw-input-text-icon">
+                        <span class="input-text-icon">
                             <Icon icon=icon.clone().unwrap() />
                         </span>
                     }
                 })}
 
                 <input
-                    class="tw-input-text-input"
+                    class="input-text-input"
                     type="text"
                     placeholder=placeholder.unwrap_or_default()
 
@@ -83,7 +83,7 @@ pub fn UnthemedInputText(
                     dyn_clone::clone_box(&* reset_callback);
 
                 view! {
-                    <span class="tw-input-text-icon tw-cursor-pointer" on:click=move |event| {
+                    <span class="input-text-icon cursor-pointer" on:click=move |event| {
                         event.prevent_default();
                         reset_callback(event)
                     } >

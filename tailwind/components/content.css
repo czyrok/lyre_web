@@ -1,0 +1,137 @@
+@layer components {
+  .additional-info {
+    @apply text-black-950;
+    @apply dark:text-white-50;
+    @apply text-5;
+    @apply font-light font-geist;
+  }
+  .brand {
+    @apply w-fit flex flex-col items-center;
+    .brand-badge {
+      @apply flex justify-center items-center;
+      @apply bg-blue-200;
+      @apply dark:bg-blue-800;
+      @apply rounded-full;
+      .badge-logo {
+        @apply h-fit;
+        @apply text-blue-50;
+        @apply dark:text-blue-200;
+        @apply w-brand-badge-logo;
+      }
+    }
+    .brand-name {
+      @apply text-black-950;
+      @apply dark:text-white-50;
+      @apply font-brand-name font-geist-mono;
+    }
+    &.brand-size-xl {
+      @apply gap-6;
+      .brand-badge {
+        @apply w-33 h-33;
+      }
+      .brand-name {
+        @apply text-12;
+      }
+      &:not(:has(.brand-badge)) .brand-name {
+        @apply text-24;
+      }
+    }
+    &.brand-size-lg {
+      .brand-badge {
+        @apply w-25 h-25;
+      }
+    }
+    &.brand-size-sm {
+      .brand-badge {
+        @apply w-10 h-10;
+      }
+    }
+  }
+  .secondary-link {
+    .link-text {
+      @apply text-purple-blue-400;
+      @apply dark:text-purple-blue-500;
+      @apply font-link-text font-geist-mono;
+      @apply transition-link-text-and-icon duration-link-text-and-icon ease-link-text-and-icon;
+    }
+    .link-icon {
+      @apply inline-block;
+      @apply text-purple-blue-400;
+      @apply dark:text-purple-blue-500;
+      @apply w-link-icon h-link-icon;
+      @apply transition-link-text-and-icon duration-link-text-and-icon ease-link-text-and-icon;
+    }
+    &:has(.link-text, .link-icon) {
+      @apply inline-flex items-center;
+    }
+    &:hover {
+      .link-text {
+        @apply text-purple-blue-300;
+        @apply dark:text-purple-blue-400;
+      }
+      .link-icon {
+        @apply text-purple-blue-300;
+        @apply dark:text-purple-blue-400;
+      }
+    }
+    :is(&:focus, a:focus &) {
+      @apply ring-green-400;
+      @apply dark:ring-green-600;
+      @apply ring-offset-white-50;
+      @apply dark:ring-offset-black-950;
+      @apply rounded-25;
+      @apply ring-3 ring-offset-6;
+    }
+    &.link-size-xl {
+      @apply text-8;
+      .link-icon svg path {
+        @apply stroke-4;
+      }
+      &:has(.link-text, .link-icon) {
+        @apply gap-1.5;
+      }
+      &:has(.link-icon):not(:has(.link-text)) {
+        @apply p-2;
+      }
+    }
+    &.link-size-lg {
+      @apply text-7;
+      .link-icon svg path {
+        @apply stroke-4;
+      }
+      &:has(.link-text, .link-icon) {
+        @apply gap-1;
+      }
+      &:has(.link-icon):not(:has(.link-text)) {
+        @apply p-2;
+      }
+    }
+    &.link-size-md {
+      @apply text-6;
+      .link-icon svg path {
+        @apply stroke-5;
+      }
+      &:has(.link-text, .link-icon) {
+        @apply gap-1;
+      }
+      &:has(.link-icon):not(:has(.link-text)) {
+        @apply p-2;
+      }
+    }
+    &.link-size-sm {
+      @apply text-5;
+      .link-icon svg path {
+        @apply stroke-5;
+      }
+      &:has(.link-text, .link-icon) {
+        @apply gap-0.5;
+      }
+      &:has(.link-icon):not(:has(.link-text)) {
+        @apply p-1.5;
+      }
+    }
+  }
+
+
+
+}
