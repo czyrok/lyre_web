@@ -331,6 +331,15 @@
     @apply outline-hidden;
   }
 
+  button,
+  [role="button"] {
+    @apply cursor-pointer;
+  }
+
+  :disabled {
+    @apply cursor-default;
+  }
+
   b,
   strong {
     @apply text-blue-500;
