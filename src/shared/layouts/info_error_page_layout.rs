@@ -13,14 +13,14 @@ pub fn InfoErrorPageLayout(
     content_renderer: impl Fn() -> AnyView,
 ) -> impl IntoView {
     view! {
-        <div class="tw-secondary-page-layout tw-info-error-page-layout">
-            <div id="top" class="tw-anchor"></div>
+        <div class="secondary-page-layout info-error-page-layout">
+            <div id="top" class="anchor"></div>
 
-            <div class="tw-secondary-page-layout-intro">
+            <div class="secondary-page-layout-intro">
                 <Brand size=ComponentSize::LG layout_mode=LayoutMode::BadgeOnly />
             </div>
 
-            <main class="tw-secondary-page-layout-content">
+            <main class="secondary-page-layout-content">
                 {content_renderer()}
             </main>
 

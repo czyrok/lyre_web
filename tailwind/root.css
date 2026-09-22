@@ -1,33 +1,398 @@
-/**
- * This injects Tailwind's base styles and any base styles registered by
- * plugins.
- */
-@tailwind base;
+@import "tailwindcss";
+@import "./components/landing_page.css";
+@import "./components/project.css";
+@import "./components/actions.css";
+@import "./components/forms.css";
+@import "./components/content.css";
+@import "./components/navigation.css";
+@import "./components/menus.css";
+@import "./components/feedback.css";
+@import "./pages.css";
+@import "./layouts.css";
+@source "../src/**/*.rs";
 
-/**
- * This injects Tailwind's component classes and any component classes
- * registered by plugins.
- */
-@tailwind components;
+@custom-variant dark (&:where(.dark, .dark *));
+@custom-variant max-sm (@media (max-width: 640px));
+@custom-variant max-md (@media (max-width: 768px));
+@custom-variant max-lg (@media (max-width: 1024px));
+@custom-variant max-xl (@media (max-width: 1280px));
+@custom-variant max-2xl (@media (max-width: 1536px));
+@custom-variant v-sm (@media (min-height: 640px));
+@custom-variant max-v-sm (@media (max-height: 640px));
+@custom-variant v-xl (@media (min-height: 1280px));
+@custom-variant max-v-xl (@media (max-height: 1280px));
 
-/**
- * This injects Tailwind's utility classes and any utility classes registered
- * by plugins.
- */
-@tailwind utilities;
+@theme {
+  --color-transparent: #ffffff00;
+  --color-green-50: #e9fff8;
+  --color-green-100: #c9ffed;
+  --color-green-200: #98ffe0;
+  --color-green-300: #5affd5;
+  --color-green-400: #14f3c2;
+  --color-green-500: #00dbab;
+  --color-green-600: #00b38d;
+  --color-green-700: #008f75;
+  --color-green-800: #00715e;
+  --color-green-900: #005c4f;
+  --color-green-950: #00342d;
+  --color-purple-blue-50: #f0f5fd;
+  --color-purple-blue-100: #e4edfb;
+  --color-purple-blue-200: #cdddf8;
+  --color-purple-blue-300: #afc6f2;
+  --color-purple-blue-400: #8fa7ea;
+  --color-purple-blue-500: #7389e1;
+  --color-purple-blue-600: #5866d3;
+  --color-purple-blue-700: #4954b9;
+  --color-purple-blue-800: #3d4696;
+  --color-purple-blue-900: #384177;
+  --color-purple-blue-950: #212545;
+  --color-blue-50: #f3f7fc;
+  --color-blue-100: #e6eff8;
+  --color-blue-200: #c7ddf0;
+  --color-blue-300: #96c1e3;
+  --color-blue-400: #5ea1d2;
+  --color-blue-500: #4590c7;
+  --color-blue-600: #296ba0;
+  --color-blue-700: #225582;
+  --color-blue-800: #20496c;
+  --color-blue-900: #1f3e5b;
+  --color-blue-950: #15283c;
+  --color-black-500: #5d5d5d;
+  --color-black-600: #4f4f4f;
+  --color-black-700: #454545;
+  --color-black-800: #3d3d3d;
+  --color-black-900: #1c1c1c;
+  --color-black-950: #111111;
+  --color-white-50: #ffffff;
+  --color-white-100: #efefef;
+  --color-white-200: #dcdcdc;
+  --color-white-300: #bdbdbd;
+  --color-white-400: #989898;
+  --color-red-50: #fff1f1;
+  --color-red-100: #ffe1e1;
+  --color-red-200: #ffc7c7;
+  --color-red-300: #ffa0a0;
+  --color-red-400: #ff5c5c;
+  --color-red-500: #f83b3b;
+  --color-red-600: #e51d1d;
+  --color-red-700: #c11414;
+  --color-red-800: #a01414;
+  --color-red-900: #841818;
+  --color-red-950: #480707;
+
+  --spacing-middle-screen-shift: -50dvh;
+  --spacing-l7\/1: -7%;
+  --spacing-l4: -2rem;
+  --spacing-0: 0rem;
+  --spacing-0\.5: 0.25rem;
+  --spacing-1: 0.5rem;
+  --spacing-1\.5: 0.75rem;
+  --spacing-2: 1rem;
+  --spacing-2\.5: 1.25rem;
+  --spacing-3: 1.5rem;
+  --spacing-3\.5: 1.75rem;
+  --spacing-4: 2rem;
+  --spacing-5: 2.5rem;
+  --spacing-6: 3rem;
+  --spacing-7: 3.5rem;
+  --spacing-8: 4rem;
+  --spacing-9: 4.5rem;
+  --spacing-10: 5rem;
+  --spacing-11: 5.5rem;
+  --spacing-14: 7rem;
+  --spacing-16: 8rem;
+  --spacing-25: 12.5rem;
+  --spacing-28: 14rem;
+  --spacing-33: 16.5rem;
+  --spacing-37: 18.5rem;
+  --spacing-41: 20.5rem;
+  --spacing-47: 23.5rem;
+  --spacing-48: 24rem;
+  --spacing-50: 25rem;
+  --spacing-55: 27.5rem;
+  --spacing-57: 28.5rem;
+  --spacing-59: 29.5rem;
+  --spacing-62: 31rem;
+  --spacing-103: 51.5rem;
+  --spacing-119: 59.5rem;
+  --spacing-210: 105rem;
+  --spacing-level1: 1rem;
+  --spacing-level2: 2rem;
+  --spacing-level3: 4.5rem;
+  --spacing-level4: 7rem;
+
+  --text-1: 0.25rem;
+  --text-2: 0.5rem;
+  --text-3: 0.75rem;
+  --text-4: 1rem;
+  --text-5: 1.25rem;
+  --text-6: 1.5rem;
+  --text-7: 1.75rem;
+  --text-8: 2rem;
+  --text-9: 2.25rem;
+  --text-10: 2.5rem;
+  --text-11: 2.75rem;
+  --text-12: 3rem;
+  --text-13: 3.25rem;
+  --text-14: 3.5rem;
+  --text-15: 3.75rem;
+  --text-16: 4rem;
+  --text-17: 4.25rem;
+  --text-18: 4.5rem;
+  --text-19: 4.75rem;
+  --text-20: 5rem;
+  --text-21: 5.25rem;
+  --text-22: 5.5rem;
+  --text-23: 5.75rem;
+  --text-24: 6rem;
+
+  --font-geist-mono: "Geist Mono";
+  --font-geist: Geist;
+  --font-weight-button-text: 530;
+  --font-weight-link-text: 530;
+  --font-weight-tag-text: 300;
+  --font-weight-brand-name: 600;
+  --font-weight-title-xl: 900;
+  --font-weight-title-lg: 600;
+  --font-weight-regular: 300;
+  --font-weight-light: 100;
+
+  --breakpoint-sm: 640px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 1024px;
+  --breakpoint-xl: 1280px;
+  --breakpoint-2xl: 1536px;
+  --radius-2: 0.5rem;
+  --radius-3: 0.75rem;
+  --radius-5: 1.25rem;
+  --radius-10: 2.5rem;
+  --radius-18: 4.5rem;
+  --radius-25: 6.25rem;
+  --radius-full: 9999px;
+  --shadow-button-inside: 0px 1px 4px 0px #000000 inset;
+  --shadow-dropdown-menu-outside: 0px 2px 4px 0px #00000025;
+  --blur-4: 4px;
+  --blur-9: 9px;
+  --blur-12: 12px;
+}
+
+@utility w-button-icon { width: 1.5em; }
+@utility w-link-icon { width: 1em; }
+@utility w-brand-badge-logo { width: 58%; }
+@utility h-button-icon { height: 1.5em; }
+@utility h-link-icon { height: 1em; }
+@utility max-w-landing-page-shape { max-width: 950px; }
+@utility bg-bubble-pattern {
+  background-image: url(/backgrounds/button_rectangle_background.svg);
+  background-size: 4px 4px;
+  background-repeat: repeat;
+}
+@utility bg-button-gradient {
+  background-image: linear-gradient(100deg, var(--tw-gradient-from) 46%, var(--tw-gradient-to) 95.83%);
+}
+@utility bg-bash-gradient {
+  background-image: linear-gradient(90deg, var(--tw-gradient-from) 0%, var(--tw-gradient-to) 100%);
+}
+@utility bg-landing-page-cover-gradient {
+  background-image: linear-gradient(180deg, var(--tw-gradient-from) 0%, var(--tw-gradient-to) 82%);
+}
+@utility bg-secondary-page-layout-cover-gradient {
+  background-image: linear-gradient(180deg, var(--tw-gradient-from) 0%, var(--tw-gradient-to) 100%);
+}
+@utility content-empty { content: ''; }
+@utility content-bash { content: '$'; }
+@utility content-list-item { content: '• '; }
+@utility border-footer-separator { border-width: 2px; }
+@utility border-2 { border-width: 2px; }
+@utility border-3 { border-width: 3px; }
+@utility border-6 { border-width: 6px; }
+@utility anchor-middle-screen-target { top: 50%; margin-top: -50dvh; }
+@utility anchor-top-target { margin-top: -2rem; }
+@utility outline-0 { outline-width: 0; }
+@utility outline-1 { outline-width: 1px; }
+@utility outline-offset-l3 { outline-offset: -3px; }
+@utility outline-offset-l2 { outline-offset: -2px; }
+@utility outline-offset-l4 { outline-offset: -4px; }
+@utility outline-offset-l1 { outline-offset: -1px; }
+@utility outline-offset-0 { outline-offset: 0; }
+@utility outline-offset-1 { outline-offset: 1px; }
+@utility outline-offset-2 { outline-offset: 2px; }
+@utility outline-offset-3 { outline-offset: 3px; }
+@utility outline-offset-4 { outline-offset: 4px; }
+@utility outline-offset-5 { outline-offset: 5px; }
+@utility outline-offset-6 { outline-offset: 6px; }
+@utility outline-2 { outline-width: 2px; }
+@utility outline-3 { outline-width: 3px; }
+@utility outline-4 { outline-width: 4px; }
+@utility outline-5 { outline-width: 5px; }
+@utility outline-6 { outline-width: 6px; }
+@utility stroke-3 { stroke-width: 3px; }
+@utility stroke-4 { stroke-width: 4px; }
+@utility stroke-5 { stroke-width: 5px; }
+@utility stroke-0 { stroke-width: 0; }
+@utility stroke-1 { stroke-width: 1px; }
+@utility stroke-2 { stroke-width: 2px; }
+@utility stroke-6 { stroke-width: 6px; }
+@utility ring-offset-0 { --tw-ring-offset-width: 0; }
+@utility ring-offset-1 { --tw-ring-offset-width: 1px; }
+@utility ring-offset-2 { --tw-ring-offset-width: 2px; }
+@utility ring-offset-3 { --tw-ring-offset-width: 3px; }
+@utility ring-offset-4 { --tw-ring-offset-width: 4px; }
+@utility ring-offset-5 { --tw-ring-offset-width: 5px; }
+@utility ring-offset-6 { --tw-ring-offset-width: 6px; }
+@utility border-t-footer-separator { border-top-width: 2px; }
+@utility transition-button-background { transition-property: opacity, background-color; }
+@utility transition-checkbox-icon { transition-property: opacity; }
+@utility transition-link-text-and-icon { transition-property: color; }
+@utility transition-project-thumbnail-background-and-border { transition-property: opacity, outline-color; }
+@utility transition-nav-bar-item-background { transition-property: background-color; }
+@utility duration-button-background { transition-duration: 150ms; }
+@utility duration-checkbox-icon { transition-duration: 50ms; }
+@utility duration-link-text-and-icon { transition-duration: 150ms; }
+@utility duration-project-thumbnail-background-and-border { transition-duration: 150ms; }
+@utility duration-nav-bar-item-background { transition-duration: 150ms; }
+@utility ease-button-background { transition-timing-function: ease-in-out; }
+@utility ease-checkbox-icon { transition-timing-function: ease-in-out; }
+@utility ease-link-text-and-icon { transition-timing-function: ease-in-out; }
+@utility ease-project-thumbnail-background-and-border { transition-timing-function: ease-in-out; }
+@utility ease-nav-bar-item-background { transition-timing-function: ease-in-out; }
+@utility z-l1 { z-index: -1; }
+@utility z-0 { z-index: 0; }
+@utility z-10 { z-index: 10; }
+@utility z-20 { z-index: 20; }
+@utility z-100 { z-index: 100; }
+@utility ring-1 { --tw-ring-shadow: var(--tw-ring-inset,) 0 0 0 calc(1px + var(--tw-ring-offset-width)) var(--tw-ring-color, currentColor); box-shadow: var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow, 0 0 #0000); }
+@utility ring-2 { --tw-ring-shadow: var(--tw-ring-inset,) 0 0 0 calc(2px + var(--tw-ring-offset-width)) var(--tw-ring-color, currentColor); box-shadow: var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow, 0 0 #0000); }
+@utility ring-3 { --tw-ring-shadow: var(--tw-ring-inset,) 0 0 0 calc(3px + var(--tw-ring-offset-width)) var(--tw-ring-color, currentColor); box-shadow: var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow, 0 0 #0000); }
+@utility ring-4 { --tw-ring-shadow: var(--tw-ring-inset,) 0 0 0 calc(4px + var(--tw-ring-offset-width)) var(--tw-ring-color, currentColor); box-shadow: var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow, 0 0 #0000); }
+@utility ring-5 { --tw-ring-shadow: var(--tw-ring-inset,) 0 0 0 calc(5px + var(--tw-ring-offset-width)) var(--tw-ring-color, currentColor); box-shadow: var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow, 0 0 #0000); }
+@utility ring-6 { --tw-ring-shadow: var(--tw-ring-inset,) 0 0 0 calc(6px + var(--tw-ring-offset-width)) var(--tw-ring-color, currentColor); box-shadow: var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow, 0 0 #0000); }
+
+@layer base {
+  html {
+    @apply scroll-smooth;
+  }
+
+  @media screen and (prefers-reduced-motion: reduce) {
+    html {
+      @apply scroll-auto;
+    }
+  }
+
+  body {
+    @apply bg-white-50;
+  }
+
+  body:has(#style-settings.dark) {
+    @apply bg-black-950;
+  }
+
+  h1 {
+    @apply w-fit bg-clip-text text-transparent bg-bash-gradient from-blue-800 to-blue-500 font-geist-mono;
+  }
+
+  h1 {
+    @apply dark:from-blue-400 dark:to-blue-200;
+  }
+
+  h1::before {
+    @apply text-blue-800 content-bash;
+  }
+
+  h1.title-size-xl {
+    @apply text-16 sm:text-18 md:text-20 font-title-xl;
+  }
+
+  h1.title-size-lg {
+    @apply text-13 sm:text-14 md:text-15 font-title-lg;
+  }
+
+  p {
+    @apply text-black-950 text-6 font-regular font-geist;
+  }
+
+  p {
+    @apply dark:text-white-50;
+  }
+
+  li {
+    @apply text-black-950 text-6 ml-1 font-regular font-geist;
+  }
+
+  li {
+    @apply dark:text-white-50;
+  }
+
+  li::before {
+    @apply content-list-item;
+  }
+
+  a:focus {
+    @apply outline-hidden;
+  }
+
+  button,
+  [role="button"] {
+    @apply cursor-pointer;
+  }
+
+  :disabled {
+    @apply cursor-default;
+  }
+
+  b,
+  strong {
+    @apply text-blue-500;
+  }
+
+  b,
+  strong {
+    @apply dark:text-blue-400;
+  }
+}
+
+:where(.dark, .dark *) h1::before {
+  @apply text-blue-400;
+}
+
+@layer components {
+  h1::before {
+    @apply text-blue-800;
+  }
+
+  .h1-skeleton {
+    @apply animate-pulse box-content bg-white-200 dark:bg-black-700 w-[5em] h-[1em] my-[0.25em] rounded-10;
+  }
+
+  .h1-skeleton.title-size-xl {
+    @apply text-20;
+  }
+
+  .h1-skeleton.title-size-lg {
+    @apply text-15;
+  }
+
+  .p-skeleton {
+    @apply animate-pulse bg-white-200 dark:bg-black-700 w-full h-[1.5em] rounded-25 text-6;
+  }
+
+  .p-skeleton:last-child {
+    @apply w-[9em];
+  }
+}
 
 @font-face {
   font-family: 'Geist Mono';
-  src: url(/fonts/GeistMono-1.3.0/variable-woff/GeistMonoVF.woff), format('woff');
+  src: url(/fonts/GeistMono-1.3.0/variable-woff/GeistMonoVF.woff) format('woff');
 }
 
 @font-face {
   font-family: 'Geist';
-  src: url(/fonts/Geist-1.3.0/variable-woff/GeistVF.woff), format('woff');
+  src: url(/fonts/Geist-1.3.0/variable-woff/GeistVF.woff) format('woff');
 }
 
 :root {
-  @apply tw-text-[14px] sm:tw-text-[15px] md:tw-text-[16px];
+  @apply text-[14px] sm:text-[15px] md:text-[16px];
 
   /* It fixes the Geist-Sans font on Safari (issue: https://github.com/vercel/geist-font/issues/65) */
   font-synthesis-weight: none;

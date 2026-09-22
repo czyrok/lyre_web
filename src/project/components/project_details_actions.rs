@@ -10,7 +10,7 @@ pub fn ProjectDetailsActions(project_links: ProjectLinks) -> impl IntoView {
     view! {
         {move || (!project_links.0.is_empty()).then(|| {
             view! {
-                <div class="tw-top-part-actions">
+                <div class="top-part-actions">
                     <ProjectLinkItems project_links=project_links.clone() />
                 </div>
             }

@@ -5,7 +5,7 @@ use crate::shared::{
         accentuation_button_as_link::AccentuationButtonAsLink,
         secondary_button_as_link::SecondaryButtonAsLink,
     },
-    components::theme_selector::ThemeSelector,
+    components::{link::Link, theme_selector::ThemeSelector},
     enums::component_size::ComponentSize,
 };
 
@@ -22,13 +22,13 @@ pub fn FooterMorePart(
         }));
 
     view! {
-        <div class="tw-footer-more-part">
-            <div class="tw-more-part-text">
+        <div class="footer-more-part">
+            <div class="more-part-text">
                 <span>"Hop ! Hop !! Hop !!!"</span>
                 <br/><span>"Fin de la page."</span>
             </div>
 
-            <div class="tw-more-part-actions">
+            <div class="more-part-actions">
                 <AccentuationButtonAsLink size=ComponentSize::MD text="Me Conctacter" href="/#contact" />
 
                 {middle_action_renderer()}
@@ -54,18 +54,22 @@ pub fn Footer(
     }
 
     view! {
-        <div class="tw-footer">
+        <div class="footer">
             {more_part_view}
 
-            <div class="tw-footer-bottom-part">
-                <hr class="tw-bottom-part-separator" />
+            <div class="footer-bottom-part">
+                <hr class="bottom-part-separator" />
 
-                <div class="tw-bottom-part-settings">
+                <div class="bottom-part-settings">
                     <ThemeSelector />
                 </div>
 
-                <div class="tw-bottom-part-copyright-text">
-                    "Made with 🥐 in Lyon / © 2025 Dylan Valentin."
+                <div class="bottom-part-legal">
+                    <div class="bottom-part-copyright-text">
+                        "Made with 🥐 in Lyon / © 2025 Dylan Valentin."
+                    </div>
+
+                    <Link size=ComponentSize::SM text="Mentions Légales" href="/mentions-legales" />
                 </div>
             </div>
         </div>

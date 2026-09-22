@@ -14,10 +14,10 @@ pub fn MorePagination(
     let click_text = click_text.unwrap_or("Voir Plus".into());
 
     view! {
-        <div class="tw-pagination">
+        <div class="pagination">
             <PrimaryButton size=ComponentSize::MD text=click_text on_click=on_click />
 
-            <span class="tw-pagination-text">
+            <span class="pagination-text">
                 {move || count_left.get()}
                 <Show
                     when=move || { count_left.get() > 1 }

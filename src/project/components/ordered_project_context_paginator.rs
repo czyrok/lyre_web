@@ -64,7 +64,7 @@ pub fn OrderedProjectContextPaginator(
         <Show
             when=move || { count_left.get() > 0 }
         >
-            <div class="tw-project-search-page-bottom-part">
+            <div class="project-search-page-bottom-part">
                 <MorePagination count_left=count_left.into() on_click=move |_| {
                     set_pagination.update(|pagination| pagination.cursor_after = current_next_slug.get_untracked())
                 } />

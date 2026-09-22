@@ -56,7 +56,7 @@ pub fn TagSelector(
 
     view! {
         <Suspense fallback=move || view! {
-            <div class="tw-secondary-button-skeleton tw-button-size-md"></div>
+            <div class="secondary-button-skeleton button-size-md"></div>
         }>
             <ErrorBoundary fallback=|_| {
                 let (is_errored, _) = signal(true);

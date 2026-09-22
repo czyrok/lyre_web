@@ -12,11 +12,11 @@ pub fn SearchResultInfo(
     last_fetch_state: Signal<FetchState>,
 ) -> impl IntoView {
     view! {
-        <div class="tw-middle-part-info">
+        <div class="middle-part-info">
             <Show
                 when=move || { last_fetch_state.get().is_ok() && project_contexts.get().is_empty() }
             >
-                <span class="tw-additional-info">
+                <span class="additional-info">
                     "Aucun résultat."
                 </span>
             </Show>
