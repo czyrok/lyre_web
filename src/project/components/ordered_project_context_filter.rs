@@ -72,7 +72,7 @@ pub fn OrderedProjectContextFilter(
     });
 
     view! {
-        <div class="flex flex-col flex-row items-center gap-level2">
+        <div class="flex flex-col items-center gap-level2">
             <SearchedProjectTitleInput set_searched_project_title scroll_trigger />
 
             <div class="flex flex-wrap flex-row gap-level1">
