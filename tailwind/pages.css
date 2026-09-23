@@ -3,8 +3,8 @@
     .landing-page-cover {
       @apply flex flex-col h-dvh;
       @apply bg-landing-page-cover-gradient;
-      @apply from-blue-100 to-white-50;
-      @apply dark:from-blue-900 dark:to-black-950;
+      @apply from-blue-100 via-blue-50 to-white-50;
+      @apply dark:from-blue-900 dark:via-blue-950 dark:to-black-950;
       .cover-middle-part {
         @apply relative grow flex items-center justify-center;
         .middle-part-shape {

@@ -62,11 +62,14 @@
     &.button-size-lg {
       @apply px-3.5 py-2;
       @apply text-5;
+      .button-icon {
+        @apply w-3 h-3;
+      }
       .button-icon svg path {
         @apply stroke-4;
       }
       &:has(.button-text, .button-icon) {
-        @apply gap-1;
+        @apply gap-1.5;
       }
       &:has(.button-icon):not(:has(.button-text)) {
         @apply p-2;
@@ -75,6 +78,9 @@
     &.button-size-md {
       @apply px-3 py-2;
       @apply text-4;
+      .button-icon {
+        @apply w-2.5 h-2.5;
+      }
       .button-icon svg path {
         @apply stroke-5;
       }
@@ -164,11 +170,14 @@
     &.button-size-lg {
       @apply px-3.5 py-2;
       @apply text-5;
+      .button-icon {
+        @apply w-3 h-3;
+      }
       .button-icon svg path {
         @apply stroke-4;
       }
       &:has(.button-text, .button-icon) {
-        @apply gap-1;
+        @apply gap-1.5;
       }
       &:has(.button-icon):not(:has(.button-text)) {
         @apply p-2;
@@ -177,6 +186,9 @@
     &.button-size-md {
       @apply px-3 py-2;
       @apply text-4;
+      .button-icon {
+        @apply w-2.5 h-2.5;
+      }
       .button-icon svg path {
         @apply stroke-5;
       }
@@ -234,6 +246,7 @@
     &:hover:not(:disabled) {
       @apply bg-purple-blue-50/90;
       @apply dark:bg-purple-blue-950/90;
+      @apply backdrop-blur-2;
     }
     :is(&:focus, a:focus &):not(:disabled) {
       @apply ring-green-400;
@@ -258,11 +271,14 @@
     &.button-size-lg {
       @apply px-3.5 py-2;
       @apply text-5;
+      .button-icon {
+        @apply w-3 h-3;
+      }
       .button-icon svg path {
         @apply stroke-4;
       }
       &:has(.button-text, .button-icon) {
-        @apply gap-1;
+        @apply gap-1.5;
       }
       &:has(.button-icon):not(:has(.button-text)) {
         @apply p-2;
@@ -271,6 +287,9 @@
     &.button-size-md {
       @apply px-3 py-2;
       @apply text-4;
+      .button-icon {
+        @apply w-2.5 h-2.5;
+      }
       .button-icon svg path {
         @apply stroke-5;
       }
