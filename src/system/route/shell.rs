@@ -3,10 +3,9 @@ use leptos::nonce::use_nonce;
 use leptos::{config::LeptosOptions, prelude::*, IntoView};
 use leptos_meta::*;
 
-use crate::{
-    app::App,
-    system::state::backend_contexts::use_environment_context,
-};
+use crate::app::App;
+#[cfg(feature = "ssr")]
+use crate::system::state::backend_contexts::use_environment_context;
 
 pub fn shell(options: LeptosOptions) -> impl IntoView {
     // TODO: add nonce field when it will available on `Link` components
@@ -15,6 +14,7 @@ pub fn shell(options: LeptosOptions) -> impl IntoView {
     #[cfg(not(feature = "ssr"))]
     let nonce = None::<String>;
 
+    #[cfg(feature = "ssr")]
     let analytics_script = use_environment_context()
         .ok()
         .and_then(|environment| {
@@ -36,6 +36,8 @@ pub fn shell(options: LeptosOptions) -> impl IntoView {
             }
             .into_view()
         });
+    #[cfg(not(feature = "ssr"))]
+    let analytics_script = None::<AnyView>;
 
     let schema_markup_content = "{
         \"@context\": \"https://schema.org\",\
