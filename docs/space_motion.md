@@ -17,7 +17,28 @@ Everything hangs off a single registered custom property declared in
 }
 
 :root {
-  --space-motion-scale: calc(1 - 0.4 * var(--space-motion-progress));
+  --space-motion-ramp: calc(1.3 - 0.5 * var(--space-motion-progress));
+  --space-motion-scale: 1;
+}
+```
+
+Read the ramp as `start - (start - end) * progress`: the spacing opens at 1.3x
+its design value and closes at 0.8x.
+
+The ramp is not the default. `--space-motion-scale` sits at `1` — the spacing
+exactly as designed — and is switched over to the ramp only where the motion
+actually runs, so a browser that cannot animate renders the design values rather
+than a frozen 1.3x of them. There are two such places, one per driver:
+
+```css
+@media screen and (prefers-reduced-motion: no-preference) {
+  @supports (animation-timeline: scroll()) {
+    :root { --space-motion-scale: var(--space-motion-ramp); }
+  }
+
+  :root[data-space-motion] {
+    --space-motion-scale: var(--space-motion-ramp);
+  }
 }
 ```
 
@@ -76,8 +97,8 @@ then run on the default *time* timeline with a `0s` duration and, because of
 `both`, settle on the `to` keyframe on the first frame — the page would render
 permanently compacted instead of simply not animating.
 
-`@supports (animation-timeline: scroll())` keeps those browsers on the
-`initial-value: 0` of the property, i.e. the untouched design spacing.
+`@supports (animation-timeline: scroll())` keeps those browsers on
+`--space-motion-scale: 1`, i.e. the spacing as designed.
 
 `prefers-reduced-motion: no-preference` opts out the same way.
 
@@ -88,16 +109,23 @@ Firefox does not ship scroll-driven animations — MDN's compatibility data puts
 only. The `@supports` guard therefore does its job and Firefox gets no motion at
 all, which is correct but not what we want.
 
-`assets/polyfills/space-motion.js` fills the gap, loaded from the polyfill block
-in `src/system/route/shell.rs` under the same feature test the CSS uses:
+`assets/polyfills/space-motion.js` fills the gap, loaded from
+`src/system/route/shell.rs` under the same feature test the CSS uses:
 
 ```js
 if (!CSS.supports('animation-timeline', 'scroll()')) {
+    document.documentElement.dataset.spaceMotion = '';
+
     import('/polyfills/space-motion.js');
 }
 ```
 
-It sets `--space-motion-progress` on `<html>` from
+That loader is a plain synchronous `<script>`, deliberately not part of the
+`type="module"` polyfill block below it. A module is deferred, so the attribute
+would land after the first paint and the spacing would visibly jump from 1x to
+1.3x on every page load.
+
+The module itself sets `--space-motion-progress` on `<html>` from
 `scrollY / innerHeight`, clamped to 1, on a `requestAnimationFrame`-throttled
 passive scroll listener. Because it feeds the same `0 → 1` property the keyframes
 animate, the compaction curve, the compacted value and the vertical-only rule all
@@ -112,7 +140,7 @@ setting it, since the CSS `@media` guard only gates the animation it replaces.
 
 | Knob | Location | Effect |
 | --- | --- | --- |
-| `0.4` in `--space-motion-scale` | `:root` rule | How tight the compacted state gets (`0.4` = 40% tighter) |
+| `1.3` and `0.5` in `--space-motion-scale` | `:root` rule | The open and closed ends of the ramp, as `start` and `start - end` |
 | `animation-range` | `:root` rule | Over how much scroll the compaction happens (mirror it in the polyfill) |
 | `linear` | `:root` rule | The easing of the compaction against scroll distance |
 

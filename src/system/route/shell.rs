@@ -38,6 +38,21 @@ pub fn shell(options: LeptosOptions) -> impl IntoView {
 
                 <script type="application/ld+json" inner_html=schema_markup_content nonce=nonce.clone()/>
 
+                // Polyfill, kept synchronous and ahead of the module block: the attribute has to
+                // land before the first paint, otherwise the spacing jumps once the script runs
+                <script nonce=nonce.clone()>
+                    "
+                    //// Used only by Firefox, which ships scroll-driven animations in preview builds only
+                    if (!CSS.supports('animation-timeline', 'scroll()')) {
+                        document.documentElement.dataset.spaceMotion = '';
+
+                        import('/polyfills/space-motion.js');
+
+                        console.info(\"Polyfill applied - 'space-motion'\");
+                    }
+                    "
+                </script>
+
                 // Polyfills
                 <script type="module" nonce=nonce>
                     "
@@ -110,13 +125,6 @@ pub fn shell(options: LeptosOptions) -> impl IntoView {
                     //// Used only Safari to fix focus on buttons, links, checkboxes etc...
                     //// Source: https://itnext.io/fixing-focus-for-safari-b5916fef1064
                     import('/polyfills/@NickGuard/safari-focus@2.0.js');
-
-                    //// Used only by Firefox, which ships scroll-driven animations in preview builds only
-                    if (!CSS.supports('animation-timeline', 'scroll()')) {
-                        import('/polyfills/space-motion.js');
-
-                        console.info(\"Polyfill applied - 'space-motion'\");
-                    }
                     "
                 </script>
             </head>

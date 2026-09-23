@@ -203,7 +203,8 @@
 }
 
 :root {
-  --space-motion-scale: calc(1 - 0.4 * var(--space-motion-progress));
+  --space-motion-ramp: calc(1.3 - 0.5 * var(--space-motion-progress));
+  --space-motion-scale: 1;
 }
 
 @keyframes space-motion-compaction {
@@ -436,14 +437,21 @@
   font-synthesis-weight: none;
 }
 
-/* Without the @supports guard, a browser lacking scroll timelines runs the keyframes on a 0s time
-   timeline and lands on the compacted state immediately (see docs/space_motion.md) */
-@supports (animation-timeline: scroll()) {
-  @media screen and (prefers-reduced-motion: no-preference) {
+@media screen and (prefers-reduced-motion: no-preference) {
+  /* Without the @supports guard, a browser lacking scroll timelines runs the keyframes on a 0s time
+     timeline and lands on the compacted state immediately (see docs/space_motion.md) */
+  @supports (animation-timeline: scroll()) {
     :root {
+      --space-motion-scale: var(--space-motion-ramp);
+
       animation: space-motion-compaction linear both;
       animation-timeline: scroll(root block);
       animation-range: 0 100vh;
     }
+  }
+
+  /* Set by the polyfill loader in `shell.rs` when the browser has no scroll timelines */
+  :root[data-space-motion] {
+    --space-motion-scale: var(--space-motion-ramp);
   }
 }
