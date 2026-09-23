@@ -7,7 +7,7 @@ use axum::{
 use tower::ServiceExt;
 use tower_http::services::{fs::ServeFileSystemResponseBody, ServeDir};
 
-use super::leptos_route_handler::leptos_routes_handler;
+use super::leptos_route_handler::leptos_fallback_handler;
 use crate::system::state::app_state::AppState;
 
 pub async fn file_and_error_handler(
@@ -22,7 +22,7 @@ pub async fn file_and_error_handler(
         res.into_response()
     } else {
         //// If the static file is not found, it render the app directly
-        leptos_routes_handler(app_state, req).await
+        leptos_fallback_handler(app_state, req).await
     }
 }
 
