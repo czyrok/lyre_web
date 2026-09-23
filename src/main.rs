@@ -69,7 +69,10 @@ if #[cfg(feature = "ssr")] {
                 "/api/{*fn_name}",
                 get(server_function_handler).post(server_function_handler),
             )
-            .leptos_routes_with_handler(routes, get(leptos_routes_handler))
+            .leptos_routes_with_handler(
+                routes.clone(),
+                get(leptos_routes_handler(app_state.clone(), routes)),
+            )
             .fallback(file_and_error_handler)
             .with_state(app_state.clone());
 
