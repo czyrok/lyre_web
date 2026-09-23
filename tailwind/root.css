@@ -117,10 +117,18 @@
   --spacing-103: 51.5rem;
   --spacing-119: 59.5rem;
   --spacing-210: 105rem;
-  --spacing-level1: 1rem;
-  --spacing-level2: 2rem;
-  --spacing-level3: 4.5rem;
-  --spacing-level4: 7rem;
+  --spacing-fixed-level1: 1rem;
+  --spacing-fixed-level2: 2rem;
+  --spacing-fixed-level3: 4.5rem;
+  --spacing-fixed-level4: 7rem;
+  --spacing-fixed-level5: 8rem;
+  --spacing-fixed-level6: 12.5rem;
+  --spacing-level1: calc(var(--spacing-fixed-level1) * var(--space-motion-scale));
+  --spacing-level2: calc(var(--spacing-fixed-level2) * var(--space-motion-scale));
+  --spacing-level3: calc(var(--spacing-fixed-level3) * var(--space-motion-scale));
+  --spacing-level4: calc(var(--spacing-fixed-level4) * var(--space-motion-scale));
+  --spacing-level5: calc(var(--spacing-fixed-level5) * var(--space-motion-scale));
+  --spacing-level6: calc(var(--spacing-fixed-level6) * var(--space-motion-scale));
 
   --text-1: 0.25rem;
   --text-2: 0.5rem;
@@ -186,6 +194,22 @@
   --blur-9: 9px;
   --blur-12: 12px;
   --blur-15: 15px;
+}
+
+@property --space-motion-progress {
+  syntax: "<number>";
+  inherits: true;
+  initial-value: 0;
+}
+
+:root {
+  --space-motion-ramp: calc(1.3 - 0.5 * var(--space-motion-progress));
+  --space-motion-scale: 1;
+}
+
+@keyframes space-motion-compaction {
+  from { --space-motion-progress: 0; }
+  to { --space-motion-progress: 1; }
 }
 
 @utility w-button-icon { width: 1.5em; }
@@ -411,4 +435,23 @@
 
   /* It fixes the Geist-Sans font on Safari (issue: https://github.com/vercel/geist-font/issues/65) */
   font-synthesis-weight: none;
+}
+
+@media screen and (prefers-reduced-motion: no-preference) {
+  /* Without the @supports guard, a browser lacking scroll timelines runs the keyframes on a 0s time
+     timeline and lands on the compacted state immediately (see docs/space_motion.md) */
+  @supports (animation-timeline: scroll()) {
+    :root {
+      --space-motion-scale: var(--space-motion-ramp);
+
+      animation: space-motion-compaction linear both;
+      animation-timeline: scroll(root block);
+      animation-range: 0 100vh;
+    }
+  }
+
+  /* Set by the polyfill loader in `shell.rs` when the browser has no scroll timelines */
+  :root[data-space-motion] {
+    --space-motion-scale: var(--space-motion-ramp);
+  }
 }
