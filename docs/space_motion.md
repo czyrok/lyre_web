@@ -7,19 +7,29 @@ viewport of scroll.
 ## Mechanism
 
 Everything hangs off a single registered custom property declared in
-`tailwind/root.css`:
+`tailwind/root.css`, and a scale derived from it:
 
 ```css
-@property --space-motion-scale {
+@property --space-motion-progress {
   syntax: "<number>";
   inherits: true;
-  initial-value: 1;
+  initial-value: 0;
+}
+
+:root {
+  --space-motion-scale: calc(1 - 0.4 * var(--space-motion-progress));
 }
 ```
 
 Registering it is what makes it interpolable — an unregistered custom property
 is a plain token stream and CSS can only flip it from one keyframe to the next,
 never tween it.
+
+The split between the two matters: `--space-motion-progress` is a raw `0 → 1`
+ramp, and the whole compaction curve lives in the one `calc()` that turns it into
+a scale. Anything that can produce a progress figure can drive the motion —
+which is what lets the Firefox fallback below reuse the curve instead of
+restating it.
 
 The `level` spacing scale comes in two halves — a static one holding the design
 value, and an animated one multiplying it by the scale:
@@ -67,16 +77,43 @@ then run on the default *time* timeline with a `0s` duration and, because of
 permanently compacted instead of simply not animating.
 
 `@supports (animation-timeline: scroll())` keeps those browsers on the
-`initial-value: 1` of the property, i.e. the untouched design spacing.
+`initial-value: 0` of the property, i.e. the untouched design spacing.
 
 `prefers-reduced-motion: no-preference` opts out the same way.
+
+## Firefox
+
+Firefox does not ship scroll-driven animations — MDN's compatibility data puts
+`animation-timeline`, `scroll()` and `view()` at `preview`, meaning Nightly
+only. The `@supports` guard therefore does its job and Firefox gets no motion at
+all, which is correct but not what we want.
+
+`assets/polyfills/space-motion.js` fills the gap, loaded from the polyfill block
+in `src/system/route/shell.rs` under the same feature test the CSS uses:
+
+```js
+if (!CSS.supports('animation-timeline', 'scroll()')) {
+    import('/polyfills/space-motion.js');
+}
+```
+
+It sets `--space-motion-progress` on `<html>` from
+`scrollY / innerHeight`, clamped to 1, on a `requestAnimationFrame`-throttled
+passive scroll listener. Because it feeds the same `0 → 1` property the keyframes
+animate, the compaction curve, the compacted value and the vertical-only rule all
+stay defined once, in CSS — the fallback contributes a number and nothing else.
+The one thing it does restate is the range: `scrollY / innerHeight` is the JS
+spelling of `animation-range: 0 100vh`.
+
+It honours `prefers-reduced-motion` itself, by clearing the property rather than
+setting it, since the CSS `@media` guard only gates the animation it replaces.
 
 ## Tuning
 
 | Knob | Location | Effect |
 | --- | --- | --- |
-| `to { --space-motion-scale }` | `@keyframes space-motion-compaction` | How tight the compacted state is (`0.6` = 40% tighter) |
-| `animation-range` | `:root` rule | Over how much scroll the compaction happens |
+| `0.4` in `--space-motion-scale` | `:root` rule | How tight the compacted state gets (`0.4` = 40% tighter) |
+| `animation-range` | `:root` rule | Over how much scroll the compaction happens (mirror it in the polyfill) |
 | `linear` | `:root` rule | The easing of the compaction against scroll distance |
 
 ## The motion is vertical only

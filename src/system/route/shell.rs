@@ -110,6 +110,13 @@ pub fn shell(options: LeptosOptions) -> impl IntoView {
                     //// Used only Safari to fix focus on buttons, links, checkboxes etc...
                     //// Source: https://itnext.io/fixing-focus-for-safari-b5916fef1064
                     import('/polyfills/@NickGuard/safari-focus@2.0.js');
+
+                    //// Used only by Firefox, which ships scroll-driven animations in preview builds only
+                    if (!CSS.supports('animation-timeline', 'scroll()')) {
+                        import('/polyfills/space-motion.js');
+
+                        console.info(\"Polyfill applied - 'space-motion'\");
+                    }
                     "
                 </script>
             </head>

@@ -196,15 +196,19 @@
   --blur-15: 15px;
 }
 
-@property --space-motion-scale {
+@property --space-motion-progress {
   syntax: "<number>";
   inherits: true;
-  initial-value: 1;
+  initial-value: 0;
+}
+
+:root {
+  --space-motion-scale: calc(1 - 0.4 * var(--space-motion-progress));
 }
 
 @keyframes space-motion-compaction {
-  from { --space-motion-scale: 1; }
-  to { --space-motion-scale: 0.6; }
+  from { --space-motion-progress: 0; }
+  to { --space-motion-progress: 1; }
 }
 
 @utility w-button-icon { width: 1.5em; }
