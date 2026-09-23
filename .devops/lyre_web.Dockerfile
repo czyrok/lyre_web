@@ -48,6 +48,7 @@ RUN \
   cargo make --profile release-ci build \
   && mkdir dist/ \
   && mv target/release/lyre_web dist/ \
+  && mv target/release/hash.txt dist/ \
   && mv target/site dist/
 
 FROM scratch as runner
@@ -61,6 +62,7 @@ COPY --parents project_data/**/*.md .
 COPY local.db .
 
 COPY --from=builder /project/dist/lyre_web /app/
+COPY --from=builder /project/dist/hash.txt /app/
 COPY --from=builder /project/dist/site /app/site
 
 ENV RUST_LOG=info

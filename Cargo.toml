@@ -150,3 +150,6 @@ lib-features = ["hydrate"]
 lib-default-features = false
 
 lib-profile-release = "wasm-release"
+
+# Leptos reads the hash file next to the binary, so it has to ship beside it — see `.devops/lyre_web.Dockerfile`
+hash-files = true
