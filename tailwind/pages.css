@@ -55,16 +55,16 @@
       .top-part-intro {
         .intro-details {
           @apply flex flex-wrap;
-          @apply gap-x-level2;
+          @apply gap-x-fixed-level2;
           .details-tags {
             @apply flex flex-wrap items-center;
-            @apply gap-level1;
+            @apply gap-y-level1 gap-x-fixed-level1;
           }
         }
       }
       .top-part-actions {
         @apply flex flex-wrap;
-        @apply gap-level1;
+        @apply gap-y-level1 gap-x-fixed-level1;
       }
     }
     .project-details-page-middle-part {
@@ -100,7 +100,7 @@
       }
       .middle-part-list {
         @apply flex flex-wrap justify-center;
-        @apply gap-level2;
+        @apply gap-y-level2 gap-x-fixed-level2;
       }
     }
     .project-search-page-bottom-part {

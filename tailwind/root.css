@@ -117,12 +117,18 @@
   --spacing-103: 51.5rem;
   --spacing-119: 59.5rem;
   --spacing-210: 105rem;
-  --spacing-level1: calc(1rem * var(--space-motion-scale));
-  --spacing-level2: calc(2rem * var(--space-motion-scale));
-  --spacing-level3: calc(4.5rem * var(--space-motion-scale));
-  --spacing-level4: calc(7rem * var(--space-motion-scale));
-  --spacing-level5: calc(8rem * var(--space-motion-scale));
-  --spacing-level6: calc(12.5rem * var(--space-motion-scale));
+  --spacing-fixed-level1: 1rem;
+  --spacing-fixed-level2: 2rem;
+  --spacing-fixed-level3: 4.5rem;
+  --spacing-fixed-level4: 7rem;
+  --spacing-fixed-level5: 8rem;
+  --spacing-fixed-level6: 12.5rem;
+  --spacing-level1: calc(var(--spacing-fixed-level1) * var(--space-motion-scale));
+  --spacing-level2: calc(var(--spacing-fixed-level2) * var(--space-motion-scale));
+  --spacing-level3: calc(var(--spacing-fixed-level3) * var(--space-motion-scale));
+  --spacing-level4: calc(var(--spacing-fixed-level4) * var(--space-motion-scale));
+  --spacing-level5: calc(var(--spacing-fixed-level5) * var(--space-motion-scale));
+  --spacing-level6: calc(var(--spacing-fixed-level6) * var(--space-motion-scale));
 
   --text-1: 0.25rem;
   --text-2: 0.5rem;

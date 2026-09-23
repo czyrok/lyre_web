@@ -29,7 +29,7 @@
       }
       .more-part-actions {
         @apply flex flex-wrap flex-row justify-center;
-        @apply gap-level1;
+        @apply gap-y-level1 gap-x-fixed-level1;
       }
     }
     .footer-bottom-part {
@@ -42,11 +42,11 @@
       }
       .bottom-part-settings {
         @apply flex flex-wrap flex-row justify-between;
-        @apply gap-level1;
+        @apply gap-y-level1 gap-x-fixed-level1;
       }
       .bottom-part-legal {
         @apply flex flex-wrap flex-row justify-between items-center;
-        @apply gap-level1;
+        @apply gap-y-level1 gap-x-fixed-level1;
       }
       .bottom-part-copyright-text {
         @apply text-black-950;

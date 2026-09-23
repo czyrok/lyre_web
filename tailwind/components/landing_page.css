@@ -10,7 +10,7 @@
     }
     .section-actions {
       @apply w-full flex flex-wrap flex-row justify-center;
-      @apply gap-level1;
+      @apply gap-y-level1 gap-x-fixed-level1;
     }
   }
   .landing-page-contact-section {
@@ -50,10 +50,10 @@
     @apply py-10;
     .section-text-timeline {
       @apply flex flex-col 2xl:flex-row;
-      @apply gap-level3;
+      @apply gap-y-level3 gap-x-fixed-level3;
       .timeline-item {
         @apply grid grid-flow-row lg:grid-flow-col 2xl:grid-flow-row;
-        @apply gap-level2;
+        @apply gap-y-level2 gap-x-fixed-level2;
         .item-date {
           @apply text-center;
           @apply bg-blue-200;
@@ -86,7 +86,7 @@
   .landing-page-project-section {
     .section-projects {
       @apply flex flex-wrap justify-center;
-      @apply gap-level2;
+      @apply gap-y-level2 gap-x-fixed-level2;
     }
     .anchor {
       @apply v-xl:xl:anchor-middle-screen-target;

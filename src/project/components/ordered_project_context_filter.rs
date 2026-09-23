@@ -75,7 +75,7 @@ pub fn OrderedProjectContextFilter(
         <div class="flex flex-col items-center gap-level2">
             <SearchedProjectTitleInput set_searched_project_title scroll_trigger />
 
-            <div class="flex flex-wrap flex-row gap-level1">
+            <div class="flex flex-wrap flex-row gap-y-level1 gap-x-fixed-level1">
                 <TagSelector set_selected_project_tags scroll_trigger />
 
                 <ImplementationYearSelector set_selected_implementation_years scroll_trigger />

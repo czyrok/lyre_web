@@ -21,11 +21,16 @@ Registering it is what makes it interpolable — an unregistered custom property
 is a plain token stream and CSS can only flip it from one keyframe to the next,
 never tween it.
 
-The `level` spacing scale multiplies its design value by that scale:
+The `level` spacing scale comes in two halves — a static one holding the design
+value, and an animated one multiplying it by the scale:
 
 ```css
---spacing-level1: calc(1rem * var(--space-motion-scale));
+--spacing-fixed-level1: 1rem;
+--spacing-level1: calc(var(--spacing-fixed-level1) * var(--space-motion-scale));
 ```
+
+Tailwind follows `var()` references when tree-shaking `@theme`, so the
+`fixed-level` tokens survive even at the levels no utility names directly.
 
 `--spacing-level*` is substituted lazily, at the point of use, so every
 `gap-level2`, `py-level6`, `mt-level2` in the tree picks up the animated value
@@ -73,6 +78,37 @@ permanently compacted instead of simply not animating.
 | `to { --space-motion-scale }` | `@keyframes space-motion-compaction` | How tight the compacted state is (`0.6` = 40% tighter) |
 | `animation-range` | `:root` rule | Over how much scroll the compaction happens |
 | `linear` | `:root` rule | The easing of the compaction against scroll distance |
+
+## The motion is vertical only
+
+Compaction applies to the block axis and never to the inline one. Tightening a
+wrapped row sideways as the page scrolls drags buttons, tags and project cards
+toward each other horizontally, which reads as the layout collapsing rather than
+as rhythm.
+
+`gap-levelN` is therefore safe **only on a `flex-col` container**, where the
+`column-gap` half of the shorthand is inert. Anywhere the gap can manifest
+horizontally — a `flex-wrap` row, a `flex-row` at some breakpoint, a grid with
+columns — the two axes must be named separately:
+
+```css
+.section-projects {
+  @apply flex flex-wrap justify-center;
+  @apply gap-y-level2 gap-x-fixed-level2;
+}
+```
+
+The sites that currently need the split are the wrapped action/tag rows
+(`.section-actions`, `.top-part-actions`, `.details-tags`, `.more-part-actions`,
+`.bottom-part-settings`, `.bottom-part-legal`, the selector row in
+`ordered_project_context_filter.rs`), the wrapped card lists
+(`.section-projects`, `.middle-part-list`), the timeline
+(`.section-text-timeline`, `.timeline-item`), and `.intro-details`, which was
+already inline-only via `gap-x-`.
+
+**Adding a horizontal gap means reaching for `fixed-level`, not `level`.** A bare
+`gap-levelN` on a new `flex-wrap` row is the easy mistake — it looks right until
+someone scrolls.
 
 ## Scope
 
