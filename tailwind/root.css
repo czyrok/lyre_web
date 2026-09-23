@@ -117,10 +117,12 @@
   --spacing-103: 51.5rem;
   --spacing-119: 59.5rem;
   --spacing-210: 105rem;
-  --spacing-level1: 1rem;
-  --spacing-level2: 2rem;
-  --spacing-level3: 4.5rem;
-  --spacing-level4: 7rem;
+  --spacing-level1: calc(1rem * var(--space-motion-scale));
+  --spacing-level2: calc(2rem * var(--space-motion-scale));
+  --spacing-level3: calc(4.5rem * var(--space-motion-scale));
+  --spacing-level4: calc(7rem * var(--space-motion-scale));
+  --spacing-level5: calc(8rem * var(--space-motion-scale));
+  --spacing-level6: calc(12.5rem * var(--space-motion-scale));
 
   --text-1: 0.25rem;
   --text-2: 0.5rem;
@@ -186,6 +188,17 @@
   --blur-9: 9px;
   --blur-12: 12px;
   --blur-15: 15px;
+}
+
+@property --space-motion-scale {
+  syntax: "<number>";
+  inherits: true;
+  initial-value: 1;
+}
+
+@keyframes space-motion-compaction {
+  from { --space-motion-scale: 1; }
+  to { --space-motion-scale: 0.6; }
 }
 
 @utility w-button-icon { width: 1.5em; }
@@ -411,4 +424,16 @@
 
   /* It fixes the Geist-Sans font on Safari (issue: https://github.com/vercel/geist-font/issues/65) */
   font-synthesis-weight: none;
+}
+
+/* Without the @supports guard, a browser lacking scroll timelines runs the keyframes on a 0s time
+   timeline and lands on the compacted state immediately (see docs/space_motion.md) */
+@supports (animation-timeline: scroll()) {
+  @media screen and (prefers-reduced-motion: no-preference) {
+    :root {
+      animation: space-motion-compaction linear both;
+      animation-timeline: scroll(root block);
+      animation-range: 0 100vh;
+    }
+  }
 }

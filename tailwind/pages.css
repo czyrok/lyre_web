@@ -42,8 +42,8 @@
     }
     .landing-page-content {
       @apply flex flex-col;
-      @apply py-25;
-      @apply gap-16;
+      @apply py-level6;
+      @apply gap-level5;
     }
   }
   .secondary-page-layout {
