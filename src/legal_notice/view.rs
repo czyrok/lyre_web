@@ -64,8 +64,15 @@ pub fn LegalNotice() -> impl IntoView {
 
                         <section class="text-section">
                             <h2>"Données personnelles"</h2>
-                            <p>"Le site ne comporte ni formulaire, ni compte utilisateur, ni outil de mesure d'audience : aucune donnée personnelle n'est collectée lors de la navigation."</p>
+                            <p>"Le site ne comporte ni formulaire, ni compte utilisateur. En dehors de la mesure d'audience décrite ci-dessous, aucune donnée personnelle n'est collectée lors de la navigation."</p>
                             <p>"Les messages adressés à pro@dylan-valentin.dev sont conservés le temps nécessaire au traitement de la demande. Vous disposez d'un droit d'accès, de rectification, d'effacement et d'opposition, exerçable à cette même adresse."</p>
+                        </section>
+
+                        <section class="text-section">
+                            <h2>"Mesure d'audience"</h2>
+                            <p>"La fréquentation du site est mesurée avec Liwan, un logiciel libre installé et exploité par l'éditeur sur sa propre infrastructure, à l'adresse analytics.czrk.dev. Aucune donnée n'est transmise à un tiers ni hébergée hors de France, et aucun profilage publicitaire n'est réalisé."</p>
+                            <p>"La mesure fonctionne sans cookie et sans identifiant persistant. Pour chaque page consultée sont enregistrés la page, le site référent, le navigateur, le système d'exploitation, le type d'appareil ainsi que la taille et l'orientation de l'écran. Votre adresse IP n'est jamais enregistrée : elle sert uniquement, avec les informations de votre navigateur, à calculer un identifiant haché dont la clé change chaque jour, ce qui empêche tout rapprochement d'un jour sur l'autre."</p>
+                            <p>"Ce traitement ne lit ni n'écrit aucune information sur votre terminal et se limite à des statistiques de fréquentation nécessaires à l'amélioration du site : il relève de l'intérêt légitime de l'éditeur et ne requiert pas votre consentement. Vous pouvez néanmoins vous y opposer à l'adresse pro@dylan-valentin.dev."</p>
                         </section>
 
                         <section class="text-section">
@@ -78,7 +85,7 @@ pub fn LegalNotice() -> impl IntoView {
                             <p>"Ce site renvoie vers des sites tiers (dépôts de code, réseaux sociaux). Leur contenu n'engage que leurs éditeurs respectifs."</p>
                         </section>
 
-                        <span class="additional-info">"Dernière mise à jour : 22 septembre 2026."</span>
+                        <span class="additional-info">"Dernière mise à jour : 23 septembre 2026."</span>
                     </div>
                 </div>
             }.into_any()
