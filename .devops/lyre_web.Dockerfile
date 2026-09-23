@@ -68,6 +68,8 @@ COPY --from=builder /project/dist/site /app/site
 ENV RUST_LOG=info
 ENV LEPTOS_SITE_ADDR=0.0.0.0:8507
 ENV LEPTOS_SITE_ROOT=./site
+## `get_configuration(None)` reads the environment alone, so `hash-files` of `Cargo.toml` never reaches the server
+ENV LEPTOS_HASH_FILES=true
 ENV CARGO_MAKE_PROFILE=release
 ENV FULL_WEBSITE_URL="https://dylan-valentin.dev"
 
