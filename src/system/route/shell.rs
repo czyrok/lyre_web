@@ -3,7 +3,10 @@ use leptos::nonce::use_nonce;
 use leptos::{config::LeptosOptions, prelude::*, IntoView};
 use leptos_meta::*;
 
-use crate::app::App;
+use crate::{
+    app::App,
+    system::state::backend_contexts::use_environment_context,
+};
 
 pub fn shell(options: LeptosOptions) -> impl IntoView {
     // TODO: add nonce field when it will available on `Link` components
@@ -11,6 +14,28 @@ pub fn shell(options: LeptosOptions) -> impl IntoView {
     let nonce: Option<String> = use_nonce().map(|nonce| nonce.to_string());
     #[cfg(not(feature = "ssr"))]
     let nonce = None::<String>;
+
+    let analytics_script = use_environment_context()
+        .ok()
+        .and_then(|environment| {
+            Some((
+                environment.analytics_tracker_url?,
+                environment.analytics_api_url?,
+                environment.analytics_entity?,
+            ))
+        })
+        .map(|(tracker_url, api_url, entity)| {
+            view! {
+                <script
+                    type="module"
+                    src=tracker_url
+                    data-api=api_url
+                    data-entity=entity
+                    nonce=nonce.clone()
+                ></script>
+            }
+            .into_view()
+        });
 
     let schema_markup_content = "{
         \"@context\": \"https://schema.org\",\
@@ -35,6 +60,8 @@ pub fn shell(options: LeptosOptions) -> impl IntoView {
                 <AutoReload options=options.clone()/>
                 <HydrationScripts options/>
                 <MetaTags/>
+
+                {analytics_script}
 
                 <script type="application/ld+json" inner_html=schema_markup_content nonce=nonce.clone()/>
 
