@@ -47,15 +47,15 @@ pub fn LandingPage() -> impl IntoView {
 
                     <div class="middle-part-brand-wrapper">
                         <Brand size=ComponentSize::XL />
+
+                        <div class="brand-wrapper-catchphrase">
+                            <span>"Un simple développeur"</span>
+                            <br/><span>"indépendant en informatique."</span>
+                        </div>
                     </div>
                 </div>
 
                 <div class="cover-bottom-part">
-                    <div class="bottom-part-catchphrase">
-                        <span>"Un simple développeur"</span>
-                        <br/><span>"indépendant en informatique."</span>
-                    </div>
-
                     <div class="bottom-part-discover">
                         <AccentuationButtonAsLink size=ComponentSize::XL text="Découvrir" href="#projects" />
 

@@ -7,6 +7,9 @@ pub struct EnvironmentContext {
     pub project_data_dir_path: String,
     pub content_totp_uri: String,
     pub full_website_url: String,
+    pub analytics_tracker_url: Option<String>,
+    pub analytics_api_url: Option<String>,
+    pub analytics_entity: Option<String>,
 
     // This variable is used by SQLx (for macros)
     // And we can't change the name

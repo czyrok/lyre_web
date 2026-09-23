@@ -68,7 +68,7 @@
         @apply gap-2;
       }
       .input-text-left-group {
-        @apply gap-1;
+        @apply gap-1.5;
       }
     }
     &.input-size-md {
@@ -78,7 +78,7 @@
         @apply stroke-5;
       }
       &:has(.input-text-input, .input-text-icon) {
-        @apply gap-2;
+        @apply gap-1.5;
       }
       .input-text-left-group {
         @apply gap-1;
@@ -166,7 +166,7 @@
         @apply gap-2;
       }
       .input-text-left-group {
-        @apply gap-1;
+        @apply gap-1.5;
       }
     }
     &.input-size-md {
@@ -176,7 +176,7 @@
         @apply stroke-5;
       }
       &:has(.input-text-input, .input-text-icon) {
-        @apply gap-2;
+        @apply gap-1.5;
       }
       .input-text-left-group {
         @apply gap-1;
@@ -240,6 +240,9 @@
     .select-left-group {
       @apply inline-flex;
     }
+    .select-text-group {
+      @apply inline-flex items-center;
+    }
     .select-count {
       @apply inline-flex items-center justify-center;
       @apply bg-purple-blue-700;
@@ -273,6 +276,9 @@
       .select-left-group {
         @apply gap-1.5;
       }
+      .select-text-group {
+        @apply gap-1;
+      }
       .select-count {
         @apply px-1 py-0 rounded-1.5 text-5;
       }
@@ -290,6 +296,9 @@
         @apply gap-2;
       }
       .select-left-group {
+        @apply gap-1.5;
+      }
+      .select-text-group {
         @apply gap-1;
       }
       .select-count {
@@ -306,10 +315,13 @@
         @apply stroke-5;
       }
       &:has(.select-text, .select-icon) {
-        @apply gap-2;
+        @apply gap-1.5;
       }
       .select-left-group {
         @apply gap-1;
+      }
+      .select-text-group {
+        @apply gap-0.75;
       }
       .select-count {
         @apply px-0.75 py-0 rounded-1 text-3.5;
@@ -325,9 +337,12 @@
         @apply stroke-5;
       }
       &:has(.select-text, .select-icon) {
-        @apply gap-1.5;
+        @apply gap-1;
       }
       .select-left-group {
+        @apply gap-0.75;
+      }
+      .select-text-group {
         @apply gap-0.5;
       }
       .select-count {
@@ -408,7 +423,7 @@
     }
     &.checkbox-size-md {
       @apply text-5;
-      @apply gap-2;
+      @apply gap-1.5;
       .checkbox-box {
         @apply p-1;
         svg path {
@@ -418,7 +433,7 @@
     }
     &.checkbox-size-sm {
       @apply text-4;
-      @apply gap-2;
+      @apply gap-1;
       .checkbox-box {
         @apply p-1;
         svg path {
@@ -450,11 +465,14 @@
     .select-left-group {
       @apply inline-flex;
     }
+    .select-text-group {
+      @apply inline-flex items-center;
+    }
     .select-count {
       @apply inline-flex items-center justify-center;
-      @apply bg-purple-blue-100;
+      @apply bg-purple-blue-200;
       @apply dark:bg-purple-blue-900;
-      @apply text-purple-blue-400;
+      @apply text-purple-blue-600;
       @apply dark:text-purple-blue-500;
       @apply font-button-text font-geist-mono;
     }
@@ -486,6 +504,9 @@
       .select-left-group {
         @apply gap-1.5;
       }
+      .select-text-group {
+        @apply gap-1;
+      }
       .select-count {
         @apply px-1 py-0 rounded-1.5 text-5;
       }
@@ -503,6 +524,9 @@
         @apply gap-2;
       }
       .select-left-group {
+        @apply gap-1.5;
+      }
+      .select-text-group {
         @apply gap-1;
       }
       .select-count {
@@ -519,10 +543,13 @@
         @apply stroke-5;
       }
       &:has(.select-text, .select-icon) {
-        @apply gap-2;
+        @apply gap-1.5;
       }
       .select-left-group {
         @apply gap-1;
+      }
+      .select-text-group {
+        @apply gap-0.75;
       }
       .select-count {
         @apply px-0.75 py-0 rounded-1 text-3.5;
@@ -538,9 +565,12 @@
         @apply stroke-5;
       }
       &:has(.select-text, .select-icon) {
-        @apply gap-1.5;
+        @apply gap-1;
       }
       .select-left-group {
+        @apply gap-0.75;
+      }
+      .select-text-group {
         @apply gap-0.5;
       }
       .select-count {

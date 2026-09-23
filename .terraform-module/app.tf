@@ -52,6 +52,21 @@ resource "kubernetes_deployment_v1" "app" {
             value = "1234"
           }
 
+          env {
+            name  = "ANALYTICS_TRACKER_URL"
+            value = var.analytics_tracker_url
+          }
+
+          env {
+            name  = "ANALYTICS_API_URL"
+            value = var.analytics_api_url
+          }
+
+          env {
+            name  = "ANALYTICS_ENTITY"
+            value = var.analytics_entity
+          }
+
           port {
             container_port = 8507
           }
