@@ -20,17 +20,17 @@ pub fn shell(options: LeptosOptions) -> impl IntoView {
         .and_then(|environment| {
             Some((
                 environment.analytics_tracker_url?,
-                environment.analytics_api_url?,
-                environment.analytics_entity?,
+                environment.analytics_website_id?,
+                environment.analytics_domains?,
             ))
         })
-        .map(|(tracker_url, api_url, entity)| {
+        .map(|(tracker_url, website_id, domains)| {
             view! {
                 <script
-                    type="module"
+                    defer=true
                     src=tracker_url
-                    data-api=api_url
-                    data-entity=entity
+                    data-website-id=website_id
+                    data-domains=domains
                     nonce=nonce.clone()
                 ></script>
             }

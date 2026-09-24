@@ -58,13 +58,13 @@ resource "kubernetes_deployment_v1" "app" {
           }
 
           env {
-            name  = "ANALYTICS_API_URL"
-            value = var.analytics_api_url
+            name  = "ANALYTICS_WEBSITE_ID"
+            value = var.analytics_website_id
           }
 
           env {
-            name  = "ANALYTICS_ENTITY"
-            value = var.analytics_entity
+            name  = "ANALYTICS_DOMAINS"
+            value = var.analytics_domains
           }
 
           port {

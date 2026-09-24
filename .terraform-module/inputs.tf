@@ -33,19 +33,19 @@ variable "traefik_tls_cert_resolver" {
 variable "analytics_tracker_url" {
   type        = string
   default     = null
-  description = "Public Liwan tracker script URL; null disables analytics."
+  description = "Public Umami tracker script URL; null disables analytics."
 }
 
-variable "analytics_api_url" {
+variable "analytics_website_id" {
   type        = string
   default     = null
-  description = "Liwan event API URL used by the browser tracker."
+  description = "Umami website ID associated with Lyre Web pageviews."
 }
 
-variable "analytics_entity" {
+variable "analytics_domains" {
   type        = string
   default     = null
-  description = "Liwan entity associated with Lyre Web pageviews."
+  description = "Comma-separated hostnames the Umami tracker is allowed to run on; it stays silent anywhere else."
 }
 
 variable "wait_for" {
