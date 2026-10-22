@@ -41,6 +41,14 @@ resource "kubernetes_deployment_v1" "app" {
       }
 
       spec {
+        security_context {
+          run_as_non_root = true
+
+          seccomp_profile {
+            type = "RuntimeDefault"
+          }
+        }
+
         container {
           image = "${var.local_docker_registry_host}/lyre/lyre_web:latest-amd64"
           image_pull_policy = "Always"
@@ -69,6 +77,14 @@ resource "kubernetes_deployment_v1" "app" {
 
           port {
             container_port = 8507
+          }
+
+          security_context {
+            allow_privilege_escalation = false
+
+            capabilities {
+              drop = ["ALL"]
+            }
           }
         }
       }
