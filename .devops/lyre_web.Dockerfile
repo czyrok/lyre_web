@@ -53,17 +53,18 @@ RUN \
 
 FROM scratch as runner
 
+## SQLite writes `local.db-wal`/`-shm` beside the DB at startup, so `/app` itself must belong to the runtime user
+COPY --chown=65532:65532 .env /app/
+COPY --chown=65532:65532 Cargo.toml /app/
+
 WORKDIR /app
 
-COPY .env .
-COPY Cargo.toml .
+COPY --chown=65532:65532 --parents project_data/**/*.md .
+COPY --chown=65532:65532 local.db .
 
-COPY --parents project_data/**/*.md .
-COPY local.db .
-
-COPY --from=builder /project/dist/lyre_web /app/
-COPY --from=builder /project/dist/hash.txt /app/
-COPY --from=builder /project/dist/site /app/site
+COPY --chown=65532:65532 --from=builder /project/dist/lyre_web /app/
+COPY --chown=65532:65532 --from=builder /project/dist/hash.txt /app/
+COPY --chown=65532:65532 --from=builder /project/dist/site /app/site
 
 ENV RUST_LOG=info
 ENV LEPTOS_SITE_ADDR=0.0.0.0:8507
@@ -74,4 +75,5 @@ ENV CARGO_MAKE_PROFILE=release
 ENV FULL_WEBSITE_URL="https://dylan-valentin.dev"
 
 EXPOSE 8507
+USER 65532:65532
 ENTRYPOINT ["/app/lyre_web"]
