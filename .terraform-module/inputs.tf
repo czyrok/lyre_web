@@ -25,9 +25,10 @@ variable "traefik_host" {
   description = "Tells to the module the host to use for Traefik"
 }
 
-variable "traefik_tls_cert_resolver" {
+variable "cert_manager_cluster_issuer" {
   type        = string
-  description = "Tells to the module the certificate resolver to use for Traefik for the provided host"
+  default     = null
+  description = "cert-manager ClusterIssuer that issues the production certificate; unused in development"
 }
 
 variable "analytics_tracker_url" {

@@ -8,11 +8,20 @@ resource "kubernetes_ingress_v1" "lyre_web_ingress" {
             "traefik.ingress.kubernetes.io/router.entrypoints" = "web,websecure"
             "traefik.ingress.kubernetes.io/router.middlewares" = "${var.namespace_name}-${kubectl_manifest.compress_middleware.name}@kubernetescrd"
             "traefik.ingress.kubernetes.io/router.tls" = var.is_development_environment ? null : "true"
-            "traefik.ingress.kubernetes.io/router.tls.certresolver" = var.is_development_environment ? null : var.traefik_tls_cert_resolver
+            "cert-manager.io/cluster-issuer" = var.is_development_environment ? null : var.cert_manager_cluster_issuer
         }
     }
 
     spec {
+        dynamic "tls" {
+            for_each = var.is_development_environment ? [] : [var.traefik_host]
+
+            content {
+                hosts       = [tls.value]
+                secret_name = "lyre-web-tls"
+            }
+        }
+
         rule {
             host = var.is_development_environment ? "localhost" : var.traefik_host
             http {
