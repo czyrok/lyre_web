@@ -6,3 +6,9 @@ This project consists of a website that serves as my professional portfolio, and
 
 - [Space motion](docs/space_motion.md) — the scroll-driven spacing compaction
 
+
+## Develop
+
+`nix develop .#agent` provides nightly Rust with `wasm32-unknown-unknown`,
+`cargo-leptos`, `cargo-make` and `bun`. Coder agent workspaces load this shell
+on start.
