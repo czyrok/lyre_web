@@ -34,9 +34,8 @@
 
           ## cargo-leptos refuses a wasm-bindgen CLI whose version differs from Cargo.lock's
           wasm_bindgen_cli = pkgs."wasm-bindgen-cli_${builtins.replaceStrings [ "." ] [ "_" ] wasm_bindgen_version}";
-        in
-        {
-          agent = pkgs.mkShellNoCC {
+
+          default_shell = pkgs.mkShellNoCC {
             packages = [
               rust_toolchain
               pkgs.cargo-leptos
@@ -48,6 +47,10 @@
               pkgs.gcc
             ];
           };
+        in
+        {
+          default = default_shell;
+          agent = self.devShells.${system}.default;
         });
     };
 }

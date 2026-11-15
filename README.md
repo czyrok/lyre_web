@@ -9,6 +9,6 @@ This project consists of a website that serves as my professional portfolio, and
 
 ## Develop
 
-`nix develop .#agent` provides nightly Rust with `wasm32-unknown-unknown`,
-`cargo-leptos`, `cargo-make` and `bun`. Coder agent workspaces load this shell
-on start.
+`nix develop` provides nightly Rust with `wasm32-unknown-unknown`,
+`cargo-leptos`, `cargo-make` and `bun`. Coder agent workspaces load the same
+shell, as `.#agent`, on start.
