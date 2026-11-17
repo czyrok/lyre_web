@@ -49,11 +49,11 @@ jobs:
           # REGISTRY_STORAGE_S3_ENABLEROOTDIRECTORY=false
 
     steps:
+      - name: Set up cargo-binstall
+        uses: cargo-bins/cargo-binstall@main
+
       - name: Install cargo-make
-        uses: actions-rs/cargo@v1
-        with:
-          command: install
-          args: --no-default-features --debug cargo-make
+        run: cargo binstall --no-confirm cargo-make
 
       ## Removed because we change the runner os depending on the target architecture
       # - name: Set up QEMU (for multi-platform builds)
@@ -78,15 +78,12 @@ jobs:
             ${{ matrix.target-arch }}-build-
       
       - name: Build Docker image
-        uses: actions-rs/cargo@v1
         env:
           DOCKER_BUILDX_CACHE_FROM_PATH: ${{ runner.temp }}/.buildx-cache
           DOCKER_BUILDX_CACHE_TO_PATH: ${{ runner.temp }}/.buildx-cache
           LOCAL_DOCKER_REGISTRY_AS_PROXY: localhost:5000
           DOCKER_IMAGE_PLATFORM: ${{ matrix.target-arch }}
-        with:
-          command: make
-          args: registry-docker-image
+        run: cargo make registry-docker-image
 
       - name: Save Docker layer cache
         id: docker-layer-cache-save
