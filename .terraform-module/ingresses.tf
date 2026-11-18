@@ -2,11 +2,11 @@
 resource "kubernetes_ingress_v1" "lyre_web_ingress" {
     metadata {
         name = "lyre-web-ingress"
-        namespace = var.namespace_name
+        namespace = kubernetes_namespace_v1.lyre_web.metadata[0].name
 
         annotations = {
             "traefik.ingress.kubernetes.io/router.entrypoints" = "web,websecure"
-            "traefik.ingress.kubernetes.io/router.middlewares" = "${var.namespace_name}-${kubectl_manifest.compress_middleware.name}@kubernetescrd"
+            "traefik.ingress.kubernetes.io/router.middlewares" = "${kubernetes_namespace_v1.lyre_web.metadata[0].name}-${kubectl_manifest.compress_middleware.name}@kubernetescrd"
             "traefik.ingress.kubernetes.io/router.tls" = var.is_development_environment ? null : "true"
             "cert-manager.io/cluster-issuer" = var.is_development_environment ? null : var.cert_manager_cluster_issuer
         }
@@ -56,7 +56,7 @@ resource "kubectl_manifest" "compress_middleware" {
         kind: Middleware
         metadata:
             name: compress
-            namespace: ${var.namespace_name}
+            namespace: ${kubernetes_namespace_v1.lyre_web.metadata[0].name}
         spec:
             compress: {}
     EOF

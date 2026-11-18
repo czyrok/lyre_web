@@ -2,7 +2,7 @@
 resource "kubernetes_deployment_v1" "app" {
   metadata {
     name = "lyre-web-app"
-    namespace = var.namespace_name
+    namespace = kubernetes_namespace_v1.lyre_web.metadata[0].name
 
     labels = {
       app = "app"
@@ -103,7 +103,7 @@ resource "kubernetes_deployment_v1" "app" {
 resource "kubernetes_service_v1" "app" {
   metadata {
     name = "app"
-    namespace = var.namespace_name
+    namespace = kubernetes_namespace_v1.lyre_web.metadata[0].name
   }
 
   spec {
@@ -128,7 +128,7 @@ resource "kubernetes_service_v1" "app" {
 resource "kubernetes_pod_disruption_budget_v1" "app" {
   metadata {
     name      = "app"
-    namespace = var.namespace_name
+    namespace = kubernetes_namespace_v1.lyre_web.metadata[0].name
   }
 
   spec {
