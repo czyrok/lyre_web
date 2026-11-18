@@ -1,17 +1,19 @@
 
 variable "namespace_name" {
   type        = string
-  description = "Name of the namespace where Lyre Web will be initialized"
+  default     = "lyre-web"
+  description = "Namespace Lyre Web is deployed into. Created by this module."
+}
+
+variable "namespace_labels" {
+  type        = map(string)
+  default     = {}
+  description = "Labels set on the namespace this module creates."
 }
 
 variable "local_docker_registry_host" {
   type        = string
   description = "Host of the local Docker registry"
-}
-
-variable "traefik_app_name" {
-  type        = string
-  description = "Traefik pod's app name"
 }
 
 variable "is_development_environment" {
