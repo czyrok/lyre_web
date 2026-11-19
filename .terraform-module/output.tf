@@ -10,6 +10,6 @@ output "health_checks" {
 
 output "homepage_cards" {
   value = [
-    { name = "Website", href = "https://${var.traefik_host}", icon = "mdi-web", description = "Portfolio", public = true },
+    { name = "Website", href = "https://${var.traefik_host}", icon = "/icons/link-lyre-web.svg", description = "Portfolio", public = true },
   ]
 }
